@@ -1,0 +1,715 @@
+{
+  "meta": {
+    "note": "Overrides layered on top of booklet.json and synonyms-extra.json without editing them. hints: replaces an entry's hint. senses: splits one spelling into separate graph nodes; each sense lists the item ids (entries or register sets) whose occurrence of the word means that sense. Occurrences in unlisted items fall back to the plain word node."
+  },
+  "hints": {
+    "b023": "הרגש",
+    "b244": "הוא פחד מ…"
+  },
+  "senses": [
+    {
+      "word": "ערב",
+      "senses": [
+        {
+          "key": "evening",
+          "gloss": "חלק מהיום",
+          "items": [
+            "b406"
+          ]
+        },
+        {
+          "key": "pleasant",
+          "gloss": "נעים",
+          "items": [
+            "b133"
+          ]
+        },
+        {
+          "key": "tasty",
+          "gloss": "טעים",
+          "items": [
+            "b118"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "נוגה",
+      "senses": [
+        {
+          "key": "sad",
+          "gloss": "עצוב",
+          "items": [
+            "b021"
+          ]
+        },
+        {
+          "key": "glow",
+          "gloss": "אור",
+          "items": [
+            "b329"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "חמה",
+      "senses": [
+        {
+          "key": "wrath",
+          "gloss": "כעס",
+          "items": [
+            "b010"
+          ]
+        },
+        {
+          "key": "sun",
+          "gloss": "שמש",
+          "items": [
+            "b370",
+            "reg04"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "מזומן",
+      "senses": [
+        {
+          "key": "ready",
+          "gloss": "מוכן",
+          "items": [
+            "b086"
+          ]
+        },
+        {
+          "key": "cash",
+          "gloss": "כסף",
+          "items": [
+            "b345",
+            "reg12"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "צר",
+      "senses": [
+        {
+          "key": "narrow",
+          "gloss": "לא רחב",
+          "items": [
+            "b057"
+          ]
+        },
+        {
+          "key": "enemy",
+          "gloss": "אויב",
+          "items": [
+            "b294"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "גבר",
+      "senses": [
+        {
+          "key": "prevailed",
+          "gloss": "ניצח",
+          "items": [
+            "b275"
+          ]
+        },
+        {
+          "key": "man",
+          "gloss": "איש",
+          "items": [
+            "b296"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "קטן",
+      "senses": [
+        {
+          "key": "decreased",
+          "gloss": "פחת",
+          "items": [
+            "b282"
+          ]
+        },
+        {
+          "key": "small",
+          "gloss": "לא גדול",
+          "items": [
+            "b058"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "המון",
+      "senses": [
+        {
+          "key": "lots",
+          "gloss": "הרבה",
+          "items": [
+            "b385"
+          ]
+        },
+        {
+          "key": "crowd",
+          "gloss": "קהל",
+          "items": [
+            "b319"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "ישר",
+      "senses": [
+        {
+          "key": "straight",
+          "gloss": "זקוף",
+          "items": [
+            "b040"
+          ]
+        },
+        {
+          "key": "honest",
+          "gloss": "הגון",
+          "items": [
+            "b074"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "רע",
+      "senses": [
+        {
+          "key": "friend",
+          "gloss": "רֵעַ, חבר",
+          "items": [
+            "b304",
+            "reg02"
+          ]
+        },
+        {
+          "key": "bad",
+          "gloss": "לא טוב",
+          "items": [
+            "b141"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "נעים",
+      "senses": [
+        {
+          "key": "pleasant",
+          "gloss": "מהנה",
+          "items": [
+            "b133"
+          ]
+        },
+        {
+          "key": "kind",
+          "gloss": "נחמד",
+          "items": [
+            "b093"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "משובח",
+      "senses": [
+        {
+          "key": "tasty",
+          "gloss": "טעים, איכותי",
+          "items": [
+            "b118"
+          ]
+        },
+        {
+          "key": "excellent",
+          "gloss": "טוב מאוד",
+          "items": [
+            "reg11"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "מעולה",
+      "senses": [
+        {
+          "key": "great",
+          "gloss": "טוב",
+          "items": [
+            "b117"
+          ]
+        },
+        {
+          "key": "flawless",
+          "gloss": "מושלם",
+          "items": [
+            "e028"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "נהדר",
+      "senses": [
+        {
+          "key": "great",
+          "gloss": "טוב",
+          "items": [
+            "b117"
+          ]
+        },
+        {
+          "key": "wonderful",
+          "gloss": "נפלא",
+          "items": [
+            "b134"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "שלם",
+      "senses": [
+        {
+          "key": "whole",
+          "gloss": "כולו",
+          "items": [
+            "b069"
+          ]
+        },
+        {
+          "key": "healthy",
+          "gloss": "בריא",
+          "items": [
+            "b073"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "מלא",
+      "senses": [
+        {
+          "key": "full",
+          "gloss": "גדוש",
+          "items": [
+            "b044"
+          ]
+        },
+        {
+          "key": "whole",
+          "gloss": "שלם",
+          "items": [
+            "b069"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "עמוס",
+      "senses": [
+        {
+          "key": "loaded",
+          "gloss": "מלא",
+          "items": [
+            "b044"
+          ]
+        },
+        {
+          "key": "busy",
+          "gloss": "עסוק",
+          "items": [
+            "b097"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "הגה",
+      "senses": [
+        {
+          "key": "imagined",
+          "gloss": "דמיין",
+          "items": [
+            "b223"
+          ]
+        },
+        {
+          "key": "devised",
+          "gloss": "המציא",
+          "items": [
+            "b227"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "הקים",
+      "senses": [
+        {
+          "key": "built",
+          "gloss": "בנה",
+          "items": [
+            "b147"
+          ]
+        },
+        {
+          "key": "founded",
+          "gloss": "ייסד",
+          "items": [
+            "e067"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "ציין",
+      "senses": [
+        {
+          "key": "said",
+          "gloss": "אמר",
+          "items": [
+            "b187",
+            "b193",
+            "reg14"
+          ]
+        },
+        {
+          "key": "marked",
+          "gloss": "סימן",
+          "items": [
+            "b283"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "דיבר",
+      "senses": [
+        {
+          "key": "said",
+          "gloss": "אמר",
+          "items": [
+            "b187"
+          ]
+        },
+        {
+          "key": "talked",
+          "gloss": "שוחח",
+          "items": [
+            "b214"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "רציני",
+      "senses": [
+        {
+          "key": "serious",
+          "gloss": "כבד ראש",
+          "items": [
+            "b106"
+          ]
+        },
+        {
+          "key": "responsible",
+          "gloss": "אחראי",
+          "items": [
+            "e023"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "חשש",
+      "senses": [
+        {
+          "key": "fear",
+          "gloss": "פחד (הרגש)",
+          "items": [
+            "b023"
+          ]
+        },
+        {
+          "key": "worried",
+          "gloss": "דאג, פחד",
+          "items": [
+            "b222",
+            "b244"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "בהיר",
+      "senses": [
+        {
+          "key": "lit",
+          "gloss": "מואר",
+          "items": [
+            "b042"
+          ]
+        },
+        {
+          "key": "clear",
+          "gloss": "ברור",
+          "items": [
+            "b113"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "טס",
+      "senses": [
+        {
+          "key": "flew",
+          "gloss": "עף",
+          "items": [
+            "b178"
+          ]
+        },
+        {
+          "key": "ran",
+          "gloss": "רץ מהר",
+          "items": [
+            "b180"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "סידר",
+      "senses": [
+        {
+          "key": "arranged",
+          "gloss": "ארגן",
+          "items": [
+            "b278"
+          ]
+        },
+        {
+          "key": "fixed",
+          "gloss": "תיקן",
+          "items": [
+            "b185"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "תפס",
+      "senses": [
+        {
+          "key": "caught",
+          "gloss": "לכד",
+          "items": [
+            "b186"
+          ]
+        },
+        {
+          "key": "grasped",
+          "gloss": "הבין",
+          "items": [
+            "b224"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "חפץ",
+      "senses": [
+        {
+          "key": "object",
+          "gloss": "דבר",
+          "items": [
+            "b339"
+          ]
+        },
+        {
+          "key": "wanted",
+          "gloss": "רצה",
+          "items": [
+            "b247"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "גמר",
+      "senses": [
+        {
+          "key": "finished",
+          "gloss": "סיים",
+          "items": [
+            "b257"
+          ]
+        },
+        {
+          "key": "end",
+          "gloss": "סוף",
+          "items": [
+            "b404"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "עמל",
+      "senses": [
+        {
+          "key": "toiled",
+          "gloss": "עבד",
+          "items": [
+            "b279"
+          ]
+        },
+        {
+          "key": "toil",
+          "gloss": "עבודה",
+          "items": [
+            "b359"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "איום",
+      "senses": [
+        {
+          "key": "terrible",
+          "gloss": "נורא",
+          "items": [
+            "b131"
+          ]
+        },
+        {
+          "key": "threat",
+          "gloss": "סכנה",
+          "items": [
+            "b357"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "זוהר",
+      "senses": [
+        {
+          "key": "glittering",
+          "gloss": "נוצץ",
+          "items": [
+            "b047"
+          ]
+        },
+        {
+          "key": "radiance",
+          "gloss": "אור",
+          "items": [
+            "b329"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "פעוט",
+      "senses": [
+        {
+          "key": "tiny",
+          "gloss": "קטן",
+          "items": [
+            "b058"
+          ]
+        },
+        {
+          "key": "toddler",
+          "gloss": "ילד קטן",
+          "items": [
+            "b307"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "נכון",
+      "senses": [
+        {
+          "key": "correct",
+          "gloss": "מדויק",
+          "items": [
+            "b132"
+          ]
+        },
+        {
+          "key": "yes",
+          "gloss": "כן",
+          "items": [
+            "b391"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "מתוח",
+      "senses": [
+        {
+          "key": "tense",
+          "gloss": "לחוץ",
+          "items": [
+            "e004"
+          ]
+        },
+        {
+          "key": "taut",
+          "gloss": "זקוף, נמתח",
+          "items": [
+            "b040"
+          ]
+        }
+      ]
+    },
+    {
+      "word": "שקט",
+      "senses": [
+        {
+          "key": "quiet",
+          "gloss": "לא רועש",
+          "items": [
+            "b024",
+            "b144"
+          ]
+        },
+        {
+          "key": "silence",
+          "gloss": "דממה",
+          "items": [
+            "b335"
+          ]
+        }
+      ]
+    }
+  ],
+  "sameMeaning": [
+    "לבד",
+    "רוגז",
+    "נדהם",
+    "ייתכן"
+  ]
+}

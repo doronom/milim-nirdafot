@@ -1,14 +1,18 @@
 import booklet from '../data/booklet.json';
 import extra from '../data/synonyms-extra.json';
 import sentences from '../data/sentences.json';
+import senses from '../data/senses.json';
 import { buildContent } from './model';
-import type { BookletFile, ExtraFile, SentencesFile } from './types';
+import type { BookletFile, ExtraFile, SentencesFile, SensesFile } from './types';
 
-export const bookletFile = booklet as BookletFile;
-export const extraFile = extra as ExtraFile;
-export const sentencesFile = sentences as SentencesFile;
+export const sources = {
+  booklet: booklet as BookletFile,
+  extra: extra as ExtraFile,
+  sentences: sentences as SentencesFile,
+  senses: senses as SensesFile,
+};
 
-export const content = buildContent(bookletFile, extraFile, sentencesFile);
+export const content = buildContent(sources);
 
 export * from './types';
 export * from './model';
