@@ -1,0 +1,30 @@
+/** Icon names the UI uses. Each must exist as src/design/icons/<name>.svg (a test enforces it). */
+export const ICON_NAMES = [
+  'anchor',
+  'back',
+  'bolt',
+  'book',
+  'check',
+  'compass',
+  'crown',
+  'eye-off',
+  'flame',
+  'key',
+  'lock',
+  'map',
+  'mountain',
+  'play',
+  'refresh',
+  'shield',
+  'snowflake',
+  'sparkle',
+  'speaker',
+  'star',
+  'swords',
+  'tower',
+  'trees',
+  'trophy',
+  'user',
+] as const;
+
+export type IconName = (typeof ICON_NAMES)[number];

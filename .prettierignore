@@ -1,0 +1,8 @@
+dist
+coverage
+reports
+design
+node_modules
+package-lock.json
+src/generated
+src/data

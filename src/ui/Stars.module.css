@@ -1,0 +1,15 @@
+.stars {
+  display: inline-flex;
+  gap: var(--space-1);
+}
+.on {
+  display: inline-flex;
+  color: var(--xp);
+}
+.on svg {
+  fill: currentColor;
+}
+.off {
+  display: inline-flex;
+  color: var(--star-dim);
+}

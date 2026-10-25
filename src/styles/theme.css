@@ -1,0 +1,135 @@
+/*
+ * Semantic layer over the generated --wq-* token variables. Components use only these names, so a new tokens.json
+ * is a drop-in replacement; if the designer renames a token, this file is the one place to remap it.
+ */
+:root {
+  --bg: var(--wq-colors-base-bg-dark);
+  --surface: var(--wq-colors-base-surface-base);
+  --surface-container: var(--wq-colors-base-surface-container);
+  --surface-elevated: var(--wq-colors-base-surface-elevated);
+  --surface-bright: var(--wq-colors-base-surface-bright);
+  --text: var(--wq-colors-base-text-primary);
+  --text-secondary: var(--wq-colors-base-text-secondary);
+  --text-muted: var(--wq-colors-base-text-muted);
+  --text-on-accent: var(--wq-colors-base-text-on-accent);
+  --border: var(--wq-colors-base-border-dark);
+
+  --success: var(--wq-colors-feedback-success);
+  --success-deep: var(--wq-colors-feedback-success-deep);
+  --success-glow: var(--wq-colors-feedback-success-glow);
+  --error: var(--wq-colors-feedback-error);
+  --error-deep: var(--wq-colors-feedback-error-deep);
+  --error-glow: var(--wq-colors-feedback-error-glow);
+  --xp: var(--wq-colors-feedback-xp-gold);
+  --xp-deep: var(--wq-colors-feedback-xp-gold-deep);
+  --star-dim: var(--wq-colors-feedback-star-dim);
+  --guest: var(--wq-colors-feedback-guest-badge);
+  /* Streak freeze reads as ice: the harbor blue until the designer names a token for it. */
+  --freeze: var(--wq-world-1-primary);
+
+  --font-display: var(--wq-typography-display);
+  --font-body: var(--wq-typography-body);
+
+  --type-hero-size: var(--wq-typography-scale-display-hero-size);
+  --type-hero-weight: var(--wq-typography-scale-display-hero-weight);
+  --type-hero-lh: var(--wq-typography-scale-display-hero-line-height);
+  --type-word-size: var(--wq-typography-scale-word-target-size);
+  --type-word-weight: var(--wq-typography-scale-word-target-weight);
+  --type-word-lh: var(--wq-typography-scale-word-target-line-height);
+  --type-option-size: var(--wq-typography-scale-option-word-size);
+  --type-option-weight: var(--wq-typography-scale-option-word-weight);
+  --type-option-lh: var(--wq-typography-scale-option-word-line-height);
+  --type-title-size: var(--wq-typography-scale-title-md-size);
+  --type-title-weight: var(--wq-typography-scale-title-md-weight);
+  --type-title-lh: var(--wq-typography-scale-title-md-line-height);
+  --type-label-size: var(--wq-typography-scale-label-md-size);
+  --type-label-weight: var(--wq-typography-scale-label-md-weight);
+  --type-label-lh: var(--wq-typography-scale-label-md-line-height);
+  --type-body-size: var(--wq-typography-scale-body-md-size);
+  --type-body-weight: var(--wq-typography-scale-body-md-weight);
+  --type-body-lh: var(--wq-typography-scale-body-md-line-height);
+  --type-caption-size: var(--wq-typography-scale-caption-size);
+  --type-caption-weight: var(--wq-typography-scale-caption-weight);
+  --type-caption-lh: var(--wq-typography-scale-caption-line-height);
+
+  --radius-chip: var(--wq-radii-chip);
+  --radius-card: var(--wq-radii-card);
+  --radius-button: var(--wq-radii-button);
+  --radius-badge: var(--wq-radii-badge);
+  --radius-modal: var(--wq-radii-modal);
+
+  --space-1: var(--wq-spacing-1);
+  --space-2: var(--wq-spacing-2);
+  --space-3: var(--wq-spacing-3);
+  --space-4: var(--wq-spacing-4);
+  --space-5: var(--wq-spacing-5);
+  --space-6: var(--wq-spacing-6);
+  --space-8: var(--wq-spacing-8);
+  --space-10: var(--wq-spacing-10);
+  --space-12: var(--wq-spacing-12);
+
+  --border-thin: var(--wq-borders-thin);
+  --border-medium: var(--wq-borders-medium);
+  --border-lip: var(--wq-borders-lip);
+
+  --hud-height: var(--wq-layout-hud-height);
+  --nav-height: var(--wq-layout-nav-height);
+  --touch-min: var(--wq-layout-touch-min);
+  --content-max: var(--wq-layout-content-max);
+  --gutter: var(--wq-layout-gutter);
+  --node-size: var(--wq-layout-node-size);
+  --node-size-current: var(--wq-layout-node-size-current);
+  --icon-sm: var(--wq-layout-icon-sm);
+  --icon-md: var(--wq-layout-icon-md);
+  --icon-lg: var(--wq-layout-icon-lg);
+  --icon-xl: var(--wq-layout-icon-xl);
+  --mascot-size: var(--wq-layout-mascot);
+  --progress-height: var(--wq-layout-progress-height);
+  --connector-height: var(--wq-layout-connector-height);
+  --press-offset: var(--wq-layout-press-offset);
+
+  --opacity-disabled: var(--wq-opacity-disabled);
+  --opacity-locked: var(--wq-opacity-locked);
+
+  --shadow-card-glow: var(--wq-shadows-card-glow);
+  --shadow-inset-slot: var(--wq-shadows-inset-slot);
+  --shadow-focus: var(--wq-shadows-focus-ring);
+
+  --motion-press: var(--wq-motion-press);
+  --motion-snap: var(--wq-motion-card-snap);
+
+  --z-hud: var(--wq-z-hud);
+  --z-nav: var(--wq-z-nav);
+  --z-overlay: var(--wq-z-overlay);
+
+  /* World accent, switched by data-world on any container. World 1 is the default. */
+  --world-primary: var(--wq-world-1-primary);
+  --world-deep: var(--wq-world-1-deep);
+  --world-surface: var(--wq-world-1-surface);
+  --world-accent: var(--wq-world-1-accent);
+}
+
+[data-world='1'] {
+  --world-primary: var(--wq-world-1-primary);
+  --world-deep: var(--wq-world-1-deep);
+  --world-surface: var(--wq-world-1-surface);
+  --world-accent: var(--wq-world-1-accent);
+}
+[data-world='2'] {
+  --world-primary: var(--wq-world-2-primary);
+  --world-deep: var(--wq-world-2-deep);
+  --world-surface: var(--wq-world-2-surface);
+  --world-accent: var(--wq-world-2-accent);
+}
+[data-world='3'] {
+  --world-primary: var(--wq-world-3-primary);
+  --world-deep: var(--wq-world-3-deep);
+  --world-surface: var(--wq-world-3-surface);
+  --world-accent: var(--wq-world-3-accent);
+}
+[data-world='4'] {
+  --world-primary: var(--wq-world-4-primary);
+  --world-deep: var(--wq-world-4-deep);
+  --world-surface: var(--wq-world-4-surface);
+  --world-accent: var(--wq-world-4-accent);
+}

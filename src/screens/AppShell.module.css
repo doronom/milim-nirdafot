@@ -1,0 +1,15 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  background: var(--surface);
+  /* The trail zigzag must never widen the page. */
+  overflow-x: clip;
+}
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

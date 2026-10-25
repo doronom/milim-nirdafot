@@ -13,8 +13,12 @@ const table = (rows: (string | number)[][]) => {
 
 line('Word Quest data validation');
 line('==========================');
-line(`entries: ${stats.entries}   unique words: ${stats.uniqueWords}   sentences: ${stats.other.sentences} (${stats.sentencesWithFits} with fits)`);
-line(`intensity scales: ${stats.other.intensityScales}   register sets: ${stats.other.registerSets}   context choices: ${stats.other.contextChoices}   idioms: ${stats.other.idioms}`);
+line(
+  `entries: ${stats.entries}   unique words: ${stats.uniqueWords}   sentences: ${stats.other.sentences} (${stats.sentencesWithFits} with fits)`,
+);
+line(
+  `intensity scales: ${stats.other.intensityScales}   register sets: ${stats.other.registerSets}   context choices: ${stats.other.contextChoices}   idioms: ${stats.other.idioms}`,
+);
 line(`reviewed items: ${stats.reviewed.reviewed}   unreviewed items: ${stats.reviewed.unreviewed}`);
 line();
 line('Per category');
@@ -33,7 +37,10 @@ line();
 line('Per difficulty');
 table([
   ['difficulty', 'booklet', 'extra', 'custom', 'all'],
-  ...[1, 2, 3].map((d) => [d, ...['booklet', 'extra', 'custom', 'all'].map((s) => stats.byDifficulty[`${s}:${d}`] ?? 0)]),
+  ...[1, 2, 3].map((d) => [
+    d,
+    ...['booklet', 'extra', 'custom', 'all'].map((s) => stats.byDifficulty[`${s}:${d}`] ?? 0),
+  ]),
 ]);
 line();
 line('Per source');
@@ -42,7 +49,9 @@ line();
 line('Per part of speech');
 table([['pos', 'entries'], ...Object.entries(stats.byPos)]);
 line();
-line(`Synonym graph: ${stats.groups} groups. Largest 10 (warning above ${MAX_GROUP_WORDS} unless approved in large-groups.json; "#" marks a split sense):`);
+line(
+  `Synonym graph: ${stats.groups} groups. Largest 10 (warning above ${MAX_GROUP_WORDS} unless approved in large-groups.json; "#" marks a split sense):`,
+);
 for (const g of stats.largestGroups) line(`  ${g.size}: ${g.words.join(', ')}`);
 
 const group = (issues: Issue[]) => {

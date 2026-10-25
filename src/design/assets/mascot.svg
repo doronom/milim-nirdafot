@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <circle cx="60" cy="60" r="54" fill="#131b2e" stroke="#0ea5e9" stroke-width="4"/>
+  <circle cx="60" cy="60" r="44" fill="#0b1326" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- Compass Needle -->
+  <polygon points="60,24 68,60 60,54" fill="#0ea5e9"/>
+  <polygon points="60,24 52,60 60,54" fill="#38bdf8"/>
+  <polygon points="60,96 68,60 60,66" fill="#f59e0b"/>
+  <polygon points="60,96 52,60 60,66" fill="#fbbf24"/>
+  <circle cx="60" cy="60" r="8" fill="#f8fafc" stroke="#0369a1" stroke-width="2"/>
+  <!-- Eyes for Mascot Expression -->
+  <circle cx="56" cy="59" r="2" fill="#0b1326"/>
+  <circle cx="64" cy="59" r="2" fill="#0b1326"/>
+  <path d="M57 63 Q60 66 63 63" stroke="#0b1326" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

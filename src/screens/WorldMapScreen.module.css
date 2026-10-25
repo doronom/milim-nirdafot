@@ -1,0 +1,165 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+}
+.rankRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  padding-inline: var(--gutter);
+  border-block-end: var(--border-thin) solid var(--border);
+}
+.rankIcon {
+  display: inline-flex;
+  padding: var(--space-2);
+  border-radius: var(--radius-badge);
+  background: var(--surface-elevated);
+  color: var(--world-accent);
+}
+.rankLabel {
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+}
+.rankName {
+  font-weight: var(--type-label-weight);
+}
+.rankStars {
+  margin-inline-start: auto;
+}
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-6) var(--space-4);
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}
+.lead {
+  color: var(--text-secondary);
+}
+.worlds {
+  list-style: none;
+  margin: 0;
+  padding-block: 0 var(--space-8);
+  padding-inline: var(--gutter);
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.connector {
+  inline-size: var(--border-lip);
+  block-size: var(--connector-height);
+  border-radius: var(--radius-badge);
+  background: var(--border);
+}
+.connectorLit {
+  background: var(--world-primary);
+}
+.card {
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+}
+.active {
+  border-color: var(--world-primary);
+  background: linear-gradient(180deg, var(--world-deep), var(--world-surface));
+  box-shadow: var(--shadow-card-glow);
+}
+.open {
+  border-color: var(--world-deep);
+}
+.next {
+  border-color: var(--world-primary);
+  background: var(--world-surface);
+}
+.locked {
+  opacity: var(--opacity-locked);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.cardMeta {
+  color: var(--world-primary);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.locked .cardMeta {
+  color: var(--text-muted);
+}
+.cardBody {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.worldName {
+  font-family: var(--font-display);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  line-height: var(--type-word-lh);
+}
+.tagline {
+  color: var(--text-secondary);
+  margin-block-start: var(--space-1);
+}
+.worldIcon {
+  display: inline-flex;
+  padding: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  color: var(--world-primary);
+}
+.locked .worldIcon {
+  color: var(--text-muted);
+}
+.progressBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-chip);
+  background: var(--surface);
+  box-shadow: var(--shadow-inset-slot);
+}
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.numeric {
+  color: var(--world-primary);
+  font-variant-numeric: tabular-nums;
+}
+.unlockHint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--type-label-size);
+}
+.unlockHint > span:first-child {
+  color: var(--world-accent);
+}

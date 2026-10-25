@@ -65,8 +65,15 @@ describe('content data', () => {
 
   it('adds custom words in a custom station and keeps them under reviewed-only', () => {
     const custom: Entry = {
-      id: 'c001', categoryId: 'custom', headword: 'מגניב', hint: null, synonyms: ['אחלה'],
-      difficulty: 1, pos: 'adj', source: 'custom', reviewed: false,
+      id: 'c001',
+      categoryId: 'custom',
+      headword: 'מגניב',
+      hint: null,
+      synonyms: ['אחלה'],
+      difficulty: 1,
+      pos: 'adj',
+      source: 'custom',
+      reviewed: false,
     };
     const merged = buildContent({ ...sources, custom: [custom] });
     expect(merged.categories.at(-1)?.id).toBe('custom');
@@ -106,7 +113,19 @@ describe('validator', () => {
   });
 
   it('fails when a sense split points at an item without the word', () => {
-    const broken = { ...content, senseSplits: [...content.senseSplits, { word: 'בית', senses: [{ key: 'a', gloss: '', items: ['b001'] }, { key: 'b', gloss: '', items: ['b300'] }] }] };
+    const broken = {
+      ...content,
+      senseSplits: [
+        ...content.senseSplits,
+        {
+          word: 'בית',
+          senses: [
+            { key: 'a', gloss: '', items: ['b001'] },
+            { key: 'b', gloss: '', items: ['b300'] },
+          ],
+        },
+      ],
+    };
     expect(validateContent(broken).errors.map((i) => i.code)).toContain('sense-word-missing');
   });
 

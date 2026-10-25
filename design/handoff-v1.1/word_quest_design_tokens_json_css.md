@@ -1,0 +1,130 @@
+# מסע המילים — tokens.json & tokens.css
+
+## tokens.json
+```json
+{
+  "theme": "Word Quest Expedition (מסע המילים)",
+  "version": "1.1.0",
+  "direction": "rtl",
+  "device": {
+    "target": "Mobile Portrait (390x844)",
+    "min_responsive": "360x640"
+  },
+  "colors": {
+    "base": {
+      "bg_dark": "#0a0f1d",
+      "surface_base": "#0b1326",
+      "surface_container": "#131b2e",
+      "surface_elevated": "#1e293b",
+      "surface_bright": "#31394d",
+      "text_primary": "#f8fafc",
+      "text_secondary": "#94a3b8",
+      "text_muted": "#64748b",
+      "border_dark": "#2a3754"
+    },
+    "worlds": {
+      "world1_harbor": {
+        "id": "harbor_of_basics",
+        "name": "נמל היסודות",
+        "primary": "#0ea5e9",
+        "deep": "#0369a1",
+        "surface": "#0c2540",
+        "accent": "#f59e0b"
+      },
+      "world2_forest": {
+        "id": "forest_of_expansion",
+        "name": "יער ההרחבה",
+        "primary": "#22c55e",
+        "deep": "#15803d",
+        "surface": "#0b2b18",
+        "accent": "#84cc16"
+      },
+      "world3_mountains": {
+        "id": "mountains_of_precision",
+        "name": "הרי הדיוק",
+        "primary": "#8b5cf6",
+        "deep": "#5b21b6",
+        "surface": "#231442",
+        "accent": "#ec4899"
+      },
+      "world4_tower": {
+        "id": "experts_tower",
+        "name": "מגדל המומחים",
+        "primary": "#f59e0b",
+        "deep": "#92400e",
+        "surface": "#311e05",
+        "accent": "#6366f1"
+      }
+    },
+    "feedback": {
+      "success": "#16a34a",
+      "success_glow": "rgba(34, 197, 94, 0.4)",
+      "error": "#ef4444",
+      "error_glow": "rgba(239, 68, 68, 0.4)",
+      "xp_gold": "#fbbf24",
+      "guest_badge": "#a855f7"
+    }
+  },
+  "typography": {
+    "display": "'Rubik', 'Secular One', sans-serif",
+    "body": "'Rubik', 'Heebo', sans-serif",
+    "scale": {
+      "display_hero": { "size": "32px", "weight": "800", "line_height": "1.2" },
+      "word_target": { "size": "28px", "weight": "700", "line_height": "1.2" },
+      "option_word": { "size": "20px", "weight": "600", "line_height": "1.3" },
+      "body_md": { "size": "15px", "weight": "400", "line_height": "1.4" },
+      "caption": { "size": "13px", "weight": "600", "line_height": "1.2" }
+    }
+  },
+  "radii": {
+    "chip": "14px",
+    "card": "20px",
+    "button": "16px",
+    "badge": "9999px"
+  },
+  "shadows": {
+    "tactile_btn": "0 4px 0 #0284c7",
+    "tactile_btn_pressed": "0 1px 0 #0284c7",
+    "card_glow": "0 10px 25px -5px rgba(14, 165, 233, 0.25)"
+  },
+  "motion": {
+    "feedback_burst": "350ms cubic-bezier(0.19, 1, 0.22, 1)",
+    "feedback_shake": "300ms ease-in-out",
+    "card_snap": "180ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+    "xp_count": "600ms ease-out"
+  }
+}
+```
+
+## tokens.css
+```css
+:root {
+  --color-bg-dark: #0a0f1d;
+  --color-surface-base: #0b1326;
+  --color-surface-container: #131b2e;
+  --color-surface-elevated: #1e293b;
+  --color-border: #2a3754;
+
+  --world1-primary: #0ea5e9;
+  --world1-deep: #0369a1;
+  --world1-accent: #f59e0b;
+  --world2-primary: #22c55e;
+  --world3-primary: #8b5cf6;
+  --world4-primary: #f59e0b;
+
+  --feedback-success: #16a34a;
+  --feedback-error: #ef4444;
+  --feedback-xp: #fbbf24;
+  --feedback-guest: #a855f7;
+
+  --font-display: 'Rubik', 'Secular One', sans-serif;
+  --font-body: 'Rubik', 'Heebo', sans-serif;
+
+  --radius-chip: 14px;
+  --radius-card: 20px;
+  --radius-btn: 16px;
+
+  --shadow-tactile: 0 4px 0 #0284c7;
+  --shadow-tactile-pressed: 0 1px 0 #0284c7;
+}
+```
