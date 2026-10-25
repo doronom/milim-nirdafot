@@ -1,35 +1,23 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { buildContent, content, sources } from '../src/content';
-import { createDisplayWord } from '../src/content/display';
-import type { Content } from '../src/content/types';
+import { content } from '../src/content';
 import { applyTokens } from '../src/design/tokens';
-import { buildSynonymGraph } from '../src/engine/graph';
 import { buildLayout } from '../src/engine/layout';
-import { buildSynonymLinks } from '../src/engine/links';
 import { createRng } from '../src/engine/rng';
 import { GameEnvContext } from '../src/games/env-context';
 import { buildOddRound } from '../src/games/oddOneOut/build';
 import { OddOneOut } from '../src/games/oddOneOut/OddOneOut';
-import { buildLevelSession } from '../src/games/session';
 import { buildSwapRound, fitsSentence } from '../src/games/swapWord/build';
 import { SwapWord } from '../src/games/swapWord/SwapWord';
 import type { GameEnv, RoundResult } from '../src/games/types';
+import { envFor, pairs, sessionFor, withReviewedSentences } from './helpers';
 import { buildWordSearchRound } from '../src/games/wordSearch/build';
 import { WordSearch } from '../src/games/wordSearch/WordSearch';
 
-const envFor = (c: Content): GameEnv => ({
-  content: c,
-  graph: buildSynonymGraph(c),
-  links: buildSynonymLinks(c),
-  pool: c.entries,
-  decisions: {},
-  displayWord: createDisplayWord(c),
-});
 const difficulty = { tier: 2 as const, options: 4 as const };
 const level = buildLayout(content).worlds[1]!.stations[0]!.levels[0]!;
-const items = buildLevelSession(level, content, {}, 'p').items;
+const items = pairs(sessionFor(level, {}, 'p').items);
 
 afterEach(() => {
   // A CSS-module lookup for a state without a rule renders the literal class "undefined".
@@ -50,7 +38,14 @@ describe('OddOneOut', () => {
     const round = buildOddRound(env, items, difficulty, createRng(1));
     const onAlso = vi.fn();
     const onDone = mount(env, (done) => (
-      <OddOneOut round={round} difficulty={difficulty} onDone={done} onAlsoCorrect={onAlso} />
+      <OddOneOut
+        round={round}
+        difficulty={difficulty}
+        onDone={done}
+        onAlsoCorrect={onAlso}
+        stage="discrimination"
+        onReportSentence={vi.fn()}
+      />
     ));
     round.questions.forEach((q, i) => {
       const field = screen.getByRole('group', { name: 'בועות' });
@@ -66,17 +61,18 @@ describe('OddOneOut', () => {
 
 describe('SwapWord', () => {
   it('places a fitting word in the slot and checks it', () => {
-    const reviewed = buildContent({
-      ...sources,
-      sentences: {
-        ...sources.sentences,
-        sentences: sources.sentences.sentences.map((s) => ({ ...s, reviewed: true })),
-      },
-    });
+    const reviewed = withReviewedSentences(content);
     const env = envFor(reviewed);
     const round = buildSwapRound(env, items, difficulty, createRng(2));
     const onDone = mount(env, (done) => (
-      <SwapWord round={round} difficulty={difficulty} onDone={done} onAlsoCorrect={vi.fn()} />
+      <SwapWord
+        round={round}
+        difficulty={difficulty}
+        stage="production"
+        onDone={done}
+        onAlsoCorrect={vi.fn()}
+        onReportSentence={vi.fn()}
+      />
     ));
     for (const q of round.questions) {
       const right = q.options.find((o) => fitsSentence(q, o.word))!;
@@ -98,7 +94,14 @@ describe('WordSearch', () => {
     const env = envFor(content);
     const round = buildWordSearchRound(env, items, difficulty, createRng(3));
     const onDone = mount(env, (done) => (
-      <WordSearch round={round} difficulty={difficulty} onDone={done} onAlsoCorrect={vi.fn()} />
+      <WordSearch
+        round={round}
+        difficulty={difficulty}
+        stage="recognition"
+        onDone={done}
+        onAlsoCorrect={vi.fn()}
+        onReportSentence={vi.fn()}
+      />
     ));
     const grid = screen.getByRole('grid', { name: 'לוח התפזורת' });
     const cell = (r: number, c: number) => grid.querySelector<HTMLElement>(`[data-row="${r}"][data-col="${c}"]`)!;

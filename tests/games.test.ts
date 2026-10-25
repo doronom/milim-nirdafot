@@ -1,32 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { entryPool } from '../src/app/data';
+import { WORLDS } from '../src/config/game';
 import { content } from '../src/content';
-import { createDisplayWord } from '../src/content/display';
 import { normalizeWord } from '../src/content/text';
 import type { Difficulty } from '../src/engine/adaptive';
-import { buildSynonymGraph } from '../src/engine/graph';
 import { buildLayout } from '../src/engine/layout';
-import { buildSynonymLinks } from '../src/engine/links';
 import { createRng } from '../src/engine/rng';
-import { WORLDS } from '../src/config/game';
 import { buildDragRound, dropMatches, pairsPerBoard } from '../src/games/dragPairs/build';
 import { buildMemoryRound, cardsMatch, memoryPairs } from '../src/games/memory/build';
 import { buildPickRound } from '../src/games/pickSynonym/build';
 import { createGames, GAME_CATALOG } from '../src/games/registry';
-import { buildLevelSession } from '../src/games/session';
-import type { GameEnv } from '../src/games/types';
+import { envFor, pairs, sessionFor } from './helpers';
 
-const env: GameEnv = {
-  content,
-  graph: buildSynonymGraph(content),
-  links: buildSynonymLinks(content),
-  pool: content.entries,
-  decisions: {},
-  displayWord: createDisplayWord(content),
-};
+const env = envFor();
 const layout = buildLayout(content);
 const world1Levels = layout.worlds[0]!.stations.flatMap((s) => s.levels);
-const sessions = world1Levels.map((l) => buildLevelSession(l, content, {}, 'x'));
+const sessions = world1Levels.map((l) => {
+  const s = sessionFor(l, {}, 'x');
+  return { ...s, items: pairs(s.items) };
+});
 const difficulties: Difficulty[] = [
   { tier: 1, options: 3 },
   { tier: 2, options: 4 },
@@ -39,7 +31,7 @@ describe('game registry', () => {
     expect(new Set(games.keys())).toEqual(new Set(GAME_CATALOG.map((g) => g.id)));
     for (const info of GAME_CATALOG) {
       const g = games.get(info.id)!;
-      expect([g.stage, g.minItems]).toEqual([info.stage, info.minItems]);
+      expect([g.stages, g.minItems]).toEqual([info.stages, info.minItems]);
       expect(WORLDS.find((w) => w.newGames.includes(g.id))?.id).toBe(g.minWorld);
     }
   });
@@ -48,8 +40,8 @@ describe('game registry', () => {
     const games = createGames(env);
     const items = sessions[3]!.items;
     for (const g of games.values()) {
-      expect(g.buildRound(items, difficulties[1]!, createRng('s'))).toEqual(
-        g.buildRound(items, difficulties[1]!, createRng('s')),
+      expect(g.buildRound(items, difficulties[1]!, createRng('s'), g.stages[0]!)).toEqual(
+        g.buildRound(items, difficulties[1]!, createRng('s'), g.stages[0]!),
       );
     }
   });

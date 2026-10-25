@@ -104,3 +104,33 @@ export function exportDecisions(
   }
   return { alsoSynonyms, notSynonyms };
 }
+
+/** "Also correct" on a scale, register set or context choice: the child's answer, for the parent to judge. */
+export interface ItemDispute {
+  itemKey: string;
+  answer: string;
+  gameId: string;
+  reportedAt: string;
+  count: number;
+  status: ReportStatus;
+}
+
+const DISPUTES = 'review:item-disputes';
+
+export async function listItemDisputes(store: KeyValueStore): Promise<ItemDispute[]> {
+  return (await store.get<ItemDispute[]>(DISPUTES)) ?? [];
+}
+
+export async function reportItemDispute(
+  store: KeyValueStore,
+  input: { itemKey: string; answer: string; gameId: string },
+  now = new Date(),
+): Promise<ItemDispute> {
+  const list = await listItemDisputes(store);
+  const existing = list.find((d) => d.itemKey === input.itemKey && d.answer === input.answer);
+  const dispute: ItemDispute = existing
+    ? { ...existing, count: existing.count + 1 }
+    : { ...input, reportedAt: now.toISOString(), count: 1, status: 'pending' };
+  await store.set(DISPUTES, [...list.filter((d) => d !== existing), dispute]);
+  return dispute;
+}

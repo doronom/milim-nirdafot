@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - שער בקרת הורים</title>
+<!-- Google Fonts: Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#006591",
+            "on-error-container": "#ffdad6",
+            "on-surface-variant": "#bec8d2",
+            "surface-variant": "#2d3449",
+            "on-tertiary-fixed": "#002109",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary": "#89ceff",
+            "error-container": "#93000a",
+            "surface-container": "#171f33",
+            "surface-tint": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "on-secondary-container": "#5b3800",
+            "secondary-fixed-dim": "#ffb95f",
+            "secondary-fixed": "#ffddb8",
+            "tertiary": "#4ae176",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-bright": "#31394d",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "secondary-container": "#ee9800",
+            "surface-container-highest": "#2d3449",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#2a1700",
+            "tertiary-fixed-dim": "#4ae176",
+            "tertiary-fixed": "#6bff8f",
+            "on-secondary": "#472a00",
+            "on-tertiary-container": "#003c16",
+            "surface": "#0b1326",
+            "on-primary-container": "#003751",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-surface": "#dae2fd",
+            "surface-container-low": "#131b2e",
+            "on-primary": "#00344d",
+            "inverse-surface": "#dae2fd",
+            "on-background": "#dae2fd",
+            "on-error": "#690005",
+            "tertiary-container": "#00b351",
+            "inverse-on-surface": "#283044",
+            "surface-container-high": "#222a3d",
+            "outline": "#88929b",
+            "primary-container": "#0ea5e9",
+            "on-tertiary": "#003915",
+            "primary-fixed-dim": "#89ceff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1rem",
+            "gutter-tablet": "1rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "1.5rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "0.75rem",
+            "gutter": "0.75rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "label-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "headline-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
+<!-- Ambient Backdrop with Glassmorphism Overlay -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#0a0f1d]/90 backdrop-blur-xl"></div>
+<div class="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-primary/10 blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tertiary-container/10 blur-3xl"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(14,165,233,0.08),transparent_70%)]"></div>
+</div>
+<!-- Main Container Constraint (Mobile-first 390px-448px) -->
+<div class="relative z-10 w-full max-w-md mx-auto flex flex-col min-h-screen px-4 pb-6 pt-3">
+<!-- Top Bar (Shared Component Anchors: TopAppBar) -->
+<header class="bg-surface-container border-b border-outline-variant shadow-sm docked full-width top-0 sticky flex justify-between items-center w-full px-4 h-14 rounded-xl mb-4">
+<button aria-label="חזרה" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 text-primary" type="button">
+<span class="material-symbols-outlined text-headline-sm">arrow_forward</span>
+</button>
+<div class="text-headline-sm font-headline-sm font-bold text-primary">
+        בקרת הורים
+      </div>
+<button aria-label="הגדרות" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 text-on-surface-variant" type="button">
+<span class="material-symbols-outlined text-headline-sm">settings</span>
+</button>
+</header>
+<!-- Header Section -->
+<div class="text-center mb-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/50 text-secondary mb-2">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm font-semibold">אבטחה דו-שלבית פעילה</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">שער בקרת הורים</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">האזור מיועד למבוגרים בלבד לשמירה על התקדמות המשחק והגדרות החשבון</p>
+</div>
+<!-- Multi-Step Authentication Journey -->
+<div class="space-y-3.5 flex-1 flex flex-col justify-center">
+<!-- Step 1: Hold For 3 Seconds (Completed State Demo) -->
+<div class="bg-surface-container-low border border-outline-variant/60 rounded-xl p-3.5 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-tertiary-container/30 border border-tertiary/50 text-tertiary flex items-center justify-center font-label-sm text-label-sm font-bold">1</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">שלב 1: אימות מגע ממושך</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+            הושלם
+          </span>
+</div>
+<div class="flex items-center gap-4 bg-surface-container rounded-lg p-2.5 border border-outline-variant/40">
+<!-- Circular Progress Indicator -->
+<div class="relative w-14 h-14 shrink-0 flex items-center justify-center">
+<svg class="w-14 h-14 transform -rotate-90" viewbox="0 0 56 56">
+<circle class="text-surface-variant" cx="28" cy="28" fill="none" r="22" stroke="currentColor" stroke-width="4.5"></circle>
+<circle class="text-tertiary" cx="28" cy="28" fill="none" r="22" stroke="currentColor" stroke-dasharray="138.23" stroke-dashoffset="0" stroke-linecap="round" stroke-width="4.5"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-on-surface leading-none">100%</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="text-label-md font-label-md font-bold text-on-surface">לחיצה רצופה למשך 3 שניות</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-snug">השלב הראשון אושר בהצלחה. המנגנון זיהה מגע מכוון של מבוגר.</p>
+</div>
+</div>
+</div>
+<!-- Step 2: Math Authentication Challenge -->
+<div class="bg-surface-container-low border border-outline-variant/60 rounded-xl p-3.5 shadow-sm">
+<div class="flex items-center justify-between mb-2.5">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary/20 border border-primary/50 text-primary flex items-center justify-center font-label-sm text-label-sm font-bold">2</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">שלב 2: שאלת אימות בחשבון</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">נדרש מענה</span>
+</div>
+<!-- Math Question Box & Value Display -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div class="bg-surface-container border border-outline-variant/50 rounded-lg p-2.5 flex flex-col justify-center items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-0.5">תרגיל לפתרון</span>
+<span class="font-headline-lg font-bold text-primary tracking-wider" dir="ltr">7 × 8 = ?</span>
+</div>
+<div class="bg-surface-container-high border-2 border-primary-container rounded-lg p-2.5 flex flex-col justify-center items-center shadow-inner relative">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-0.5">התשובה שלך</span>
+<div class="flex items-center justify-center gap-1">
+<span class="font-display-hero-mobile font-display-hero-mobile text-on-surface font-extrabold tracking-widest" id="pinDisplay">56</span>
+<span class="w-0.5 h-6 bg-primary animate-pulse inline-block"></span>
+</div>
+</div>
+</div>
+<!-- Tactile Numeric Keypad -->
+<div class="grid grid-cols-3 gap-2 bg-surface-container rounded-xl p-2.5 border border-outline-variant/40">
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="1" type="button">1</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="2" type="button">2</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="3" type="button">3</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="4" type="button">4</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="5" type="button">5</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="6" type="button">6</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="7" type="button">7</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="8" type="button">8</button>
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="9" type="button">9</button>
+<!-- Clear Button -->
+<button class="h-12 rounded-lg bg-surface-container-lowest text-error font-label-md font-label-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" id="clearBtn" type="button">נקה</button>
+<!-- Zero -->
+<button class="num-key h-12 rounded-lg bg-surface-container-high text-on-surface font-headline-md font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" data-val="0" type="button">0</button>
+<!-- Backspace / Delete Icon -->
+<button aria-label="מחיקה" class="h-12 rounded-lg bg-surface-container-lowest text-on-surface-variant font-headline-md border-b-4 border-outline-variant active:translate-y-[3px] active:border-b transition-all flex items-center justify-center" id="deleteBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">backspace</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Buttons Drawer -->
+<div class="mt-4 space-y-2.5">
+<!-- Tactile Green Entry Button -->
+<button class="w-full min-h-[52px] bg-tertiary-container hover:bg-tertiary text-on-tertiary font-headline-sm font-headline-sm font-bold rounded-lg border-b-4 border-[#005321] active:translate-y-[3px] active:border-b transition-all flex items-center justify-center gap-2 shadow-lg" type="button">
+<span class="material-symbols-outlined text-[22px]">lock_open</span>
+<span>אימות וכניסה לאזור ההורים</span>
+</button>
+<!-- Return to Game Subtle Trigger -->
+<button class="w-full py-2.5 bg-transparent hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md font-label-md rounded-lg active:translate-y-0.5 transition-all flex items-center justify-center gap-1.5 border border-transparent hover:border-outline-variant" type="button">
+<span class="material-symbols-outlined text-[18px]">sports_esports</span>
+<span>חזרה למסע של הילד</span>
+</button>
+</div>
+</div>
+<!-- Interactive Mock Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const display = document.getElementById('pinDisplay');
+      const numKeys = document.querySelectorAll('.num-key');
+      const clearBtn = document.getElementById('clearBtn');
+      const deleteBtn = document.getElementById('deleteBtn');
+      
+      let currentValue = "56";
+
+      function updateDisplay() {
+        display.textContent = currentValue || "—";
+      }
+
+      numKeys.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (currentValue.length < 4) {
+            currentValue += btn.getAttribute('data-val');
+            updateDisplay();
+          }
+        });
+      });
+
+      clearBtn.addEventListener('click', () => {
+        currentValue = "";
+        updateDisplay();
+      });
+
+      deleteBtn.addEventListener('click', () => {
+        if (currentValue.length > 0) {
+          currentValue = currentValue.slice(0, -1);
+          updateDisplay();
+        }
+      });
+    });
+  </script>
+</body></html>

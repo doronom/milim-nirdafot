@@ -75,3 +75,16 @@
   cursor: default;
   opacity: var(--opacity-disabled);
 }
+.reportSentence {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  align-self: center;
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-3);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--type-caption-size);
+  cursor: pointer;
+}

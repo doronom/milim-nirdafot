@@ -129,3 +129,47 @@
   gap: var(--space-3);
   margin-block-start: auto;
 }
+.ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.ladderRung {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1);
+  border-inline-start: var(--border-lip) solid
+    color-mix(in srgb, var(--world-accent) calc(var(--local-rung) * 100%), var(--world-primary));
+}
+.ladderNumber {
+  inline-size: var(--space-6);
+  text-align: center;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.registers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.registerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+.emptyNote {
+  color: var(--xp);
+  font-size: var(--type-caption-size);
+}
+.title {
+  font-family: var(--font-display);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  line-height: var(--type-word-lh);
+  margin-block-end: var(--space-2);
+}

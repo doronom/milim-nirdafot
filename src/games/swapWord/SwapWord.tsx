@@ -14,12 +14,14 @@ import { fitsSentence, type SwapRound } from './build';
 import styles from './SwapWord.module.css';
 
 /** Swap the highlighted word in a sentence for a synonym that fits; a prefix letter stays in place. */
-export function SwapWord({ round, onDone, onAlsoCorrect }: GameProps<SwapRound>) {
+export function SwapWord({ round, onDone, onAlsoCorrect, onReportSentence }: GameProps<SwapRound>) {
   const env = useGameEnv();
   const [index, setIndex] = useState(0);
   const [placed, setPlaced] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  // By question index: a reported sentence is skipped and leaves no answer.
+  const [answers, setAnswers] = useState<Record<number, Answer>>({});
+  const [reported, setReported] = useState<number[]>([]);
   const q = round.questions[index]!;
   const last = index === round.questions.length - 1;
   const correct = checked && placed !== null && fitsSentence(q, placed);
@@ -28,31 +30,49 @@ export function SwapWord({ round, onDone, onAlsoCorrect }: GameProps<SwapRound>)
   const check = () => {
     if (!placed) return;
     setChecked(true);
-    setAnswers((a) => [
+    setAnswers((a) => ({
       ...a,
-      { itemKey: q.item.key, outcome: fitsSentence(q, placed) ? 'correct' : 'wrong', chosen: placed },
-    ]);
+      [index]: { itemKey: q.item.key, outcome: fitsSentence(q, placed) ? 'correct' : 'wrong', chosen: placed },
+    }));
   };
 
   const claim = () => {
     const option = q.options.find((o) => o.word === placed);
     if (!option) return;
     onAlsoCorrect(q.item, option.word, option.nodeId);
-    setAnswers((a) => a.map((x, i) => (i === a.length - 1 ? { ...x, outcome: 'also-correct' } : x)));
+    setAnswers((a) => ({ ...a, [index]: { ...a[index]!, outcome: 'also-correct' } }));
   };
 
-  const next = () => {
+  const advance = (all: Record<number, Answer>) => {
     if (last) {
-      onDone({ answers });
+      onDone({ answers: Object.values(all) });
       return;
     }
     setIndex(index + 1);
     setPlaced(null);
     setChecked(false);
   };
+  const next = () => advance(answers);
+
+  // "דווח על משפט": the sentence leaves play and this question is skipped without counting.
+  const report = () => {
+    onReportSentence(q.sentence);
+    setReported((r) => [...r, index]);
+    const rest = Object.fromEntries(Object.entries(answers).filter(([i]) => Number(i) !== index));
+    setAnswers(rest);
+    advance(rest);
+  };
 
   const dots: DotState[] = round.questions.map((_, i) =>
-    i < answers.length ? (answers[i]!.outcome === 'wrong' ? 'missed' : 'done') : i === index ? 'current' : 'todo',
+    answers[i]
+      ? answers[i].outcome === 'wrong'
+        ? 'missed'
+        : 'done'
+      : reported.includes(i)
+        ? 'todo'
+        : i === index
+          ? 'current'
+          : 'todo',
   );
   const slotWord = checked && !correct ? answer.word : placed;
 
@@ -100,6 +120,12 @@ export function SwapWord({ round, onDone, onAlsoCorrect }: GameProps<SwapRound>)
         <TactileButton tone="success" size="lg" block icon="check" onClick={check} disabled={!placed}>
           בדוק החלפה
         </TactileButton>
+      )}
+      {!q.sentence.reviewed && (
+        <button type="button" className={styles.reportSentence} onClick={report}>
+          <Icon name="flag" size="sm" />
+          דווח על משפט
+        </button>
       )}
       {checked && (
         <Feedback

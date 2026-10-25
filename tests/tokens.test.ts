@@ -49,7 +49,8 @@ describe('design tokens', () => {
     const missing: string[] = [];
     for (const file of [...cssFiles, ...walk('src').filter((f) => f.endsWith('.tsx'))]) {
       if (file.endsWith('theme.css')) continue;
-      for (const [, name] of readFileSync(file, 'utf8').matchAll(/var\((--(?!wq-)[a-z0-9-]+)\)/g)) {
+      // --local-* properties are set inline on the element (e.g. a ladder rung's position), not theme tokens.
+      for (const [, name] of readFileSync(file, 'utf8').matchAll(/var\((--(?!wq-|local-)[a-z0-9-]+)\)/g)) {
         if (!defined.has(name!)) missing.push(`${file}: ${name}`);
       }
     }

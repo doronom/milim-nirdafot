@@ -1,54 +1,84 @@
 import type { GameId, WorldId } from '../config/game';
-import type { Content } from '../content/types';
 import { gamesForWorld } from '../config/game';
-import type { Answer, PracticeItem, RoundResult, Stage } from '../games/types';
+import type { Answer, GameInfo, LevelItem, PlanContext, RoundResult, Stage } from '../games/types';
 import { adapt, type Difficulty } from './adaptive';
-import { sessionOutcome } from './leitner';
 import type { Outcome } from './attempt';
-import type { Rng } from './rng';
+import { sessionOutcome } from './leitner';
 import type { Stars } from './progress';
+import type { Rng } from './rng';
 
-export interface GameInfo {
-  id: GameId;
-  stage: Stage;
-  minItems: number;
-  /** Items the game can actually use (e.g. swapWord needs a reviewed sentence); all of them when omitted. */
-  playable?: (items: readonly PracticeItem[], content: Content) => readonly PracticeItem[];
-}
-
-export const playableItems = (
-  game: GameInfo,
-  items: readonly PracticeItem[],
-  content: Content,
-): readonly PracticeItem[] => (game.playable ? game.playable(items, content) : items);
+export type { GameInfo };
 
 export interface RoundPlan {
   gameId: GameId;
-  items: PracticeItem[];
+  stage: Stage;
+  items: LevelItem[];
   difficulty: Difficulty;
 }
 
 export const STAGES: readonly Stage[] = ['recognition', 'discrimination', 'production'];
 export const MAX_ROUNDS = 4;
 
+/** Which items a game can play in this level, and which game reviews missed items. */
+export interface Planner {
+  playable(gameId: GameId, items: readonly LevelItem[]): LevelItem[];
+  /** A recognition round for missed items, or null when no unlocked game can play them. */
+  reviewRound(items: readonly LevelItem[]): { gameId: GameId; stage: Stage; items: LevelItem[] } | null;
+}
+
+export function createPlanner(world: WorldId, catalog: readonly GameInfo[], ctx: PlanContext): Planner {
+  const unlocked = catalog.filter((g) => gamesForWorld(world).includes(g.id));
+  const playable = (gameId: GameId, items: readonly LevelItem[]) => {
+    const game = unlocked.find((g) => g.id === gameId);
+    return game ? [...game.playable(items, ctx)] : [];
+  };
+  return {
+    playable,
+    reviewRound: (items) => {
+      // The catalog lists the plain recognition game for each item kind first.
+      let best: { gameId: GameId; stage: Stage; items: LevelItem[] } | null = null;
+      for (const g of unlocked) {
+        const covered = [...g.playable(items, ctx)];
+        if (covered.length >= Math.max(1, g.minItems) && covered.length > (best?.items.length ?? 0)) {
+          best = { gameId: g.id, stage: g.stages[0]!, items: covered };
+        }
+      }
+      return best;
+    },
+  };
+}
+
 /**
- * One game per stage, from the games the world has unlocked that can play enough of these items, in
- * recognition -> discrimination -> production order. Picks at random among a stage's games for variety.
+ * Rounds for a level, in recognition -> discrimination -> production order. Each stage gets the unlocked game that can
+ * play the most of the items (random among ties, for variety). Items no planned round can play (e.g. pair guests in a
+ * scales level) get one extra round, when a game can play them.
  */
-export function planStages(
+export function planRounds(
   world: WorldId,
   catalog: readonly GameInfo[],
-  items: readonly PracticeItem[],
+  items: readonly LevelItem[],
   rng: Rng,
-  content: Content,
-): GameId[] {
-  const unlocked = new Set(gamesForWorld(world));
-  return STAGES.flatMap((stage) => {
-    const options = catalog.filter(
-      (g) => g.stage === stage && unlocked.has(g.id) && playableItems(g, items, content).length >= g.minItems,
-    );
-    return options.length > 0 ? [rng.pick(options).id] : [];
-  });
+  ctx: PlanContext,
+): Omit<RoundPlan, 'difficulty'>[] {
+  const unlocked = catalog.filter((g) => gamesForWorld(world).includes(g.id));
+  const rounds: Omit<RoundPlan, 'difficulty'>[] = [];
+  for (const stage of STAGES) {
+    const options = unlocked
+      .filter((g) => g.stages.includes(stage))
+      .map((g) => ({ g, covered: [...g.playable(items, ctx)] }))
+      .filter(({ g, covered }) => covered.length >= g.minItems);
+    if (options.length === 0) continue;
+    const most = Math.max(...options.map((o) => o.covered.length));
+    const { g, covered } = rng.pick(options.filter((o) => o.covered.length === most));
+    rounds.push({ gameId: g.id, stage, items: covered });
+  }
+  const inRounds = new Set(rounds.flatMap((r) => r.items.map((i) => i.key)));
+  const left = items.filter((i) => !inRounds.has(i.key));
+  if (left.length > 0 && rounds.length < MAX_ROUNDS) {
+    const review = createPlanner(world, catalog, ctx).reviewRound(left);
+    if (review) rounds.push(review);
+  }
+  return rounds;
 }
 
 export interface LevelRun {
@@ -61,14 +91,8 @@ export interface LevelRun {
   reinserted: string[];
 }
 
-export function startRun(stages: GameId[], items: PracticeItem[], difficulty: Difficulty): LevelRun {
-  return {
-    rounds: stages.map((gameId) => ({ gameId, items, difficulty })),
-    index: 0,
-    difficulty,
-    answers: [],
-    reinserted: [],
-  };
+export function startRun(rounds: Omit<RoundPlan, 'difficulty'>[], difficulty: Difficulty): LevelRun {
+  return { rounds: rounds.map((r) => ({ ...r, difficulty })), index: 0, difficulty, answers: [], reinserted: [] };
 }
 
 export function roundAccuracy(answers: readonly Answer[]): number {
@@ -79,24 +103,29 @@ export function roundAccuracy(answers: readonly Answer[]): number {
 
 /**
  * Records a finished round and adapts the next one: 90%+ raises difficulty, below 60% lowers it and re-inserts each
- * missed item once, into the next round or, after the last stage, into an extra recognition round.
+ * missed item once, into the next round if its game can play it, otherwise into an extra review round (up to 4).
  */
-export function finishRound(run: LevelRun, result: RoundResult, reviewGame: GameId): LevelRun {
+export function finishRound(run: LevelRun, result: RoundResult, planner: Planner): LevelRun {
   const { next, reinsertMissed } = adapt(run.difficulty, roundAccuracy(result.answers));
   const rounds = run.rounds.map((r, i) => (i > run.index ? { ...r, difficulty: next } : r));
   let reinserted = run.reinserted;
   if (reinsertMissed) {
     const playing = rounds[run.index]!;
     const missedKeys = new Set(result.answers.filter((a) => a.outcome === 'wrong').map((a) => a.itemKey));
-    const missed = playing.items.filter((i) => missedKeys.has(i.key) && !reinserted.includes(i.key));
+    let missed = playing.items.filter((i) => missedKeys.has(i.key) && !reinserted.includes(i.key));
     if (missed.length > 0) {
       reinserted = [...reinserted, ...missed.map((i) => i.key)];
       const target = rounds[run.index + 1];
       if (target) {
+        const fits = planner.playable(target.gameId, missed);
         const have = new Set(target.items.map((i) => i.key));
-        rounds[run.index + 1] = { ...target, items: [...target.items, ...missed.filter((i) => !have.has(i.key))] };
-      } else if (rounds.length < MAX_ROUNDS) {
-        rounds.push({ gameId: reviewGame, items: missed, difficulty: next });
+        rounds[run.index + 1] = { ...target, items: [...target.items, ...fits.filter((i) => !have.has(i.key))] };
+        const placed = new Set(fits.map((i) => i.key));
+        missed = missed.filter((i) => !placed.has(i.key) && !have.has(i.key));
+      }
+      if (missed.length > 0 && rounds.length < MAX_ROUNDS) {
+        const review = planner.reviewRound(missed);
+        if (review) rounds.push({ ...review, difficulty: next });
       }
     }
   }

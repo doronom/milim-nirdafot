@@ -11,7 +11,7 @@ export function practiceItemFor(entry: Entry, leitner: LeitnerState): PracticeIt
     .map((synonym, order) => ({ synonym, order, card: leitner[pairKey(entry, synonym)] }))
     .sort((a, b) => (a.card?.box ?? 0) - (b.card?.box ?? 0) || a.order - b.order);
   const synonym = ranked[0]!.synonym;
-  return { key: pairKey(entry, synonym), entry, synonym };
+  return { kind: 'pair', key: pairKey(entry, synonym), entry, synonym };
 }
 
 /**

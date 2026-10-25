@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>בקרת הורים - מסע המילים</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#006591",
+            "on-error-container": "#ffdad6",
+            "on-surface-variant": "#bec8d2",
+            "surface-variant": "#2d3449",
+            "on-tertiary-fixed": "#002109",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary": "#89ceff",
+            "error-container": "#93000a",
+            "surface-container": "#171f33",
+            "surface-tint": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "on-secondary-container": "#5b3800",
+            "secondary-fixed-dim": "#ffb95f",
+            "secondary-fixed": "#ffddb8",
+            "tertiary": "#4ae176",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-bright": "#31394d",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "secondary-container": "#ee9800",
+            "surface-container-highest": "#2d3449",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#2a1700",
+            "tertiary-fixed-dim": "#4ae176",
+            "tertiary-fixed": "#6bff8f",
+            "on-secondary": "#472a00",
+            "on-tertiary-container": "#003c16",
+            "surface": "#0b1326",
+            "on-primary-container": "#003751",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-surface": "#dae2fd",
+            "surface-container-low": "#131b2e",
+            "on-primary": "#00344d",
+            "inverse-surface": "#dae2fd",
+            "on-background": "#dae2fd",
+            "on-error": "#690005",
+            "tertiary-container": "#00b351",
+            "inverse-on-surface": "#283044",
+            "surface-container-high": "#222a3d",
+            "outline": "#88929b",
+            "primary-container": "#0ea5e9",
+            "on-tertiary": "#003915",
+            "primary-fixed-dim": "#89ceff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1rem",
+            "gutter-tablet": "1rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "1.5rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "0.75rem",
+            "gutter": "0.75rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "label-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "headline-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: #0b1326;
+      color: #dae2fd;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tactile-card {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+      border: 1px solid #2d3449;
+    }
+    .tactile-btn {
+      transition: transform 0.1s ease, border-bottom 0.1s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(2px);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-background text-on-surface antialiased pb-28 selection:bg-primary-container selection:text-white">
+<!-- Shared Component: TopAppBar -->
+<header class="bg-surface-container dark:bg-surface-container docked full-width top-0 sticky z-40 border-b border-outline-variant dark:border-outline-variant shadow-sm dark:shadow-sm">
+<div class="flex justify-between items-center w-full px-4 h-14 max-w-md mx-auto">
+<div class="flex items-center gap-2">
+<a class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary dark:text-primary hover:bg-surface-bright dark:hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 border border-outline-variant" href="#child-mode" title="חזרה לאזור המשחק של הילד">
+<span class="material-symbols-outlined text-primary text-headline-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary leading-tight">בקרת הורים</span>
+<span class="text-label-sm font-label-sm text-outline">תיק חוקר: יונתן גבע (כיתה ד')</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 bg-surface-container-low border border-tertiary-container/40 px-2 py-0.5 rounded-full text-tertiary text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+          מאומת
+        </span>
+<button aria-label="הגדרות" class="w-9 h-9 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-bright dark:hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="w-full max-w-md mx-auto px-4 pt-4 space-y-4">
+<!-- Active Child Profile Overview Banner -->
+<div class="tactile-card rounded-2xl bg-surface-container-low p-3.5 relative overflow-hidden border border-surface-variant">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high border-2 border-primary-container flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<div class="absolute -bottom-1 -left-1 bg-tertiary text-on-tertiary text-[10px] font-bold px-1 rounded-full">רמה 4</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="text-headline-sm font-headline-sm text-on-surface">התקדמות יומית שוטפת</h1>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">הילד השלים 2 משימות אוצר מילים היום</p>
+</div>
+</div>
+<div class="text-left bg-surface-container px-2.5 py-1 rounded-lg border border-outline-variant">
+<span class="text-label-sm font-label-sm text-outline block">סטטוס מגן</span>
+<span class="text-tertiary text-label-md font-label-md font-bold flex items-center gap-0.5 justify-end">
+<span class="material-symbols-outlined text-[16px]" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+            פעיל
+          </span>
+</div>
+</div>
+</div>
+<!-- 4 KPI Metrics Bento Grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- KPI 1: Daily Learning Time -->
+<div class="tactile-card rounded-xl bg-surface-container-low p-3 border-b-2 border-b-primary flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">זמן יומי ממוצע</span>
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="schedule">schedule</span>
+</div>
+<div class="my-1.5 flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">18</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">דק׳</span>
+<span class="text-label-sm font-label-sm text-tertiary mr-auto font-medium">יעד: 15</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-[11px] text-tertiary mt-1.5 font-medium">+20% מעל היעד המוגדר</span>
+</div>
+<!-- KPI 2: Words Mastered -->
+<div class="tactile-card rounded-xl bg-surface-container-low p-3 border-b-2 border-b-tertiary flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">מילים שנרכשו</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="my-1.5 flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-tertiary">42</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">/ 48</span>
+<span class="text-label-sm font-label-sm text-outline mr-auto">88%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 88%"></div>
+</div>
+<span class="text-[11px] text-on-surface-variant mt-1.5">שליטה מלאה (Mastered)</span>
+</div>
+<!-- KPI 3: Struggling Words -->
+<div class="tactile-card rounded-xl bg-surface-container-low p-3 border-b-2 border-b-secondary flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">דורשות חיזוק</span>
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="crisis_alert">crisis_alert</span>
+</div>
+<div class="my-1.5 flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-secondary">6</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">מילים</span>
+<span class="text-label-sm font-label-sm text-secondary mr-auto">לתרגול</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 25%"></div>
+</div>
+<span class="text-[11px] text-secondary-fixed-dim mt-1.5">מומלץ תרגול ממוקד</span>
+</div>
+<!-- KPI 4: Active Streak -->
+<div class="tactile-card rounded-xl bg-surface-container-low p-3 border-b-2 border-b-primary-container flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">רצף פעילות</span>
+<span class="material-symbols-outlined text-secondary-container text-[18px]" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="my-1.5 flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">7</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">ימים ברצף</span>
+<span class="text-label-sm font-label-sm text-tertiary mr-auto">שיא אישי</span>
+</div>
+<div class="flex gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+<span class="text-[11px] text-on-surface-variant mt-1.5">מגן הקפאה שמור במלאי</span>
+</div>
+</div>
+<!-- Weekly Chart Section -->
+<div class="tactile-card rounded-2xl bg-surface-container-low p-4 border border-surface-variant">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-semibold">זמן פעילות שבועי</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">השוואה ליעד היומי (15 דקות)</p>
+</div>
+<div class="flex items-center gap-2 text-[12px] font-medium">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-2 h-2 rounded-sm bg-primary"></span>
+            הושלם
+          </span>
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-2 h-2 rounded-sm bg-secondary"></span>
+            מגן הקפאה
+          </span>
+</div>
+</div>
+<!-- Bar Chart Component -->
+<div class="pt-4 pb-2 flex items-end justify-between h-40 gap-2 border-b border-outline-variant px-1 relative">
+<!-- Target threshold line at 15 mins -->
+<div class="absolute left-0 right-0 top-14 border-b border-dashed border-outline/40 flex justify-end">
+<span class="text-[10px] text-outline -mt-3.5 bg-surface-container-low px-1">יעד: 15 דק׳</span>
+</div>
+<!-- Sunday: 18m -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-on-surface font-medium">18</span>
+<div class="w-full max-w-[28px] bg-primary rounded-t-md h-28 tactile-btn"></div>
+<span class="text-label-sm font-label-sm text-on-surface">א׳</span>
+</div>
+<!-- Monday: 22m -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-on-surface font-medium">22</span>
+<div class="w-full max-w-[28px] bg-primary rounded-t-md h-32 tactile-btn"></div>
+<span class="text-label-sm font-label-sm text-on-surface">ב׳</span>
+</div>
+<!-- Tuesday: 16m -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-on-surface font-medium">16</span>
+<div class="w-full max-w-[28px] bg-primary rounded-t-md h-24 tactile-btn"></div>
+<span class="text-label-sm font-label-sm text-on-surface">ג׳</span>
+</div>
+<!-- Wednesday: Protected with Freeze Shield -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="material-symbols-outlined text-secondary text-[14px]" data-icon="ac_unit">ac_unit</span>
+<div class="w-full max-w-[28px] bg-secondary/80 border border-secondary border-dashed rounded-t-md h-12 flex items-center justify-center">
+<span class="text-[10px] text-on-secondary font-bold">מגן</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-bold">ד׳</span>
+</div>
+<!-- Thursday: 20m -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-on-surface font-medium">20</span>
+<div class="w-full max-w-[28px] bg-primary rounded-t-md h-30 tactile-btn"></div>
+<span class="text-label-sm font-label-sm text-on-surface">ה׳</span>
+</div>
+<!-- Friday: 15m -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-on-surface font-medium">15</span>
+<div class="w-full max-w-[28px] bg-primary-container rounded-t-md h-22 tactile-btn"></div>
+<span class="text-label-sm font-label-sm text-on-surface">ו׳</span>
+</div>
+<!-- Saturday: 25m Today -->
+<div class="flex flex-col items-center gap-1.5 flex-1 z-10">
+<span class="text-[11px] text-tertiary font-bold">25</span>
+<div class="w-full max-w-[28px] bg-tertiary rounded-t-md h-36 relative ring-2 ring-tertiary-container tactile-btn">
+<span class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white"></span>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary font-bold">שבת</span>
+</div>
+</div>
+<div class="mt-3 flex items-center justify-between text-[12px] text-on-surface-variant bg-surface-container px-3 py-2 rounded-xl">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[16px]" data-icon="check_circle">check_circle</span>
+          יום רביעי הוגן עקב היעדרות ורצף השמירה לא נפגע
+        </span>
+</div>
+</div>
+<!-- Expedition Realms Breakdown -->
+<div class="tactile-card rounded-2xl bg-surface-container-low p-4 border border-surface-variant">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-semibold">שליטה באוצר מילים לפי עולמות</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">חלוקת 48 מילים שנלמדו במסע</p>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold">4 עולמות</span>
+</div>
+<div class="space-y-3">
+<!-- Realm 1: Harbour -->
+<div class="bg-surface-container p-2.5 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">נמל היסודות</span>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary font-semibold">16/16 נלמדו (100%)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden flex">
+<div class="bg-tertiary h-2" style="width: 100%"></div>
+</div>
+</div>
+<!-- Realm 2: Forest -->
+<div class="bg-surface-container p-2.5 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">יער ההרחבה</span>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary font-semibold">14/16 נלמדו (87%)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden flex">
+<div class="bg-tertiary h-2" style="width: 87%"></div>
+<div class="bg-secondary h-2" style="width: 13%"></div>
+</div>
+</div>
+<!-- Realm 3: Precision Mountains -->
+<div class="bg-surface-container p-2.5 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">הרי הדיוק</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-semibold">9/12 נלמדו (75%)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden flex">
+<div class="bg-tertiary h-2" style="width: 60%"></div>
+<div class="bg-secondary h-2" style="width: 40%"></div>
+</div>
+</div>
+<!-- Realm 4: Experts Tower -->
+<div class="bg-surface-container p-2.5 rounded-xl border border-outline-variant opacity-80">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">מגדל המומחים</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-semibold">3/4 נלמדו (נעול בחלקו)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden flex">
+<div class="bg-tertiary h-2" style="width: 50%"></div>
+<div class="bg-surface-variant h-2" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Struggling Words Drill List -->
+<div class="tactile-card rounded-2xl bg-surface-container-low p-4 border border-surface-variant">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-semibold">מילים הדורשות תרגול וחיזוק</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">מילים עם מעל 2 שגיאות באתגרים האחרונים</p>
+</div>
+<span class="bg-secondary/20 text-secondary text-label-sm font-label-sm px-2 py-0.5 rounded-md font-bold">6 מילים</span>
+</div>
+<div class="space-y-2.5">
+<!-- Word 1 -->
+<div class="flex items-center justify-between bg-surface-container p-3 rounded-xl border border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-bold text-on-surface">ערפול</span>
+<span class="text-[11px] bg-surface-container-highest px-1.5 py-0.5 rounded text-outline">שם עצם</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">התבלבל בין: עמימות לבין בהירות (3 טעויות)</span>
+</div>
+<button class="tactile-btn px-3 py-1.5 rounded-lg bg-surface-bright text-primary hover:bg-surface-variant border border-primary/30 text-label-sm font-label-sm flex items-center gap-1 active:translate-y-0.5" onclick="this.textContent = 'נוסף למסע'; this.classList.add('text-tertiary')">
+<span class="material-symbols-outlined text-[16px]" data-icon="add_task">add_task</span>
+            הוסף לתרגול
+          </button>
+</div>
+<!-- Word 2 -->
+<div class="flex items-center justify-between bg-surface-container p-3 rounded-xl border border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-bold text-on-surface">נשגב</span>
+<span class="text-[11px] bg-surface-container-highest px-1.5 py-0.5 rounded text-outline">תואר</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">התבלבל בין: מרומם לבין פשוט (2 טעויות)</span>
+</div>
+<button class="tactile-btn px-3 py-1.5 rounded-lg bg-surface-bright text-primary hover:bg-surface-variant border border-primary/30 text-label-sm font-label-sm flex items-center gap-1 active:translate-y-0.5" onclick="this.textContent = 'נוסף למסע'; this.classList.add('text-tertiary')">
+<span class="material-symbols-outlined text-[16px]" data-icon="add_task">add_task</span>
+            הוסף לתרגול
+          </button>
+</div>
+<!-- Word 3 -->
+<div class="flex items-center justify-between bg-surface-container p-3 rounded-xl border border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-bold text-on-surface">שאון</span>
+<span class="text-[11px] bg-surface-container-highest px-1.5 py-0.5 rounded text-outline">שם עצם</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">התבלבל בין: רעש המוני לבין דממה (2 טעויות)</span>
+</div>
+<button class="tactile-btn px-3 py-1.5 rounded-lg bg-surface-bright text-primary hover:bg-surface-variant border border-primary/30 text-label-sm font-label-sm flex items-center gap-1 active:translate-y-0.5" onclick="this.textContent = 'נוסף למסע'; this.classList.add('text-tertiary')">
+<span class="material-symbols-outlined text-[16px]" data-icon="add_task">add_task</span>
+            הוסף לתרגול
+          </button>
+</div>
+</div>
+<!-- Action Button to push all to daily quest -->
+<button class="w-full mt-3 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 border-b-4 border-inverse-primary tactile-btn active:translate-y-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_stories">auto_stories</span>
+        הוסף את כל 6 המילים לחידון היומי הבא
+      </button>
+</div>
+<!-- Quick Shortcuts Grid -->
+<div class="tactile-card rounded-2xl bg-surface-container-low p-4 border border-surface-variant mb-6">
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-3">פעולות ניהול מהירות</h2>
+<div class="grid grid-cols-3 gap-2">
+<button class="bg-surface-container p-3 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-1.5 hover:bg-surface-bright active:translate-y-0.5">
+<div class="relative">
+<span class="material-symbols-outlined text-secondary" data-icon="mark_chat_unread">mark_chat_unread</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-on-error rounded-full text-[10px] flex items-center justify-center font-bold">2</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface font-medium">דיווחים ובדיקה</span>
+</button>
+<button class="bg-surface-container p-3 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-1.5 hover:bg-surface-bright active:translate-y-0.5">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+<span class="text-label-sm font-label-sm text-on-surface font-medium">הגדרות בקרה</span>
+</button>
+<button class="bg-surface-container p-3 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-1.5 hover:bg-surface-bright active:translate-y-0.5">
+<span class="material-symbols-outlined text-tertiary" data-icon="cloud_sync">cloud_sync</span>
+<span class="text-label-sm font-label-sm text-on-surface font-medium">גיבוי נתונים</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Shared Component: BottomNavBar (Active Tab: מבט כולל) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-3 py-2 max-w-md mx-auto bg-surface-container-high dark:bg-surface-container-high border-t border-outline-variant dark:border-outline-variant shadow-md dark:shadow-md">
+<!-- Item 0: מבט כולל (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-3 py-1.5 active:translate-y-0.5 transition-transform duration-100" href="#overview">
+<span class="material-symbols-outlined text-headline-sm" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-sm font-label-sm font-bold">מבט כולל</span>
+</a>
+<!-- Item 1: התקדמות (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#progress">
+<span class="material-symbols-outlined text-headline-sm" data-icon="insights">insights</span>
+<span class="text-label-sm font-label-sm">התקדמות</span>
+</a>
+<!-- Item 2: זמני מסך (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#screentime">
+<span class="material-symbols-outlined text-headline-sm" data-icon="timer">timer</span>
+<span class="text-label-sm font-label-sm">זמני מסך</span>
+</a>
+<!-- Item 3: בטיחות (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#safety">
+<span class="material-symbols-outlined text-headline-sm" data-icon="verified_user">verified_user</span>
+<span class="text-label-sm font-label-sm">בטיחות</span>
+</a>
+</nav>
+</body></html>
