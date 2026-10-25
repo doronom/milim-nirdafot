@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - מפת המסע</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#2d3449",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-bright": "#31394d",
+            "surface-container-lowest": "#060e20",
+            "tertiary": "#4ae176",
+            "outline-variant": "#3e4850",
+            "on-error": "#690005",
+            "primary-container": "#0ea5e9",
+            "on-tertiary-container": "#003c16",
+            "primary": "#89ceff",
+            "tertiary-container": "#00b351",
+            "secondary-fixed": "#ffddb8",
+            "background": "#0b1326",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-tertiary": "#003915",
+            "inverse-surface": "#dae2fd",
+            "primary-fixed": "#c9e6ff",
+            "secondary-container": "#ee9800",
+            "on-surface-variant": "#bec8d2",
+            "surface": "#0b1326",
+            "on-primary-fixed": "#001e2f",
+            "outline": "#88929b",
+            "surface-tint": "#89ceff",
+            "secondary-fixed-dim": "#ffb95f",
+            "surface-dim": "#0b1326",
+            "surface-container-highest": "#2d3449",
+            "on-secondary-container": "#5b3800",
+            "on-secondary": "#472a00",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#002109",
+            "on-primary-container": "#003751",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-primary": "#00344d",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-fixed-variant": "#004c6e",
+            "surface-container-high": "#222a3d",
+            "on-background": "#dae2fd",
+            "inverse-on-surface": "#283044",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#dae2fd",
+            "on-secondary-fixed": "#2a1700",
+            "surface-container": "#171f33",
+            "primary-fixed-dim": "#89ceff",
+            "surface-container-low": "#131b2e",
+            "secondary": "#ffb95f",
+            "inverse-primary": "#006591",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-lg": "1rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tactile-btn {
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex justify-center selection:bg-primary selection:text-on-primary antialiased">
+<!-- Mobile Viewport Container 390x844 Shell -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface-container-lowest relative flex flex-col shadow-2xl overflow-x-hidden border-x border-outline-variant/30">
+<!-- Top Expedition HUD Bar -->
+<header class="fixed top-0 left-0 w-full z-50 h-14 flex items-center justify-between px-margin max-w-md mx-auto bg-surface-container dark:bg-surface-container border-b border-outline-variant dark:border-outline-variant">
+<!-- Trailing Action in RTL: Parent Gate Settings / Lock -->
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-bright active:translate-y-0.5 transition-transform" title="נעילת הורים והגדרות">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</button>
+</div>
+<!-- Center Title: נמל היסודות / Brand Headline -->
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">explore</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">נמל היסודות</h1>
+</div>
+<!-- Leading / XP / Streak Badges -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-highest border border-outline-variant text-secondary">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-sm text-label-sm font-bold">5</span>
+<span class="material-symbols-outlined text-[13px] text-primary" title="מגן הקפאה פעיל">ac_unit</span>
+</div>
+<div class="bg-surface-variant text-primary px-2.5 py-0.5 rounded-md border-b-2 border-outline-variant font-label-md text-label-md font-bold tracking-wide">
+          420 XP
+        </div>
+</div>
+</header>
+<!-- Sub-Header Explorer Identity Tray (Pinned directly beneath 56px HUD) -->
+<div class="mt-14 px-margin pt-3 pb-2 bg-surface-container/70 backdrop-blur-md border-b border-outline-variant/50 flex items-center justify-between z-40">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary font-bold text-[14px]">
+          🧭
+        </div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">דרגת משלחת</span>
+<span class="block font-label-md text-label-md font-bold text-on-surface">חוקר מילים מוסמך</span>
+</div>
+</div>
+<!-- Star Counter Gauge -->
+<div class="flex items-center gap-1.5 bg-surface-container-high px-3 py-1 rounded-xl border border-secondary/30">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-secondary">24/33</span>
+</div>
+</div>
+<!-- Main Scrollable Canvas: The 4 Worlds Adventure Trail -->
+<main class="flex-1 px-margin pt-4 pb-28 relative flex flex-col gap-6 overflow-y-auto">
+<!-- Map Intro Banner -->
+<div class="text-center py-1">
+<span class="inline-block px-3 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-sm text-label-sm font-semibold mb-1">
+          מפת מסע ארבעת העולמות
+        </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-on-surface">מסע המילים</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">חצו את האיים, פתחו שערים לשוניים וחשפו את אוצרות השפה</p>
+</div>
+<!-- Expedition Trail (SVG Connector Line between Worlds) -->
+<div class="relative flex flex-col gap-8">
+<!-- WORLD 1: נמל היסודות (ACTIVE) -->
+<section class="relative z-10 bg-gradient-to-b from-[#0369a1] to-[#0c4a6e] rounded-xl p-space-lg border-2 border-primary-container shadow-lg border-b-[6px] border-b-[#0284c7]">
+<!-- Top Badge Bar -->
+<div class="flex items-center justify-between mb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+              עולם 1 • פעיל עכשיו
+            </span>
+<div class="flex items-center gap-1 bg-surface-container-lowest/60 px-2 py-0.5 rounded-lg text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold">24 כוכבים</span>
+</div>
+</div>
+<!-- World Title & Visual Motif -->
+<div class="flex items-start justify-between gap-3 mb-4">
+<div>
+<h3 class="font-headline-lg text-headline-lg font-extrabold text-white leading-tight">נמל היסודות</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed mt-1">מגדלור האותיות, מזח השורשים והמפרש הגדול של אוצר המילים.</p>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest/40 border border-primary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[32px]">anchor</span>
+</div>
+</div>
+<!-- Progress Indicator -->
+<div class="bg-surface-container-lowest/60 rounded-xl p-3 mb-4 border border-white/10">
+<div class="flex justify-between items-center mb-1.5 font-label-sm text-label-sm">
+<span class="text-white font-semibold">התקדמות במסע המזח</span>
+<span class="text-primary font-bold">8 / 11 תחנות</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden p-0.5 border border-outline-variant/40">
+<div class="h-full bg-gradient-to-l from-primary to-primary-container rounded-full transition-all duration-500" style="width: 72%;"></div>
+</div>
+</div>
+<!-- Primary Tactile Quest Button -->
+<button class="tactile-btn w-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold py-3.5 px-4 rounded-xl border-b-4 border-[#0284c7] flex items-center justify-center gap-2 active:bg-primary-container shadow-md">
+<span>המשך במסע</span>
+<span class="material-symbols-outlined text-[20px]">explore</span>
+</button>
+</section>
+<!-- Dynamic Trail Node Marker 1 -> 2 -->
+<div class="flex justify-center -my-3 z-0">
+<div class="w-1 bg-gradient-to-b from-primary-container to-tertiary-container h-8 rounded-full border-r border-dashed border-outline-variant"></div>
+</div>
+<!-- WORLD 2: יער ההרחבה (UNLOCKED / NEXT) -->
+<section class="relative z-10 bg-gradient-to-b from-[#14532d] to-[#052e16] rounded-xl p-space-lg border-2 border-tertiary/40 border-b-[5px] border-b-[#15803d]">
+<div class="flex items-center justify-between mb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock_open</span>
+              עולם 2 • השלב הבא
+            </span>
+<span class="font-label-sm text-label-sm text-tertiary-fixed font-semibold">0/12 תחנות</span>
+</div>
+<div class="flex items-start justify-between gap-3 mb-3">
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-white">יער ההרחבה</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">צמרות המילים הנרדפות, שבילי שורשים עתיקים ומקדש הפעלים.</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/40 border border-tertiary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[28px]">forest</span>
+</div>
+</div>
+<!-- Unlock Requirement Badge -->
+<div class="bg-surface-container-lowest/50 rounded-lg p-2.5 border border-tertiary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<p class="font-label-sm text-label-sm text-on-surface">נפתח עם סיום נמל היסודות (או במבחן מיון)</p>
+</div>
+</section>
+<!-- Dynamic Trail Node Marker 2 -> 3 -->
+<div class="flex justify-center -my-3 z-0">
+<div class="w-1 bg-gradient-to-b from-tertiary-container to-surface-variant h-8 rounded-full border-r border-dashed border-outline-variant"></div>
+</div>
+<!-- WORLD 3: הרי הדיוק (LOCKED) -->
+<section class="relative z-10 bg-surface-container-high/90 rounded-xl p-space-lg border border-outline-variant/60 border-b-4 border-b-surface-variant opacity-80">
+<div class="flex items-center justify-between mb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+              עולם 3 • נעול
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">visibility_off</span>
+</div>
+<div class="flex items-start justify-between gap-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface-variant">הרי הדיוק</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mt-1">פסגות גבישיות עטויות ערפל, הבחנה דקה בין מושגים ומצפה כוכבים.</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/40 border border-outline-variant/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-outline text-[26px]">landscape</span>
+</div>
+</div>
+</section>
+<!-- Dynamic Trail Node Marker 3 -> 4 -->
+<div class="flex justify-center -my-3 z-0">
+<div class="w-1 bg-surface-variant h-8 rounded-full border-r border-dashed border-outline-variant"></div>
+</div>
+<!-- WORLD 4: מגדל המומחים (LOCKED FINAL WORLD) -->
+<section class="relative z-10 bg-surface-container-high/60 rounded-xl p-space-lg border border-secondary-container/20 border-b-4 border-b-surface-container-highest opacity-70">
+<div class="flex items-center justify-between mb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary-fixed-dim font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span>
+              עולם 4 • מגדל הפסגה
+            </span>
+<span class="material-symbols-outlined text-secondary/40 text-[20px]">military_tech</span>
+</div>
+<div class="flex items-start justify-between gap-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface-variant">מגדל המומחים</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">צריח השפה העתיקה, חידות לשון מורכבות ואוצר החכמים.</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/40 border border-secondary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary/50 text-[26px]">apartment</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Execution of Shared Component BottomNavBar JSON) -->
+<!-- Destination count: 4, Active: 'מפה', Labels: ["מפה", "הרפתקה", "אוצרות", "פרופיל"], Icons: ["explore", "swords", "auto_stories", "military_tech"] -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-space-xs max-w-md mx-auto bg-surface-container-high dark:bg-surface-container-high border-t border-outline-variant dark:border-outline-variant">
+<!-- Tab 1: מפה (ACTIVE - Closest match to current screen 'מפת המסע') -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-space-md py-space-xs border-b-4 border-on-primary-container active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm font-bold">מפה</span>
+</a>
+<!-- Tab 2: הרפתקה -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright dark:hover:bg-surface-bright rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]">swords</span>
+<span class="font-label-sm text-label-sm">הרפתקה</span>
+</a>
+<!-- Tab 3: אוצרות (with New Badge) -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright dark:hover:bg-surface-bright rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary-container text-[9px] font-bold px-1.5 py-0.2 rounded-full">חדש!</span>
+<span class="material-symbols-outlined text-[22px]">auto_stories</span>
+<span class="font-label-sm text-label-sm">אוצרות</span>
+</a>
+<!-- Tab 4: פרופיל -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright dark:hover:bg-surface-bright rounded-xl active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]">military_tech</span>
+<span class="font-label-sm text-label-sm">פרופיל</span>
+</a>
+</nav>
+</div>
+</body></html>

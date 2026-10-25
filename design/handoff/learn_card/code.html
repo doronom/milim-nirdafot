@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - כרטיס לימוד</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#2d3449",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-bright": "#31394d",
+            "surface-container-lowest": "#060e20",
+            "tertiary": "#4ae176",
+            "outline-variant": "#3e4850",
+            "on-error": "#690005",
+            "primary-container": "#0ea5e9",
+            "on-tertiary-container": "#003c16",
+            "primary": "#89ceff",
+            "tertiary-container": "#00b351",
+            "secondary-fixed": "#ffddb8",
+            "background": "#0b1326",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-tertiary": "#003915",
+            "inverse-surface": "#dae2fd",
+            "primary-fixed": "#c9e6ff",
+            "secondary-container": "#ee9800",
+            "on-surface-variant": "#bec8d2",
+            "surface": "#0b1326",
+            "on-primary-fixed": "#001e2f",
+            "outline": "#88929b",
+            "surface-tint": "#89ceff",
+            "secondary-fixed-dim": "#ffb95f",
+            "surface-dim": "#0b1326",
+            "surface-container-highest": "#2d3449",
+            "on-secondary-container": "#5b3800",
+            "on-secondary": "#472a00",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#002109",
+            "on-primary-container": "#003751",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-primary": "#00344d",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-fixed-variant": "#004c6e",
+            "surface-container-high": "#222a3d",
+            "on-background": "#dae2fd",
+            "inverse-on-surface": "#283044",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#dae2fd",
+            "on-secondary-fixed": "#2a1700",
+            "surface-container": "#171f33",
+            "primary-fixed-dim": "#89ceff",
+            "surface-container-low": "#131b2e",
+            "secondary": "#ffb95f",
+            "inverse-primary": "#006591",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-lg": "1rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-parchment-pattern {
+      background-image: radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 185, 95, 0.06) 0%, transparent 40%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex justify-center items-center p-0 m-0">
+<!-- Mobile Viewport Container (390 x 844 frame target) -->
+<main class="w-full max-w-[390px] h-[844px] bg-background relative flex flex-col justify-between overflow-hidden shadow-2xl border border-outline-variant/30">
+<!-- Top Floating Ambient Elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+<div class="absolute top-1/2 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-2xl pointer-events-none -ml-20"></div>
+<!-- Top HUD Header (Navigation shell suppressed due to linear/task-focused learn card) -->
+<header class="w-full pt-4 px-margin z-20 flex-shrink-0">
+<div class="flex items-center justify-between gap-space-sm mb-3">
+<!-- Close 'X' Button on top-left (RTL end) -->
+<button aria-label="סגור" class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-bright border-b-2 border-outline-variant active:translate-y-0.5 transition-transform duration-150 order-2" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<!-- Station Indicator & XP Chip -->
+<div class="flex items-center gap-space-sm order-1">
+<div class="flex items-center gap-1.5 bg-surface-container-high px-space-md py-1 rounded-full border border-outline-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary font-bold">נמל היסודות · מילים חדשות</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full border border-secondary-container/50">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">120 XP</span>
+</div>
+</div>
+</div>
+<!-- Linear Stepper Progress Bar -->
+<div class="w-full bg-surface-container-low rounded-full p-1 border border-outline-variant/60 shadow-inner">
+<div class="flex items-center justify-between px-1 mb-1">
+<span class="font-label-sm text-label-sm text-primary font-bold">שלב 1 מתוך 6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">רגשות ותחושות</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="h-full bg-primary-container rounded-full w-1/6 shadow-[0_0_8px_rgba(14,165,233,0.8)] transition-all duration-300"></div>
+</div>
+</div>
+</header>
+<!-- Scrollable Center Challenge Canvas -->
+<section class="flex-1 overflow-y-auto px-margin py-space-sm flex flex-col justify-start gap-3.5 z-10 custom-parchment-pattern">
+<!-- Helper Meta Pill -->
+<div class="flex justify-between items-center px-1">
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm text-primary-fixed bg-surface-container-high px-2.5 py-0.5 rounded-lg border border-outline-variant/80">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+          מילת רגש ותכונה (Booklet #b002)
+        </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">explore</span>
+          עולם 1 · תחנה 1
+        </span>
+</div>
+<!-- Main Explorer Nautical Parchment Card -->
+<article class="w-full bg-surface-container-low rounded-2xl border-2 border-primary-container/80 p-4 shadow-[0_8px_24px_rgba(0,18,47,0.6)] relative overflow-hidden flex flex-col gap-3">
+<!-- Maritime Accent Corner Ribbons -->
+<div class="absolute -top-10 -left-10 w-20 h-20 bg-primary-container/20 rounded-full blur-xl pointer-events-none"></div>
+<div class="absolute top-2 left-2 text-outline-variant/30">
+<span class="material-symbols-outlined text-4xl select-none">anchor</span>
+</div>
+<!-- Target Word + Pronunciation Row -->
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">מילת המטרה:</span>
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight font-extrabold flex items-center gap-2">
+              אָמִיץ
+            </h1>
+</div>
+<!-- Pronunciation Tactile Button -->
+<button aria-label="האזן להגיית המילה" class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container border-b-4 border-on-primary-container flex items-center justify-center active:translate-y-0.5 transition-transform duration-100 shadow-md hover:bg-primary-fixed" type="button">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+</button>
+</div>
+<!-- Synonyms Section (Pills) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-label-md text-label-md text-secondary font-bold">מילים נרדפות במסע:</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="bg-surface-container-high border-2 border-outline-variant text-primary font-headline-sm text-headline-sm px-3 py-1 rounded-xl shadow-sm border-b-4 border-b-surface-bright">
+              נוֹעָז
+            </span>
+<span class="bg-surface-container-high border-2 border-outline-variant text-primary font-headline-sm text-headline-sm px-3 py-1 rounded-xl shadow-sm border-b-4 border-b-surface-bright">
+              גִּבּוֹר
+            </span>
+<span class="bg-surface-container-high border-2 border-outline-variant text-primary font-headline-sm text-headline-sm px-3 py-1 rounded-xl shadow-sm border-b-4 border-b-surface-bright">
+              עָשׂוּי לְלֹא חַת
+            </span>
+</div>
+</div>
+<!-- Example Usage Scroll Box -->
+<div class="bg-surface-container rounded-xl p-3 border border-outline-variant/60 shadow-inner flex flex-col gap-1 mt-1">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">format_quote</span>
+<span>שימוש ביומן המסע:</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface leading-relaxed font-medium">
+            "הַסַּפָּן הָאָמִיץ לֹא נִבְהַל מֵהַסְּעָרָה בַּיָּם."
+          </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant/80 italic">
+            (The brave sailor wasn't frightened by the sea storm)
+          </span>
+</div>
+</article>
+<!-- Toggle: "I already know this word" -->
+<div class="bg-surface-container rounded-xl px-3.5 py-2.5 border border-outline-variant/70 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">check_circle</span>
+<label class="font-label-md text-label-md text-on-surface cursor-pointer select-none" for="mastered-toggle">
+            אני כבר מכיר את המילה הזו
+          </label>
+</div>
+<div class="relative inline-block w-11 h-6 align-middle select-none">
+<input class="sr-only peer" id="mastered-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</div>
+<!-- Mascot "מצפוני" Assistant Card -->
+<aside class="bg-surface-container-high rounded-xl p-3 border-2 border-secondary/40 flex items-center gap-3 relative shadow-md">
+<!-- Compass Mascot Avatar / Graphic -->
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-secondary/20 border-2 border-secondary flex items-center justify-center text-secondary shadow-[0_0_10px_rgba(255,185,95,0.3)]">
+<span class="material-symbols-outlined text-[28px] animate-spin" style="animation-duration: 24s; font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">מצפוני המדריך</span>
+<span class="text-[10px] bg-secondary/15 text-secondary px-1.5 rounded font-label-sm">טיפ חכם</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">
+            "אמיץ הוא מי שפועל גם כשיש פחד בלב!"
+          </p>
+</div>
+</aside>
+</section>
+<!-- Bottom Action Drawer (Fixed Anchor) -->
+<footer class="w-full px-margin pb-6 pt-2 bg-gradient-to-t from-background via-background to-transparent z-20 flex flex-col gap-2 flex-shrink-0">
+<!-- Big Tactile Primary Action Button -->
+<button class="w-full min-h-[54px] rounded-xl bg-primary-container hover:bg-primary-fixed text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 border-b-4 border-on-primary-container active:translate-y-1 active:border-b-1 transition-all duration-100 shadow-lg" type="button">
+<span>הבנתי, בוא נתרגל!</span>
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant/70">
+        האתגר הבא: זיהוי נרדפות בזמן אמת בנמל
+      </div>
+</footer>
+</main>
+<script>
+    // Audio trigger interaction feedback
+    const speakerBtn = document.querySelector('button[aria-label="האזן להגיית המילה"]');
+    if (speakerBtn) {
+      speakerBtn.addEventListener('click', () => {
+        speakerBtn.classList.add('scale-95');
+        setTimeout(() => speakerBtn.classList.remove('scale-95'), 120);
+      });
+    }
+  </script>
+</body></html>

@@ -1,0 +1,5069 @@
+{
+  "meta": {
+    "source": "המילון שלי למילים נרדפות (booklet)",
+    "reviewed": true,
+    "note": "Extracted automatically from the PDF; entry order within a category may differ slightly from the printed layout. difficulty (1-3) and pos added in milestone 1."
+  },
+  "categories": [
+    {
+      "id": "emotions",
+      "order": 1,
+      "title": "רגשות ותחושות",
+      "expectedCount": 28
+    },
+    {
+      "id": "size-shape",
+      "order": 2,
+      "title": "איך זה נראה? גודל וצורה",
+      "expectedCount": 41
+    },
+    {
+      "id": "character",
+      "order": 3,
+      "title": "איך הוא? אופי ותכונות",
+      "expectedCount": 39
+    },
+    {
+      "id": "description",
+      "order": 4,
+      "title": "טוב, רע ועוד מילים לתיאור",
+      "expectedCount": 36
+    },
+    {
+      "id": "verbs-motion",
+      "order": 5,
+      "title": "פעלים: תנועה וגוף",
+      "expectedCount": 42
+    },
+    {
+      "id": "verbs-speech",
+      "order": 6,
+      "title": "פעלים: דיבור והבעה",
+      "expectedCount": 31
+    },
+    {
+      "id": "verbs-mind",
+      "order": 7,
+      "title": "פעלים: חשיבה, חושים ורצון",
+      "expectedCount": 34
+    },
+    {
+      "id": "verbs-action",
+      "order": 8,
+      "title": "פעלים: עשייה ופעולה",
+      "expectedCount": 41
+    },
+    {
+      "id": "people-places",
+      "order": 9,
+      "title": "אנשים ומקומות",
+      "expectedCount": 32
+    },
+    {
+      "id": "things-nature-ideas",
+      "order": 10,
+      "title": "חפצים, טבע ורעיונות",
+      "expectedCount": 49
+    },
+    {
+      "id": "time-quantity",
+      "order": 11,
+      "title": "זמן, כמות ומילים קטנות",
+      "expectedCount": 38
+    }
+  ],
+  "entries": [
+    {
+      "id": "b001",
+      "categoryId": "emotions",
+      "headword": "אהבה",
+      "hint": null,
+      "synonyms": [
+        "חיבה",
+        "אהדה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b002",
+      "categoryId": "emotions",
+      "headword": "אמיץ",
+      "hint": null,
+      "synonyms": [
+        "נועז",
+        "גיבור",
+        "עשוי ללא חת"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b003",
+      "categoryId": "emotions",
+      "headword": "אסיר תודה",
+      "hint": null,
+      "synonyms": [
+        "מכיר טובה",
+        "מודה"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b004",
+      "categoryId": "emotions",
+      "headword": "בודד",
+      "hint": null,
+      "synonyms": [
+        "גלמוד",
+        "לבד"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b005",
+      "categoryId": "emotions",
+      "headword": "בושה",
+      "hint": null,
+      "synonyms": [
+        "מבוכה",
+        "כלימה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b006",
+      "categoryId": "emotions",
+      "headword": "געגועים",
+      "hint": null,
+      "synonyms": [
+        "כמיהה",
+        "השתוקקות"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b007",
+      "categoryId": "emotions",
+      "headword": "הפתעה",
+      "hint": null,
+      "synonyms": [
+        "תדהמה",
+        "השתאות"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b008",
+      "categoryId": "emotions",
+      "headword": "ישנוני",
+      "hint": null,
+      "synonyms": [
+        "מנומנם",
+        "רדום"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b009",
+      "categoryId": "emotions",
+      "headword": "כועס",
+      "hint": null,
+      "synonyms": [
+        "זועם",
+        "רוגז",
+        "נרגז"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b010",
+      "categoryId": "emotions",
+      "headword": "כעס",
+      "hint": null,
+      "synonyms": [
+        "זעם",
+        "רוגז",
+        "חמה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b011",
+      "categoryId": "emotions",
+      "headword": "מבולבל",
+      "hint": null,
+      "synonyms": [
+        "אובד עצות",
+        "נבוך"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b012",
+      "categoryId": "emotions",
+      "headword": "מודאג",
+      "hint": null,
+      "synonyms": [
+        "דואג",
+        "חרד",
+        "מוטרד"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b013",
+      "categoryId": "emotions",
+      "headword": "מופתע",
+      "hint": null,
+      "synonyms": [
+        "נדהם",
+        "המום",
+        "משתאה"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b014",
+      "categoryId": "emotions",
+      "headword": "מפוחד",
+      "hint": null,
+      "synonyms": [
+        "מבוהל",
+        "נפחד",
+        "חושש"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b015",
+      "categoryId": "emotions",
+      "headword": "מרוצה",
+      "hint": null,
+      "synonyms": [
+        "שבע רצון",
+        "מסופק"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b016",
+      "categoryId": "emotions",
+      "headword": "נבוך",
+      "hint": null,
+      "synonyms": [
+        "מבויש",
+        "נכלם"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b017",
+      "categoryId": "emotions",
+      "headword": "נרגש",
+      "hint": null,
+      "synonyms": [
+        "מתרגש",
+        "נלהב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b018",
+      "categoryId": "emotions",
+      "headword": "סקרן",
+      "hint": null,
+      "synonyms": [
+        "מתעניין",
+        "צמא דעת"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b019",
+      "categoryId": "emotions",
+      "headword": "עייף",
+      "hint": null,
+      "synonyms": [
+        "יגע",
+        "תשוש",
+        "מותש"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b020",
+      "categoryId": "emotions",
+      "headword": "עצב",
+      "hint": null,
+      "synonyms": [
+        "צער",
+        "יגון",
+        "עצבות"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b021",
+      "categoryId": "emotions",
+      "headword": "עצוב",
+      "hint": null,
+      "synonyms": [
+        "עגום",
+        "מדוכדך",
+        "נוגה"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b022",
+      "categoryId": "emotions",
+      "headword": "ערני",
+      "hint": null,
+      "synonyms": [
+        "דרוך",
+        "ער"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b023",
+      "categoryId": "emotions",
+      "headword": "פחד",
+      "hint": null,
+      "synonyms": [
+        "אימה",
+        "חשש",
+        "מורא"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b024",
+      "categoryId": "emotions",
+      "headword": "רגוע",
+      "hint": null,
+      "synonyms": [
+        "שליו",
+        "נינוח",
+        "שקט"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b025",
+      "categoryId": "emotions",
+      "headword": "שלווה",
+      "hint": null,
+      "synonyms": [
+        "רוגע",
+        "נחת",
+        "שקט נפשי"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b026",
+      "categoryId": "emotions",
+      "headword": "שמח",
+      "hint": null,
+      "synonyms": [
+        "עליז",
+        "מאושר",
+        "צוהל"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b027",
+      "categoryId": "emotions",
+      "headword": "שמחה",
+      "hint": null,
+      "synonyms": [
+        "אושר",
+        "גיל",
+        "חדווה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b028",
+      "categoryId": "emotions",
+      "headword": "תקווה",
+      "hint": null,
+      "synonyms": [
+        "ציפייה",
+        "תוחלת"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b029",
+      "categoryId": "size-shape",
+      "headword": "ארוך",
+      "hint": null,
+      "synonyms": [
+        "מוארך",
+        "ממושך"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b030",
+      "categoryId": "size-shape",
+      "headword": "גבוה",
+      "hint": null,
+      "synonyms": [
+        "רם",
+        "נישא",
+        "תמיר"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b031",
+      "categoryId": "size-shape",
+      "headword": "גדול",
+      "hint": null,
+      "synonyms": [
+        "ענק",
+        "עצום",
+        "כביר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b032",
+      "categoryId": "size-shape",
+      "headword": "דק",
+      "hint": null,
+      "synonyms": [
+        "רזה",
+        "צנום"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b033",
+      "categoryId": "size-shape",
+      "headword": "חד",
+      "hint": null,
+      "synonyms": [
+        "מושחז",
+        "שנון"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b034",
+      "categoryId": "size-shape",
+      "headword": "חדש",
+      "hint": null,
+      "synonyms": [
+        "חדיש",
+        "טרי",
+        "עדכני"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b035",
+      "categoryId": "size-shape",
+      "headword": "חם",
+      "hint": null,
+      "synonyms": [
+        "לוהט",
+        "רותח",
+        "חמים"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b036",
+      "categoryId": "size-shape",
+      "headword": "חשוך",
+      "hint": null,
+      "synonyms": [
+        "אפל",
+        "קודר"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b037",
+      "categoryId": "size-shape",
+      "headword": "יבש",
+      "hint": null,
+      "synonyms": [
+        "צחיח",
+        "חרב"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b038",
+      "categoryId": "size-shape",
+      "headword": "יפה",
+      "hint": null,
+      "synonyms": [
+        "נאה",
+        "מקסים",
+        "מרהיב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b039",
+      "categoryId": "size-shape",
+      "headword": "ישן",
+      "hint": "לא חדש",
+      "synonyms": [
+        "בלוי",
+        "משומש"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b040",
+      "categoryId": "size-shape",
+      "headword": "ישר",
+      "hint": null,
+      "synonyms": [
+        "זקוף",
+        "מתוח"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b041",
+      "categoryId": "size-shape",
+      "headword": "מבולגן",
+      "hint": null,
+      "synonyms": [
+        "מפוזר",
+        "פרוע"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b042",
+      "categoryId": "size-shape",
+      "headword": "מואר",
+      "hint": null,
+      "synonyms": [
+        "בהיר",
+        "מאיר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b043",
+      "categoryId": "size-shape",
+      "headword": "מחוספס",
+      "hint": null,
+      "synonyms": [
+        "גס",
+        "לא חלק"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b044",
+      "categoryId": "size-shape",
+      "headword": "מלא",
+      "hint": null,
+      "synonyms": [
+        "גדוש",
+        "עמוס"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b045",
+      "categoryId": "size-shape",
+      "headword": "מלוכלך",
+      "hint": null,
+      "synonyms": [
+        "מטונף",
+        "מזוהם"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b046",
+      "categoryId": "size-shape",
+      "headword": "מסודר",
+      "hint": null,
+      "synonyms": [
+        "מאורגן",
+        "ערוך"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b047",
+      "categoryId": "size-shape",
+      "headword": "נוצץ",
+      "hint": null,
+      "synonyms": [
+        "מבריק",
+        "זוהר",
+        "מנצנץ"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b048",
+      "categoryId": "size-shape",
+      "headword": "נוקשה",
+      "hint": null,
+      "synonyms": [
+        "קשיח",
+        "מוצק"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b049",
+      "categoryId": "size-shape",
+      "headword": "נמוך",
+      "hint": null,
+      "synonyms": [
+        "גוץ",
+        "קצר קומה"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b050",
+      "categoryId": "size-shape",
+      "headword": "נקי",
+      "hint": null,
+      "synonyms": [
+        "מצוחצח",
+        "רחוץ",
+        "טהור"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b051",
+      "categoryId": "size-shape",
+      "headword": "עבה",
+      "hint": null,
+      "synonyms": [
+        "עבות",
+        "שמנמן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b052",
+      "categoryId": "size-shape",
+      "headword": "עגול",
+      "hint": null,
+      "synonyms": [
+        "מעוגל",
+        "כדורי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b053",
+      "categoryId": "size-shape",
+      "headword": "עמוק",
+      "hint": null,
+      "synonyms": [
+        "תהומי"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b054",
+      "categoryId": "size-shape",
+      "headword": "עקום",
+      "hint": null,
+      "synonyms": [
+        "מעוקם",
+        "עקלקל",
+        "מפותל"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b055",
+      "categoryId": "size-shape",
+      "headword": "עתיק",
+      "hint": null,
+      "synonyms": [
+        "קדום",
+        "ישן נושן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b056",
+      "categoryId": "size-shape",
+      "headword": "צבעוני",
+      "hint": null,
+      "synonyms": [
+        "ססגוני",
+        "רב צבעים"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b057",
+      "categoryId": "size-shape",
+      "headword": "צר",
+      "hint": null,
+      "synonyms": [
+        "דחוק",
+        "צפוף"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b058",
+      "categoryId": "size-shape",
+      "headword": "קטן",
+      "hint": null,
+      "synonyms": [
+        "זעיר",
+        "פעוט",
+        "קטנטן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b059",
+      "categoryId": "size-shape",
+      "headword": "קצר",
+      "hint": null,
+      "synonyms": [
+        "קצרצר",
+        "תמציתי"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b060",
+      "categoryId": "size-shape",
+      "headword": "קר",
+      "hint": null,
+      "synonyms": [
+        "צונן",
+        "קריר",
+        "קפוא"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b061",
+      "categoryId": "size-shape",
+      "headword": "קרוב",
+      "hint": null,
+      "synonyms": [
+        "סמוך",
+        "צמוד"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b062",
+      "categoryId": "size-shape",
+      "headword": "רחב",
+      "hint": null,
+      "synonyms": [
+        "מרווח",
+        "נרחב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b063",
+      "categoryId": "size-shape",
+      "headword": "רחוק",
+      "hint": null,
+      "synonyms": [
+        "מרוחק",
+        "נידח"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b064",
+      "categoryId": "size-shape",
+      "headword": "רטוב",
+      "hint": null,
+      "synonyms": [
+        "לח",
+        "ספוג"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b065",
+      "categoryId": "size-shape",
+      "headword": "ריק",
+      "hint": null,
+      "synonyms": [
+        "חלול",
+        "פנוי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b066",
+      "categoryId": "size-shape",
+      "headword": "רך",
+      "hint": null,
+      "synonyms": [
+        "עדין",
+        "גמיש"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b067",
+      "categoryId": "size-shape",
+      "headword": "שבור",
+      "hint": null,
+      "synonyms": [
+        "סדוק",
+        "מנופץ",
+        "הרוס"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b068",
+      "categoryId": "size-shape",
+      "headword": "שטוח",
+      "hint": null,
+      "synonyms": [
+        "מישורי",
+        "חלק"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b069",
+      "categoryId": "size-shape",
+      "headword": "שלם",
+      "hint": null,
+      "synonyms": [
+        "תמים",
+        "מלא"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b070",
+      "categoryId": "character",
+      "headword": "איטי",
+      "hint": null,
+      "synonyms": [
+        "מתמהמה",
+        "מתון"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b071",
+      "categoryId": "character",
+      "headword": "אכזרי",
+      "hint": null,
+      "synonyms": [
+        "רשע",
+        "קשוח"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b072",
+      "categoryId": "character",
+      "headword": "ביישן",
+      "hint": null,
+      "synonyms": [
+        "מבויש",
+        "חסר ביטחון"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b073",
+      "categoryId": "character",
+      "headword": "בריא",
+      "hint": null,
+      "synonyms": [
+        "חסון",
+        "שלם"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b074",
+      "categoryId": "character",
+      "headword": "הגון",
+      "hint": null,
+      "synonyms": [
+        "ישר",
+        "הוגן"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b075",
+      "categoryId": "character",
+      "headword": "זהיר",
+      "hint": null,
+      "synonyms": [
+        "נזהר",
+        "שקול",
+        "מתון"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b076",
+      "categoryId": "character",
+      "headword": "זקן",
+      "hint": null,
+      "synonyms": [
+        "קשיש",
+        "ישיש",
+        "מבוגר"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b077",
+      "categoryId": "character",
+      "headword": "זריז",
+      "hint": null,
+      "synonyms": [
+        "מהיר",
+        "קל רגליים"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b078",
+      "categoryId": "character",
+      "headword": "חופשי",
+      "hint": null,
+      "synonyms": [
+        "פנוי",
+        "משוחרר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b079",
+      "categoryId": "character",
+      "headword": "חזק",
+      "hint": null,
+      "synonyms": [
+        "איתן",
+        "חסון",
+        "עוצמתי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b080",
+      "categoryId": "character",
+      "headword": "חכם",
+      "hint": null,
+      "synonyms": [
+        "נבון",
+        "פיקח",
+        "חריף"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b081",
+      "categoryId": "character",
+      "headword": "חלש",
+      "hint": null,
+      "synonyms": [
+        "רפה",
+        "תשוש"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b082",
+      "categoryId": "character",
+      "headword": "חצוף",
+      "hint": null,
+      "synonyms": [
+        "חוצפן",
+        "עז פנים"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b083",
+      "categoryId": "character",
+      "headword": "חרוץ",
+      "hint": null,
+      "synonyms": [
+        "שקדן",
+        "מתמיד",
+        "עובד קשה"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b084",
+      "categoryId": "character",
+      "headword": "טוב לב",
+      "hint": null,
+      "synonyms": [
+        "רחום",
+        "רחמן",
+        "חנון"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b085",
+      "categoryId": "character",
+      "headword": "טיפש",
+      "hint": null,
+      "synonyms": [
+        "כסיל",
+        "שוטה"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b086",
+      "categoryId": "character",
+      "headword": "מוכן",
+      "hint": null,
+      "synonyms": [
+        "ערוך",
+        "מזומן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b087",
+      "categoryId": "character",
+      "headword": "מוכשר",
+      "hint": null,
+      "synonyms": [
+        "כישרוני",
+        "מחונן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b088",
+      "categoryId": "character",
+      "headword": "מנומס",
+      "hint": null,
+      "synonyms": [
+        "מכובד",
+        "אדיב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b089",
+      "categoryId": "character",
+      "headword": "מפורסם",
+      "hint": null,
+      "synonyms": [
+        "ידוע",
+        "נודע",
+        "מוכר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b090",
+      "categoryId": "character",
+      "headword": "מצחיק",
+      "hint": null,
+      "synonyms": [
+        "משעשע",
+        "מבדח",
+        "היתולי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b091",
+      "categoryId": "character",
+      "headword": "נאמן",
+      "hint": null,
+      "synonyms": [
+        "אמין",
+        "מהימן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b092",
+      "categoryId": "character",
+      "headword": "נדיב",
+      "hint": null,
+      "synonyms": [
+        "רחב לב",
+        "נותן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b093",
+      "categoryId": "character",
+      "headword": "נחמד",
+      "hint": null,
+      "synonyms": [
+        "חביב",
+        "אדיב",
+        "נעים"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b094",
+      "categoryId": "character",
+      "headword": "סבלני",
+      "hint": null,
+      "synonyms": [
+        "ארך אפיים",
+        "מתון"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b095",
+      "categoryId": "character",
+      "headword": "עליז",
+      "hint": null,
+      "synonyms": [
+        "שמח",
+        "שובב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b096",
+      "categoryId": "character",
+      "headword": "עני",
+      "hint": null,
+      "synonyms": [
+        "דל",
+        "אביון",
+        "נצרך"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b097",
+      "categoryId": "character",
+      "headword": "עסוק",
+      "hint": null,
+      "synonyms": [
+        "טרוד",
+        "עמוס"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b098",
+      "categoryId": "character",
+      "headword": "עצלן",
+      "hint": null,
+      "synonyms": [
+        "עצל",
+        "בטלן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b099",
+      "categoryId": "character",
+      "headword": "עקשן",
+      "hint": null,
+      "synonyms": [
+        "עיקש",
+        "קשה עורף"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b100",
+      "categoryId": "character",
+      "headword": "עשיר",
+      "hint": null,
+      "synonyms": [
+        "אמיד",
+        "מבוסס"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b101",
+      "categoryId": "character",
+      "headword": "פזיז",
+      "hint": null,
+      "synonyms": [
+        "נמהר",
+        "חפוז"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b102",
+      "categoryId": "character",
+      "headword": "צנוע",
+      "hint": null,
+      "synonyms": [
+        "עניו",
+        "פשוט"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b103",
+      "categoryId": "character",
+      "headword": "צעיר",
+      "hint": null,
+      "synonyms": [
+        "רך בשנים",
+        "צעירון"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b104",
+      "categoryId": "character",
+      "headword": "קמצן",
+      "hint": null,
+      "synonyms": [
+        "כילי"
+      ],
+      "difficulty": 3,
+      "pos": "adj"
+    },
+    {
+      "id": "b105",
+      "categoryId": "character",
+      "headword": "רעב",
+      "hint": null,
+      "synonyms": [
+        "מורעב",
+        "תאב אוכל"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b106",
+      "categoryId": "character",
+      "headword": "רציני",
+      "hint": null,
+      "synonyms": [
+        "כבד ראש",
+        "מעמיק"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b107",
+      "categoryId": "character",
+      "headword": "שובב",
+      "hint": null,
+      "synonyms": [
+        "מתפרע",
+        "קונדס"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b108",
+      "categoryId": "character",
+      "headword": "שחצן",
+      "hint": null,
+      "synonyms": [
+        "יהיר",
+        "רברבן",
+        "גאוותן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b109",
+      "categoryId": "description",
+      "headword": "אמיתי",
+      "hint": null,
+      "synonyms": [
+        "ממשי",
+        "מקורי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b110",
+      "categoryId": "description",
+      "headword": "אסור",
+      "hint": null,
+      "synonyms": [
+        "לא מותר",
+        "מנוע"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b111",
+      "categoryId": "description",
+      "headword": "אפשרי",
+      "hint": null,
+      "synonyms": [
+        "ייתכן",
+        "בר ביצוע"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b112",
+      "categoryId": "description",
+      "headword": "בטוח",
+      "hint": null,
+      "synonyms": [
+        "מוגן",
+        "חסין"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b113",
+      "categoryId": "description",
+      "headword": "ברור",
+      "hint": null,
+      "synonyms": [
+        "מובן",
+        "גלוי",
+        "בהיר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b114",
+      "categoryId": "description",
+      "headword": "דומה",
+      "hint": null,
+      "synonyms": [
+        "זהה",
+        "מקביל"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b115",
+      "categoryId": "description",
+      "headword": "זול",
+      "hint": null,
+      "synonyms": [
+        "מוזל",
+        "בזיל הזול"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b116",
+      "categoryId": "description",
+      "headword": "חשוב",
+      "hint": null,
+      "synonyms": [
+        "משמעותי",
+        "מהותי",
+        "חיוני"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b117",
+      "categoryId": "description",
+      "headword": "טוב",
+      "hint": null,
+      "synonyms": [
+        "נהדר",
+        "מצוין",
+        "מעולה"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b118",
+      "categoryId": "description",
+      "headword": "טעים",
+      "hint": null,
+      "synonyms": [
+        "ערב",
+        "משובח"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b119",
+      "categoryId": "description",
+      "headword": "יקר",
+      "hint": null,
+      "synonyms": [
+        "רב ערך",
+        "יוקרתי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b120",
+      "categoryId": "description",
+      "headword": "מהיר",
+      "hint": null,
+      "synonyms": [
+        "חפוז",
+        "מזורז",
+        "זריז"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b121",
+      "categoryId": "description",
+      "headword": "מוזר",
+      "hint": null,
+      "synonyms": [
+        "משונה",
+        "תמוה",
+        "יוצא דופן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b122",
+      "categoryId": "description",
+      "headword": "מיוחד",
+      "hint": null,
+      "synonyms": [
+        "ייחודי",
+        "נדיר",
+        "חריג"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b123",
+      "categoryId": "description",
+      "headword": "מסובך",
+      "hint": null,
+      "synonyms": [
+        "מורכב",
+        "סבוך"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b124",
+      "categoryId": "description",
+      "headword": "מסוכן",
+      "hint": null,
+      "synonyms": [
+        "מאיים",
+        "לא בטוח"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b125",
+      "categoryId": "description",
+      "headword": "מעניין",
+      "hint": null,
+      "synonyms": [
+        "מרתק",
+        "מסקרן"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b126",
+      "categoryId": "description",
+      "headword": "מפחיד",
+      "hint": null,
+      "synonyms": [
+        "מאיים",
+        "מבהיל",
+        "מעורר אימה"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b127",
+      "categoryId": "description",
+      "headword": "מר",
+      "hint": null,
+      "synonyms": [
+        "מריר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b128",
+      "categoryId": "description",
+      "headword": "משוכנע",
+      "hint": null,
+      "synonyms": [
+        "בטוח",
+        "סמוך ובטוח"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b129",
+      "categoryId": "description",
+      "headword": "משעמם",
+      "hint": null,
+      "synonyms": [
+        "מייגע",
+        "חדגוני",
+        "אפור"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b130",
+      "categoryId": "description",
+      "headword": "מתוק",
+      "hint": null,
+      "synonyms": [
+        "מתקתק",
+        "ערב לחך"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b131",
+      "categoryId": "description",
+      "headword": "נורא",
+      "hint": null,
+      "synonyms": [
+        "איום",
+        "מחריד"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b132",
+      "categoryId": "description",
+      "headword": "נכון",
+      "hint": null,
+      "synonyms": [
+        "מדויק",
+        "צודק"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b133",
+      "categoryId": "description",
+      "headword": "נעים",
+      "hint": null,
+      "synonyms": [
+        "מהנה",
+        "ערב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b134",
+      "categoryId": "description",
+      "headword": "נפלא",
+      "hint": null,
+      "synonyms": [
+        "מופלא",
+        "מדהים",
+        "נהדר"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b135",
+      "categoryId": "description",
+      "headword": "עצום",
+      "hint": null,
+      "synonyms": [
+        "אדיר",
+        "כביר"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b136",
+      "categoryId": "description",
+      "headword": "פשוט",
+      "hint": null,
+      "synonyms": [
+        "קל",
+        "בסיסי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b137",
+      "categoryId": "description",
+      "headword": "קל",
+      "hint": null,
+      "synonyms": [
+        "פשוט",
+        "קליל"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b138",
+      "categoryId": "description",
+      "headword": "קשה",
+      "hint": null,
+      "synonyms": [
+        "מסובך",
+        "מורכב"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b139",
+      "categoryId": "description",
+      "headword": "רגיל",
+      "hint": null,
+      "synonyms": [
+        "שגרתי",
+        "מקובל",
+        "נפוץ"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b140",
+      "categoryId": "description",
+      "headword": "רועש",
+      "hint": null,
+      "synonyms": [
+        "קולני",
+        "סואן"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b141",
+      "categoryId": "description",
+      "headword": "רע",
+      "hint": null,
+      "synonyms": [
+        "גרוע",
+        "שלילי"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b142",
+      "categoryId": "description",
+      "headword": "שגוי",
+      "hint": null,
+      "synonyms": [
+        "מוטעה",
+        "לא נכון"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b143",
+      "categoryId": "description",
+      "headword": "שונה",
+      "hint": null,
+      "synonyms": [
+        "אחר",
+        "נבדל"
+      ],
+      "difficulty": 1,
+      "pos": "adj"
+    },
+    {
+      "id": "b144",
+      "categoryId": "description",
+      "headword": "שקט",
+      "hint": null,
+      "synonyms": [
+        "דומם",
+        "חרישי"
+      ],
+      "difficulty": 2,
+      "pos": "adj"
+    },
+    {
+      "id": "b145",
+      "categoryId": "verbs-motion",
+      "headword": "אכל",
+      "hint": null,
+      "synonyms": [
+        "סעד",
+        "זלל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b146",
+      "categoryId": "verbs-motion",
+      "headword": "בא",
+      "hint": null,
+      "synonyms": [
+        "הגיע",
+        "הופיע"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b147",
+      "categoryId": "verbs-motion",
+      "headword": "בנה",
+      "hint": null,
+      "synonyms": [
+        "הקים",
+        "יצר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b148",
+      "categoryId": "verbs-motion",
+      "headword": "ברח",
+      "hint": null,
+      "synonyms": [
+        "נמלט",
+        "נס"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b149",
+      "categoryId": "verbs-motion",
+      "headword": "דחף",
+      "hint": null,
+      "synonyms": [
+        "הדף"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b150",
+      "categoryId": "verbs-motion",
+      "headword": "הכה",
+      "hint": null,
+      "synonyms": [
+        "חבט",
+        "היכה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b151",
+      "categoryId": "verbs-motion",
+      "headword": "הלך",
+      "hint": null,
+      "synonyms": [
+        "צעד",
+        "פסע",
+        "התהלך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b152",
+      "categoryId": "verbs-motion",
+      "headword": "הסתיר",
+      "hint": null,
+      "synonyms": [
+        "החביא",
+        "הטמין",
+        "כיסה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b153",
+      "categoryId": "verbs-motion",
+      "headword": "הרים",
+      "hint": null,
+      "synonyms": [
+        "נשא",
+        "הגביה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b154",
+      "categoryId": "verbs-motion",
+      "headword": "התעורר",
+      "hint": null,
+      "synonyms": [
+        "ניעור",
+        "קם"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b155",
+      "categoryId": "verbs-motion",
+      "headword": "זז",
+      "hint": null,
+      "synonyms": [
+        "נע",
+        "התנועע"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b156",
+      "categoryId": "verbs-motion",
+      "headword": "זרק",
+      "hint": null,
+      "synonyms": [
+        "השליך",
+        "הטיל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b157",
+      "categoryId": "verbs-motion",
+      "headword": "חזר",
+      "hint": null,
+      "synonyms": [
+        "שב"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b158",
+      "categoryId": "verbs-motion",
+      "headword": "חיבק",
+      "hint": null,
+      "synonyms": [
+        "גיפף",
+        "כרך זרועות"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b159",
+      "categoryId": "verbs-motion",
+      "headword": "חתך",
+      "hint": null,
+      "synonyms": [
+        "גזר",
+        "קצץ"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b160",
+      "categoryId": "verbs-motion",
+      "headword": "טיפס",
+      "hint": null,
+      "synonyms": [
+        "עלה",
+        "התרומם"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b161",
+      "categoryId": "verbs-motion",
+      "headword": "ירד",
+      "hint": null,
+      "synonyms": [
+        "גלש",
+        "צנח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b162",
+      "categoryId": "verbs-motion",
+      "headword": "ישב",
+      "hint": null,
+      "synonyms": [
+        "התיישב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b163",
+      "categoryId": "verbs-motion",
+      "headword": "ישן",
+      "hint": "במיטה",
+      "synonyms": [
+        "נם",
+        "נמנם"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b164",
+      "categoryId": "verbs-motion",
+      "headword": "לקח",
+      "hint": null,
+      "synonyms": [
+        "נטל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b165",
+      "categoryId": "verbs-motion",
+      "headword": "מיהר",
+      "hint": null,
+      "synonyms": [
+        "נחפז",
+        "הזדרז"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b166",
+      "categoryId": "verbs-motion",
+      "headword": "משך",
+      "hint": null,
+      "synonyms": [
+        "גרר",
+        "סחב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b167",
+      "categoryId": "verbs-motion",
+      "headword": "נגע",
+      "hint": null,
+      "synonyms": [
+        "מישש",
+        "ליטף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b168",
+      "categoryId": "verbs-motion",
+      "headword": "נח",
+      "hint": null,
+      "synonyms": [
+        "התרגע",
+        "נפש"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b169",
+      "categoryId": "verbs-motion",
+      "headword": "ניקה",
+      "hint": null,
+      "synonyms": [
+        "שטף",
+        "צחצח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b170",
+      "categoryId": "verbs-motion",
+      "headword": "נכנס",
+      "hint": null,
+      "synonyms": [
+        "חדר",
+        "בא פנימה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b171",
+      "categoryId": "verbs-motion",
+      "headword": "נפל",
+      "hint": null,
+      "synonyms": [
+        "מעד",
+        "צנח",
+        "התמוטט"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b172",
+      "categoryId": "verbs-motion",
+      "headword": "נרדם",
+      "hint": null,
+      "synonyms": [
+        "שקע בשינה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b173",
+      "categoryId": "verbs-motion",
+      "headword": "נתן",
+      "hint": null,
+      "synonyms": [
+        "העניק",
+        "מסר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b174",
+      "categoryId": "verbs-motion",
+      "headword": "סגר",
+      "hint": null,
+      "synonyms": [
+        "נעל",
+        "חסם"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b175",
+      "categoryId": "verbs-motion",
+      "headword": "סובב",
+      "hint": null,
+      "synonyms": [
+        "גלגל",
+        "הפך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b176",
+      "categoryId": "verbs-motion",
+      "headword": "עזב",
+      "hint": null,
+      "synonyms": [
+        "נטש",
+        "יצא"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b177",
+      "categoryId": "verbs-motion",
+      "headword": "עמד",
+      "hint": null,
+      "synonyms": [
+        "ניצב",
+        "התייצב"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b178",
+      "categoryId": "verbs-motion",
+      "headword": "עף",
+      "hint": null,
+      "synonyms": [
+        "טס",
+        "דאה",
+        "ריחף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b179",
+      "categoryId": "verbs-motion",
+      "headword": "קפץ",
+      "hint": null,
+      "synonyms": [
+        "ניתר",
+        "דילג",
+        "זינק"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b180",
+      "categoryId": "verbs-motion",
+      "headword": "רץ",
+      "hint": null,
+      "synonyms": [
+        "דהר",
+        "מיהר",
+        "טס"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b181",
+      "categoryId": "verbs-motion",
+      "headword": "שבר",
+      "hint": null,
+      "synonyms": [
+        "ניפץ",
+        "ריסק",
+        "הרס"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b182",
+      "categoryId": "verbs-motion",
+      "headword": "שכב",
+      "hint": null,
+      "synonyms": [
+        "נשכב",
+        "התפרקד"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b183",
+      "categoryId": "verbs-motion",
+      "headword": "שם",
+      "hint": null,
+      "synonyms": [
+        "הניח",
+        "הציב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b184",
+      "categoryId": "verbs-motion",
+      "headword": "שתה",
+      "hint": null,
+      "synonyms": [
+        "לגם",
+        "גמע"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b185",
+      "categoryId": "verbs-motion",
+      "headword": "תיקן",
+      "hint": null,
+      "synonyms": [
+        "שיפץ",
+        "סידר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b186",
+      "categoryId": "verbs-motion",
+      "headword": "תפס",
+      "hint": null,
+      "synonyms": [
+        "לכד",
+        "אחז"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b187",
+      "categoryId": "verbs-speech",
+      "headword": "אמר",
+      "hint": null,
+      "synonyms": [
+        "הגיד",
+        "ציין",
+        "דיבר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b188",
+      "categoryId": "verbs-speech",
+      "headword": "ביקש",
+      "hint": null,
+      "synonyms": [
+        "הפציר",
+        "דרש"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b189",
+      "categoryId": "verbs-speech",
+      "headword": "בכה",
+      "hint": null,
+      "synonyms": [
+        "יבב",
+        "התייפח",
+        "דמע"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b190",
+      "categoryId": "verbs-speech",
+      "headword": "הבטיח",
+      "hint": null,
+      "synonyms": [
+        "התחייב",
+        "נדר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b191",
+      "categoryId": "verbs-speech",
+      "headword": "הודיע",
+      "hint": null,
+      "synonyms": [
+        "בישר",
+        "הכריז"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b192",
+      "categoryId": "verbs-speech",
+      "headword": "הזהיר",
+      "hint": null,
+      "synonyms": [
+        "התריע",
+        "הזהיר מראש"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b193",
+      "categoryId": "verbs-speech",
+      "headword": "הזכיר",
+      "hint": null,
+      "synonyms": [
+        "ציין",
+        "העלה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b194",
+      "categoryId": "verbs-speech",
+      "headword": "הסביר",
+      "hint": null,
+      "synonyms": [
+        "פירש",
+        "ביאר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b195",
+      "categoryId": "verbs-speech",
+      "headword": "הסכים",
+      "hint": null,
+      "synonyms": [
+        "אישר",
+        "נאות"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b196",
+      "categoryId": "verbs-speech",
+      "headword": "העליב",
+      "hint": null,
+      "synonyms": [
+        "פגע",
+        "השפיל"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b197",
+      "categoryId": "verbs-speech",
+      "headword": "התוודה",
+      "hint": null,
+      "synonyms": [
+        "הודה",
+        "גילה את האמת"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b198",
+      "categoryId": "verbs-speech",
+      "headword": "התווכח",
+      "hint": null,
+      "synonyms": [
+        "רב",
+        "התדיין"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b199",
+      "categoryId": "verbs-speech",
+      "headword": "התחנן",
+      "hint": null,
+      "synonyms": [
+        "הפציר",
+        "הפיל תחינה"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b200",
+      "categoryId": "verbs-speech",
+      "headword": "התלונן",
+      "hint": null,
+      "synonyms": [
+        "קבל",
+        "רטן"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b201",
+      "categoryId": "verbs-speech",
+      "headword": "חייך",
+      "hint": null,
+      "synonyms": [
+        "גיחך",
+        "קרן משמחה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b202",
+      "categoryId": "verbs-speech",
+      "headword": "כתב",
+      "hint": null,
+      "synonyms": [
+        "רשם",
+        "שרבט",
+        "חיבר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b203",
+      "categoryId": "verbs-speech",
+      "headword": "לחש",
+      "hint": null,
+      "synonyms": [
+        "רחש",
+        "מלמל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b204",
+      "categoryId": "verbs-speech",
+      "headword": "לעג",
+      "hint": null,
+      "synonyms": [
+        "צחק על",
+        "התגרה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b205",
+      "categoryId": "verbs-speech",
+      "headword": "סיפר",
+      "hint": null,
+      "synonyms": [
+        "תיאר",
+        "דיווח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b206",
+      "categoryId": "verbs-speech",
+      "headword": "סירב",
+      "hint": null,
+      "synonyms": [
+        "מיאן",
+        "דחה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b207",
+      "categoryId": "verbs-speech",
+      "headword": "ענה",
+      "hint": null,
+      "synonyms": [
+        "השיב",
+        "הגיב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b208",
+      "categoryId": "verbs-speech",
+      "headword": "פטפט",
+      "hint": null,
+      "synonyms": [
+        "קשקש",
+        "להג"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b209",
+      "categoryId": "verbs-speech",
+      "headword": "פנה",
+      "hint": null,
+      "synonyms": [
+        "קרא",
+        "הזמין"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b210",
+      "categoryId": "verbs-speech",
+      "headword": "צחק",
+      "hint": null,
+      "synonyms": [
+        "גיחך",
+        "צחקק"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b211",
+      "categoryId": "verbs-speech",
+      "headword": "צעק",
+      "hint": null,
+      "synonyms": [
+        "צרח",
+        "זעק",
+        "קרא בקול"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b212",
+      "categoryId": "verbs-speech",
+      "headword": "קרא",
+      "hint": "בספר",
+      "synonyms": [
+        "עיין",
+        "דפדף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b213",
+      "categoryId": "verbs-speech",
+      "headword": "שאל",
+      "hint": null,
+      "synonyms": [
+        "התעניין",
+        "חקר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b214",
+      "categoryId": "verbs-speech",
+      "headword": "שוחח",
+      "hint": null,
+      "synonyms": [
+        "דיבר",
+        "פטפט"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b215",
+      "categoryId": "verbs-speech",
+      "headword": "שיבח",
+      "hint": null,
+      "synonyms": [
+        "הילל",
+        "החמיא"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b216",
+      "categoryId": "verbs-speech",
+      "headword": "שיקר",
+      "hint": null,
+      "synonyms": [
+        "כיזב",
+        "רימה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b217",
+      "categoryId": "verbs-speech",
+      "headword": "שר",
+      "hint": null,
+      "synonyms": [
+        "זימר",
+        "פצח בשיר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b218",
+      "categoryId": "verbs-mind",
+      "headword": "אהב",
+      "hint": null,
+      "synonyms": [
+        "חיבב",
+        "נמשך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b219",
+      "categoryId": "verbs-mind",
+      "headword": "בדק",
+      "hint": null,
+      "synonyms": [
+        "בחן",
+        "סקר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b220",
+      "categoryId": "verbs-mind",
+      "headword": "בחר",
+      "hint": null,
+      "synonyms": [
+        "ברר",
+        "העדיף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b221",
+      "categoryId": "verbs-mind",
+      "headword": "גילה",
+      "hint": null,
+      "synonyms": [
+        "מצא",
+        "חשף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b222",
+      "categoryId": "verbs-mind",
+      "headword": "דאג",
+      "hint": null,
+      "synonyms": [
+        "חשש",
+        "הוטרד"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b223",
+      "categoryId": "verbs-mind",
+      "headword": "דמיין",
+      "hint": null,
+      "synonyms": [
+        "הגה",
+        "חלם"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b224",
+      "categoryId": "verbs-mind",
+      "headword": "הבין",
+      "hint": null,
+      "synonyms": [
+        "תפס",
+        "קלט"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b225",
+      "categoryId": "verbs-mind",
+      "headword": "החליט",
+      "hint": null,
+      "synonyms": [
+        "הכריע",
+        "קבע"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b226",
+      "categoryId": "verbs-mind",
+      "headword": "הכיר",
+      "hint": null,
+      "synonyms": [
+        "ידע",
+        "זיהה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b227",
+      "categoryId": "verbs-mind",
+      "headword": "המציא",
+      "hint": null,
+      "synonyms": [
+        "הגה",
+        "יצר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b228",
+      "categoryId": "verbs-mind",
+      "headword": "הסתכל",
+      "hint": null,
+      "synonyms": [
+        "התבונן",
+        "הביט"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b229",
+      "categoryId": "verbs-mind",
+      "headword": "הקשיב",
+      "hint": null,
+      "synonyms": [
+        "האזין",
+        "הטה אוזן"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b230",
+      "categoryId": "verbs-mind",
+      "headword": "הרגיש",
+      "hint": null,
+      "synonyms": [
+        "חש",
+        "חווה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b231",
+      "categoryId": "verbs-mind",
+      "headword": "התגעגע",
+      "hint": null,
+      "synonyms": [
+        "השתוקק",
+        "נכסף"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b232",
+      "categoryId": "verbs-mind",
+      "headword": "התכונן",
+      "hint": null,
+      "synonyms": [
+        "נערך",
+        "הכין את עצמו"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b233",
+      "categoryId": "verbs-mind",
+      "headword": "התפלא",
+      "hint": null,
+      "synonyms": [
+        "השתומם",
+        "נדהם"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b234",
+      "categoryId": "verbs-mind",
+      "headword": "התרכז",
+      "hint": null,
+      "synonyms": [
+        "התמקד",
+        "שם לב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b235",
+      "categoryId": "verbs-mind",
+      "headword": "זכר",
+      "hint": null,
+      "synonyms": [
+        "נזכר",
+        "לא שכח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b236",
+      "categoryId": "verbs-mind",
+      "headword": "חיפש",
+      "hint": null,
+      "synonyms": [
+        "חיטט",
+        "ביקש"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b237",
+      "categoryId": "verbs-mind",
+      "headword": "חשב",
+      "hint": null,
+      "synonyms": [
+        "הרהר",
+        "שקל",
+        "סבר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b238",
+      "categoryId": "verbs-mind",
+      "headword": "ידע",
+      "hint": null,
+      "synonyms": [
+        "הכיר",
+        "היה בקיא"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b239",
+      "categoryId": "verbs-mind",
+      "headword": "לימד",
+      "hint": null,
+      "synonyms": [
+        "הדריך",
+        "הורה",
+        "חינך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b240",
+      "categoryId": "verbs-mind",
+      "headword": "למד",
+      "hint": null,
+      "synonyms": [
+        "שינן",
+        "רכש ידע"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b241",
+      "categoryId": "verbs-mind",
+      "headword": "מצא",
+      "hint": null,
+      "synonyms": [
+        "איתר",
+        "גילה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b242",
+      "categoryId": "verbs-mind",
+      "headword": "ניחש",
+      "hint": null,
+      "synonyms": [
+        "שיער",
+        "העריך"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b243",
+      "categoryId": "verbs-mind",
+      "headword": "סלח",
+      "hint": null,
+      "synonyms": [
+        "מחל",
+        "כיפר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b244",
+      "categoryId": "verbs-mind",
+      "headword": "פחד",
+      "hint": null,
+      "synonyms": [
+        "חשש",
+        "נבהל",
+        "ירא"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b245",
+      "categoryId": "verbs-mind",
+      "headword": "קיווה",
+      "hint": null,
+      "synonyms": [
+        "ייחל",
+        "ציפה"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b246",
+      "categoryId": "verbs-mind",
+      "headword": "ראה",
+      "hint": null,
+      "synonyms": [
+        "הבחין",
+        "צפה",
+        "חזה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b247",
+      "categoryId": "verbs-mind",
+      "headword": "רצה",
+      "hint": null,
+      "synonyms": [
+        "חפץ",
+        "השתוקק"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b248",
+      "categoryId": "verbs-mind",
+      "headword": "שכנע",
+      "hint": null,
+      "synonyms": [
+        "שידל",
+        "פיתה"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b249",
+      "categoryId": "verbs-mind",
+      "headword": "שם לב",
+      "hint": null,
+      "synonyms": [
+        "הבחין",
+        "נתן דעתו"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b250",
+      "categoryId": "verbs-mind",
+      "headword": "שמע",
+      "hint": null,
+      "synonyms": [
+        "קלט",
+        "האזין"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b251",
+      "categoryId": "verbs-mind",
+      "headword": "תכנן",
+      "hint": null,
+      "synonyms": [
+        "הכין",
+        "ערך תוכנית"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b252",
+      "categoryId": "verbs-action",
+      "headword": "איבד",
+      "hint": null,
+      "synonyms": [
+        "הפסיד",
+        "שכח היכן"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b253",
+      "categoryId": "verbs-action",
+      "headword": "אירח",
+      "hint": null,
+      "synonyms": [
+        "הזמין",
+        "קיבל פנים"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b254",
+      "categoryId": "verbs-action",
+      "headword": "אסף",
+      "hint": null,
+      "synonyms": [
+        "ליקט",
+        "קיבץ"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b255",
+      "categoryId": "verbs-action",
+      "headword": "ביקר",
+      "hint": null,
+      "synonyms": [
+        "סר אל",
+        "פקד"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b256",
+      "categoryId": "verbs-action",
+      "headword": "גדל",
+      "hint": null,
+      "synonyms": [
+        "צמח",
+        "התפתח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b257",
+      "categoryId": "verbs-action",
+      "headword": "גמר",
+      "hint": null,
+      "synonyms": [
+        "סיים",
+        "השלים"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b258",
+      "categoryId": "verbs-action",
+      "headword": "הגן",
+      "hint": null,
+      "synonyms": [
+        "שמר",
+        "גונן"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b259",
+      "categoryId": "verbs-action",
+      "headword": "הוסיף",
+      "hint": null,
+      "synonyms": [
+        "צירף",
+        "הגדיל"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b260",
+      "categoryId": "verbs-action",
+      "headword": "הכין",
+      "hint": null,
+      "synonyms": [
+        "ערך",
+        "התקין"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b261",
+      "categoryId": "verbs-action",
+      "headword": "המשיך",
+      "hint": null,
+      "synonyms": [
+        "התמיד",
+        "הוסיף"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b262",
+      "categoryId": "verbs-action",
+      "headword": "הפסיד",
+      "hint": null,
+      "synonyms": [
+        "נוצח",
+        "איבד"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b263",
+      "categoryId": "verbs-action",
+      "headword": "הפסיק",
+      "hint": null,
+      "synonyms": [
+        "עצר",
+        "חדל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b264",
+      "categoryId": "verbs-action",
+      "headword": "הציל",
+      "hint": null,
+      "synonyms": [
+        "חילץ",
+        "גאל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b265",
+      "categoryId": "verbs-action",
+      "headword": "הצליח",
+      "hint": null,
+      "synonyms": [
+        "זכה",
+        "עלה בידו"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b266",
+      "categoryId": "verbs-action",
+      "headword": "הראה",
+      "hint": null,
+      "synonyms": [
+        "הציג",
+        "חשף"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b267",
+      "categoryId": "verbs-action",
+      "headword": "הרס",
+      "hint": null,
+      "synonyms": [
+        "החריב",
+        "השמיד"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b268",
+      "categoryId": "verbs-action",
+      "headword": "השתמש",
+      "hint": null,
+      "synonyms": [
+        "ניצל",
+        "הפעיל"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b269",
+      "categoryId": "verbs-action",
+      "headword": "התחיל",
+      "hint": null,
+      "synonyms": [
+        "החל",
+        "פתח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b270",
+      "categoryId": "verbs-action",
+      "headword": "חיכה",
+      "hint": null,
+      "synonyms": [
+        "המתין",
+        "ציפה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b271",
+      "categoryId": "verbs-action",
+      "headword": "חילק",
+      "hint": null,
+      "synonyms": [
+        "פיצל",
+        "הפריד"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b272",
+      "categoryId": "verbs-action",
+      "headword": "טייל",
+      "hint": null,
+      "synonyms": [
+        "סייר",
+        "שוטט"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b273",
+      "categoryId": "verbs-action",
+      "headword": "יצר",
+      "hint": null,
+      "synonyms": [
+        "ברא",
+        "עשה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b274",
+      "categoryId": "verbs-action",
+      "headword": "ניסה",
+      "hint": null,
+      "synonyms": [
+        "השתדל",
+        "התאמץ"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b275",
+      "categoryId": "verbs-action",
+      "headword": "ניצח",
+      "hint": null,
+      "synonyms": [
+        "גבר",
+        "זכה"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b276",
+      "categoryId": "verbs-action",
+      "headword": "נכשל",
+      "hint": null,
+      "synonyms": [
+        "כשל",
+        "לא הצליח"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b277",
+      "categoryId": "verbs-action",
+      "headword": "נסע",
+      "hint": null,
+      "synonyms": [
+        "יצא לדרך",
+        "טייל"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b278",
+      "categoryId": "verbs-action",
+      "headword": "סידר",
+      "hint": null,
+      "synonyms": [
+        "ארגן",
+        "ערך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b279",
+      "categoryId": "verbs-action",
+      "headword": "עבד",
+      "hint": null,
+      "synonyms": [
+        "עמל",
+        "טרח"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b280",
+      "categoryId": "verbs-action",
+      "headword": "עזר",
+      "hint": null,
+      "synonyms": [
+        "סייע",
+        "תמך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b281",
+      "categoryId": "verbs-action",
+      "headword": "פגש",
+      "hint": null,
+      "synonyms": [
+        "נפגש",
+        "נתקל"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b282",
+      "categoryId": "verbs-action",
+      "headword": "פחת",
+      "hint": null,
+      "synonyms": [
+        "קטן",
+        "הצטמצם"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b283",
+      "categoryId": "verbs-action",
+      "headword": "ציין",
+      "hint": null,
+      "synonyms": [
+        "סימן",
+        "הדגיש"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b284",
+      "categoryId": "verbs-action",
+      "headword": "קיבל",
+      "hint": null,
+      "synonyms": [
+        "השיג",
+        "זכה ב"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b285",
+      "categoryId": "verbs-action",
+      "headword": "קישט",
+      "hint": null,
+      "synonyms": [
+        "עיטר",
+        "ייפה"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b286",
+      "categoryId": "verbs-action",
+      "headword": "קנה",
+      "hint": null,
+      "synonyms": [
+        "רכש"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b287",
+      "categoryId": "verbs-action",
+      "headword": "רקד",
+      "hint": null,
+      "synonyms": [
+        "פיזז",
+        "כרכר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b288",
+      "categoryId": "verbs-action",
+      "headword": "שיחק",
+      "hint": null,
+      "synonyms": [
+        "השתעשע",
+        "התבדר"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b289",
+      "categoryId": "verbs-action",
+      "headword": "שינה",
+      "hint": null,
+      "synonyms": [
+        "החליף",
+        "הפך"
+      ],
+      "difficulty": 1,
+      "pos": "verb"
+    },
+    {
+      "id": "b290",
+      "categoryId": "verbs-action",
+      "headword": "שלח",
+      "hint": null,
+      "synonyms": [
+        "שיגר",
+        "העביר"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b291",
+      "categoryId": "verbs-action",
+      "headword": "שמר",
+      "hint": null,
+      "synonyms": [
+        "שימר",
+        "נצר"
+      ],
+      "difficulty": 3,
+      "pos": "verb"
+    },
+    {
+      "id": "b292",
+      "categoryId": "verbs-action",
+      "headword": "תקף",
+      "hint": null,
+      "synonyms": [
+        "הסתער",
+        "התנפל"
+      ],
+      "difficulty": 2,
+      "pos": "verb"
+    },
+    {
+      "id": "b293",
+      "categoryId": "people-places",
+      "headword": "אבא",
+      "hint": null,
+      "synonyms": [
+        "אב"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b294",
+      "categoryId": "people-places",
+      "headword": "אויב",
+      "hint": null,
+      "synonyms": [
+        "יריב",
+        "שונא",
+        "צר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b295",
+      "categoryId": "people-places",
+      "headword": "אורח",
+      "hint": null,
+      "synonyms": [
+        "מבקר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b296",
+      "categoryId": "people-places",
+      "headword": "איש",
+      "hint": null,
+      "synonyms": [
+        "גבר",
+        "אדון"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b297",
+      "categoryId": "people-places",
+      "headword": "אישה",
+      "hint": null,
+      "synonyms": [
+        "גברת"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b298",
+      "categoryId": "people-places",
+      "headword": "אמא",
+      "hint": null,
+      "synonyms": [
+        "אם",
+        "אימא"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b299",
+      "categoryId": "people-places",
+      "headword": "ארץ",
+      "hint": null,
+      "synonyms": [
+        "מדינה",
+        "אדמה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b300",
+      "categoryId": "people-places",
+      "headword": "בית",
+      "hint": null,
+      "synonyms": [
+        "דירה",
+        "מעון",
+        "משכן"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b301",
+      "categoryId": "people-places",
+      "headword": "גבעה",
+      "hint": null,
+      "synonyms": [
+        "תל",
+        "רמה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b302",
+      "categoryId": "people-places",
+      "headword": "גינה",
+      "hint": null,
+      "synonyms": [
+        "גן",
+        "חצר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b303",
+      "categoryId": "people-places",
+      "headword": "דרך",
+      "hint": null,
+      "synonyms": [
+        "נתיב",
+        "שביל"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b304",
+      "categoryId": "people-places",
+      "headword": "חבר",
+      "hint": null,
+      "synonyms": [
+        "ידיד",
+        "עמית",
+        "רֵעַ"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b305",
+      "categoryId": "people-places",
+      "headword": "חנות",
+      "hint": null,
+      "synonyms": [
+        "מכולת",
+        "בית עסק"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b306",
+      "categoryId": "people-places",
+      "headword": "טיול",
+      "hint": null,
+      "synonyms": [
+        "מסע",
+        "סיור"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b307",
+      "categoryId": "people-places",
+      "headword": "ילד",
+      "hint": null,
+      "synonyms": [
+        "ילדון",
+        "פעוט",
+        "נער"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b308",
+      "categoryId": "people-places",
+      "headword": "ילדה",
+      "hint": null,
+      "synonyms": [
+        "ילדונת",
+        "נערה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b309",
+      "categoryId": "people-places",
+      "headword": "יער",
+      "hint": null,
+      "synonyms": [
+        "חורש",
+        "סבך"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b310",
+      "categoryId": "people-places",
+      "headword": "כפר",
+      "hint": null,
+      "synonyms": [
+        "יישוב",
+        "מושב"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b311",
+      "categoryId": "people-places",
+      "headword": "מורה",
+      "hint": null,
+      "synonyms": [
+        "מחנך",
+        "מלמד"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b312",
+      "categoryId": "people-places",
+      "headword": "מלך",
+      "hint": null,
+      "synonyms": [
+        "שליט",
+        "מושל"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b313",
+      "categoryId": "people-places",
+      "headword": "מסיבה",
+      "hint": null,
+      "synonyms": [
+        "חגיגה",
+        "אירוע"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b314",
+      "categoryId": "people-places",
+      "headword": "מקום",
+      "hint": null,
+      "synonyms": [
+        "אזור",
+        "מיקום",
+        "אתר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b315",
+      "categoryId": "people-places",
+      "headword": "משפחה",
+      "hint": null,
+      "synonyms": [
+        "בית אב",
+        "קרובים"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b316",
+      "categoryId": "people-places",
+      "headword": "נהר",
+      "hint": null,
+      "synonyms": [
+        "נחל",
+        "פלג"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b317",
+      "categoryId": "people-places",
+      "headword": "עיר",
+      "hint": null,
+      "synonyms": [
+        "כרך",
+        "קריה"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b318",
+      "categoryId": "people-places",
+      "headword": "קבוצה",
+      "hint": null,
+      "synonyms": [
+        "חבורה",
+        "צוות",
+        "להקה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b319",
+      "categoryId": "people-places",
+      "headword": "קהל",
+      "hint": null,
+      "synonyms": [
+        "המון",
+        "ציבור"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b320",
+      "categoryId": "people-places",
+      "headword": "רופא",
+      "hint": null,
+      "synonyms": [
+        "מרפא",
+        "דוקטור"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b321",
+      "categoryId": "people-places",
+      "headword": "רחוב",
+      "hint": null,
+      "synonyms": [
+        "כביש",
+        "שדרה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b322",
+      "categoryId": "people-places",
+      "headword": "שדה",
+      "hint": null,
+      "synonyms": [
+        "אחו",
+        "כר"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b323",
+      "categoryId": "people-places",
+      "headword": "שוק",
+      "hint": null,
+      "synonyms": [
+        "יריד"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b324",
+      "categoryId": "people-places",
+      "headword": "תלמיד",
+      "hint": null,
+      "synonyms": [
+        "לומד",
+        "חניך"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b325",
+      "categoryId": "things-nature-ideas",
+      "headword": "אבן",
+      "hint": null,
+      "synonyms": [
+        "סלע",
+        "חלוק"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b326",
+      "categoryId": "things-nature-ideas",
+      "headword": "אדמה",
+      "hint": null,
+      "synonyms": [
+        "קרקע",
+        "עפר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b327",
+      "categoryId": "things-nature-ideas",
+      "headword": "אוכל",
+      "hint": null,
+      "synonyms": [
+        "מזון",
+        "מאכל",
+        "ארוחה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b328",
+      "categoryId": "things-nature-ideas",
+      "headword": "אוצר",
+      "hint": null,
+      "synonyms": [
+        "מטמון",
+        "עושר"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b329",
+      "categoryId": "things-nature-ideas",
+      "headword": "אור",
+      "hint": null,
+      "synonyms": [
+        "זוהר",
+        "נוגה",
+        "הארה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b330",
+      "categoryId": "things-nature-ideas",
+      "headword": "אש",
+      "hint": null,
+      "synonyms": [
+        "שלהבת",
+        "להבה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b331",
+      "categoryId": "things-nature-ideas",
+      "headword": "בגד",
+      "hint": null,
+      "synonyms": [
+        "לבוש",
+        "מלבוש"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b332",
+      "categoryId": "things-nature-ideas",
+      "headword": "בעיה",
+      "hint": null,
+      "synonyms": [
+        "קושי",
+        "תקלה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b333",
+      "categoryId": "things-nature-ideas",
+      "headword": "גשם",
+      "hint": null,
+      "synonyms": [
+        "מטר",
+        "ממטר"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b334",
+      "categoryId": "things-nature-ideas",
+      "headword": "דאגה",
+      "hint": null,
+      "synonyms": [
+        "חרדה",
+        "טרדה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b335",
+      "categoryId": "things-nature-ideas",
+      "headword": "דממה",
+      "hint": null,
+      "synonyms": [
+        "שקט",
+        "דומייה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b336",
+      "categoryId": "things-nature-ideas",
+      "headword": "חוק",
+      "hint": null,
+      "synonyms": [
+        "כלל",
+        "תקנה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b337",
+      "categoryId": "things-nature-ideas",
+      "headword": "חושך",
+      "hint": null,
+      "synonyms": [
+        "אופל",
+        "אפלה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b338",
+      "categoryId": "things-nature-ideas",
+      "headword": "חלום",
+      "hint": null,
+      "synonyms": [
+        "חזון",
+        "הזיה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b339",
+      "categoryId": "things-nature-ideas",
+      "headword": "חפץ",
+      "hint": null,
+      "synonyms": [
+        "דבר",
+        "פריט"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b340",
+      "categoryId": "things-nature-ideas",
+      "headword": "טעות",
+      "hint": null,
+      "synonyms": [
+        "שגיאה",
+        "משגה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b341",
+      "categoryId": "things-nature-ideas",
+      "headword": "ירח",
+      "hint": null,
+      "synonyms": [
+        "לבנה",
+        "סהר"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b342",
+      "categoryId": "things-nature-ideas",
+      "headword": "כבוד",
+      "hint": null,
+      "synonyms": [
+        "הוקרה",
+        "הערכה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b343",
+      "categoryId": "things-nature-ideas",
+      "headword": "כוח",
+      "hint": null,
+      "synonyms": [
+        "עוצמה",
+        "חוזק"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b344",
+      "categoryId": "things-nature-ideas",
+      "headword": "כלי",
+      "hint": null,
+      "synonyms": [
+        "מכשיר",
+        "אמצעי"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b345",
+      "categoryId": "things-nature-ideas",
+      "headword": "כסף",
+      "hint": null,
+      "synonyms": [
+        "ממון",
+        "מזומן"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b346",
+      "categoryId": "things-nature-ideas",
+      "headword": "מטרה",
+      "hint": null,
+      "synonyms": [
+        "יעד",
+        "תכלית"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b347",
+      "categoryId": "things-nature-ideas",
+      "headword": "מכונית",
+      "hint": null,
+      "synonyms": [
+        "רכב",
+        "אוטו"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b348",
+      "categoryId": "things-nature-ideas",
+      "headword": "מכתב",
+      "hint": null,
+      "synonyms": [
+        "איגרת",
+        "פתק"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b349",
+      "categoryId": "things-nature-ideas",
+      "headword": "מלחמה",
+      "hint": null,
+      "synonyms": [
+        "קרב",
+        "מאבק"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b350",
+      "categoryId": "things-nature-ideas",
+      "headword": "משחק",
+      "hint": null,
+      "synonyms": [
+        "שעשוע",
+        "תחרות"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b351",
+      "categoryId": "things-nature-ideas",
+      "headword": "משימה",
+      "hint": null,
+      "synonyms": [
+        "מטלה",
+        "תפקיד"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b352",
+      "categoryId": "things-nature-ideas",
+      "headword": "מתנה",
+      "hint": null,
+      "synonyms": [
+        "שי",
+        "תשורה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b353",
+      "categoryId": "things-nature-ideas",
+      "headword": "ניצחון",
+      "hint": null,
+      "synonyms": [
+        "הצלחה",
+        "זכייה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b354",
+      "categoryId": "things-nature-ideas",
+      "headword": "סוד",
+      "hint": null,
+      "synonyms": [
+        "רז",
+        "תעלומה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b355",
+      "categoryId": "things-nature-ideas",
+      "headword": "סיבה",
+      "hint": null,
+      "synonyms": [
+        "טעם",
+        "גורם"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b356",
+      "categoryId": "things-nature-ideas",
+      "headword": "סיפור",
+      "hint": null,
+      "synonyms": [
+        "מעשה",
+        "עלילה",
+        "אגדה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b357",
+      "categoryId": "things-nature-ideas",
+      "headword": "סכנה",
+      "hint": null,
+      "synonyms": [
+        "סיכון",
+        "איום"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b358",
+      "categoryId": "things-nature-ideas",
+      "headword": "סערה",
+      "hint": null,
+      "synonyms": [
+        "סופה",
+        "סער"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b359",
+      "categoryId": "things-nature-ideas",
+      "headword": "עבודה",
+      "hint": null,
+      "synonyms": [
+        "מלאכה",
+        "עמל"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b360",
+      "categoryId": "things-nature-ideas",
+      "headword": "עזרה",
+      "hint": null,
+      "synonyms": [
+        "סיוע",
+        "תמיכה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b361",
+      "categoryId": "things-nature-ideas",
+      "headword": "עץ",
+      "hint": null,
+      "synonyms": [
+        "אילן"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b362",
+      "categoryId": "things-nature-ideas",
+      "headword": "פרח",
+      "hint": null,
+      "synonyms": [
+        "ציץ"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b363",
+      "categoryId": "things-nature-ideas",
+      "headword": "פתרון",
+      "hint": null,
+      "synonyms": [
+        "מוצא",
+        "תשובה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b364",
+      "categoryId": "things-nature-ideas",
+      "headword": "ציפור",
+      "hint": null,
+      "synonyms": [
+        "עוף"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b365",
+      "categoryId": "things-nature-ideas",
+      "headword": "רוח",
+      "hint": null,
+      "synonyms": [
+        "משב",
+        "בריזה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b366",
+      "categoryId": "things-nature-ideas",
+      "headword": "רעיון",
+      "hint": null,
+      "synonyms": [
+        "מחשבה",
+        "הגות"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b367",
+      "categoryId": "things-nature-ideas",
+      "headword": "רעש",
+      "hint": null,
+      "synonyms": [
+        "המולה",
+        "שאון"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b368",
+      "categoryId": "things-nature-ideas",
+      "headword": "שלום",
+      "hint": null,
+      "synonyms": [
+        "רעות",
+        "השלמה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b369",
+      "categoryId": "things-nature-ideas",
+      "headword": "שמיים",
+      "hint": null,
+      "synonyms": [
+        "רקיע",
+        "שחקים"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b370",
+      "categoryId": "things-nature-ideas",
+      "headword": "שמש",
+      "hint": null,
+      "synonyms": [
+        "חמה"
+      ],
+      "difficulty": 3,
+      "pos": "noun"
+    },
+    {
+      "id": "b371",
+      "categoryId": "things-nature-ideas",
+      "headword": "שתייה",
+      "hint": null,
+      "synonyms": [
+        "משקה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b372",
+      "categoryId": "things-nature-ideas",
+      "headword": "תחרות",
+      "hint": null,
+      "synonyms": [
+        "התמודדות",
+        "מירוץ"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b373",
+      "categoryId": "things-nature-ideas",
+      "headword": "תשובה",
+      "hint": null,
+      "synonyms": [
+        "מענה",
+        "תגובה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b374",
+      "categoryId": "time-quantity",
+      "headword": "אבל",
+      "hint": null,
+      "synonyms": [
+        "אך",
+        "אולם",
+        "ברם"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b375",
+      "categoryId": "time-quantity",
+      "headword": "אולי",
+      "hint": null,
+      "synonyms": [
+        "ייתכן",
+        "יכול להיות"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b376",
+      "categoryId": "time-quantity",
+      "headword": "אחר כך",
+      "hint": null,
+      "synonyms": [
+        "לאחר מכן",
+        "אחרי זה"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b377",
+      "categoryId": "time-quantity",
+      "headword": "אמצע",
+      "hint": null,
+      "synonyms": [
+        "מרכז",
+        "תווך"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b378",
+      "categoryId": "time-quantity",
+      "headword": "אף פעם",
+      "hint": null,
+      "synonyms": [
+        "מעולם לא",
+        "לעולם לא"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b379",
+      "categoryId": "time-quantity",
+      "headword": "בגלל",
+      "hint": null,
+      "synonyms": [
+        "מפני",
+        "משום",
+        "עקב"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b380",
+      "categoryId": "time-quantity",
+      "headword": "בוקר",
+      "hint": null,
+      "synonyms": [
+        "שחר",
+        "זריחה"
+      ],
+      "difficulty": 1,
+      "pos": "noun"
+    },
+    {
+      "id": "b381",
+      "categoryId": "time-quantity",
+      "headword": "בטח",
+      "hint": null,
+      "synonyms": [
+        "ודאי",
+        "כמובן"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b382",
+      "categoryId": "time-quantity",
+      "headword": "ביחד",
+      "hint": null,
+      "synonyms": [
+        "יחדיו",
+        "בצוותא"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b383",
+      "categoryId": "time-quantity",
+      "headword": "בפנים",
+      "hint": null,
+      "synonyms": [
+        "פנימה",
+        "בתוך"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b384",
+      "categoryId": "time-quantity",
+      "headword": "גם",
+      "hint": null,
+      "synonyms": [
+        "אף",
+        "כמו כן"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b385",
+      "categoryId": "time-quantity",
+      "headword": "הרבה",
+      "hint": null,
+      "synonyms": [
+        "המון",
+        "שפע",
+        "רבות"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b386",
+      "categoryId": "time-quantity",
+      "headword": "התחלה",
+      "hint": null,
+      "synonyms": [
+        "ראשית",
+        "פתיחה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b387",
+      "categoryId": "time-quantity",
+      "headword": "זמן",
+      "hint": null,
+      "synonyms": [
+        "עת",
+        "תקופה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b388",
+      "categoryId": "time-quantity",
+      "headword": "כאן",
+      "hint": null,
+      "synonyms": [
+        "פה",
+        "במקום הזה"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b389",
+      "categoryId": "time-quantity",
+      "headword": "כולם",
+      "hint": null,
+      "synonyms": [
+        "כל האנשים",
+        "הכול"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b390",
+      "categoryId": "time-quantity",
+      "headword": "כמעט",
+      "hint": null,
+      "synonyms": [
+        "קרוב ל",
+        "בערך"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b391",
+      "categoryId": "time-quantity",
+      "headword": "כן",
+      "hint": null,
+      "synonyms": [
+        "אכן",
+        "נכון"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b392",
+      "categoryId": "time-quantity",
+      "headword": "לאט",
+      "hint": null,
+      "synonyms": [
+        "באיטיות",
+        "בנחת"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b393",
+      "categoryId": "time-quantity",
+      "headword": "לבד",
+      "hint": null,
+      "synonyms": [
+        "לבדו",
+        "ביחידות"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b394",
+      "categoryId": "time-quantity",
+      "headword": "לילה",
+      "hint": null,
+      "synonyms": [
+        "ליל"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b395",
+      "categoryId": "time-quantity",
+      "headword": "למטה",
+      "hint": null,
+      "synonyms": [
+        "מטה",
+        "מתחת"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b396",
+      "categoryId": "time-quantity",
+      "headword": "למעלה",
+      "hint": null,
+      "synonyms": [
+        "מעלה",
+        "במרום"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b397",
+      "categoryId": "time-quantity",
+      "headword": "לפעמים",
+      "hint": null,
+      "synonyms": [
+        "מדי פעם",
+        "לעיתים"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b398",
+      "categoryId": "time-quantity",
+      "headword": "מאוד",
+      "hint": null,
+      "synonyms": [
+        "ביותר",
+        "במיוחד"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b399",
+      "categoryId": "time-quantity",
+      "headword": "מאוחר",
+      "hint": null,
+      "synonyms": [
+        "באיחור",
+        "לאחר זמן"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b400",
+      "categoryId": "time-quantity",
+      "headword": "מהר",
+      "hint": null,
+      "synonyms": [
+        "במהירות",
+        "חיש",
+        "בזריזות"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b401",
+      "categoryId": "time-quantity",
+      "headword": "מוקדם",
+      "hint": null,
+      "synonyms": [
+        "בעוד מועד",
+        "בהקדם"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b402",
+      "categoryId": "time-quantity",
+      "headword": "מיד",
+      "hint": null,
+      "synonyms": [
+        "תכף",
+        "כהרף עין",
+        "מייד"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b403",
+      "categoryId": "time-quantity",
+      "headword": "מעט",
+      "hint": null,
+      "synonyms": [
+        "קצת",
+        "טיפה",
+        "משהו"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b404",
+      "categoryId": "time-quantity",
+      "headword": "סוף",
+      "hint": null,
+      "synonyms": [
+        "סיום",
+        "קץ",
+        "גמר"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b405",
+      "categoryId": "time-quantity",
+      "headword": "עכשיו",
+      "hint": null,
+      "synonyms": [
+        "כעת",
+        "עתה",
+        "ברגע זה"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    },
+    {
+      "id": "b406",
+      "categoryId": "time-quantity",
+      "headword": "ערב",
+      "hint": null,
+      "synonyms": [
+        "שקיעה",
+        "דמדומים"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b407",
+      "categoryId": "time-quantity",
+      "headword": "פתאום",
+      "hint": null,
+      "synonyms": [
+        "לפתע",
+        "לפתע פתאום"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b408",
+      "categoryId": "time-quantity",
+      "headword": "רגע",
+      "hint": null,
+      "synonyms": [
+        "הרף עין",
+        "שנייה"
+      ],
+      "difficulty": 2,
+      "pos": "noun"
+    },
+    {
+      "id": "b409",
+      "categoryId": "time-quantity",
+      "headword": "רק",
+      "hint": null,
+      "synonyms": [
+        "בלבד",
+        "אך ורק"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b410",
+      "categoryId": "time-quantity",
+      "headword": "שוב",
+      "hint": null,
+      "synonyms": [
+        "עוד פעם",
+        "מחדש"
+      ],
+      "difficulty": 1,
+      "pos": "adv"
+    },
+    {
+      "id": "b411",
+      "categoryId": "time-quantity",
+      "headword": "תמיד",
+      "hint": null,
+      "synonyms": [
+        "לעולם",
+        "בכל עת",
+        "תדיר"
+      ],
+      "difficulty": 2,
+      "pos": "adv"
+    }
+  ]
+}
