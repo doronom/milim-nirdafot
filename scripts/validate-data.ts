@@ -42,7 +42,7 @@ line();
 line('Per part of speech');
 table([['pos', 'entries'], ...Object.entries(stats.byPos)]);
 line();
-line(`Synonym graph: ${stats.groups} groups. Largest 10 (max allowed ${MAX_GROUP_WORDS}; "#" marks a split sense):`);
+line(`Synonym graph: ${stats.groups} groups. Largest 10 (warning above ${MAX_GROUP_WORDS} unless approved in large-groups.json; "#" marks a split sense):`);
 for (const g of stats.largestGroups) line(`  ${g.size}: ${g.words.join(', ')}`);
 
 const group = (issues: Issue[]) => {

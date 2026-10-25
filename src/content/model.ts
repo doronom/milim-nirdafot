@@ -1,4 +1,15 @@
-import type { BookletFile, Content, Entry, ExtraFile, Sentence, SentencesFile, SensesFile } from './types';
+import type {
+  AlsoSynonymsFile,
+  BookletFile,
+  Content,
+  Entry,
+  ExtraFile,
+  LargeGroupsFile,
+  NotSynonymsFile,
+  Sentence,
+  SentencesFile,
+  SensesFile,
+} from './types';
 
 export const CUSTOM_CATEGORY_ID = 'custom';
 
@@ -7,6 +18,9 @@ export interface ContentSources {
   extra: ExtraFile;
   sentences: SentencesFile;
   senses: SensesFile;
+  alsoSynonyms: AlsoSynonymsFile;
+  notSynonyms: NotSynonymsFile;
+  largeGroups: LargeGroupsFile;
   custom?: Entry[];
 }
 
@@ -14,7 +28,8 @@ export interface ContentSources {
  * Merges the booklet, the extra file, generated sentences and the parent's custom words into one model.
  * Hint overrides from senses.json are applied here so booklet.json stays untouched.
  */
-export function buildContent({ booklet, extra, sentences, senses, custom = [] }: ContentSources): Content {
+export function buildContent(sources: ContentSources): Content {
+  const { booklet, extra, sentences, senses, custom = [] } = sources;
   const withHint = <T extends Entry>(e: T): T => (e.id in senses.hints ? { ...e, hint: senses.hints[e.id]! } : e);
   const bookletEntries: Entry[] = booklet.entries.map((e) =>
     withHint({ ...e, source: 'booklet', reviewed: booklet.meta.reviewed }),
@@ -33,6 +48,9 @@ export function buildContent({ booklet, extra, sentences, senses, custom = [] }:
     sentences: sentences.sentences,
     senseSplits: senses.senses,
     sameMeaning: senses.sameMeaning,
+    alsoSynonyms: sources.alsoSynonyms.pairs,
+    notSynonyms: sources.notSynonyms.pairs,
+    approvedLargeGroups: sources.largeGroups.approved,
   };
 }
 

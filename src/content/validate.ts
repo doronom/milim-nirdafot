@@ -5,7 +5,7 @@ import { containsWord, HAS_NIQQUD, normalizeWord } from './text';
 
 export { containsWord, normalizeWord, stripNiqqud } from './text';
 
-/** A connected synonym group larger than this usually means a homograph merged two meanings. */
+/** Above this size a connected synonym group gets a warning: it often means a homograph merged two meanings. */
 export const MAX_GROUP_WORDS = 8;
 
 export interface Issue {
@@ -127,11 +127,35 @@ export function validateContent(content: Content): ValidationReport {
     }
   }
 
-  // Synonym graph: groups must stay small enough to read, and a node should not mix parts of speech unless acknowledged.
+  // Synonym graph. A group above the threshold is a signal (often a homograph merging two meanings), not an error:
+  // warn unless large-groups.json approves it at its current size.
   const graph = buildSynonymGraph(content);
+  for (const { a, b } of content.alsoSynonyms) {
+    for (const id of [a, b]) if (!graph.nodes.has(id)) err('also-synonym-unknown-node', id, `also-synonyms.json names unknown node "${id}"`);
+  }
+  const allSpellings = new Set([...graph.nodes.values()].map((n) => n.key));
+  const traps = new Set<string>();
+  for (const t of content.notSynonyms) {
+    if (!entriesById.has(t.targetId)) err('not-synonym-unknown-target', t.targetId, `not-synonyms.json names unknown entry "${t.targetId}"`);
+    if (!allSpellings.has(normalizeWord(t.distractor))) err('not-synonym-unknown-word', t.targetId, `"${t.distractor}" is not a word in the content`);
+    traps.add(`${t.targetId}|${normalizeWord(t.distractor)}`);
+  }
+  for (const { a, b } of content.alsoSynonyms) {
+    const node = graph.nodes.get(a);
+    for (const id of node?.entryIds ?? []) {
+      if (traps.has(`${id}|${normalizeWord(b.split('#')[0]!)}`)) err('pair-in-both-files', `${a}~${b}`, 'pair is both a synonym and a confirmed trap');
+    }
+  }
+  for (const approval of content.approvedLargeGroups) {
+    if (!graph.nodes.has(approval.anchor)) err('large-group-unknown-anchor', approval.anchor, `large-groups.json names unknown node "${approval.anchor}"`);
+  }
   for (const group of graph.groups) {
-    if (group.length > MAX_GROUP_WORDS) {
-      err('group-too-large', group[0]!, `synonym group has ${group.length} words (max ${MAX_GROUP_WORDS}): ${group.join(', ')}`);
+    if (group.length <= MAX_GROUP_WORDS) continue;
+    const approval = content.approvedLargeGroups.find((a) => group.includes(a.anchor));
+    if (!approval) {
+      warn('group-large', group[0]!, `synonym group has ${group.length} words (threshold ${MAX_GROUP_WORDS}): ${group.join(', ')}`);
+    } else if (group.length > approval.maxSize) {
+      warn('group-grew', approval.anchor, `approved group grew to ${group.length} words (approved ${approval.maxSize}): ${group.join(', ')}`);
     }
   }
   const sameMeaning = new Set(content.sameMeaning.map(normalizeWord));

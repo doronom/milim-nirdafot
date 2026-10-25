@@ -40,7 +40,7 @@ describe('synonym graph', () => {
 
   it('splits sense-override words into separate nodes', () => {
     expect(graph.resolve('b406', 'ערב')).toBe('ערב#evening');
-    expect(graph.resolve('b118', 'ערב')).toBe('ערב#tasty');
+    expect(graph.resolve('b118', 'ערב')).toBe('ערב#pleasant');
     expect(sameGroup(graph.resolve('b406', 'ערב'), 'טעים')).toBe(false);
     expect(sameGroup(graph.resolve('b021', 'נוגה'), 'אור')).toBe(false);
     expect(sameGroup(graph.resolve('b304', 'רֵעַ'), 'גרוע')).toBe(false);
@@ -57,11 +57,26 @@ describe('synonym graph', () => {
     expect(sameGroup('סבבה', 'תקין')).toBe(true);
   });
 
-  it('keeps every group within the size cap', () => {
-    expect(Math.max(...graph.groups.map((g) => g.length))).toBeLessThanOrEqual(MAX_GROUP_WORDS);
+  it('links reviewed pairs from also-synonyms.json', () => {
+    expect(sameGroup('מתוח#tense', 'חרד')).toBe(true);
+    expect(sameGroup('מתוח#tense', 'מוטרד')).toBe(true);
   });
 
   it('returns the spellings of a whole group', () => {
-    expect(graph.groupKeys('ערב#tasty')).toEqual(new Set(['טעים', 'ערב', 'משובח']));
+    const keys = graph.groupKeys(graph.resolve('b118', 'ערב'));
+    expect(keys.has('טעים') && keys.has('ערב') && keys.has('נעים')).toBe(true);
+    expect(keys.has('שקיעה')).toBe(false);
+  });
+
+  it('finds groups two hops away through a shared spelling', () => {
+    // עף -> טס (flew) shares the spelling טס with רץ -> טס (ran fast).
+    expect(graph.twoHopGroups('עף').has(groupOf('דהר'))).toBe(true);
+    // חלק (משטח) shares its spelling with שטוח's synonym חלק.
+    expect(graph.twoHopGroups('חלק#e015').has(groupOf('שטוח'))).toBe(true);
+    expect(graph.twoHopGroups('עף').has(groupOf('עף'))).toBe(false);
+  });
+
+  it('has groups above the warning threshold only as warnings', () => {
+    expect(Math.max(...graph.groups.map((g) => g.length))).toBeGreaterThan(MAX_GROUP_WORDS);
   });
 });

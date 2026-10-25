@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "note": "Synonym groups approved to exceed the 8-word warning threshold. anchor is any node id in the group (as printed by validate:data); the approval holds while the group stays at or below maxSize."
+  },
+  "approved": []
+}

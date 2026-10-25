@@ -25,6 +25,11 @@ export interface SynonymGraph {
   headwordNode(entry: Entry): string;
   /** Normalized spellings of every node in the node's group: a distractor must match none of them. */
   groupKeys(nodeId: string): Set<string>;
+  /**
+   * Groups two hops away: reached by leaving the group through a shared spelling (a split sense or hinted homograph)
+   * and taking one more synonym step. Tier 3 skips them until a parent confirms the trap.
+   */
+  twoHopGroups(nodeId: string): Set<number>;
 }
 
 export interface GraphOptions {
@@ -35,6 +40,7 @@ export interface GraphOptions {
 /**
  * Undirected graph linking every headword with its synonyms across all sources.
  * Shared spellings merge groups, except where a hint (hinted headwords) or senses.json splits the spelling into separate nodes.
+ * also-synonyms.json adds links the sources miss.
  */
 export function buildSynonymGraph(content: Content, { includeRegisters = true }: GraphOptions = {}): SynonymGraph {
   const entriesById = new Map(content.entries.map((e) => [e.id, e]));
@@ -82,6 +88,11 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
     }
   }
 
+  // Reviewed pairs the sources miss. Unknown node ids are reported by validation and skipped here.
+  for (const { a, b } of content.alsoSynonyms) {
+    if (nodes.has(a) && nodes.has(b)) link(a, b);
+  }
+
   const groups: string[][] = [];
   for (const start of nodes.keys()) {
     if (nodes.get(start)!.group !== -1) continue;
@@ -119,6 +130,20 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
     return keys;
   };
 
+  const keyIndex = new Map<string, string[]>();
+  for (const node of nodes.values()) keyIndex.set(node.key, [...(keyIndex.get(node.key) ?? []), node.id]);
+  const twoHopGroups = (nodeId: string): Set<number> => {
+    const own = nodes.get(nodeId)?.group;
+    const out = new Set<number>();
+    for (const key of groupKeys(nodeId)) {
+      for (const sibling of keyIndex.get(key) ?? []) {
+        const g = nodes.get(sibling)!.group;
+        if (g !== own) out.add(g);
+      }
+    }
+    return out;
+  };
+
   return {
     nodes,
     edges,
@@ -126,5 +151,6 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
     resolve,
     headwordNode: (entry) => resolve(entry.id, entry.headword),
     groupKeys,
+    twoHopGroups,
   };
 }

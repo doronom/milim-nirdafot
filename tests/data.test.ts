@@ -83,10 +83,26 @@ describe('validator', () => {
     }
   });
 
-  it('fails when a synonym group grows past 8 words', () => {
-    // Without the ערב split, "tasty" and "evening" chain into one group with נעים and its neighbours.
-    const broken = { ...content, senseSplits: content.senseSplits.filter((s) => !['ערב', 'נעים', 'שקט', 'משובח'].includes(s.word)) };
-    expect(validateContent(broken).errors.map((i) => i.code)).toContain('group-too-large');
+  it('warns (does not fail) on groups above 8 words, unless approved at their size', () => {
+    const report = validateContent(content);
+    const large = report.warnings.filter((w) => w.code === 'group-large');
+    expect(large.length).toBeGreaterThan(0);
+    const anchor = large[0]!.ref;
+    const size = Number(/has (\d+) words/.exec(large[0]!.message)![1]);
+    const approved = validateContent({ ...content, approvedLargeGroups: [{ anchor, maxSize: size }] });
+    expect(approved.warnings.some((w) => w.ref === anchor && w.code === 'group-large')).toBe(false);
+    const outgrown = validateContent({ ...content, approvedLargeGroups: [{ anchor, maxSize: size - 1 }] });
+    expect(outgrown.warnings.some((w) => w.code === 'group-grew')).toBe(true);
+  });
+
+  it('fails on decision files that name unknown nodes or entries', () => {
+    const broken = {
+      ...content,
+      alsoSynonyms: [{ a: 'אין כזה', b: 'טוב' }],
+      notSynonyms: [{ targetId: 'zzz', distractor: 'טוב' }],
+    };
+    const codes = validateContent(broken).errors.map((i) => i.code);
+    expect(codes).toEqual(expect.arrayContaining(['also-synonym-unknown-node', 'not-synonym-unknown-target']));
   });
 
   it('fails when a sense split points at an item without the word', () => {

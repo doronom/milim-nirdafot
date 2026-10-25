@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { content, onlyReviewed } from '../src/content';
 import { normalizeWord } from '../src/content/text';
-import { chooseTier, pickDistractors, type Tier } from '../src/engine/distractors';
+import { chooseTier, pairKey, pickDistractors, rankNearMisses, trapKeys, type Tier } from '../src/engine/distractors';
 import { buildSynonymGraph } from '../src/engine/graph';
 import { createRng } from '../src/engine/rng';
 
@@ -61,13 +61,40 @@ describe('pickDistractors', () => {
     }
   });
 
-  it('prefers homograph neighbours as tier 3 near-misses (טעים -> words around ערב "נעים")', () => {
-    const target = entry('b118');
-    const seen = new Set<string>();
-    for (let seed = 0; seed < 20; seed++) {
-      for (const d of pickDistractors(graph, { target, answer: 'משובח', tier: 3, count: 3, rng: createRng(seed), pool })) seen.add(d.word);
+  it('tier 3 skips groups two hops away until the trap is confirmed', () => {
+    const target = entry('e015'); // חלק (משטח); שטוח is two hops away through שטוח -> חלק
+    const offered = (decisions = {}) => {
+      const seen = new Set<string>();
+      for (let seed = 0; seed < 40; seed++) {
+        for (const d of pickDistractors(graph, { target, answer: 'מלוטש', tier: 3, count: 4, rng: createRng(seed), pool, decisions })) seen.add(d.word);
+      }
+      return seen;
+    };
+    expect(offered().has('שטוח')).toBe(false);
+    expect(rankNearMisses(graph, target, pool).find((n) => n.word === 'שטוח')?.status).toBe('two-hop');
+    const confirmedTraps = trapKeys([{ targetId: 'e015', distractor: 'שטוח' }]);
+    expect(rankNearMisses(graph, target, pool, { confirmedTraps }).find((n) => n.word === 'שטוח')?.status).toBe('confirmed-trap');
+    expect(offered({ confirmedTraps }).has('שטוח')).toBe(true);
+  });
+
+  it('never offers a pair reported as also correct while it is pending', () => {
+    const target = entry('e004'); // מתוח
+    const pending = new Set([pairKey('e004', 'חושש')]);
+    for (let seed = 0; seed < 40; seed++) {
+      const picked = pickDistractors(graph, { target, tier: 3, count: 4, rng: createRng(seed), pool, decisions: { pending } });
+      expect(picked.some((d) => d.word === 'חושש')).toBe(false);
     }
-    expect([...seen].some((w) => ['מהנה', 'נעים'].includes(w))).toBe(true);
+  });
+
+  it('never offers חרד or מוטרד for מתוח (linked by also-synonyms.json)', () => {
+    const target = entry('e004');
+    for (let seed = 0; seed < 40; seed++) {
+      for (const tier of [1, 2, 3] as Tier[]) {
+        const words = pickDistractors(graph, { target, tier, count: 4, rng: createRng(seed), pool }).map((d) => d.word);
+        expect(words).not.toContain('חרד');
+        expect(words).not.toContain('מוטרד');
+      }
+    }
   });
 
   it('is deterministic for a seed and independent of pool order', () => {

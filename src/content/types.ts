@@ -93,6 +93,31 @@ export interface Content {
   senseSplits: SenseSplit[];
   /** Spellings deliberately left as one node even though they serve two parts of speech (same meaning). */
   sameMeaning: string[];
+  /** Reviewed decisions about pairs the source lists miss or that look like synonyms. */
+  alsoSynonyms: AlsoSynonymPair[];
+  notSynonyms: NotSynonymPair[];
+  approvedLargeGroups: ApprovedLargeGroup[];
+}
+
+/** Two graph node ids (word or word#sense) confirmed as synonyms; the graph links them. */
+export interface AlsoSynonymPair {
+  a: string;
+  b: string;
+  note?: string;
+}
+
+/** A confirmed fair trap: `distractor` (a spelling) may be offered as wrong for entry `targetId`. */
+export interface NotSynonymPair {
+  targetId: string;
+  distractor: string;
+  note?: string;
+}
+
+export interface ApprovedLargeGroup {
+  /** Any node id in the group. */
+  anchor: string;
+  maxSize: number;
+  note?: string;
 }
 
 /** Raw file shapes (src/data/*.json). */
@@ -121,4 +146,19 @@ export interface SensesFile {
   hints: Record<string, string>;
   senses: SenseSplit[];
   sameMeaning: string[];
+}
+
+export interface AlsoSynonymsFile {
+  meta: { note: string };
+  pairs: AlsoSynonymPair[];
+}
+
+export interface NotSynonymsFile {
+  meta: { note: string };
+  pairs: NotSynonymPair[];
+}
+
+export interface LargeGroupsFile {
+  meta: { note: string };
+  approved: ApprovedLargeGroup[];
 }

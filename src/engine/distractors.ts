@@ -1,12 +1,12 @@
 import { normalizeWord } from '../content/text';
-import type { Entry, Pos } from '../content/types';
+import type { Entry, NotSynonymPair, Pos } from '../content/types';
 import type { SynonymGraph } from './graph';
 import type { Rng } from './rng';
 
 /**
  * 1: a word from another category (easy).
- * 2: same category and part of speech.
- * 3: near-miss: same category and part of speech, similar shape, ideally from a group that shares a spelling with the target's.
+ * 2: same category and part of speech (also skipping unconfirmed two-hop groups).
+ * 3: near-miss: same category and part of speech, similar shape, never from a group two hops away unless confirmed.
  */
 export type Tier = 1 | 2 | 3;
 
@@ -15,6 +15,14 @@ export interface Distractor {
   nodeId: string;
   /** The tier the word actually came from; lower than requested when the pool ran short. */
   tier: Tier;
+}
+
+/** Pair decisions that change what may be offered. Keys come from `pairKey`. */
+export interface PairDecisions {
+  /** Confirmed fair traps (not-synonyms.json): allowed in tier 3 even two hops away. */
+  confirmedTraps?: ReadonlySet<string>;
+  /** Reported in game as "also correct" and not reviewed yet: never offered for that target. */
+  pending?: ReadonlySet<string>;
 }
 
 export interface DistractorRequest {
@@ -29,6 +37,7 @@ export interface DistractorRequest {
    * all content, so a synonym known only through an unreviewed entry still blocks a wrong option.
    */
   pool: readonly Entry[];
+  decisions?: PairDecisions;
 }
 
 interface Candidate {
@@ -38,6 +47,21 @@ interface Candidate {
   categoryIds: Set<string>;
   pos: Set<Pos>;
 }
+
+export type NearMissStatus = 'eligible' | 'confirmed-trap' | 'two-hop' | 'pending';
+
+export interface NearMiss {
+  word: string;
+  nodeId: string;
+  score: number;
+  status: NearMissStatus;
+}
+
+/** Identifies a (target entry, offered spelling) pair across decision files, the review queue and reports. */
+export const pairKey = (targetId: string, word: string): string => `${targetId}|${normalizeWord(word)}`;
+
+export const trapKeys = (pairs: readonly NotSynonymPair[]): Set<string> =>
+  new Set(pairs.map((p) => pairKey(p.targetId, p.distractor)));
 
 const letters = (w: string) => normalizeWord(w).replace(/[\s־]/g, '');
 const wordCount = (w: string) => normalizeWord(w).split(/[\s־]+/).length;
@@ -88,42 +112,75 @@ function collectCandidates(graph: SynonymGraph, pool: readonly Entry[]): Candida
   return list;
 }
 
-/**
- * Picks `count` wrong options for `target`. Hard rule: no distractor shares a spelling with any word in the target's
- * connected synonym group. When the requested tier runs short it falls back to easier tiers, never breaking that rule.
- */
-export function pickDistractors(graph: SynonymGraph, req: DistractorRequest): Distractor[] {
-  const { target, tier, count, rng, pool } = req;
-  const answer = req.answer ?? target.synonyms[0] ?? target.headword;
+interface Prepared {
+  answer: string;
+  /** Same-category, same-pos candidates outside the target group and not pending. */
+  tier2: Candidate[];
+  tier1: Candidate[];
+  twoHop: Set<number>;
+}
+
+function prepare(graph: SynonymGraph, target: Entry, answerIn: string | undefined, pool: readonly Entry[], pending?: ReadonlySet<string>): Prepared {
+  const answer = answerIn ?? target.synonyms[0] ?? target.headword;
   const targetNode = graph.headwordNode(target);
   const blocked = new Set(graph.groupKeys(targetNode));
   blocked.add(normalizeWord(target.headword));
   blocked.add(normalizeWord(answer));
-
-  // Groups that share a spelling with the target's group (homograph neighbours) make the best near-misses.
-  const targetGroup = graph.nodes.get(targetNode)?.group;
-  const relatedGroups = new Set<number>();
-  for (const node of graph.nodes.values()) {
-    if (node.group !== targetGroup && blocked.has(node.key)) relatedGroups.add(node.group);
-  }
-
-  const candidates = collectCandidates(graph, pool).filter((c) => !blocked.has(c.key));
-
+  const candidates = collectCandidates(graph, pool).filter(
+    (c) => !blocked.has(c.key) && !pending?.has(pairKey(target.id, c.key)),
+  );
   const sameCategory = (c: Candidate) => c.categoryIds.has(target.categoryId);
-  const tier1 = candidates.filter((c) => !sameCategory(c));
-  const tier2 = candidates.filter((c) => sameCategory(c) && c.pos.has(target.pos));
-  const answerLength = letters(answer).length;
-  const tier3 = tier2
-    .filter((c) => wordCount(c.word) === wordCount(answer) && Math.abs(letters(c.word).length - answerLength) <= 1)
-    .map((c) => ({
-      c,
-      score:
-        letterSimilarity(c.word, answer) + (relatedGroups.has(graph.nodes.get(c.nodeId)?.group ?? -1) ? 1 : 0),
-    }))
-    .sort((a, b) => b.score - a.score)
+  return {
+    answer,
+    tier1: candidates.filter((c) => !sameCategory(c)),
+    tier2: candidates.filter((c) => sameCategory(c) && c.pos.has(target.pos)),
+    twoHop: graph.twoHopGroups(targetNode),
+  };
+}
+
+/** Tier 3 shape filter and score, with the review status of each candidate. Sorted best first. */
+function scoreNearMisses(graph: SynonymGraph, target: Entry, p: Prepared, traps?: ReadonlySet<string>): (NearMiss & { c: Candidate })[] {
+  const answerLength = letters(p.answer).length;
+  return p.tier2
+    .filter((c) => wordCount(c.word) === wordCount(p.answer) && Math.abs(letters(c.word).length - answerLength) <= 1)
+    .map((c) => {
+      const trap = traps?.has(pairKey(target.id, c.key)) ?? false;
+      const twoHop = p.twoHop.has(graph.nodes.get(c.nodeId)?.group ?? -1);
+      const status: NearMissStatus = trap ? 'confirmed-trap' : twoHop ? 'two-hop' : 'eligible';
+      return { c, word: c.word, nodeId: c.nodeId, score: letterSimilarity(c.word, p.answer), status };
+    })
+    .sort((a, b) => b.score - a.score || (a.c.key < b.c.key ? -1 : 1));
+}
+
+/**
+ * Ranked tier 3 candidates for review (report:near-misses). Includes skipped two-hop words so a parent can confirm them.
+ * Scores against every synonym of the target and keeps each word's best.
+ */
+export function rankNearMisses(graph: SynonymGraph, target: Entry, pool: readonly Entry[], decisions: PairDecisions = {}): NearMiss[] {
+  const best = new Map<string, NearMiss>();
+  for (const answer of target.synonyms) {
+    const p = prepare(graph, target, answer, pool, decisions.pending);
+    for (const { c, ...nm } of scoreNearMisses(graph, target, p, decisions.confirmedTraps)) {
+      const prev = best.get(c.key);
+      if (!prev || nm.score > prev.score) best.set(c.key, nm);
+    }
+  }
+  return [...best.values()].sort((a, b) => b.score - a.score || (a.word < b.word ? -1 : 1));
+}
+
+/**
+ * Picks `count` wrong options for `target`. Hard rule: no distractor shares a spelling with any word in the target's
+ * connected synonym group, and no pending "also correct" report is offered. Tier 3 also skips groups two hops away
+ * unless the pair is a confirmed trap. When a tier runs short it falls back to easier tiers.
+ */
+export function pickDistractors(graph: SynonymGraph, req: DistractorRequest): Distractor[] {
+  const { target, tier, count, rng, pool, decisions = {} } = req;
+  const p = prepare(graph, target, req.answer, pool, decisions.pending);
+  const tier3 = scoreNearMisses(graph, target, p, decisions.confirmedTraps)
+    .filter((nm) => nm.status !== 'two-hop')
     // Keep a shortlist of the closest so repeated rounds still vary.
     .slice(0, Math.max(count * 2, 6))
-    .map(({ c }) => c);
+    .map((nm) => nm.c);
 
   const picked: Distractor[] = [];
   const used = new Set<string>();
@@ -135,9 +192,15 @@ export function pickDistractors(graph: SynonymGraph, req: DistractorRequest): Di
       picked.push({ word: c.word, nodeId: c.nodeId, tier: from });
     }
   };
+  // Same-category words two hops away are skipped in tier 2 as well, so a tier 3 fallback cannot bring them back.
+  const tier2 = p.tier2.filter(
+    (c) =>
+      !p.twoHop.has(graph.nodes.get(c.nodeId)?.group ?? -1) ||
+      (decisions.confirmedTraps?.has(pairKey(target.id, c.key)) ?? false),
+  );
   if (tier >= 3) take(tier3, 3);
   if (tier >= 2) take(tier2, 2);
-  take(tier1, 1);
+  take(p.tier1, 1);
   return picked;
 }
 

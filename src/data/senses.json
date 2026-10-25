@@ -19,16 +19,10 @@
         },
         {
           "key": "pleasant",
-          "gloss": "נעים",
+          "gloss": "נעים, טעים",
           "items": [
+            "b118",
             "b133"
-          ]
-        },
-        {
-          "key": "tasty",
-          "gloss": "טעים",
-          "items": [
-            "b118"
           ]
         }
       ]
@@ -208,82 +202,6 @@
       ]
     },
     {
-      "word": "נעים",
-      "senses": [
-        {
-          "key": "pleasant",
-          "gloss": "מהנה",
-          "items": [
-            "b133"
-          ]
-        },
-        {
-          "key": "kind",
-          "gloss": "נחמד",
-          "items": [
-            "b093"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "משובח",
-      "senses": [
-        {
-          "key": "tasty",
-          "gloss": "טעים, איכותי",
-          "items": [
-            "b118"
-          ]
-        },
-        {
-          "key": "excellent",
-          "gloss": "טוב מאוד",
-          "items": [
-            "reg11"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "מעולה",
-      "senses": [
-        {
-          "key": "great",
-          "gloss": "טוב",
-          "items": [
-            "b117"
-          ]
-        },
-        {
-          "key": "flawless",
-          "gloss": "מושלם",
-          "items": [
-            "e028"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "נהדר",
-      "senses": [
-        {
-          "key": "great",
-          "gloss": "טוב",
-          "items": [
-            "b117"
-          ]
-        },
-        {
-          "key": "wonderful",
-          "gloss": "נפלא",
-          "items": [
-            "b134"
-          ]
-        }
-      ]
-    },
-    {
       "word": "שלם",
       "senses": [
         {
@@ -341,44 +259,6 @@
       ]
     },
     {
-      "word": "הגה",
-      "senses": [
-        {
-          "key": "imagined",
-          "gloss": "דמיין",
-          "items": [
-            "b223"
-          ]
-        },
-        {
-          "key": "devised",
-          "gloss": "המציא",
-          "items": [
-            "b227"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "הקים",
-      "senses": [
-        {
-          "key": "built",
-          "gloss": "בנה",
-          "items": [
-            "b147"
-          ]
-        },
-        {
-          "key": "founded",
-          "gloss": "ייסד",
-          "items": [
-            "e067"
-          ]
-        }
-      ]
-    },
-    {
       "word": "ציין",
       "senses": [
         {
@@ -395,44 +275,6 @@
           "gloss": "סימן",
           "items": [
             "b283"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "דיבר",
-      "senses": [
-        {
-          "key": "said",
-          "gloss": "אמר",
-          "items": [
-            "b187"
-          ]
-        },
-        {
-          "key": "talked",
-          "gloss": "שוחח",
-          "items": [
-            "b214"
-          ]
-        }
-      ]
-    },
-    {
-      "word": "רציני",
-      "senses": [
-        {
-          "key": "serious",
-          "gloss": "כבד ראש",
-          "items": [
-            "b106"
-          ]
-        },
-        {
-          "key": "responsible",
-          "gloss": "אחראי",
-          "items": [
-            "e023"
           ]
         }
       ]
