@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>מסע המילים - מגדל המומחים</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Rubik Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#2d3449",
+            "tertiary": "#4ae176",
+            "surface-container-highest": "#2d3449",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary": "#00344d",
+            "surface-dim": "#0b1326",
+            "on-background": "#dae2fd",
+            "secondary-container": "#ee9800",
+            "primary": "#89ceff",
+            "outline": "#88929b",
+            "on-secondary-container": "#5b3800",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-container-high": "#222a3d",
+            "outline-variant": "#3e4850",
+            "on-tertiary": "#003915",
+            "surface-container-lowest": "#060e20",
+            "inverse-primary": "#006591",
+            "on-primary-container": "#003751",
+            "on-tertiary-fixed-variant": "#005321",
+            "inverse-on-surface": "#283044",
+            "on-secondary": "#472a00",
+            "tertiary-container": "#00b351",
+            "surface": "#0b1326",
+            "primary-fixed-dim": "#89ceff",
+            "on-secondary-fixed": "#2a1700",
+            "surface-tint": "#89ceff",
+            "error": "#ffb4ab",
+            "primary-fixed": "#c9e6ff",
+            "surface-container-low": "#131b2e",
+            "on-surface-variant": "#bec8d2",
+            "secondary": "#ffb95f",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#653e00",
+            "primary-container": "#0ea5e9",
+            "on-surface": "#dae2fd",
+            "inverse-surface": "#dae2fd",
+            "surface-bright": "#31394d",
+            "background": "#0b1326",
+            "on-tertiary-container": "#003c16",
+            "surface-container": "#171f33",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "on-primary-fixed": "#001e2f",
+            "on-error": "#690005",
+            "on-primary-fixed-variant": "#004c6e",
+            "secondary-fixed-dim": "#ffb95f",
+            "error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* 3D Tactile Buttons & Keypress Physics */
+    .tactile-key {
+      box-shadow: 0 3px 0 #1e2638;
+      transition: all 0.08s ease-in-out;
+    }
+    .tactile-key:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #1e2638;
+    }
+    .tactile-action {
+      box-shadow: 0 4px 0 #0284c7;
+      transition: all 0.08s ease;
+    }
+    .tactile-action:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #0284c7;
+    }
+    .tactile-card {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 20px -4px rgba(0, 0, 0, 0.6);
+    }
+    /* Blinking Caret Simulation */
+    @keyframes cursor-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-caret {
+      animation: cursor-pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased select-none font-body-md overflow-x-hidden min-h-screen flex flex-col items-center justify-start">
+<!-- Mobile Simulator Frame (390px default constraint for realistic expedition feel) -->
+<main class="w-full max-w-[390px] min-h-screen flex flex-col justify-between bg-surface-dim relative overflow-hidden pb-4">
+<!-- Top HUD Navigation Bar (Shared Component - Injected Semantics) -->
+<header class="w-full z-50 h-14 px-margin flex items-center justify-between bg-surface-container shadow-sm border-b border-outline-variant">
+<!-- Right Side: Back/Exit Button -->
+<button aria-label="חזרה לתפריט העולמות" class="w-10 h-10 rounded-xl bg-surface-variant text-primary flex items-center justify-center hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-75" type="button">
+<span class="material-symbols-outlined text-primary text-[22px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Center: Realm & Stage Title Anchor -->
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#ee9800]"></span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">מגדל המומחים</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">שלב 4.3 · רגשות ותחושות</span>
+</div>
+<!-- Left Side: Star & XP Hub -->
+<div class="flex items-center gap-1.5 bg-surface-container-high px-2.5 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="hotel_class" style="font-variation-settings: 'FILL' 1;">hotel_class</span>
+<span class="font-label-md text-label-md font-bold text-secondary tracking-tight">480</span>
+</div>
+</header>
+<!-- Content Workspace -->
+<div class="w-full px-margin pt-3 flex flex-col gap-3 flex-grow">
+<!-- Progress Meter (Subtle 8-Step Expedition Trail) -->
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden p-0.5 border border-outline-variant/40">
+<div class="bg-gradient-to-l from-secondary to-secondary-container h-full rounded-full transition-all duration-300" style="width: 37.5%;"></div>
+</div>
+<!-- Central Quest Card: Target Word & Phonetic Prompt -->
+<section class="w-full bg-surface-container tactile-card rounded-xl p-4 border border-outline-variant/60 relative overflow-hidden flex flex-col items-center text-center">
+<!-- World Accent Ambient Glow -->
+<div class="absolute -top-12 -left-12 w-28 h-28 bg-secondary/15 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -right-10 w-24 h-24 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between w-full mb-1">
+<span class="text-secondary font-label-sm text-label-sm font-bold bg-secondary/10 px-2 py-0.5 rounded-md border border-secondary/20">
+            מילת מפתח
+          </span>
+<button aria-label="הקראת המילה" class="w-8 h-8 rounded-lg bg-surface-variant hover:bg-surface-bright text-primary flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<!-- Target Word with Bold Clear Contrast (Without Nikud as specified) -->
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-on-surface font-extrabold tracking-wide mt-1 mb-1">
+          סקרן
+        </h1>
+<!-- Context Clue Sentence -->
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[280px]">
+          "ילד שרוצה לדעת ולחקור הכל"
+        </p>
+</section>
+<!-- Input Field & Near-Miss Character Representation -->
+<section class="flex flex-col gap-1.5 w-full">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">הקלד מילה נרדפת:</span>
+<span class="font-label-sm text-label-sm text-outline">7 אותיות</span>
+</div>
+<!-- Custom Input Capsule with Current User Typing ("מתאניין") -->
+<div class="w-full bg-surface-container-low rounded-xl border-2 border-secondary/50 p-2.5 flex items-center justify-between shadow-inner">
+<div class="flex items-center gap-1 overflow-x-auto py-0.5">
+<!-- Distinct letter slots representing typed progress -->
+<div class="flex items-center gap-1.5 text-on-surface font-headline-md text-headline-md tracking-wider">
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">מ</span>
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">ת</span>
+<!-- Highlighted erroneous character displaying tolerance context -->
+<span class="w-7 h-9 flex items-center justify-center bg-secondary-container/20 text-secondary border border-secondary/60 rounded-md font-bold">א</span>
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">נ</span>
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">י</span>
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">י</span>
+<span class="w-7 h-9 flex items-center justify-center bg-surface-variant rounded-md border-b-2 border-outline-variant font-bold">ן</span>
+<!-- Blinking Cursor -->
+<span class="w-0.5 h-6 bg-secondary cursor-caret inline-block mr-0.5 rounded-full"></span>
+</div>
+</div>
+<!-- Quick Clear Field Button -->
+<button aria-label="נקה שדה" class="w-8 h-8 rounded-lg bg-surface-variant text-on-surface-variant hover:text-on-surface flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+</section>
+<!-- Near-Miss Encouragement Feedback (Golden/Amber Soft Banner) -->
+<section class="w-full bg-surface-container-high/90 rounded-xl p-3 border border-secondary/40 shadow-sm flex flex-col gap-2">
+<div class="flex items-start gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-secondary/20 flex-shrink-0 flex items-center justify-center text-secondary border border-secondary/30 mt-0.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div class="flex flex-col text-right">
+<h2 class="font-label-md text-label-md font-bold text-secondary flex items-center gap-1">
+              כמעט! בדוק את האיות
+              <span class="text-xs">✦</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mt-0.5">
+              נסו לבדוק את האותיות באמצע המילה. המילה קרובה מאוד!
+            </p>
+</div>
+</div>
+<!-- Micro Helper Hint Bar -->
+<div class="w-full pt-1.5 border-t border-outline-variant/40 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">מתלבט באיזו אות מדובר?</span>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-variant hover:bg-surface-bright rounded-lg text-primary text-label-sm font-label-sm font-semibold transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]" data-icon="help">help</span>
+<span>רמז אות</span>
+<span class="text-secondary font-bold text-xs">(-5 XP)</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Screen Bottom Interaction Segment: Native Mobile Hebrew Keyboard & Submissions -->
+<footer class="w-full px-2 pt-2 pb-2 bg-surface-container border-t border-outline-variant/50 flex flex-col gap-2 mt-auto">
+<!-- Tactile Hebrew Virtual Keyboard (Complete Layout with Explicit Final Letters: [ן][ם][ך][ף][ץ]) -->
+<div aria-label="מקלדת עברית מלאה" class="w-full flex flex-col gap-1.5" role="region">
+<!-- Row 1: 10 Keys -->
+<div class="grid grid-cols-10 gap-1 w-full justify-items-stretch">
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ק</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ר</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">א</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ט</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ו</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ן</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ם</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">פ</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ף</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ך</button>
+</div>
+<!-- Row 2: 10 Keys -->
+<div class="grid grid-cols-10 gap-1 w-full justify-items-stretch">
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ש</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ד</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ג</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">כ</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ע</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">י</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ח</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ל</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ך</button>
+<button class="tactile-key h-10 bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ץ</button>
+</div>
+<!-- Row 3: Utility Keys + 7 Remaining Letters -->
+<div class="flex gap-1 w-full items-center">
+<!-- Backspace Key -->
+<button aria-label="מחק תו" class="tactile-key h-10 flex-1 bg-surface-container-highest text-primary rounded-lg flex items-center justify-center font-bold" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="backspace">backspace</span>
+</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ז</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ס</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ב</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ה</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">נ</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">מ</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">צ</button>
+<button class="tactile-key h-10 w-[29px] bg-surface-variant text-on-surface rounded-lg font-headline-sm text-headline-sm flex items-center justify-center font-bold" type="button">ת</button>
+<!-- Space Key -->
+<button aria-label="רווח" class="tactile-key h-10 flex-1 bg-surface-container-highest text-on-surface-variant rounded-lg flex items-center justify-center font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="space_bar">space_bar</span>
+</button>
+</div>
+</div>
+<!-- Action Footer: Verification Action & Community/Parents Reporting -->
+<div class="flex flex-col gap-2 pt-1">
+<!-- Main Primary Verification Button (Tactile 3D Extrusion Model) -->
+<button class="tactile-action w-full h-12 bg-primary-container hover:bg-primary-container/90 text-white rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 border-b-4 border-[#0284c7]" type="button">
+<span>בדיקת תשובה</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</button>
+<!-- Parent / Alternative Answer Feedback Button (SVG Only, No Emojis) -->
+<button class="w-full py-1 text-center font-label-sm text-label-sm text-outline hover:text-on-surface-variant flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="flag">flag</span>
+<span>גם זו תשובה נכונה? שלח דיווח לבדיקה</span>
+</button>
+</div>
+</footer>
+</main>
+</body></html>

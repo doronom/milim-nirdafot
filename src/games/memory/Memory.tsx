@@ -5,6 +5,7 @@ import { motion } from '../../design/tokens';
 import { TactileButton } from '../../ui/TactileButton';
 import { useGameEnv } from '../env-context';
 import type { Answer, GameProps } from '../types';
+import { GuestBadge } from '../ui/GuestBadge';
 import introStyles from '../ui/RoundIntro.module.css';
 import { cardsMatch, type MemoryRound } from './build';
 import styles from './Memory.module.css';
@@ -79,7 +80,10 @@ export function Memory({ round, onDone }: GameProps<MemoryRound>) {
                 transition={motion('card_flip')}
               >
                 {faceUp ? (
-                  <span className={styles.word}>{env.displayWord(c.word)}</span>
+                  <span className={styles.word}>
+                    {c.item.isGuest && <GuestBadge compact />}
+                    {env.displayWord(c.word)}
+                  </span>
                 ) : (
                   <img src={mascot} alt="" className={styles.back} />
                 )}

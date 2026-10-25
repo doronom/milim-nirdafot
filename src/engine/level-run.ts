@@ -1,4 +1,5 @@
 import type { GameId, WorldId } from '../config/game';
+import type { Content } from '../content/types';
 import { gamesForWorld } from '../config/game';
 import type { Answer, PracticeItem, RoundResult, Stage } from '../games/types';
 import { adapt, type Difficulty } from './adaptive';
@@ -11,7 +12,15 @@ export interface GameInfo {
   id: GameId;
   stage: Stage;
   minItems: number;
+  /** Items the game can actually use (e.g. swapWord needs a reviewed sentence); all of them when omitted. */
+  playable?: (items: readonly PracticeItem[], content: Content) => readonly PracticeItem[];
 }
+
+export const playableItems = (
+  game: GameInfo,
+  items: readonly PracticeItem[],
+  content: Content,
+): readonly PracticeItem[] => (game.playable ? game.playable(items, content) : items);
 
 export interface RoundPlan {
   gameId: GameId;
@@ -22,11 +31,22 @@ export interface RoundPlan {
 export const STAGES: readonly Stage[] = ['recognition', 'discrimination', 'production'];
 export const MAX_ROUNDS = 4;
 
-/** One game per stage, from the games the world has unlocked, in recognition -> discrimination -> production order. */
-export function planStages(world: WorldId, catalog: readonly GameInfo[], itemCount: number, rng: Rng): GameId[] {
+/**
+ * One game per stage, from the games the world has unlocked that can play enough of these items, in
+ * recognition -> discrimination -> production order. Picks at random among a stage's games for variety.
+ */
+export function planStages(
+  world: WorldId,
+  catalog: readonly GameInfo[],
+  items: readonly PracticeItem[],
+  rng: Rng,
+  content: Content,
+): GameId[] {
   const unlocked = new Set(gamesForWorld(world));
   return STAGES.flatMap((stage) => {
-    const options = catalog.filter((g) => g.stage === stage && unlocked.has(g.id) && g.minItems <= itemCount);
+    const options = catalog.filter(
+      (g) => g.stage === stage && unlocked.has(g.id) && playableItems(g, items, content).length >= g.minItems,
+    );
     return options.length > 0 ? [rng.pick(options).id] : [];
   });
 }

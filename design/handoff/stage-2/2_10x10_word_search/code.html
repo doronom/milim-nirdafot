@@ -1,0 +1,444 @@
+<!DOCTYPE html><html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>מסע המילים - יער ההרחבה: תפזורת היער</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#bec8d2",
+            "on-error": "#690005",
+            "primary": "#89ceff",
+            "on-tertiary-container": "#003c16",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "secondary-container": "#ee9800",
+            "primary-container": "#0ea5e9",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-secondary-fixed": "#2a1700",
+            "inverse-on-surface": "#283044",
+            "on-primary-container": "#003751",
+            "primary-fixed-dim": "#89ceff",
+            "secondary": "#ffb95f",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "error": "#ffb4ab",
+            "on-primary": "#00344d",
+            "tertiary-container": "#00b351",
+            "error-container": "#93000a",
+            "outline": "#88929b",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-tertiary": "#003915",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-primary": "#006591",
+            "surface-tint": "#89ceff",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-surface": "#dae2fd",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "surface": "#0b1326",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-container": "#171f33",
+            "on-primary-fixed": "#001e2f",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-fixed": "#c9e6ff",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container-low": "#131b2e",
+            "tertiary": "#4ae176",
+            "inverse-surface": "#dae2fd",
+            "surface-container-highest": "#2d3449",
+            "surface-bright": "#31394d",
+            "on-background": "#dae2fd",
+            // Forest Realm specific tactile palette accents
+            "forest-deep": "#081b10",
+            "forest-base": "#0e2417",
+            "forest-surface": "#143322",
+            "forest-border": "#1b432d",
+            "forest-emerald": "#22c55e",
+            "forest-lime": "#84cc16"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem",
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Rubik", "sans-serif"],
+            "headline-lg": ["Rubik", "sans-serif"],
+            "display-hero": ["Rubik", "sans-serif"],
+            "headline-md": ["Rubik", "sans-serif"],
+            "label-sm": ["Rubik", "sans-serif"],
+            "body-lg": ["Rubik", "sans-serif"],
+            "body-sm": ["Rubik", "sans-serif"],
+            "body-md": ["Rubik", "sans-serif"],
+            "label-lg": ["Rubik", "sans-serif"],
+            "label-md": ["Rubik", "sans-serif"],
+            "display-hero-mobile": ["Rubik", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "headline-lg": ["24px", {"lineHeight": "34px", "fontWeight": "700"}],
+            "display-hero": ["36px", {"lineHeight": "48px", "fontWeight": "800"}],
+            "headline-md": ["20px", {"lineHeight": "30px", "fontWeight": "700"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+            "label-lg": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "18px", "fontWeight": "600"}],
+            "display-hero-mobile": ["28px", {"lineHeight": "38px", "fontWeight": "800"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Physical 3D Tactile Buttons & Chips */
+    .tactile-btn {
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+    /* Grid cell square styling */
+    .grid-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      position: relative;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex justify-center items-start selection:bg-tertiary-container selection:text-white">
+<!-- Mobile Viewport Canvas Container (390px locked frame simulation for fidelity) -->
+<main class="w-full max-w-[390px] min-h-screen bg-[#08170e] flex flex-col relative pb-6 border-x border-outline-variant/30 shadow-2xl overflow-x-hidden">
+<!-- Top HUD / Expedition Navigation Bar (Task-focused screen: Linear puzzle mode, suppress global bottom tabs) -->
+<header class="sticky top-0 z-40 bg-[#0d2215]/95 backdrop-blur-md px-margin py-2.5 flex items-center justify-between border-b border-[#1b432d] shadow-md">
+<!-- Right RTL: Return Button -->
+<button aria-label="חזרה למפת היער" class="tactile-btn w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center border border-outline-variant/50 border-b-4 border-b-black/60 text-on-surface hover:text-white active:translate-y-0.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Center: Realm & Activity Title -->
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-forest-lime animate-pulse"></span>
+<span class="font-headline-sm text-[15px] font-bold text-white tracking-wide">יער ההרחבה</span>
+</div>
+<span class="font-label-sm text-forest-lime/80 text-[11px] font-medium tracking-tight">תפזורת היער · שלב 2</span>
+</div>
+<!-- Left RTL: Stats Tray (Timer & XP) -->
+<div class="flex items-center gap-2">
+<!-- Timer Pill -->
+<div class="flex items-center gap-1 bg-[#06140b] px-2 py-1 rounded-lg border border-[#1b432d] text-emerald-400">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-md text-xs font-mono font-bold tracking-wider">02:45</span>
+</div>
+<!-- XP Gauge Badge -->
+<div class="flex items-center gap-1 bg-secondary-container/20 border border-secondary/40 px-2 py-1 rounded-lg">
+<svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+</svg>
+<span class="font-label-md text-xs font-bold text-secondary">240 XP</span>
+</div>
+</div>
+</header>
+<!-- Content Arena -->
+<div class="flex-1 flex flex-col px-3 pt-3 gap-3">
+<!-- Direction & Rule Banner -->
+<div class="bg-[#102d1c] rounded-xl p-2.5 border border-[#1e4a30] shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="font-label-sm text-[11.5px] leading-tight text-on-surface">מצאו 8 מילים וביטויים נרדפים בלוח <span class="text-forest-lime font-bold">(מימין לשמאל ומלמעלה למטה)</span>.<br><span class="text-emerald-300 font-medium text-[10.5px]">שימו לב: ביטויים כמו "שקט נפשי" מופיעים ברצף ללא רווח (שקטנפשי), וברשימה עם רווח.</span></p>
+</div>
+</div>
+<!-- 10x10 Word Search Interactive Game Board -->
+<div class="bg-[#0b2014] rounded-2xl p-2.5 border-2 border-[#184028] shadow-[inset_0_3px_8px_rgba(0,0,0,0.6)] relative overflow-hidden">
+<!-- Glowing Grid Matrix (32x32px equivalent cells in responsive CSS grid) -->
+<div class="grid grid-cols-10 gap-1 relative z-10 w-full" id="wordsearch-grid">
+<!-- Row 1: Contains 'ש ק ט נ פ ש י' (RTL active selection horizontally from col 1 to 7) -->
+<!-- R1 C1: ש (Trail Start) -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border border-emerald-300 shadow-[0_0_8px_rgba(34,197,94,0.6)]">ש</div>
+<!-- R1 C2: ק -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border-y border-emerald-300">ק</div>
+<!-- R1 C3: ט -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border-y border-emerald-300">ט</div>
+<!-- R1 C4: נ -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border-y border-emerald-300">נ</div>
+<!-- R1 C5: פ -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border-y border-emerald-300">פ</div>
+<!-- R1 C6: ש -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border-y border-emerald-300">ש</div>
+<!-- R1 C7: י (Trail End) -->
+<div class="grid-cell h-8 rounded-md bg-[#17803d] text-white font-headline-sm text-sm border border-emerald-300 shadow-[0_0_8px_rgba(34,197,94,0.6)]">י</div>
+<!-- R1 C8-10: Filler letters -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">א</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">מ</div>
+<!-- Row 2: Filler letters -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ד</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ת</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ג</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ב</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">כ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ע</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ק</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">י</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ה</div>
+<!-- Row 3: Contains Previously found word 'ח ו ר ש' (Cyan highlight across cols 2-5) -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400 shadow-sm">ח</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border-y border-cyan-400">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border-y border-cyan-400">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400 shadow-sm">ש</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ס</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ם</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<!-- Row 4: Starts Vertical word 'ס ב ך' (found: cyan, col 9) -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ז</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">נ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">צ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ה</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ט</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ב</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ת</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400">ס</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ע</div>
+<!-- Row 5: Continues vertical 'ס ב ך' (cell 9), Starts horizontal 'צ ח י ח' (found: cyan cols 2-5) -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400">צ</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border-y border-cyan-400">ח</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border-y border-cyan-400">י</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400">ח</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">מ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ש</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">א</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border-x border-cyan-400">ב</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ה</div>
+<!-- Row 6: Ends vertical 'ס ב ך' (cell 9) -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ק</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ד</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ש</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ח</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#0284c7]/80 text-white font-headline-sm text-sm border border-cyan-400">ך</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<!-- Row 7: Unfound word 'ח ר ב' hidden horizontally in cols 6-8 -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">מ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ע</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ח</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ב</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ת</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">צ</div>
+<!-- Row 8: Unfound word 'א פ ל' in cols 1-3 -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">א</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ש</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ק</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ם</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">נ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ץ</div>
+<!-- Row 9: Contains 'ק ו ד ר' in cols 4-7 -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">נ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ת</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ב</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ק</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ד</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">א</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">כ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ר</div>
+<!-- Row 10: Contains 'מ נ ו פ ץ' in cols 3-7 -->
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">צ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ה</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">מ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">נ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ו</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">פ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ץ</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ל</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ש</div>
+<div class="grid-cell h-8 rounded-md bg-[#122e1e] text-on-surface-variant font-headline-sm text-sm border-b-2 border-[#091a10]">ת</div>
+</div>
+</div>
+<!-- Found Words List & Status Section (8 Words Tray) -->
+<section class="bg-[#0e2719] rounded-2xl p-3 border border-[#1b432d] shadow-lg flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<svg class="w-4 h-4 text-forest-lime" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h2 class="font-headline-sm text-xs font-bold text-white tracking-wide">אוצר המילים של היער</h2>
+</div>
+<span class="font-label-sm text-[11px] font-semibold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-800">
+            4 / 8 מילים
+          </span>
+</div>
+<!-- 2-Column Chip Tray (Tactile status chips) -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Chip 1: שקט נפשי (Found - Active Green) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/60 shadow-sm">
+<div class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="font-label-md text-xs line-through text-emerald-300 font-medium">שקט נפשי</span>
+</div>
+<span class="text-[9px] font-bold text-emerald-400 font-mono">1/8</span>
+</div>
+<!-- Chip 2: חורש (Found) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/60 shadow-sm">
+<div class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="font-label-md text-xs line-through text-emerald-300 font-medium">חורש</span>
+</div>
+<span class="text-[9px] font-bold text-emerald-400 font-mono">2/8</span>
+</div>
+<!-- Chip 3: סבך (Found) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/60 shadow-sm">
+<div class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="font-label-md text-xs line-through text-emerald-300 font-medium">סבך</span>
+</div>
+<span class="text-[9px] font-bold text-emerald-400 font-mono">3/8</span>
+</div>
+<!-- Chip 4: צחיח (Found) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/60 shadow-sm">
+<div class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="font-label-md text-xs line-through text-emerald-300 font-medium">צחיח</span>
+</div>
+<span class="text-[9px] font-bold text-emerald-400 font-mono">4/8</span>
+</div>
+<!-- Chip 5: חרב (Active target/unfound) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#143422] border-b-2 border-forest-lime/70 text-white shadow-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-forest-lime"></span>
+<span class="font-label-md text-xs font-semibold text-white">חרב</span>
+</div>
+<span class="text-[10px] text-forest-lime font-bold">חפש</span>
+</div>
+<!-- Chip 6: אפל (Unfound) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#0a1a10] border border-[#163823] text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-xs font-normal">אפל</span>
+</div>
+<span class="text-[10px] text-outline">טרם</span>
+</div>
+<!-- Chip 7: קודר (Unfound) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#0a1a10] border border-[#163823] text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-xs font-normal">קודר</span>
+</div>
+<span class="text-[10px] text-outline">טרם</span>
+</div>
+<!-- Chip 8: מנופץ (Unfound) -->
+<div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#0a1a10] border border-[#163823] text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-xs font-normal">מנופץ</span>
+</div>
+<span class="text-[10px] text-outline">טרם</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Fixed Tactile Footer Action Bar -->
+<footer class="mt-auto pt-3 px-3 flex flex-col gap-2.5 bg-gradient-to-t from-[#05110a] via-[#08170e] to-transparent">
+<!-- Progress Bar Tracker -->
+<div class="w-full bg-[#0a1f13] rounded-full h-2.5 p-0.5 border border-[#184028] overflow-hidden">
+<div class="bg-gradient-to-l from-forest-lime to-emerald-500 h-full rounded-full transition-all duration-300" style="width: 50%;"></div>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-5 gap-2">
+<!-- Hint Button (2 cols) with physical 3D lip -->
+<button class="tactile-btn col-span-2 py-3 px-2 rounded-xl bg-[#1c3826] border border-[#2b593c] border-b-4 border-b-[#0f2115] text-white flex items-center justify-center gap-1.5 text-xs font-bold active:bg-[#152e1f]">
+<svg class="w-4 h-4 text-secondary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">רמז אות (10 XP)</span>
+</button>
+<!-- Validate / Check Word Button (3 cols) -->
+<button class="tactile-btn col-span-3 py-3 px-3 rounded-xl bg-forest-emerald hover:bg-emerald-500 border border-emerald-400 border-b-4 border-b-emerald-800 text-white flex items-center justify-center gap-2 font-headline-sm text-sm font-bold shadow-lg shadow-emerald-950/50">
+<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="">אישור סימון מילה</span>
+</button>
+</div>
+</footer>
+</main>
+<script>
+    // Micro-interaction: Provide tactile feedback when tapping tiles
+    document.querySelectorAll('.grid-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        cell.classList.add('scale-95');
+        setTimeout(() => cell.classList.remove('scale-95'), 120);
+      });
+    });
+  </script>
+
+
+</body></html>

@@ -1,0 +1,77 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+.guest {
+  align-self: center;
+}
+.sentence {
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  line-height: calc(var(--type-option-lh) * 1.6);
+}
+.slotWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  vertical-align: middle;
+}
+.prefix {
+  color: var(--text-secondary);
+}
+.slot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) dashed var(--world-primary);
+  color: var(--world-primary);
+}
+.slotFilled {
+  border-style: solid;
+  background: var(--world-surface);
+  color: var(--text);
+}
+.slotRight {
+  border-style: solid;
+  border-color: var(--success);
+  background: var(--world-surface);
+  color: var(--success);
+}
+.slotWrong {
+  border-style: solid;
+  border-color: var(--error);
+  color: var(--text);
+}
+.bank {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-block-start: auto;
+}
+.word {
+  min-block-size: calc(var(--touch-min) + var(--space-2));
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  cursor: pointer;
+}
+.chosen {
+  border-color: var(--success);
+}
+.word:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
+}

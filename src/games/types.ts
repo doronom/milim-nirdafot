@@ -55,8 +55,10 @@ export interface GameDefinition<R = unknown> {
   id: GameId;
   minWorld: WorldId;
   stage: Stage;
-  /** Smallest number of items the game can play with. */
+  /** Smallest number of playable items the game needs. */
   minItems: number;
+  /** Items the game can actually use; all of them when omitted. */
+  playable?: (items: readonly PracticeItem[], content: Content) => readonly PracticeItem[];
   buildRound: (items: PracticeItem[], difficulty: Difficulty, rng: Rng) => R;
   Component: ComponentType<GameProps<R>>;
 }

@@ -3,7 +3,9 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { BOSS_SIZE, WORLDS, type WorldId } from '../config/game';
 import type { LevelDef, StationDef, WorldDef } from '../engine/layout';
 import { currentLevel, isLevelDone, isLevelUnlocked, isWorldUnlocked, type Progress } from '../engine/progress';
-import { itemLabel, layout } from '../app/data';
+import { guestPool, itemLabel, layout } from '../app/data';
+import { dayKey } from '../engine/dates';
+import { selectGuests } from '../engine/guests';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -57,6 +59,17 @@ export function WorldScreen() {
   const config = WORLDS.find((w) => w.id === world.id)!;
   const currentStation = world.stations.find((s) => s.levels.some((l) => l.id === current?.id));
   const stationDone = (s: StationDef) => s.levels.every((l) => isLevelDone(progress, l.id));
+  // Due words from earlier levels that will join the current level as guests.
+  const guests =
+    current?.kind === 'learn'
+      ? selectGuests(
+          progress.leitner,
+          current.itemIds,
+          current.itemIds.length,
+          dayKey(),
+          guestPool(progress.settings.reviewedOnly),
+        ).length
+      : 0;
 
   const renderLevel = (level: LevelDef, station?: StationDef) => {
     const state = nodeState(progress, world, level, current);
@@ -76,6 +89,11 @@ export function WorldScreen() {
             </Link>
             <p className={styles.currentTitle}>{name}</p>
             {words && <p className={styles.currentWords}>{words}</p>}
+            {guests > 0 && (
+              <Pill tone="guest" icon="refresh">
+                {guests === 1 ? 'מילה אורחת בדרך!' : `${guests} מילים אורחות בדרך!`}
+              </Pill>
+            )}
             <Stars count={stars} />
             <TactileButton icon="bolt" to={to}>
               התחל שלב

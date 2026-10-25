@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>מסע המילים — מגדל המומחים</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#2d3449",
+            "tertiary": "#4ae176",
+            "surface-container-highest": "#2d3449",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary": "#00344d",
+            "surface-dim": "#0b1326",
+            "on-background": "#dae2fd",
+            "secondary-container": "#ee9800",
+            "primary": "#89ceff",
+            "outline": "#88929b",
+            "on-secondary-container": "#5b3800",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-container-high": "#222a3d",
+            "outline-variant": "#3e4850",
+            "on-tertiary": "#003915",
+            "surface-container-lowest": "#060e20",
+            "inverse-primary": "#006591",
+            "on-primary-container": "#003751",
+            "on-tertiary-fixed-variant": "#005321",
+            "inverse-on-surface": "#283044",
+            "on-secondary": "#472a00",
+            "tertiary-container": "#00b351",
+            "surface": "#0b1326",
+            "primary-fixed-dim": "#89ceff",
+            "on-secondary-fixed": "#2a1700",
+            "surface-tint": "#89ceff",
+            "error": "#ffb4ab",
+            "primary-fixed": "#c9e6ff",
+            "surface-container-low": "#131b2e",
+            "on-surface-variant": "#bec8d2",
+            "secondary": "#ffb95f",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#653e00",
+            "primary-container": "#0ea5e9",
+            "on-surface": "#dae2fd",
+            "inverse-surface": "#dae2fd",
+            "surface-bright": "#31394d",
+            "background": "#0b1326",
+            "on-tertiary-container": "#003c16",
+            "surface-container": "#171f33",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "on-primary-fixed": "#001e2f",
+            "on-error": "#690005",
+            "on-primary-fixed-variant": "#004c6e",
+            "secondary-fixed-dim": "#ffb95f",
+            "error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-md": ["20px", {"lineHeight": "30px", "fontWeight": "700"}],
+            "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+            "label-lg": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+            "headline-lg": ["24px", {"lineHeight": "34px", "fontWeight": "700"}],
+            "display-hero-mobile": ["28px", {"lineHeight": "38px", "fontWeight": "800"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+            "display-hero": ["36px", {"lineHeight": "48px", "fontWeight": "800"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "18px", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Custom 3D Tactile Buttons & Tiles */
+    .btn-3d {
+      transition: transform 75ms ease-out, border-bottom-width 75ms ease-out;
+    }
+    .btn-3d:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+    
+    /* Glowing cursor pulse */
+    @keyframes cursor-pulse {
+      0%, 100% { opacity: 0.9; box-shadow: 0 0 12px rgba(14, 165, 233, 0.8), inset 0 0 8px rgba(14, 165, 233, 0.4); }
+      50% { opacity: 0.35; box-shadow: 0 0 4px rgba(14, 165, 233, 0.3); }
+    }
+    .active-cursor {
+      animation: cursor-pulse 1.4s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col justify-between items-center selection:bg-primary selection:text-on-primary select-none overflow-x-hidden">
+<!-- Mobile Viewport Container 390px base width -->
+<div class="w-full max-w-[390px] min-h-screen flex flex-col justify-between relative bg-surface-dim shadow-2xl">
+<!-- 1. TOP APP BAR (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 h-14 px-margin flex items-center justify-between bg-surface-container border-b border-outline-variant shadow-sm max-w-[390px] mx-auto right-0">
+<div class="flex items-center gap-space-sm">
+<button aria-label="חזור" class="w-9 h-9 rounded-lg flex items-center justify-center bg-surface-variant text-on-surface hover:bg-surface-container-high transition-colors active:translate-y-0.5" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]">arrow_forward</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">עולם 4 · מגדל המומחים</span>
+</div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight leading-none">
+            תשבץ האותיות 4.2
+          </h1>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<!-- Quiet Timer -->
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-1 rounded-full border border-outline-variant/50">
+<span class="material-symbols-outlined text-outline text-[16px]">timer</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">01:45</span>
+</div>
+<!-- Gold Star XP -->
+<div class="flex items-center gap-1 bg-secondary/15 text-secondary border border-secondary/40 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined fill text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">hotel_class</span>
+<span class="text-label-sm font-label-sm font-bold">420</span>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE GAME CANVAS -->
+<main class="w-full flex-1 pt-16 pb-20 px-space-md flex flex-col gap-3">
+<!-- 2. ACTIVE CLUE BANNER (RTL Oriented) -->
+<section class="w-full bg-gradient-to-l from-surface-container-high via-surface-container to-surface-container-high border-2 border-primary/40 rounded-xl p-3 shadow-md relative overflow-hidden">
+<div class="absolute -left-6 -bottom-6 w-20 h-20 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_back</span>
+              מאוזן 2
+            </span>
+<span class="text-label-sm font-label-sm text-secondary font-medium">4 אותיות</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[15px]">track_changes</span>
+            הגדרה נוכחית
+          </span>
+</div>
+<div class="flex items-center justify-between">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface flex items-center gap-2">
+<span>מילה נרדפת ל־</span>
+<span class="text-primary-fixed border-b-2 border-primary pb-0.5">גדול</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-dim/80 px-2 py-1 rounded-lg border border-outline-variant text-label-sm font-label-sm text-on-surface-variant font-mono">
+<span>RTL</span>
+<span class="material-symbols-outlined text-primary text-[14px]">trending_flat</span>
+</div>
+</div>
+</section>
+<!-- 3. MINI CROSSWORD GRID (5x5 RTL Grid) -->
+<section class="w-full bg-surface-container-lowest/90 border border-outline-variant/60 rounded-2xl p-3 shadow-inner flex flex-col items-center justify-center">
+<!-- Grid Header Micro-Indicator -->
+<div class="w-full flex justify-between items-center px-1 mb-2">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[16px]">stars</span>
+<span>לוח אבני החכמים</span>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+            1/3 מילים פוענחו
+          </span>
+</div>
+<!-- 5x5 Matrix: 5 columns, 5 rows -->
+<div class="grid grid-cols-5 gap-1.5 p-1.5 bg-surface-dim rounded-xl border border-outline-variant/40 shadow-2xl">
+<!-- ROW 1 -->
+<!-- (0,0) Start of 1 Vertical (גיבור): 'ג' (Solved) -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container-high border-2 border-tertiary-container flex items-center justify-center shadow-sm">
+<span class="absolute top-0.5 right-1 text-[10px] font-bold text-secondary font-mono leading-none">1</span>
+<span class="text-headline-md font-headline-md text-tertiary font-bold">ג</span>
+<span class="absolute bottom-0.5 left-1 material-symbols-outlined text-tertiary text-[11px] leading-none">check</span>
+</div>
+<!-- (0,1) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">diamond</span>
+</div>
+<!-- (0,2) Start of 3 Vertical (נבון): 'נ' -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container border-2 border-outline-variant flex items-center justify-center shadow-inner">
+<span class="absolute top-0.5 right-1 text-[10px] font-bold text-outline font-mono leading-none">3</span>
+<span class="text-headline-md font-headline-md text-on-surface-variant">נ</span>
+</div>
+<!-- (0,3) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">spa</span>
+</div>
+<!-- (0,4) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">token</span>
+</div>
+<!-- ROW 2 -->
+<!-- (1,0) 'י' of גיבור (Solved) -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container-high border-2 border-tertiary-container flex items-center justify-center shadow-sm">
+<span class="text-headline-md font-headline-md text-tertiary font-bold">י</span>
+<span class="absolute bottom-0.5 left-1 material-symbols-outlined text-tertiary text-[11px] leading-none">check</span>
+</div>
+<!-- (1,1) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">lens_blur</span>
+</div>
+<!-- (1,2) 'ב' of נבון -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container border-2 border-outline-variant flex items-center justify-center shadow-inner">
+<span class="text-headline-md font-headline-md text-on-surface-variant">ב</span>
+</div>
+<!-- (1,3) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">dark_mode</span>
+</div>
+<!-- (1,4) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">star_border</span>
+</div>
+<!-- ROW 3 -->
+<!-- (2,0) 'ב' of גיבור (Solved) -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container-high border-2 border-tertiary-container flex items-center justify-center shadow-sm">
+<span class="text-headline-md font-headline-md text-tertiary font-bold">ב</span>
+<span class="absolute bottom-0.5 left-1 material-symbols-outlined text-tertiary text-[11px] leading-none">check</span>
+</div>
+<!-- (2,1) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">change_history</span>
+</div>
+<!-- (2,2) 'ו' of נבון -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container border-2 border-outline-variant flex items-center justify-center shadow-inner">
+<span class="text-headline-md font-headline-md text-on-surface-variant">ו</span>
+</div>
+<!-- (2,3) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">ac_unit</span>
+</div>
+<!-- (2,4) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">hotel_class</span>
+</div>
+<!-- ROW 4 -->
+<!-- ACTIVE ROW: Word 2 Horizontal (RTL: ע-צ-ו-ם) -->
+<!-- (3,0) Intersection cell: 'ו' from גיבור (Vertical) + 'ו' for עצום (Horizontal) -->
+<div class="relative w-14 h-14 rounded-lg bg-primary-container/20 border-2 border-primary flex items-center justify-center shadow-md">
+<span class="text-headline-md font-headline-md text-primary font-bold">ו</span>
+<span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-secondary"></span>
+</div>
+<!-- (3,1) ACTIVE CURSOR CELL: Waiting for 'ם' -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-variant border-2 border-primary active-cursor flex items-center justify-center">
+<span class="w-2 h-7 bg-primary rounded-full animate-pulse"></span>
+<span class="absolute bottom-1 right-1 text-[9px] text-primary font-bold">RTL</span>
+</div>
+<!-- (3,2) Letter 2 of עצום: 'צ' -->
+<div class="relative w-14 h-14 rounded-lg bg-primary-container/15 border-2 border-primary/70 flex items-center justify-center shadow-inner">
+<span class="text-headline-md font-headline-md text-primary-fixed-dim font-bold">צ</span>
+</div>
+<!-- (3,3) Start of 2 Horizontal: 'ע' -->
+<div class="relative w-14 h-14 rounded-lg bg-primary-container/20 border-2 border-primary flex items-center justify-center shadow-inner">
+<span class="absolute top-0.5 right-1 text-[10px] font-bold text-secondary font-mono leading-none">2</span>
+<span class="text-headline-md font-headline-md text-primary font-bold">ע</span>
+</div>
+<!-- (3,4) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">interests</span>
+</div>
+<!-- ROW 5 -->
+<!-- (4,0) 'ר' of גיבור (Solved) -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container-high border-2 border-tertiary-container flex items-center justify-center shadow-sm">
+<span class="text-headline-md font-headline-md text-tertiary font-bold">ר</span>
+<span class="absolute bottom-0.5 left-1 material-symbols-outlined text-tertiary text-[11px] leading-none">check</span>
+</div>
+<!-- (4,1) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">flare</span>
+</div>
+<!-- (4,2) 'ן' of נבון -->
+<div class="relative w-14 h-14 rounded-lg bg-surface-container border-2 border-outline-variant flex items-center justify-center shadow-inner">
+<span class="text-headline-md font-headline-md text-on-surface-variant">ן</span>
+</div>
+<!-- (4,3) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">auto_fix_high</span>
+</div>
+<!-- (4,4) Blocked Cell -->
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center opacity-75">
+<span class="material-symbols-outlined text-outline-variant/40 text-[18px]">verified</span>
+</div>
+</div>
+</section>
+<!-- 4. QUICK CLUES STRIP (Interactive Tabs) -->
+<section class="w-full flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant px-1">
+<span class="font-bold">רשימת ההגדרות בשלב:</span>
+<span class="text-primary cursor-pointer hover:underline">החלף כיוון (טאפ כפול בלוח)</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Active Clue 2 -->
+<div class="bg-surface-container border-2 border-primary rounded-xl p-2.5 flex flex-col justify-between shadow-md relative overflow-hidden">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_back</span>
+                2 מאוזן
+              </span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface leading-tight font-medium">
+              מילה נרדפת ל־<strong class="text-primary-fixed">גדול</strong>
+</p>
+<span class="text-label-sm font-label-sm text-secondary font-mono mt-1">ע-צ-ו-[?]</span>
+</div>
+<!-- Solved Clue 1 -->
+<div class="bg-surface-container-high/60 border border-tertiary-container/60 rounded-xl p-2.5 flex flex-col justify-between opacity-85">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                1 מאונך
+              </span>
+<span class="material-symbols-outlined text-tertiary text-[16px]">check_circle</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-tight">
+              נרדפת ל־<strong>אמיץ</strong>
+</p>
+<span class="text-label-sm font-label-sm text-tertiary font-bold mt-1">ג-י-ב-ו-ר</span>
+</div>
+</div>
+</section>
+<!-- 5. TACTILE LETTER TILES BANK (No System Keyboard) -->
+<section class="w-full bg-surface-container-low border border-outline-variant/80 rounded-2xl p-2.5 shadow-lg flex flex-col gap-2 mt-auto">
+<div class="flex items-center justify-between px-1">
+<span class="text-label-sm font-label-sm font-bold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">apps</span>
+            בנק אבני המילים
+          </span>
+<div class="flex items-center gap-2">
+<!-- Clear Button -->
+<button class="btn-3d text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface bg-surface-variant hover:bg-surface-container-high border-b-2 border-outline-variant px-2.5 py-1 rounded-lg flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span>
+              נקה
+            </button>
+<!-- Backspace Button -->
+<button class="btn-3d text-label-sm font-label-sm text-error bg-surface-variant hover:bg-surface-container-high border-b-2 border-error-container/70 px-2.5 py-1 rounded-lg flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">backspace</span>
+              מחק
+            </button>
+</div>
+</div>
+<!-- 3D Letter Tiles: 10 Chunky Pushable Key Tiles -->
+<div class="grid grid-cols-5 gap-2 pt-1 pb-1">
+<!-- Tile 1 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            ע
+          </button>
+<!-- Tile 2 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            צ
+          </button>
+<!-- Tile 3 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            ו
+          </button>
+<!-- Tile 4 (Suggested next: ם) -->
+<button class="btn-3d h-12 rounded-xl bg-primary text-on-primary border-b-4 border-inverse-primary flex items-center justify-center font-headline-md text-headline-md active:border-b-1 shadow-lg ring-2 ring-primary/40" type="button">
+            ם
+          </button>
+<!-- Tile 5 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            נ
+          </button>
+<!-- Tile 6 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            ב
+          </button>
+<!-- Tile 7 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            ן
+          </button>
+<!-- Tile 8 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            מ
+          </button>
+<!-- Tile 9 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            ח
+          </button>
+<!-- Tile 10 -->
+<button class="btn-3d h-12 rounded-xl bg-surface-bright text-on-surface border-b-4 border-surface-variant flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container active:text-on-primary-container shadow-md" type="button">
+            י
+          </button>
+</div>
+<!-- 6. VALIDATION & COMMUNITY REPORT -->
+<div class="flex flex-col gap-1.5 pt-1">
+<!-- Main Check Word Button -->
+<button class="btn-3d w-full h-12 rounded-xl bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-lg text-label-lg border-b-4 border-on-tertiary-fixed-variant flex items-center justify-center gap-2 shadow-lg" type="button">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<span>בדוק מילה</span>
+</button>
+<!-- Gentle Explorer/Parent Feedback Button -->
+<button class="flex items-center justify-center gap-1.5 text-label-sm font-label-sm text-outline hover:text-on-surface-variant transition-colors py-1" type="button">
+<span class="material-symbols-outlined text-[15px]">help</span>
+<span>גם זו תשובה נכונה? הצע מילה למילון</span>
+</button>
+</div>
+</section>
+</main>
+<!-- 7. BOTTOM NAVIGATION BAR (Shared Component Anchor) -->
+<!-- Active Tab: "מסע" (Index 0) for active adventure quest progression -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-space-sm pb-safe bg-surface-container-low border-t border-outline-variant shadow-lg max-w-[390px] mx-auto right-0">
+<!-- Tab 1: מסע (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary-fixed-dim font-bold border-b-2 border-primary-container pb-1 transition-transform active:translate-y-0.5" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="text-label-sm font-label-sm">מסע</span>
+</a>
+<!-- Tab 2: מפה -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors active:translate-y-0.5" href="#">
+<span class="material-symbols-outlined text-[24px]">map</span>
+<span class="text-label-sm font-label-sm">מפה</span>
+</a>
+<!-- Tab 3: אוצר -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors active:translate-y-0.5" href="#">
+<span class="material-symbols-outlined text-[24px]">military_tech</span>
+<span class="text-label-sm font-label-sm">אוצר</span>
+</a>
+<!-- Tab 4: פרופיל -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors active:translate-y-0.5" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-label-sm font-label-sm">פרופיל</span>
+</a>
+</nav>
+</div>
+</body></html>

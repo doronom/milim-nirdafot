@@ -8,6 +8,7 @@ import { buildSynonymGraph } from '../src/engine/graph';
 import { buildLayout } from '../src/engine/layout';
 import { buildSynonymLinks } from '../src/engine/links';
 import { createRng } from '../src/engine/rng';
+import { WORLDS } from '../src/config/game';
 import { buildDragRound, dropMatches, pairsPerBoard } from '../src/games/dragPairs/build';
 import { buildMemoryRound, cardsMatch, memoryPairs } from '../src/games/memory/build';
 import { buildPickRound } from '../src/games/pickSynonym/build';
@@ -33,12 +34,14 @@ const difficulties: Difficulty[] = [
 ];
 
 describe('game registry', () => {
-  it('matches the catalog used for planning', () => {
+  it('matches the catalog used for planning, and each game unlocks in its world', () => {
     const games = createGames(env);
-    expect(GAME_CATALOG.map((g) => [g.id, g.stage, g.minItems])).toEqual(
-      [...games.values()].map((g) => [g.id, g.stage, g.minItems]),
-    );
-    for (const g of games.values()) expect(g.minWorld).toBe(1);
+    expect(new Set(games.keys())).toEqual(new Set(GAME_CATALOG.map((g) => g.id)));
+    for (const info of GAME_CATALOG) {
+      const g = games.get(info.id)!;
+      expect([g.stage, g.minItems]).toEqual([info.stage, info.minItems]);
+      expect(WORLDS.find((w) => w.newGames.includes(g.id))?.id).toBe(g.minWorld);
+    }
   });
 
   it('builds every round deterministically for a seed', () => {

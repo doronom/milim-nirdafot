@@ -18,6 +18,8 @@ const start = (store: KeyValueStore) => {
 };
 
 afterEach(() => {
+  // A CSS-module lookup for a state without a rule renders the literal class "undefined".
+  expect(document.querySelector('[class~="undefined"]')).toBeNull();
   cleanup();
   vi.useRealTimers();
   window.location.hash = '';

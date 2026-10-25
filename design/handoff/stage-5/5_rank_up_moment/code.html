@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - עליית דרגה</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#ee9800",
+            "inverse-primary": "#006591",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary-container": "#0ea5e9",
+            "on-surface-variant": "#bec8d2",
+            "on-background": "#dae2fd",
+            "on-tertiary-container": "#003c16",
+            "on-primary-fixed-variant": "#004c6e",
+            "tertiary-container": "#00b351",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary": "#003915",
+            "on-secondary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#002109",
+            "inverse-on-surface": "#283044",
+            "surface-container": "#171f33",
+            "on-primary-container": "#003751",
+            "outline-variant": "#3e4850",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-dim": "#0b1326",
+            "tertiary-fixed": "#6bff8f",
+            "surface-container-low": "#131b2e",
+            "error": "#ffb4ab",
+            "on-error": "#690005",
+            "surface-container-highest": "#2d3449",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#2d3449",
+            "background": "#0b1326",
+            "surface": "#0b1326",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-container-high": "#222a3d",
+            "error-container": "#93000a",
+            "primary-fixed": "#c9e6ff",
+            "surface-bright": "#31394d",
+            "tertiary": "#4ae176",
+            "secondary-fixed": "#ffddb8",
+            "inverse-surface": "#dae2fd",
+            "on-primary": "#00344d",
+            "surface-container-lowest": "#060e20",
+            "secondary-fixed-dim": "#ffb95f",
+            "outline": "#88929b",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "secondary": "#ffb95f",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-tint": "#89ceff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-md": "0.75rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Tactile 3D Button Mechanism */
+    .btn-tactile-primary {
+      box-shadow: 0 4px 0 0 #005321;
+      transition: all 75ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-tactile-primary:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 0 #005321;
+    }
+    
+    .btn-tactile-neutral {
+      box-shadow: 0 3px 0 0 #131b2e;
+      transition: all 75ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-tactile-neutral:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 0 #131b2e;
+    }
+
+    /* Ambient pulse on medallion */
+    @keyframes pulse-halo {
+      0%, 100% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.08); opacity: 0.6; }
+    }
+    .animate-pulse-halo {
+      animation: pulse-halo 3s ease-in-out infinite;
+    }
+
+    /* Floating companion */
+    @keyframes float-subtle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(1deg); }
+    }
+    .animate-companion {
+      animation: float-subtle 2.8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased select-none min-h-screen flex justify-center items-center p-0 m-0 overflow-x-hidden font-body-md">
+<!-- Mobile Simulator Frame (390 x 844 Portrait Target) -->
+<main class="w-full max-w-[390px] h-screen max-h-[844px] bg-surface flex flex-col justify-between relative overflow-hidden shadow-2xl border border-outline-variant/30">
+<!-- Ambient Backdrop Flares (Expedition Night Theme) -->
+<div class="absolute -top-16 -left-16 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/3 -right-20 w-72 h-72 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-36 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/25 rounded-full blur-2xl pointer-events-none transition-colors duration-500" id="rank-glow-bg"></div>
+<!-- Top Minimal HUD Bar (Celebration Context - Navigation Filtered) -->
+<header class="relative z-20 flex items-center justify-between px-margin pt-space-md pb-space-xs shrink-0">
+<!-- Exit/Close Button (Tactile Action) -->
+<button aria-label="סגירה" class="w-10 h-10 rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center btn-tactile-neutral border border-outline-variant/40" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<!-- Expedition Level & XP Meter -->
+<div class="flex items-center gap-space-sm bg-surface-container-high/90 px-space-md py-1.5 rounded-full border border-outline-variant/40 shadow-inner">
+<span class="material-symbols-outlined fill-icon text-secondary text-[18px]">hotel_class</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">1,450</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/ 2,000 XP</span>
+</div>
+</div>
+</div>
+<!-- Realm Compass Mini Status -->
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[20px]">explore</span>
+</div>
+</header>
+<!-- Scrollable Core Arena -->
+<div class="flex-1 overflow-y-auto px-margin flex flex-col items-center z-10 space-y-space-md pt-space-xs pb-space-lg">
+<!-- Interactive 5-Rank Selector Simulator -->
+<section aria-label="סימולטור 5 הדרגות" class="w-full shrink-0">
+<div class="text-center mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider">בחירת דרגה לתצוגה</span>
+</div>
+<div class="grid grid-cols-5 gap-1.5 bg-surface-container-low p-1.5 rounded-xl border border-outline-variant/40">
+<!-- Rank 1 -->
+<button class="rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container" data-rank="1" onclick="setRank(1)" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">yard</span>
+<span class="font-label-sm text-[10px] leading-tight font-medium">דרגה 1</span>
+</button>
+<!-- Rank 2 -->
+<button class="rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container" data-rank="2" onclick="setRank(2)" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">sailing</span>
+<span class="font-label-sm text-[10px] leading-tight font-medium">דרגה 2</span>
+</button>
+<!-- Rank 3 (Active Default) -->
+<button class="rank-btn active-rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container-high border-b-2 border-primary text-primary font-bold shadow-sm" data-rank="3" onclick="setRank(3)" type="button">
+<span class="material-symbols-outlined fill-icon text-[18px] mb-0.5">landscape</span>
+<span class="font-label-sm text-[10px] leading-tight font-bold">דרגה 3</span>
+</button>
+<!-- Rank 4 -->
+<button class="rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container" data-rank="4" onclick="setRank(4)" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">castle</span>
+<span class="font-label-sm text-[10px] leading-tight font-medium">דרגה 4</span>
+</button>
+<!-- Rank 5 -->
+<button class="rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container" data-rank="5" onclick="setRank(5)" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">crown</span>
+<span class="font-label-sm text-[10px] leading-tight font-medium">דרגה 5</span>
+</button>
+</div>
+</section>
+<!-- Headline & Celebration Hook -->
+<div class="text-center space-y-0.5">
+<span class="font-label-sm text-label-sm text-tertiary font-bold tracking-wide flex items-center justify-center gap-1">
+<span class="material-symbols-outlined fill-icon text-[14px]">auto_awesome</span>
+<span>הישג משלחת חדש!</span>
+<span class="material-symbols-outlined fill-icon text-[14px]">auto_awesome</span>
+</span>
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-on-surface">עלית בדרגה! כל הכבוד, איתי!</h1>
+</div>
+<!-- Glowing Central Badge / Medallion -->
+<div class="relative flex items-center justify-center my-1">
+<!-- Ambient outer halo ring -->
+<div class="absolute w-36 h-36 rounded-full bg-primary/20 animate-pulse-halo" id="badge-halo"></div>
+<!-- Outer layered medallion frame -->
+<div class="relative w-28 h-28 rounded-full bg-surface-container-high border-4 border-surface-bright flex items-center justify-center shadow-xl">
+<!-- Inset carved bezel -->
+<div class="w-24 h-24 rounded-full bg-surface-container-low border-2 border-outline-variant/60 flex items-center justify-center relative overflow-hidden">
+<!-- Fine geometric compass lines -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<svg class="w-full h-full text-primary" fill="currentColor" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="46" stroke="currentColor" stroke-dasharray="2,3" stroke-width="1"></circle>
+<line stroke="currentColor" stroke-width="1" x1="50" x2="50" y1="0" y2="100"></line>
+<line stroke="currentColor" stroke-width="1" x1="0" x2="100" y1="50" y2="50"></line>
+</svg>
+</div>
+<!-- Dynamic Medallion Emblem SVG -->
+<div class="relative z-10 text-primary transition-transform duration-300" id="medallion-icon-wrap">
+<svg class="w-14 h-14" fill="none" viewbox="0 0 48 48">
+<!-- Outer shield polygon -->
+<path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Mountain precision symbol inside -->
+<path d="M15 31L21 21L26 28L30 22L35 31H15Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"></path>
+<!-- North expedition star on peak -->
+<circle cx="24" cy="14" fill="#ffffff" r="2.5"></circle>
+</svg>
+</div>
+</div>
+<!-- Bottom Star Ribbon / Mini Badge Pin -->
+<div class="absolute -bottom-2 bg-surface-container-lowest px-2.5 py-0.5 rounded-full border border-primary/50 shadow flex items-center gap-1 text-primary" id="rank-mini-stars">
+<span class="material-symbols-outlined fill-icon text-[12px]">star</span>
+<span class="material-symbols-outlined fill-icon text-[12px]">star</span>
+<span class="material-symbols-outlined fill-icon text-[12px]">star</span>
+</div>
+</div>
+</div>
+<!-- Rank Title & Narrative Badge Card -->
+<div class="w-full bg-surface-container-high rounded-xl p-space-md border border-outline-variant/40 shadow-sm text-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/40 mb-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface-variant" id="rank-step-prev">חוקר מילים</span>
+<span class="material-symbols-outlined text-[13px] text-primary">arrow_back</span>
+<span class="font-label-sm text-[11px] text-primary font-bold" id="rank-step-curr">מגלה מילים</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface" id="rank-title-display">מגלה מילים — דרגה 3</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-[310px] mx-auto" id="rank-desc-display">
+          אוצר המילים שלך מתרחב! פתחת גישה למשחקי הדיוק ולתפזורות מורכבות.
+        </p>
+</div>
+<!-- What Unlocked Bento Grid (הטבות ופתיחות חדשות) -->
+<section aria-label="הטבות שנפתחו" class="w-full space-y-space-xs">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">lock_open</span>
+<span>תגמולי דרגה חדשים</span>
+</span>
+<span class="font-label-sm text-label-sm text-tertiary">3 פריטים</span>
+</div>
+<div class="space-y-space-xs w-full" id="unlocked-items-container">
+<!-- Item 1: Realm Unlock -->
+<div class="flex items-center gap-space-md bg-surface-container-high p-space-sm rounded-xl border border-outline-variant/30">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/40">
+<span class="material-symbols-outlined text-[20px]">landscape</span>
+</div>
+<div class="flex-1 text-right">
+<h3 class="font-label-md text-label-md text-on-surface">פתיחת עולם 3: הרי הדיוק</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">מסלול אתגרים חדש עם 16 חידות מילים</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px] shrink-0">check_circle</span>
+</div>
+<!-- Item 2: Album Slot -->
+<div class="flex items-center gap-space-md bg-surface-container-high p-space-sm rounded-xl border border-outline-variant/30">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary shrink-0 border border-outline-variant/40">
+<span class="material-symbols-outlined text-[20px]">collections_bookmark</span>
+</div>
+<div class="flex-1 text-right">
+<h3 class="font-label-md text-label-md text-on-surface">פתיחת חריץ מדבקות חדש באלבום</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">מקום למדבקת מגן נדירה של עולם המילים</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px] shrink-0">check_circle</span>
+</div>
+<!-- Item 3: Bonus XP -->
+<div class="flex items-center gap-space-md bg-surface-container-high p-space-sm rounded-xl border border-outline-variant/30">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-tertiary shrink-0 border border-outline-variant/40">
+<span class="material-symbols-outlined fill-icon text-[20px]">bolt</span>
+</div>
+<div class="flex-1 text-right">
+<h3 class="font-label-md text-label-md text-on-surface">בונוס 150 נקודות XP</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">התווספו מיד למד המשלחת הכללי</p>
+</div>
+<span class="font-label-md text-label-md text-tertiary font-bold shrink-0">+150</span>
+</div>
+</div>
+</section>
+<!-- Expedition Companion Cheer Module (מלווה מצפוני קורן) -->
+<div class="w-full flex items-center gap-space-md bg-surface-container-low p-space-sm rounded-xl border border-outline-variant/30">
+<!-- SVG Vector Companion Character (No Emojis) -->
+<div class="relative w-12 h-12 shrink-0 animate-companion">
+<svg class="w-full h-full text-secondary" fill="none" viewbox="0 0 48 48">
+<!-- Companion Body Core -->
+<circle cx="24" cy="24" fill="currentColor" fill-opacity="0.2" r="18" stroke="currentColor" stroke-width="2.5"></circle>
+<!-- Friendly Explorer Goggles -->
+<circle cx="18" cy="22" fill="#171f33" r="5" stroke="currentColor" stroke-width="2"></circle>
+<circle cx="30" cy="22" fill="#171f33" r="5" stroke="currentColor" stroke-width="2"></circle>
+<circle cx="19" cy="21" fill="#dae2fd" r="1.5"></circle>
+<circle cx="31" cy="21" fill="#dae2fd" r="1.5"></circle>
+<line stroke="currentColor" stroke-width="2" x1="23" x2="25" y1="22" y2="22"></line>
+<!-- Radiant Smile -->
+<path d="M19 30C21.5 32.5 26.5 32.5 29 30" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<!-- Little compass dial needle on head -->
+<path d="M24 6L26 12H22L24 6Z" fill="#ffb95f"></path>
+</svg>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-tertiary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<!-- Cheering Speech Bubble -->
+<div class="flex-1 bg-surface-container-high py-2 px-3 rounded-xl rounded-tr-none border border-outline-variant/40 relative">
+<p class="font-body-sm text-[13px] leading-tight text-on-surface" id="companion-quote">
+            "איזו התקדמות, איתי! השגת את זה בזכות דיוק מרשים בשלבי הנמל!"
+          </p>
+</div>
+</div>
+</div>
+<!-- Fixed Bottom Safe Action Drawer (Tactile 3D CTA Button) -->
+<footer class="relative z-20 w-full bg-surface-container-low/95 border-t border-outline-variant/30 px-margin pt-space-sm pb-space-lg shrink-0">
+<button class="w-full min-h-[52px] bg-tertiary-container hover:bg-tertiary text-on-tertiary-container font-headline-sm text-headline-sm rounded-lg flex items-center justify-center gap-2 btn-tactile-primary font-bold" type="button">
+<span>המשך בהרפתקה</span>
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+</footer>
+</main>
+<!-- Interactive Simulator Script (All 5 Ranks in Game Hierarchy) -->
+<script>
+    const rankData = {
+      1: {
+        stepPrev: "מתחיל",
+        stepCurr: "טירון מילים",
+        title: "טירון מילים — דרגה 1",
+        desc: "צעדיך הראשונים במשלחת! פתחת גישה למשחקי אותיות ראשונים ולנמל היסודות.",
+        haloColor: "rgba(107, 255, 143, 0.25)",
+        themeHex: "#6bff8f",
+        starsCount: 1,
+        quote: '"יופי של התחלה! חצינו את שערי הכניסה של עולם המילים!"',
+        iconSvg: `
+          <svg class="w-14 h-14" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M24 16V32M24 20C28 20 31 23 31 27M24 25C20 25 17 28 17 31" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="14" r="2" fill="#ffffff"/>
+          </svg>
+        `,
+        unlocked: [
+          { icon: "yard", title: "פתיחת עולם 1: נמל היסודות", desc: "10 שלבי היכרות עם צלילים ומילים" },
+          { icon: "badge", title: "תג טירון ראשון לאוסף", desc: "נוסף לארון המדליות האישי שלך" },
+          { icon: "bolt", title: "בונוס 50 נקודות XP", desc: "זינוק ראשוני במד ההתקדמות", badge: "+50" }
+        ]
+      },
+      2: {
+        stepPrev: "טירון מילים",
+        stepCurr: "חוקר מילים",
+        title: "חוקר מילים — דרגה 2",
+        desc: "הסקרנות שלך מובילה לגילויים! פתחת פירוקי מילים וחידות צמדים.",
+        haloColor: "rgba(14, 165, 233, 0.25)",
+        themeHex: "#0ea5e9",
+        starsCount: 2,
+        quote: '"ראיתי איך פתרת את חידות המים בנמל, אתה חוקר אמיתי!"',
+        iconSvg: `
+          <svg class="w-14 h-14" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M14 28L24 14L34 28M24 14V32M18 32H30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="24" cy="12" r="2" fill="#ffffff"/>
+          </svg>
+        `,
+        unlocked: [
+          { icon: "sailing", title: "פתיחת עולם 2: חורשת המילים", desc: "מסלול 14 שלבי פיענוח חדשים" },
+          { icon: "auto_stories", title: "מילון השורשים האישי", desc: "אפשרות לסמן מילים מועדפות" },
+          { icon: "bolt", title: "בונוס 100 נקודות XP", desc: "העמקת הידע הלשוני", badge: "+100" }
+        ]
+      },
+      3: {
+        stepPrev: "חוקר מילים",
+        stepCurr: "מגלה מילים",
+        title: "מגלה מילים — דרגה 3",
+        desc: "אוצר המילים שלך מתרחב! פתחת גישה למשחקי הדיוק ולתפזורות מורכבות.",
+        haloColor: "rgba(137, 206, 255, 0.35)",
+        themeHex: "#89ceff",
+        starsCount: 3,
+        quote: '"איזו התקדמות, איתי! השגת את זה בזכות דיוק מרשים בשלבי הנמל!"',
+        iconSvg: `
+          <svg class="w-14 h-14" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M15 31L21 21L26 28L30 22L35 31H15Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="24" cy="14" r="2.5" fill="#ffffff"/>
+          </svg>
+        `,
+        unlocked: [
+          { icon: "landscape", title: "פתיחת עולם 3: הרי הדיוק", desc: "מסלול אתגרים חדש עם 16 חידות מילים" },
+          { icon: "collections_bookmark", title: "פתיחת חריץ מדבקות חדש באלבום", desc: "מקום למדבקת מגן נדירה של עולם המילים" },
+          { icon: "bolt", title: "בונוס 150 נקודות XP", desc: "התווספו מיד למד המשלחת הכללי", badge: "+150" }
+        ]
+      },
+      4: {
+        stepPrev: "מגלה מילים",
+        stepCurr: "מומחה מילים",
+        title: "מומחה מילים — דרגה 4",
+        desc: "שליטה מרהיבה בשפה! פתחת את מגדל הפעלים ואתגרי מהירות מתקדמים.",
+        haloColor: "rgba(255, 185, 95, 0.35)",
+        themeHex: "#ffb95f",
+        starsCount: 4,
+        quote: '"מגדל המילים נפתח לפניך! מעטים המשלחנים שמגיעים לדרגה הזאת!"',
+        iconSvg: `
+          <svg class="w-14 h-14" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M16 32V20L24 14L32 20V32H16ZM21 32V26H27V32" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="24" cy="11" r="2.5" fill="#ffffff"/>
+          </svg>
+        `,
+        unlocked: [
+          { icon: "castle", title: "פתיחת עולם 4: מגדל החוכמה", desc: "שלבי חשיבה וניתוח משפטים ברמה גבוהה" },
+          { icon: "timer", title: "מצב משחק מהיר נגד השעון", desc: "צבור כוכבי בונוס באתגרי 60 שניות" },
+          { icon: "bolt", title: "בונוס 250 נקודות XP", desc: "זינוק ענק לראש טבלת החוקרים", badge: "+250" }
+        ]
+      },
+      5: {
+        stepPrev: "מומחה מילים",
+        stepCurr: "אלוף המילים",
+        title: "אלוף המילים — דרגה 5",
+        desc: "הדרגה העליונה של מסע המילים! שליטה מלאה בכל הפירושים, הרבדים והחידות.",
+        haloColor: "rgba(238, 152, 0, 0.4)",
+        themeHex: "#ee9800",
+        starsCount: 5,
+        quote: '"הכתר העליון שלך! אתה אלוף המילים של המשלחת כולה!"',
+        iconSvg: `
+          <svg class="w-14 h-14" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L7 11V22C7 33.2 14.3 43.6 24 46C33.7 43.6 41 33.2 41 22V11L24 4Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M14 30L17 18L24 23L31 18L34 30H14Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="24" cy="13" r="2.5" fill="#ffffff"/>
+            <circle cx="17" cy="16" r="1.5" fill="#ffffff"/>
+            <circle cx="31" cy="16" r="1.5" fill="#ffffff"/>
+          </svg>
+        `,
+        unlocked: [
+          { icon: "crown", title: "פתיחת היכל האלופים האגדי", desc: "גישה לכל 5 העולמות והרחבות שפה מיוחדות" },
+          { icon: "military_tech", title: "עיטור אלוף המשלחת המוזהב", desc: "תג תלת-ממדי פרופיל ייחודי" },
+          { icon: "bolt", title: "בונוס 500 נקודות XP", desc: "השלמת שיא אישי יוצא דופן", badge: "+500" }
+        ]
+      }
+    };
+
+    function setRank(rankId) {
+      const data = rankData[rankId];
+      if (!data) return;
+
+      // Update button selection states
+      document.querySelectorAll('.rank-btn').forEach(btn => {
+        const id = parseInt(btn.getAttribute('data-rank'));
+        if (id === rankId) {
+          btn.className = "rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container-high border-b-2 border-primary text-primary font-bold shadow-sm";
+        } else {
+          btn.className = "rank-btn flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container";
+        }
+      });
+
+      // Update titles and descriptions
+      document.getElementById('rank-step-prev').textContent = data.stepPrev;
+      document.getElementById('rank-step-curr').textContent = data.stepCurr;
+      document.getElementById('rank-title-display').textContent = data.title;
+      document.getElementById('rank-desc-display').textContent = data.desc;
+      document.getElementById('companion-quote').textContent = data.quote;
+
+      // Update Medallion & Glow
+      const iconWrap = document.getElementById('medallion-icon-wrap');
+      iconWrap.innerHTML = data.iconSvg;
+      iconWrap.style.color = data.themeHex;
+
+      document.getElementById('badge-halo').style.backgroundColor = data.haloColor;
+      document.getElementById('rank-glow-bg').style.backgroundColor = data.haloColor;
+
+      // Update Mini Stars in badge
+      const starsContainer = document.getElementById('rank-mini-stars');
+      starsContainer.innerHTML = '';
+      for (let i = 0; i < data.starsCount; i++) {
+        const star = document.createElement('span');
+        star.className = 'material-symbols-outlined fill-icon text-[12px]';
+        star.textContent = 'star';
+        starsContainer.appendChild(star);
+      }
+      starsContainer.style.color = data.themeHex;
+
+      // Update unlocked benefits list
+      const container = document.getElementById('unlocked-items-container');
+      container.innerHTML = '';
+      data.unlocked.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-space-md bg-surface-container-high p-space-sm rounded-xl border border-outline-variant/30';
+        div.innerHTML = `
+          <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 border border-outline-variant/40" style="color: ${data.themeHex}">
+            <span class="material-symbols-outlined text-[20px]">${item.icon}</span>
+          </div>
+          <div class="flex-1 text-right">
+            <h3 class="font-label-md text-label-md text-on-surface">${item.title}</h3>
+            <p class="font-label-sm text-label-sm text-on-surface-variant">${item.desc}</p>
+          </div>
+          ${item.badge 
+            ? `<span class="font-label-md text-label-md text-tertiary font-bold shrink-0">${item.badge}</span>`
+            : `<span class="material-symbols-outlined text-tertiary text-[18px] shrink-0">check_circle</span>`
+          }
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Set default initial state to rank 3
+    setRank(3);
+  </script>
+</body></html>

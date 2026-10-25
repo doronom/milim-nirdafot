@@ -17,6 +17,7 @@ import { TactileButton } from '../../ui/TactileButton';
 import { useGameEnv } from '../env-context';
 import type { Answer, GameProps, PracticeItem } from '../types';
 import { Dots } from '../ui/Dots';
+import { GuestBadge } from '../ui/GuestBadge';
 import introStyles from '../ui/RoundIntro.module.css';
 import { dropMatches, type DragRound } from './build';
 import styles from './DragPairs.module.css';
@@ -45,7 +46,7 @@ function Chip({
       onClick={onTap}
       aria-pressed={selected}
     >
-      <Icon name="sparkle" size="sm" />
+      {item.isGuest ? <GuestBadge compact /> : <Icon name="sparkle" size="sm" />}
       <span>{label}</span>
     </button>
   );

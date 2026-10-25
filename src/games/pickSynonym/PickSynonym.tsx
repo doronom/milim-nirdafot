@@ -7,6 +7,7 @@ import type { Answer, GameProps } from '../types';
 import { AlsoCorrectButton } from '../ui/AlsoCorrectButton';
 import { Dots, type DotState } from '../ui/Dots';
 import { Feedback } from '../ui/Feedback';
+import { GuestBadge } from '../ui/GuestBadge';
 import introStyles from '../ui/RoundIntro.module.css';
 import { WordCard } from '../ui/WordCard';
 import type { PickRound } from './build';
@@ -56,7 +57,11 @@ export function PickSynonym({ round, onDone, onAlsoCorrect }: GameProps<PickRoun
     <div className={styles.game}>
       <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
       <p className={introStyles.prompt}>איזו מילה היא מילה נרדפת ל:</p>
-      <WordCard word={displayWord(question.prompt)} hint={question.hint} />
+      <WordCard
+        word={displayWord(question.prompt)}
+        hint={question.hint}
+        badge={question.item.isGuest ? <GuestBadge /> : undefined}
+      />
       <div className={styles.options} role="group" aria-label="אפשרויות">
         {question.options.map((o, i) => {
           const state = !answered ? 'idle' : o.correct ? 'correct' : i === chosen ? 'wrong' : 'faded';
@@ -64,7 +69,7 @@ export function PickSynonym({ round, onDone, onAlsoCorrect }: GameProps<PickRoun
             <m.button
               key={`${index}-${o.word}`}
               type="button"
-              className={`${styles.option} ${styles[state]}`}
+              className={`${styles.option} ${styles[state] ?? ''}`}
               onClick={() => choose(i)}
               disabled={answered}
               aria-pressed={i === chosen}
