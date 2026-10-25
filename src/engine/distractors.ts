@@ -214,9 +214,14 @@ export function pickDistractors(graph: SynonymGraph, req: DistractorRequest): Di
       !p.twoHop.has(graph.nodes.get(c.nodeId)?.group ?? -1) ||
       (decisions.confirmedTraps?.has(pairKey(target.id, c.key)) ?? false),
   );
+  // A one-word answer next to multi-word options (or the reverse) gives itself away: prefer the answer's shape.
+  const sameShape = (list: Candidate[]) => {
+    const shaped = list.filter((c) => wordCount(c.word) === wordCount(p.answer));
+    return shaped.length >= count ? shaped : list;
+  };
   if (tier >= 3) take(tier3, 3);
-  if (tier >= 2) take(tier2, 2);
-  take(p.tier1, 1);
+  if (tier >= 2) take(sameShape(tier2), 2);
+  take(sameShape(p.tier1), 1);
   return picked;
 }
 

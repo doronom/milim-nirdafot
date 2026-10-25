@@ -4,6 +4,7 @@ import { createHashRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import type { Progress } from '../engine/progress';
 import { ProgressProvider } from '../state/progress';
+import { StoreContext } from '../state/store-context';
 import type { KeyValueStore } from '../storage/kv';
 import { routes } from './routes';
 
@@ -12,9 +13,11 @@ export function App({ store, initialProgress }: { store: KeyValueStore; initialP
   const router = useMemo(() => createHashRouter(routes), []);
   return (
     <MotionConfig reducedMotion="user">
-      <ProgressProvider store={store} initial={initialProgress}>
-        <RouterProvider router={router} />
-      </ProgressProvider>
+      <StoreContext.Provider value={store}>
+        <ProgressProvider store={store} initial={initialProgress}>
+          <RouterProvider router={router} />
+        </ProgressProvider>
+      </StoreContext.Provider>
     </MotionConfig>
   );
 }

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>הרי הדיוק - סולם עוצמה</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Rubik Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#bec8d2",
+            "surface-container-lowest": "#060e20",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-container": "#0ea5e9",
+            "surface-bright": "#31394d",
+            "surface-dim": "#0b1326",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "outline": "#88929b",
+            "on-tertiary": "#003915",
+            "surface-container-highest": "#2d3449",
+            "on-primary": "#00344d",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-container": "#171f33",
+            "surface-container-low": "#131b2e",
+            "primary-fixed-dim": "#89ceff",
+            "on-error": "#690005",
+            "secondary": "#ffb95f",
+            "on-secondary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#283044",
+            "on-background": "#dae2fd",
+            "secondary-container": "#ee9800",
+            "secondary-fixed": "#ffddb8",
+            "surface-tint": "#89ceff",
+            "surface": "#0b1326",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-surface": "#dae2fd",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary-container": "#003c16",
+            "tertiary-container": "#00b351",
+            "inverse-surface": "#dae2fd",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-container": "#003751",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed": "#2a1700",
+            "background": "#0b1326",
+            "tertiary": "#4ae176",
+            "outline-variant": "#3e4850",
+            "error": "#ffb4ab",
+            "primary-fixed": "#c9e6ff",
+            "error-container": "#93000a",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "inverse-primary": "#006591"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "0.75rem",
+            "space-lg": "1rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "display-hero-mobile": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    
+    /* Tactile 3D Button Presses */
+    .btn-tactile-primary {
+      box-shadow: 0 4px 0 #004c6e;
+      transition: all 0.08s ease;
+    }
+    .btn-tactile-primary:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #004c6e;
+    }
+    
+    .btn-tactile-slot {
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .btn-tactile-chip {
+      box-shadow: 0 3px 0 #2d3449;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .btn-tactile-chip:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #2d3449;
+    }
+
+    /* Atmospheric Mountain Depth */
+    .mountain-bg {
+      background: radial-gradient(circle at 50% 15%, #231442 0%, #17102e 55%, #0b1326 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md select-none min-h-screen flex justify-center items-start">
+<!-- Mobile Viewport Container 390x844 Frame Anchor -->
+<div class="w-full max-w-[412px] min-h-screen bg-background mountain-bg relative flex flex-col pb-20 shadow-2xl overflow-x-hidden border-x border-outline-variant/30">
+<!-- TopAppBar (JSON Shared Anchor Component) -->
+<header class="fixed top-0 left-0 right-0 max-w-[412px] mx-auto z-50 h-14 px-margin flex items-center justify-between bg-surface-container/90 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-space-sm">
+<button aria-label="חזור" class="w-10 h-10 rounded-lg flex items-center justify-center text-primary hover:bg-surface-variant transition-colors active:translate-y-0.5">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="flex flex-col text-right">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight tracking-tight">הרי הדיוק</h1>
+<span class="text-label-sm font-label-sm text-primary font-medium">שלב 3.1 · סולם עוצמה</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<!-- Streak counter with SVG shield -->
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-lg border border-outline-variant/60 shadow-inner">
+<svg class="w-4 h-4 text-secondary" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"></path>
+</svg>
+<span class="text-label-sm font-label-sm font-bold text-secondary">6 ימים</span>
+</div>
+<!-- XP Counter -->
+<div class="flex items-center gap-1 bg-surface-variant/80 px-2.5 py-1 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="hotel_class" style="font-variation-settings: 'FILL' 1;">hotel_class</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">340 XP</span>
+</div>
+</div>
+</header>
+<!-- Main Game Canvas Space -->
+<main class="flex-1 flex flex-col px-margin pt-16 pb-6 gap-space-md">
+<!-- Instruction Banner -->
+<section class="mt-2 bg-surface-container/70 border border-outline-variant/70 rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-fixed-dim border border-outline-variant">
+<!-- Thermometer Ladder SVG -->
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+<path d="M10 8h3"></path>
+<path d="M10 5h3"></path>
+<path d="M10 11h2"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-label-lg font-label-lg text-on-surface font-bold">סדרו מהחלש אל החזק ביותר</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">הציבו את מילות החום בסדר עולה</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm font-bold bg-primary-container/20 text-primary-fixed-dim px-2 py-0.5 rounded border border-primary-container/40">דיוק מילולי</span>
+</section>
+<!-- Step Mode Tab Selector (4-Step vs 3-Step Ladder) -->
+<nav aria-label="בחירת סולם" class="grid grid-cols-2 p-1 bg-surface-container-lowest/80 rounded-xl border border-outline-variant/60">
+<button aria-current="page" class="py-2 px-3 rounded-lg text-label-md font-label-md font-bold bg-primary-container text-on-primary-container transition-all shadow flex items-center justify-center gap-1.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          סולם 4 שלבים (טמפרטורה)
+        </button>
+<button class="py-2 px-3 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center gap-1.5 opacity-80">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 19h16M4 12h16M4 5h16"></path></svg>
+          סולם 3 שלבים (כעס)
+        </button>
+</nav>
+<!-- The Vertical Ladder & Thermometer Arena -->
+<section class="relative bg-surface-container-low/90 rounded-2xl p-space-md border border-outline-variant flex flex-row items-stretch gap-space-md shadow-lg overflow-hidden">
+<!-- Left Side: Visual Intensity Track & Axis -->
+<div class="w-12 flex flex-col items-center justify-between py-2 relative">
+<!-- The Vertical Glowing Spectrum Gauge -->
+<div class="absolute inset-y-4 w-2.5 rounded-full bg-gradient-to-t from-[#8b5cf6] via-[#d946ef] to-[#ec4899] shadow-inner opacity-90"></div>
+<!-- Top Max Indicator (Level 4: Fire/Peak) -->
+<div class="z-10 w-8 h-8 rounded-full bg-[#ec4899] text-surface-container-lowest flex items-center justify-center shadow-md border-2 border-surface-container ring-2 ring-[#ec4899]/40">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M12 23c-4.97 0-9-4.03-9-9 0-4.17 2.84-7.67 6.69-8.69L10 5.2V3l1.8.6C16.32 5.16 19 8.79 19 13.06c0 1.25-.26 2.44-.73 3.52L17.5 16l.24.84C18.42 19.34 15.48 23 12 23z"></path>
+</svg>
+</div>
+<!-- Mid Indicators -->
+<div class="z-10 w-6 h-6 rounded-full bg-[#d946ef] text-surface-container-lowest flex items-center justify-center text-[10px] font-bold border-2 border-surface-container">
+            3
+          </div>
+<div class="z-10 w-6 h-6 rounded-full bg-[#a855f7] text-surface-container-lowest flex items-center justify-center text-[10px] font-bold border-2 border-surface-container">
+            2
+          </div>
+<!-- Bottom Soft Indicator (Level 1: Low) -->
+<div class="z-10 w-8 h-8 rounded-full bg-[#8b5cf6] text-surface-container-lowest flex items-center justify-center shadow-md border-2 border-surface-container">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="5"></circle>
+<path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+</svg>
+</div>
+</div>
+<!-- Right Side: 4 Descending Slots (Top is highest intensity #4, bottom is #1) -->
+<div class="flex-1 flex flex-col justify-between gap-space-sm">
+<!-- SLOT 4: Highest Intensity ("רותח") -->
+<div class="relative bg-surface-container rounded-xl p-2.5 border-2 border-[#ec4899] shadow-md flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded bg-[#ec4899]/20 text-[#ec4899] text-label-sm font-label-sm font-bold flex items-center justify-center border border-[#ec4899]/40">4</span>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">רותח</span>
+<span class="block text-label-sm font-label-sm text-[#ec4899] font-medium">שיא העוצמה · פליטת אדים</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- SLOT 3: High Intensity ("לוהט") -->
+<div class="relative bg-surface-container rounded-xl p-2.5 border-2 border-[#d946ef] ring-2 ring-[#d946ef]/20 shadow-md flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded bg-[#d946ef]/20 text-[#d946ef] text-label-sm font-label-sm font-bold flex items-center justify-center border border-[#d946ef]/40">3</span>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">לוהט</span>
+<span class="block text-label-sm font-label-sm text-[#d946ef] font-medium">חזק מאוד · קורן אור</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- SLOT 2: Medium Intensity ("חם") -->
+<div class="relative bg-surface-container rounded-xl p-2.5 border-2 border-[#a855f7] shadow-sm flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded bg-[#a855f7]/20 text-[#a855f7] text-label-sm font-label-sm font-bold flex items-center justify-center border border-[#a855f7]/40">2</span>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">חם</span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant font-medium">בינוני · מורגש היטב</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- SLOT 1: Low Intensity ("חמים") -->
+<div class="relative bg-surface-container rounded-xl p-2.5 border-2 border-[#8b5cf6] shadow-sm flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded bg-[#8b5cf6]/20 text-[#8b5cf6] text-label-sm font-label-sm font-bold flex items-center justify-center border border-[#8b5cf6]/40">1</span>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">חמים</span>
+<span class="block text-label-sm font-label-sm text-[#8b5cf6] font-medium">עדין · נעים למגע</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Word Bank / Draggable Chips Section -->
+<section class="flex flex-col gap-space-xs mt-1">
+<div class="flex items-center justify-between px-1">
+<span class="text-label-sm font-label-sm font-bold text-on-surface-variant">בנק המילים (גרור או לחץ כדי למקם)</span>
+<span class="text-label-sm font-label-sm text-tertiary font-bold">4 מתוך 4 שובצו בהצלחה</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<!-- Word Chip 1 -->
+<div class="btn-tactile-chip bg-surface-container-high border border-outline-variant/80 rounded-xl p-2.5 flex items-center justify-between cursor-pointer active:scale-95">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-outline" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="8" cy="6" r="1.5"></circle><circle cx="16" cy="6" r="1.5"></circle>
+<circle cx="8" cy="12" r="1.5"></circle><circle cx="16" cy="12" r="1.5"></circle>
+<circle cx="8" cy="18" r="1.5"></circle><circle cx="16" cy="18" r="1.5"></circle>
+</svg>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">חמים</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+</div>
+<!-- Word Chip 2 -->
+<div class="btn-tactile-chip bg-surface-container-high border border-outline-variant/80 rounded-xl p-2.5 flex items-center justify-between cursor-pointer active:scale-95">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-outline" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="8" cy="6" r="1.5"></circle><circle cx="16" cy="6" r="1.5"></circle>
+<circle cx="8" cy="12" r="1.5"></circle><circle cx="16" cy="12" r="1.5"></circle>
+<circle cx="8" cy="18" r="1.5"></circle><circle cx="16" cy="18" r="1.5"></circle>
+</svg>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">חם</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+</div>
+<!-- Word Chip 3 -->
+<div class="btn-tactile-chip bg-surface-container-high border border-[#d946ef]/60 rounded-xl p-2.5 flex items-center justify-between cursor-pointer active:scale-95 ring-1 ring-[#d946ef]/30">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#d946ef]" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="8" cy="6" r="1.5"></circle><circle cx="16" cy="6" r="1.5"></circle>
+<circle cx="8" cy="12" r="1.5"></circle><circle cx="16" cy="12" r="1.5"></circle>
+<circle cx="8" cy="18" r="1.5"></circle><circle cx="16" cy="18" r="1.5"></circle>
+</svg>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">לוהט</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+</div>
+<!-- Word Chip 4 -->
+<div class="btn-tactile-chip bg-surface-container-high border border-[#ec4899]/60 rounded-xl p-2.5 flex items-center justify-between cursor-pointer active:scale-95 ring-1 ring-[#ec4899]/30">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#ec4899]" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="8" cy="6" r="1.5"></circle><circle cx="16" cy="6" r="1.5"></circle>
+<circle cx="8" cy="12" r="1.5"></circle><circle cx="16" cy="12" r="1.5"></circle>
+<circle cx="8" cy="18" r="1.5"></circle><circle cx="16" cy="18" r="1.5"></circle>
+</svg>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">רותח</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+</div>
+</div>
+</section>
+<!-- Linguistic Relation Summary Card -->
+<section class="bg-surface-container-highest/60 rounded-xl p-3 border border-outline-variant/60 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm font-bold text-primary-fixed-dim flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="explore">explore</span>
+            תובנת השביל המדויק
+          </span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">סולם חום ומעלות</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+          סולם עוצמת חום: <strong class="text-on-surface">חמים</strong> (קל) &lt; <strong class="text-on-surface">חם</strong> &lt; <strong class="text-on-surface">לוהט</strong> &lt; <strong class="text-on-surface">רותח</strong> (שיא העוצמה)
+        </p>
+</section>
+<!-- Action Drawer & Question Validation Trigger -->
+<section class="mt-auto pt-2 flex flex-col gap-2.5">
+<!-- Subtle Help Link -->
+<button class="mx-auto flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors py-1">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+          גם זו תשובה נכונה? הסבר על הבדלי הדרגות
+        </button>
+<!-- Primary Tactile Quest Button (Check Ladder / Advance) -->
+<button class="btn-tactile-primary w-full h-[52px] bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-headline-sm text-headline-sm rounded-xl font-bold flex items-center justify-center gap-2 border-b-4 border-on-primary-fixed-variant">
+<span>בדוק דירוג והמשך</span>
+<svg class="w-5 h-5 text-on-primary-container" fill="currentColor" viewbox="0 0 24 24">
+<path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"></path>
+</svg>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (JSON Shared Component: 4 Destinations, Explore Active) -->
+<nav aria-label="ניווט ראשי" class="fixed bottom-0 left-0 right-0 max-w-[412px] mx-auto z-50 flex justify-around items-center h-16 px-space-sm pb-safe bg-surface-container-low dark:bg-surface-container-low border-t border-outline-variant shadow-lg">
+<!-- 1. מסע (Active Quest/Explore) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary-fixed-dim dark:text-primary-fixed-dim font-bold border-b-2 border-primary-container pb-1 w-16" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-label-sm font-label-sm mt-0.5">מסע</span>
+</a>
+<!-- 2. מפה (Map) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 w-16 hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="map">map</span>
+<span class="text-label-sm font-label-sm mt-0.5">מפה</span>
+</a>
+<!-- 3. אוצר (Military Tech / Treasure) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 w-16 hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="military_tech">military_tech</span>
+<span class="text-label-sm font-label-sm mt-0.5">אוצר</span>
+</a>
+<!-- 4. פרופיל (Profile) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 w-16 hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">פרופיל</span>
+</a>
+</nav>
+</div>
+</body></html>

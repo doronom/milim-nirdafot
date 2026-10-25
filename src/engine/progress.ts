@@ -1,4 +1,5 @@
 import { type WorldId } from '../config/game';
+import type { LeitnerState } from './leitner';
 import { worldLevels, type Layout, type LevelDef, type WorldDef } from './layout';
 
 export type Stars = 0 | 1 | 2 | 3;
@@ -17,7 +18,9 @@ export interface Progress {
   unlockedWorlds: WorldId[];
   xp: number;
   streak: { days: number; freezes: number; lastPlayed: string | null };
-  settings: { unlockAll: boolean };
+  /** Leitner boxes per practice item key. */
+  leitner: LeitnerState;
+  settings: { unlockAll: boolean; reviewedOnly: boolean };
 }
 
 export const initialProgress = (): Progress => ({
@@ -26,7 +29,8 @@ export const initialProgress = (): Progress => ({
   unlockedWorlds: [1],
   xp: 0,
   streak: { days: 0, freezes: 1, lastPlayed: null },
-  settings: { unlockAll: false },
+  leitner: {},
+  settings: { unlockAll: false, reviewedOnly: false },
 });
 
 export const isWorldUnlocked = (p: Progress, world: WorldId): boolean =>
@@ -79,3 +83,30 @@ export function activeWorld(p: Progress, layout: Layout): WorldDef {
 }
 
 export const totalStars = (p: Progress): number => Object.values(p.levels).reduce((s, r) => s + r.stars, 0);
+
+export interface CompletedLevel {
+  levelId: string;
+  stars: Stars;
+  accuracy: number;
+  xp: number;
+  leitner: LeitnerState;
+  completedAt: string;
+}
+
+/** Records a finished level: best stars and accuracy are kept, XP adds up, and the Leitner boxes are replaced. */
+export function recordLevel(p: Progress, done: CompletedLevel): Progress {
+  const prev = p.levels[done.levelId];
+  return {
+    ...p,
+    xp: p.xp + done.xp,
+    leitner: done.leitner,
+    levels: {
+      ...p.levels,
+      [done.levelId]: {
+        stars: Math.max(prev?.stars ?? 0, done.stars) as Stars,
+        bestAccuracy: Math.max(prev?.bestAccuracy ?? 0, done.accuracy),
+        completedAt: done.completedAt,
+      },
+    },
+  };
+}

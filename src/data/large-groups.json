@@ -2,5 +2,31 @@
   "meta": {
     "note": "Synonym groups approved to exceed the 8-word warning threshold. anchor is any node id in the group (as printed by validate:data); the approval holds while the group stays at or below maxSize."
   },
-  "approved": []
+  "approved": [
+    {
+      "anchor": "מנומס",
+      "maxSize": 23,
+      "note": "approved 2026-10-25: distractor exclusion only (מנומס, אדיב, נחמד, נעים...)"
+    },
+    {
+      "anchor": "בנה",
+      "maxSize": 12,
+      "note": "approved 2026-10-25: distractor exclusion only (בנה, יצר, עשה, ברא...)"
+    },
+    {
+      "anchor": "מודאג",
+      "maxSize": 10,
+      "note": "approved 2026-10-25: distractor exclusion only (מודאג, מוטרד, מתוח#tense, עצבני...)"
+    },
+    {
+      "anchor": "נאמן",
+      "maxSize": 10,
+      "note": "approved 2026-10-25: distractor exclusion only (נאמן, מסור, מקדיש את עצמו, מחויב...)"
+    },
+    {
+      "anchor": "אמר",
+      "maxSize": 10,
+      "note": "approved 2026-10-25: distractor exclusion only (אמר, דיבר, שוחח, פטפט...)"
+    }
+  ]
 }

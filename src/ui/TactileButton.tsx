@@ -8,7 +8,8 @@ interface Props {
   children: ReactNode;
   icon?: IconName;
   /** World buttons follow the surrounding data-world accent. */
-  tone?: 'world' | 'success';
+  /** quiet: secondary actions, on a surface instead of the accent. */
+  tone?: 'world' | 'success' | 'quiet';
   size?: 'md' | 'lg';
   block?: boolean;
   to?: string;

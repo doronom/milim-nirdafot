@@ -1,0 +1,50 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+.grid {
+  display: grid;
+  gap: var(--space-2);
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  padding: var(--space-1);
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-elevated);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+.up {
+  background: var(--surface-container);
+  border-color: var(--world-primary);
+}
+.matched {
+  border-color: var(--success);
+  box-shadow: 0 0 var(--space-3) var(--success-glow);
+  cursor: default;
+}
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
+}
+.word {
+  font-size: var(--type-label-size);
+  font-weight: var(--type-option-weight);
+  line-height: var(--type-label-lh);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.back {
+  inline-size: 60%;
+  opacity: var(--opacity-locked);
+}
