@@ -26,6 +26,9 @@
   --guest: var(--wq-colors-feedback-guest-badge);
   /* Streak freeze reads as ice: the harbor blue until the designer names a token for it. */
   --freeze: var(--wq-world-1-primary);
+  /* Duel players: harbor blue and mountain violet. */
+  --player-1: var(--wq-world-1-primary);
+  --player-2: var(--wq-world-3-primary);
 
   --font-display: var(--wq-typography-display);
   --font-body: var(--wq-typography-body);

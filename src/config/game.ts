@@ -92,5 +92,10 @@ export const STATION_TITLES: Record<string, string> = {
   'time-quantity': 'זמן וכמות',
 };
 
-/** XP for a finished level, until the motivation milestone tunes it. */
-export const XP = { perCorrectAnswer: 5, perStar: 10 } as const;
+/** XP for answers and stars in a level, and for passing a boss. */
+export const XP = { perCorrectAnswer: 5, perStar: 10, bossPass: 100 } as const;
+
+/** XP needed for the next rank, or null at the top. */
+export function nextRank(xp: number): { name: string; minXp: number } | null {
+  return RANKS.find((r) => r.minXp > xp) ?? null;
+}

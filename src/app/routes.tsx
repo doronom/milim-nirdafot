@@ -1,10 +1,14 @@
 import type { RouteObject } from 'react-router';
 import { AdventureScreen } from '../screens/AdventureScreen';
+import { AlbumScreen } from '../screens/AlbumScreen';
 import { AppShell } from '../screens/AppShell';
+import { CertificateScreen } from '../screens/CertificateScreen';
 import { ComingSoonScreen } from '../screens/ComingSoonScreen';
+import { DuelScreen } from '../screens/DuelScreen';
 import { LevelScreen } from '../screens/LevelScreen';
 import { Onboarded } from '../screens/Onboarded';
 import { PlacementScreen } from '../screens/PlacementScreen';
+import { ProfileScreen } from '../screens/ProfileScreen';
 import { SpeedScreen } from '../screens/SpeedScreen';
 import { WelcomeScreen } from '../screens/WelcomeScreen';
 import { WorldMapScreen } from '../screens/WorldMapScreen';
@@ -22,14 +26,8 @@ export const routes: RouteObject[] = [
           { index: true, element: <WorldMapScreen /> },
           { path: 'world/:worldId', element: <WorldScreen /> },
           { path: 'adventure', element: <AdventureScreen /> },
-          {
-            path: 'treasures',
-            element: <ComingSoonScreen title="אוצרות" message="האלבום והמדבקות שתאספו יחכו כאן." />,
-          },
-          {
-            path: 'profile',
-            element: <ComingSoonScreen title="פרופיל" message="הדרגה, הרצף והתעודות שלכם יופיעו כאן." />,
-          },
+          { path: 'treasures', element: <AlbumScreen /> },
+          { path: 'profile', element: <ProfileScreen /> },
           {
             path: 'parent',
             element: <ComingSoonScreen title="אזור הורים" message="אזור ההורים ייפתח בהמשך הבנייה." />,
@@ -42,6 +40,8 @@ export const routes: RouteObject[] = [
       },
       { path: 'level/:levelId', element: <LevelScreen /> },
       { path: 'speed', element: <SpeedScreen /> },
+      { path: 'duel', element: <DuelScreen /> },
+      { path: 'certificate/:worldId', element: <CertificateScreen /> },
     ],
   },
 ];

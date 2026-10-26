@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
-import { BOSS_PASS, WORLDS, XP } from '../config/game';
+import { BOSS_PASS, rankForXp, WORLDS, XP } from '../config/game';
 import type { Sentence } from '../content/types';
 import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
@@ -14,11 +14,31 @@ import {
   type LevelOutcome,
   type LevelRun,
 } from '../engine/level-run';
-import { currentLevel, isLevelUnlocked, recordLevel, recordPractice, unlockWorld } from '../engine/progress';
+import { worldStickers } from '../engine/album';
+import {
+  currentLevel,
+  isLevelDone,
+  isLevelUnlocked,
+  markPlayed,
+  recordLevel,
+  recordPractice,
+  unlockWorld,
+} from '../engine/progress';
 import { listReports, pendingKeys, reportAlsoCorrect, reportItemDispute } from '../engine/review-queue';
 import { createRng } from '../engine/rng';
 import { blockedSentenceIds, listSentenceReports, reportSentence } from '../engine/sentence-reports';
-import { content, displayWord, entryPool, graph, guestPool, itemLabel, layout, links, sentenceFor } from '../app/data';
+import {
+  content,
+  displayWord,
+  entryPool,
+  graph,
+  guestPool,
+  itemLabel,
+  layout,
+  links,
+  sentenceFor,
+  stickerLabel,
+} from '../app/data';
 import { GAME_CATALOG } from '../games/catalog';
 import { GameEnvContext } from '../games/env-context';
 import { createResolver } from '../games/items';
@@ -34,6 +54,7 @@ import { TactileButton } from '../ui/TactileButton';
 import { IconButton, TopBar } from '../ui/TopBar';
 import { BossResults } from './level/BossResults';
 import { EndOfLevel } from './level/EndOfLevel';
+import { RankUp } from './level/RankUp';
 import { LearnCards } from './level/LearnCards';
 import { levelNumber, levelTitle } from './levelText';
 import styles from './LevelScreen.module.css';
@@ -151,6 +172,16 @@ interface Finished {
   nextId?: string;
   /** Boss levels: whether the run passed (80% or more). */
   bossPassed?: boolean;
+  /** The new rank, when this level's XP crossed a threshold. */
+  rankUp?: string;
+  /** The level was done for the first time, so its sticker is new. */
+  sticker?: boolean;
+}
+
+/** The rank reached by adding `gained` XP, if it differs from the current one. */
+function rankChange(xp: number, gained: number): string | undefined {
+  const after = rankForXp(xp + gained);
+  return after !== rankForXp(xp) ? after : undefined;
 }
 
 function LevelPlayer({
@@ -193,6 +224,7 @@ function LevelPlayer({
   const [run, setRun] = useState(session.run);
   const [finished, setFinished] = useState<Finished | null>(null);
   const [round, setRound] = useState<unknown>(null);
+  const [rankSeen, setRankSeen] = useState(false);
 
   const env: GameEnv = useMemo(
     () => ({
@@ -227,22 +259,33 @@ function LevelPlayer({
       leitner: applySession(progress.leitner, outcome.perItem, known, today),
       completedAt: new Date().toISOString(),
     };
+    const firstTime = !isLevelDone(progress, level.id);
     if (level.kind === 'boss') {
       // A pass marks the boss done and opens the next world; "not yet" keeps the practice and takes nothing away.
       const passed = outcome.accuracy >= BOSS_PASS;
+      const gained = passed ? xp + XP.bossPass : xp;
       update((p) => {
         const leitner = applySession(p.leitner, outcome.perItem, known, today);
-        return passed
-          ? unlockWorld(recordLevel(p, { ...record, leitner }), world.id + 1)
+        const after = passed
+          ? unlockWorld(recordLevel(p, { ...record, xp: gained, leitner }), world.id + 1)
           : recordPractice(p, { xp, leitner });
+        return markPlayed(after, today);
       });
-      setFinished({ outcome, xp, bossPassed: passed });
+      setFinished({
+        outcome,
+        xp: gained,
+        bossPassed: passed,
+        rankUp: rankChange(progress.xp, gained),
+        sticker: passed && firstTime,
+      });
       setPhase('end');
       return;
     }
     const next = currentLevel(recordLevel(progress, record), world);
-    update((p) => recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, known, today) }));
-    setFinished({ outcome, xp, nextId: next?.id });
+    update((p) =>
+      markPlayed(recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, known, today) }), today),
+    );
+    setFinished({ outcome, xp, nextId: next?.id, rankUp: rankChange(progress.xp, xp), sticker: firstTime });
     setPhase('end');
   };
 
@@ -350,6 +393,7 @@ function LevelPlayer({
               }
               practise={practise}
               pathTo={`/world/${world.id}`}
+              certificateTo={`/certificate/${world.id}`}
               onRetry={onReplay}
             />
           )}
@@ -366,10 +410,19 @@ function LevelPlayer({
               nextLabel={nextLevel ? `לשלב הבא (${levelName(nextLevel.level, nextLevel.station)})` : undefined}
               pathTo={`/world/${world.id}`}
               onReplay={onReplay}
+              sticker={finished.sticker ? stickerOf(world, level) : undefined}
             />
+          )}
+          {phase === 'end' && finished?.rankUp && !rankSeen && (
+            <RankUp rank={finished.rankUp} onClose={() => setRankSeen(true)} />
           )}
         </main>
       </div>
     </GameEnvContext.Provider>
   );
+}
+
+/** The sticker a level awards (its slot in the album). */
+function stickerOf(world: WorldDef, level: LevelDef) {
+  return worldStickers(layout, world.id, stickerLabel).find((s) => s.levelId === level.id);
 }

@@ -90,3 +90,14 @@
   gap: var(--space-3);
   inline-size: 100%;
 }
+.sticker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  inline-size: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--success);
+  background: var(--surface-container);
+  text-align: start;
+}

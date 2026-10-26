@@ -1,0 +1,198 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  background: var(--surface);
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--gutter);
+}
+.players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+}
+.p1 {
+  border-color: var(--player-1);
+}
+.p2 {
+  border-color: var(--player-2);
+}
+.playerTag {
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  color: var(--text-secondary);
+}
+.input {
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  inline-size: 100%;
+}
+.sectionTitle {
+  font-weight: var(--type-title-weight);
+}
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.choice,
+.world {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-block-size: var(--touch-min);
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  color: var(--text);
+  font-weight: var(--type-label-weight);
+  cursor: pointer;
+}
+.on {
+  border-color: var(--xp);
+  color: var(--xp);
+}
+.world.on {
+  border-color: var(--world-primary);
+  color: var(--world-primary);
+}
+.worlds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.pass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-10);
+  text-align: center;
+  color: var(--world-primary);
+}
+.passTitle {
+  color: var(--text-secondary);
+  font-size: var(--type-title-size);
+}
+.passName {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+}
+.turn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.turnHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+.prompt {
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+  text-align: center;
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+}
+.blank {
+  display: inline-block;
+  margin-inline: var(--space-1);
+  border-block-end: var(--border-medium) dashed var(--world-primary);
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.option {
+  min-block-size: calc(var(--touch-min) + var(--space-2));
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  color: var(--text);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  cursor: pointer;
+}
+.right {
+  border-color: var(--success);
+}
+.wrong {
+  border-color: var(--error);
+}
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+.trophy {
+  display: inline-flex;
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--xp);
+  color: var(--xp);
+}
+.winner {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+}
+.table {
+  inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 0 var(--space-2);
+}
+.table th,
+.table td {
+  padding: var(--space-2);
+  background: var(--surface-container);
+  font-variant-numeric: tabular-nums;
+}
+.table th {
+  color: var(--text-secondary);
+  font-weight: var(--type-label-weight);
+  text-align: start;
+}
+.decisive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  inline-size: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+  text-align: start;
+}
+.decisiveRow {
+  font-weight: var(--type-option-weight);
+}

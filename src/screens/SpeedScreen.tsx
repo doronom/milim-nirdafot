@@ -3,7 +3,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router';
 import { content, displayWord, graph, links } from '../app/data';
 import { trapKeys } from '../engine/distractors';
-import { recordSpeedRun, speedAvailable, isWorldUnlocked } from '../engine/progress';
+import { dayKey } from '../engine/dates';
+import { isWorldUnlocked, markPlayed, recordSpeedRun, speedAvailable } from '../engine/progress';
 import { motion } from '../design/tokens';
 import {
   buildSpeedQuestions,
@@ -62,7 +63,7 @@ export function SpeedScreen() {
     const t = tallyRef.current;
     const run = { score: t.score, correct: t.correct, at: new Date().toISOString() };
     setNewBest(bestAtStart.current === null || run.score > bestAtStart.current);
-    update((p) => recordSpeedRun(p, run));
+    update((p) => markPlayed(recordSpeedRun(p, run), dayKey()));
     setPhase('done');
   }, [update]);
 
