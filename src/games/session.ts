@@ -1,11 +1,12 @@
 import type { WorldId } from '../config/game';
+import type { Entry } from '../content/types';
 import { type Difficulty } from '../engine/adaptive';
 import { dayKey } from '../engine/dates';
 import { chooseTier } from '../engine/distractors';
 import { selectGuests } from '../engine/guests';
 import type { LevelDef } from '../engine/layout';
 import { dueKeys, weakestKeys, type LeitnerState } from '../engine/leitner';
-import { planRounds, startRun, type LevelRun } from '../engine/level-run';
+import { planRounds, planSinglePass, startRun, type LevelRun } from '../engine/level-run';
 import { createRng } from '../engine/rng';
 import { GAME_CATALOG } from './catalog';
 import { sourceId, type ItemResolver } from './items';
@@ -20,9 +21,10 @@ export interface LevelSession {
   run: LevelRun;
 }
 
-/** Learn levels with content the games can play, and review levels. Boss levels arrive in milestone 6. */
+/** Learn levels with content the games can play, review levels and boss levels. */
 export const isPlayableLevel = (level: LevelDef, resolver: ItemResolver): boolean =>
   level.kind === 'review' ||
+  level.kind === 'boss' ||
   (level.kind === 'learn' && level.itemIds.length > 0 && level.itemIds.every((id) => resolver.byId(id) !== null));
 
 /** Starting difficulty: the world's tier, nudged by how well these items are already known; three options. */
@@ -39,7 +41,7 @@ export interface SessionOptions {
   guestResolver?: ItemResolver;
   ctx: PlanContext;
   today?: string;
-  /** Items a review level falls back to before anything is due (the world's own material). */
+  /** The world's own material (level item ids): review levels fall back to it, boss levels draw from it. */
   reviewFallback?: readonly string[];
 }
 
@@ -62,6 +64,11 @@ export function buildLevelSession(
   const rng = createRng(`${seed}:plan`);
   let learn: LevelItem[] = [];
   let items: LevelItem[];
+  if (level.kind === 'boss') {
+    items = drawBoss(level.drawCount ?? 15, leitner, reviewFallback, guestResolver, rng);
+    const rounds = planSinglePass(level.worldId, GAME_CATALOG, items, ctx);
+    return { learn, items, run: startRun(rounds, startDifficulty(level.worldId, items, leitner), true) };
+  }
   if (level.kind === 'review') {
     const want = level.drawCount ?? 8;
     const keys = [...new Set([...dueKeys(leitner, today), ...weakestKeys(leitner)])];
@@ -85,4 +92,70 @@ export function buildLevelSession(
   }
   const rounds = planRounds(level.worldId, GAME_CATALOG, items, rng, ctx);
   return { learn, items, run: startRun(rounds, startDifficulty(level.worldId, items, leitner)) };
+}
+
+/** Share of a boss drawn from the weakest Leitner items of the world; the rest is unseen or random world material. */
+export const BOSS_WEAK_SHARE = 2 / 3;
+
+/**
+ * 15 mixed items from the world, mostly the weakest in the Leitner boxes (lower box, more lapses first), topped up
+ * with the world's other material in a seeded random order. One item per source (entry, scale...), shuffled.
+ */
+export function drawBoss(
+  count: number,
+  leitner: LeitnerState,
+  worldIds: readonly string[],
+  resolver: ItemResolver,
+  rng: ReturnType<typeof createRng>,
+): LevelItem[] {
+  const inWorld = new Set(worldIds);
+  const drawn: LevelItem[] = [];
+  const used = new Set<string>();
+  const add = (item: LevelItem | null) => {
+    if (!item || drawn.length >= count || used.has(sourceId(item)) || !inWorld.has(sourceId(item))) return;
+    used.add(sourceId(item));
+    drawn.push(item);
+  };
+  const weakCap = Math.round(count * BOSS_WEAK_SHARE);
+  for (const key of weakestKeys(leitner)) {
+    if (drawn.length >= weakCap) break;
+    add(resolver.byKey(key));
+  }
+  for (const id of rng.shuffle([...worldIds])) {
+    const item = resolver.byId(id);
+    add(item ? teach(item, leitner) : null);
+  }
+  return rng.shuffle(drawn);
+}
+
+export interface PlacementSession {
+  items: LevelItem[];
+  /** Item keys of the difficulty-1 words: World 2 opens at 85% on these. */
+  easyKeys: string[];
+}
+
+export const PLACEMENT_MIX = { easy: 10, medium: 6, hard: 4 } as const;
+export const PLACEMENT_PASS = 0.85;
+
+/** 20 booklet and extra words across difficulties (10 easy, 6 medium, 4 hard), for the onboarding challenge. */
+export function buildPlacement(entries: readonly Entry[], seed: string): PlacementSession {
+  const rng = createRng(`${seed}:placement`);
+  const pick = (d: 1 | 2 | 3, n: number) =>
+    rng
+      .shuffle(entries.filter((e) => e.source !== 'custom' && e.difficulty === d))
+      .slice(0, n)
+      .map((e) => practiceItemFor(e, {}));
+  const easy = pick(1, PLACEMENT_MIX.easy);
+  const items = rng.shuffle([...easy, ...pick(2, PLACEMENT_MIX.medium), ...pick(3, PLACEMENT_MIX.hard)]);
+  return { items, easyKeys: easy.map((i) => i.key) };
+}
+
+/** World 2 opens when 85% or more of the difficulty-1 answers are right. */
+export function placementUnlocks(
+  answers: readonly { itemKey: string; outcome: string }[],
+  easyKeys: readonly string[],
+): boolean {
+  const easy = answers.filter((a) => easyKeys.includes(a.itemKey));
+  if (easy.length === 0) return false;
+  return easy.filter((a) => a.outcome !== 'wrong').length / easy.length >= PLACEMENT_PASS;
 }

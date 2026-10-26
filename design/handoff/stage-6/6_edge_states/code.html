@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - תצוגת מצבי קצה (Edge States)</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration verbatim from instructions -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#005321",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#003c16",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "error": "#ffb4ab",
+            "on-primary-container": "#003751",
+            "on-primary": "#00344d",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-lowest": "#060e20",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#4ae176",
+            "primary-container": "#0ea5e9",
+            "on-error": "#690005",
+            "surface-bright": "#31394d",
+            "primary": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#171f33",
+            "tertiary-container": "#00b351",
+            "surface-container-highest": "#2d3449",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-tint": "#89ceff",
+            "background": "#0b1326",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#dae2fd",
+            "tertiary": "#4ae176",
+            "on-tertiary": "#003915",
+            "surface-variant": "#2d3449",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-background": "#dae2fd",
+            "on-surface-variant": "#bec8d2",
+            "on-secondary-fixed": "#2a1700",
+            "outline": "#88929b",
+            "inverse-primary": "#006591",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-on-surface": "#283044",
+            "surface": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#0b1326",
+            "surface-container-low": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Explorer Tactile Depth Tokens */
+    .tactile-btn {
+      transition: transform 0.1s ease-out, border-bottom-width 0.1s ease-out;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+    .recessed-slot {
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.45);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-12 selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Anchor (Shared Component: TopAppBar with styles applied verbatim from JSON) -->
+<header class="bg-surface-container dark:bg-surface-container border-b border-outline-variant dark:border-outline-variant shadow-sm dark:shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-4 h-14 max-w-md mx-auto">
+<!-- Trailing Action in RTL (Visual Left / Return) -->
+<button aria-label="חזור למשחק" class="text-primary dark:text-primary hover:bg-surface-bright dark:hover:bg-surface-bright p-2 rounded-lg active:translate-y-0.5 transition-transform duration-150 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-primary dark:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Headline -->
+<div class="flex flex-col items-center">
+<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary tracking-tight">
+          בקרת הורים
+        </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">
+          מצבי קצה ותקלות מערכת
+        </span>
+</div>
+<!-- Leading in RTL (Visual Right / Settings) -->
+<button aria-label="הגדרות" class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-bright dark:hover:bg-surface-bright p-2 rounded-lg active:translate-y-0.5 transition-transform duration-150 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Showcase Screen Header Badge & Introduction -->
+<main class="max-w-md mx-auto px-4 pt-6 space-y-6">
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">לוח בקרה טכני - תצוגת חוסן</span>
+</div>
+<div class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm font-label-sm text-primary font-mono">
+        v2.4.0 • ONLINE
+      </div>
+</div>
+<!-- ========================================== -->
+<!-- SECTION 1: EMPTY STATE                     -->
+<!-- אין מילים חדשות / אין דיווחי תוכן ממתינים -->
+<!-- ========================================== -->
+<section aria-labelledby="empty-state-title" class="bg-surface-container rounded-xl p-5 border border-outline-variant relative overflow-hidden shadow-sm">
+<!-- Section Label Badge -->
+<div class="flex items-center justify-between mb-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-tertiary">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>מצב שגרה • ללא משימות</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">0 ממתינים</span>
+</div>
+<!-- Card Interior Visuals -->
+<div class="flex flex-col items-center text-center">
+<!-- Explorer Parchment / Treasure Chest Emblem Container -->
+<div class="relative w-28 h-28 mb-4 flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-container-low rounded-full recessed-slot border border-outline-variant/60"></div>
+<!-- Stylized Explorer Scroll/Treasure Graphic -->
+<svg class="w-16 h-16 text-primary z-10" fill="none" viewbox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+<!-- Ancient Scroll / Compass Seal -->
+<path d="M12 20C12 16.6863 14.6863 14 18 14H46C49.3137 14 52 16.6863 52 20V44C52 47.3137 49.3137 50 46 50H18C14.6863 50 12 47.3137 12 44V20Z" fill="#171f33" stroke="#89ceff" stroke-dasharray="3 3" stroke-width="2.5"></path>
+<path d="M22 26H42" stroke="#89ceff" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M22 34H36" stroke="#89ceff" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="32" cy="32" r="23" stroke="#4ae176" stroke-opacity="0.4" stroke-width="1.5"></circle>
+<!-- Stamped Check Mark Crest -->
+<circle cx="44" cy="42" fill="#00b351" r="9"></circle>
+<path d="M41 42L43.5 44.5L47.5 39.5" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold mb-2" id="empty-state-title">
+          אין דיווחים או מילים ממתינות
+        </h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xs leading-relaxed mb-6">
+          כל הכבוד! כל השאלות והמילים נבדקו ואושרו. הילד מוכן להמשך המסע.
+        </p>
+<!-- Primary Tactile Explorer Button -->
+<button class="tactile-btn w-full bg-primary-container hover:bg-[#0284c7] text-white font-headline-sm text-headline-sm py-3.5 px-4 rounded-xl border-b-4 border-[#0369a1] flex items-center justify-center gap-2 shadow-md" type="button">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>+ הוספת מילה חדשה לאוצר המילים</span>
+</button>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 2: OFFLINE STATE                   -->
+<!-- אין חיבור לרשת - מצב הרפתקה לא מקוון         -->
+<!-- ========================================== -->
+<section aria-labelledby="offline-state-title" class="bg-surface-container rounded-xl p-5 border border-outline-variant relative overflow-hidden shadow-sm">
+<!-- Header Badge -->
+<div class="flex items-center justify-between mb-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 border border-secondary text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="cloud_off">cloud_off</span>
+<span>מצב שדה מנותק (Offline)</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-mono">
+<span>זמן מקומי</span>
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+</div>
+</div>
+<div class="flex flex-col items-center text-center">
+<!-- Amber Cloud & Letter Expedition Emblem -->
+<div class="relative w-28 h-28 mb-4 flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-container-low rounded-full recessed-slot border border-outline-variant/60"></div>
+<!-- Cloud Off Illuminated Art -->
+<div class="relative z-10 flex flex-col items-center justify-center">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high border-2 border-secondary flex items-center justify-center shadow-lg relative">
+<span class="material-symbols-outlined text-3xl text-secondary" data-icon="cloud_off" style="font-variation-settings: 'FILL' 1;">cloud_off</span>
+<!-- Explorer Letter Tile "מ" Overlay -->
+<span class="absolute -bottom-2 -left-2 bg-surface-bright text-primary border border-primary px-1.5 py-0.5 rounded text-label-sm font-bold shadow-md">
+                מ
+              </span>
+</div>
+</div>
+</div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold mb-2" id="offline-state-title">
+          אין חיבור לרשת - מצב הרפתקה לא מקוון
+        </h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xs leading-relaxed mb-4">
+          אין דאגה! מסע המילים עובד גם ללא אינטרנט. כל ההתקדמות והנקודות יישמרו מקומית ויסתנכרנו ברגע שתתחברו שוב.
+        </p>
+<!-- Cached Realm Nodes Mini Status -->
+<div class="w-full bg-surface-container-low rounded-lg p-3 border border-outline-variant flex items-center justify-between mb-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-md font-label-md text-on-surface">חבילת נמל היסודות</span>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary bg-surface-container-highest px-2 py-0.5 rounded font-mono">100% שמור במכשיר</span>
+</div>
+<!-- Cyan Action Button with physical extrusion -->
+<button class="tactile-btn w-full bg-primary hover:bg-[#68beff] text-on-primary font-headline-sm text-headline-sm py-3.5 px-4 rounded-xl border-b-4 border-[#0284c7] flex items-center justify-center gap-2 shadow-md" type="button">
+<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
+<span>המשך לשחק ללא רשת (Offline Cache)</span>
+</button>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 3: ERROR & RETRY STATE             -->
+<!-- שגיאת טעינה / תקשורת                       -->
+<!-- ========================================== -->
+<section aria-labelledby="error-state-title" class="bg-surface-container rounded-xl p-5 border-2 border-red-500/60 relative overflow-hidden shadow-sm">
+<!-- Section Alert Pill -->
+<div class="flex items-center justify-between mb-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/30 border border-error text-label-sm font-label-sm text-error">
+<span class="material-symbols-outlined text-sm" data-icon="error" style="font-variation-settings: 'FILL' 1;">error</span>
+<span>תקלת תקשורת קריטית</span>
+</div>
+<span class="text-label-sm font-label-sm text-error font-mono tracking-wider">WQ-408</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<!-- Broken Scroll / Warning Emblem Container -->
+<div class="relative w-24 h-24 mb-3 flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-container-low rounded-full recessed-slot border border-red-500/30"></div>
+<div class="relative z-10 w-14 h-14 rounded-full bg-error-container/40 flex items-center justify-center border border-error">
+<span class="material-symbols-outlined text-3xl text-error" data-icon="sync_problem">sync_problem</span>
+</div>
+</div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold mb-1" id="error-state-title">
+          משהו השתבש בטעינת הנתונים
+        </h2>
+<!-- Error Code Box with Inset styling -->
+<div class="bg-surface-container-low px-3 py-1 rounded-md text-label-sm font-label-sm text-error font-mono mb-3 border border-outline-variant">
+          שגיאה WQ-408: פסק זמן לקובץ הגיבוי
+        </div>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xs leading-relaxed mb-6">
+          השרת לא הצליח לאמת את שלב החיפוש הנוכחי במסע. הנתונים המקומיים מוגנים וממתינים לסנכרון חוזר.
+        </p>
+<!-- Actions Cluster -->
+<div class="w-full space-y-3">
+<!-- Green Tactile Button as per specification (Emerald #16a34a equivalent tokens) -->
+<button class="tactile-btn w-full bg-tertiary-container hover:bg-[#009b46] text-white font-headline-sm text-headline-sm py-3.5 px-4 rounded-xl border-b-4 border-on-tertiary-container flex items-center justify-center gap-2 shadow-md" type="button">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+<span>נסו שוב (טען מחדש)</span>
+</button>
+<!-- Secondary Link Button -->
+<button class="w-full py-2.5 px-4 rounded-xl text-label-md font-label-md text-primary hover:text-white hover:bg-surface-bright/50 transition-colors flex items-center justify-center gap-1.5 border border-transparent hover:border-outline-variant" type="button">
+<span class="material-symbols-outlined text-base" data-icon="security_update_good">security_update_good</span>
+<span>בדיקת תקינות גיבוי</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom System Summary Badge -->
+<footer class="pt-2 pb-6 text-center text-label-sm font-label-sm text-outline flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-xs" data-icon="verified_user">verified_user</span>
+<span>מערכת שמירת מילים מאובטחת • מסע המילים לילדים</span>
+</footer>
+</main>
+</body></html>

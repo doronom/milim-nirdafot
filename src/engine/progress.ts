@@ -13,6 +13,8 @@ export interface LevelResult {
 /** Everything persisted about the player's journey. Versioned so a backup can be migrated. */
 export interface Progress {
   version: 1;
+  /** False until the welcome screen (and optional placement) is done. Older saves without it count as onboarded. */
+  onboarded?: boolean;
   levels: Record<string, LevelResult>;
   /** Worlds opened by passing the previous boss or by the placement challenge. */
   unlockedWorlds: WorldId[];
@@ -26,17 +28,24 @@ export interface Progress {
     reviewedOnly: boolean;
     /** "Reviewed sentences only": swapWord skips unreviewed sentences (default off; reported ones are out anyway). */
     reviewedSentencesOnly?: boolean;
+    /** "Speed mode": the opt-in speed challenge is offered once World 4 is open (default on). */
+    speedMode?: boolean;
+    /** The child's name, for the certificate and greetings. */
+    childName?: string;
   };
+  /** Best speed-challenge score so far. */
+  speedBest?: { score: number; correct: number; at: string };
 }
 
 export const initialProgress = (): Progress => ({
   version: 1,
+  onboarded: false,
   levels: {},
   unlockedWorlds: [1],
   xp: 0,
   streak: { days: 0, freezes: 1, lastPlayed: null },
   leitner: {},
-  settings: { unlockAll: false, reviewedOnly: false, reviewedSentencesOnly: false },
+  settings: { unlockAll: false, reviewedOnly: false, reviewedSentencesOnly: false, speedMode: true },
 });
 
 export const isWorldUnlocked = (p: Progress, world: WorldId): boolean =>
@@ -116,3 +125,26 @@ export function recordLevel(p: Progress, done: CompletedLevel): Progress {
     },
   };
 }
+
+/** Opens a world (boss passed or placement). Worlds beyond 4 do not exist. */
+export function unlockWorld(p: Progress, world: number): Progress {
+  if (world < 1 || world > 4 || p.unlockedWorlds.includes(world as WorldId)) return p;
+  return { ...p, unlockedWorlds: [...p.unlockedWorlds, world as WorldId].sort() };
+}
+
+/**
+ * A boss attempt that did not pass: the practice still counts (XP, Leitner boxes), but the boss is not marked done
+ * and nothing is taken away.
+ */
+export function recordPractice(p: Progress, { xp, leitner }: { xp: number; leitner: LeitnerState }): Progress {
+  return { ...p, xp: p.xp + xp, leitner };
+}
+
+export const speedAvailable = (p: Progress): boolean => p.settings.speedMode !== false && isWorldUnlocked(p, 4);
+
+/** Keeps the best speed run. */
+export function recordSpeedRun(p: Progress, run: { score: number; correct: number; at: string }): Progress {
+  return !p.speedBest || run.score > p.speedBest.score ? { ...p, speedBest: run } : p;
+}
+
+export const needsOnboarding = (p: Progress): boolean => p.onboarded === false;

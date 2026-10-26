@@ -173,3 +173,7 @@
   line-height: var(--type-word-lh);
   margin-block-end: var(--space-2);
 }
+.meaning {
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}

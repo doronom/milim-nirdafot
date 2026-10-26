@@ -4,9 +4,12 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { App } from '../src/app/App';
 import { applyTokens } from '../src/design/tokens';
 import { initialProgress, type Progress } from '../src/engine/progress';
+
+/** A player past the welcome screen. */
+const started = (): Progress => ({ ...initialProgress(), onboarded: true });
 import { memoryStore } from '../src/storage/kv';
 
-const renderAt = (hash: string, progress: Progress = initialProgress()) => {
+const renderAt = (hash: string, progress: Progress = started()) => {
   window.location.hash = hash;
   applyTokens();
   return render(<App store={memoryStore()} initialProgress={progress} />);
@@ -44,7 +47,7 @@ describe('world map', () => {
 describe('station path', () => {
   it('marks done levels and moves the current level forward', async () => {
     const progress: Progress = {
-      ...initialProgress(),
+      ...started(),
       levels: { 'w1-emotions-1': { stars: 3, bestAccuracy: 1, completedAt: '2026-10-25' } },
     };
     renderAt('#/world/1', progress);

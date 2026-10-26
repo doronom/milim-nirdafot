@@ -20,6 +20,7 @@ export function createResolver(content: Content, entries: readonly Entry[] = con
     ...content.scales.map((s): [string, LevelItem] => [s.id, { kind: 'scale', key: s.id, scale: s }]),
     ...content.registers.map((r): [string, LevelItem] => [r.id, { kind: 'register', key: r.id, register: r }]),
     ...content.contexts.map((c): [string, LevelItem] => [c.id, { kind: 'context', key: c.id, context: c }]),
+    ...content.idioms.map((i): [string, LevelItem] => [i.id, { kind: 'idiom', key: i.id, idiom: i }]),
   ]);
   return {
     byId: (id) => {

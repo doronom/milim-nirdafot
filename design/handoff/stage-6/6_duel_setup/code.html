@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>הגדרת דו-קרב מילים | מסע המילים</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#005321",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#003c16",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "error": "#ffb4ab",
+            "on-primary-container": "#003751",
+            "on-primary": "#00344d",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-lowest": "#060e20",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#4ae176",
+            "primary-container": "#0ea5e9",
+            "on-error": "#690005",
+            "surface-bright": "#31394d",
+            "primary": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#171f33",
+            "tertiary-container": "#00b351",
+            "surface-container-highest": "#2d3449",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-tint": "#89ceff",
+            "background": "#0b1326",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#dae2fd",
+            "tertiary": "#4ae176",
+            "on-tertiary": "#003915",
+            "surface-variant": "#2d3449",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-background": "#dae2fd",
+            "on-surface-variant": "#bec8d2",
+            "on-secondary-fixed": "#2a1700",
+            "outline": "#88929b",
+            "inverse-primary": "#006591",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-on-surface": "#283044",
+            "surface": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#0b1326",
+            "surface-container-low": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tactile-btn {
+      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tactile-btn:active {
+      transform: translateY(3px) !important;
+    }
+    .tactile-btn:active .tactile-lip {
+      height: 1px !important;
+    }
+    /* Recessed Inset Card Slot */
+    .recessed-slot {
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    /* Glowing accents */
+    .vs-glow {
+      box-shadow: 0 0 18px rgba(238, 152, 0, 0.45);
+    }
+    .blue-glow {
+      box-shadow: 0 0 14px rgba(14, 165, 233, 0.35);
+    }
+    .purple-glow {
+      box-shadow: 0 0 14px rgba(139, 92, 246, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-white">
+<!-- Main Viewport Shell locked to 390x844 ergonomics -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col bg-background relative pb-28">
+<!-- 1. TopAppBar (Shared Components Anchor aligned to Duel Mode) -->
+<header class="bg-surface-container text-primary docked full-width top-0 sticky z-40 shadow-sm border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-4 h-14 max-w-md mx-auto">
+<!-- Back trigger leading RTL right -->
+<button aria-label="חזרה לתפריט" class="tactile-btn w-10 h-10 rounded-xl bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary active:translate-y-0.5 transition-transform" type="button">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Centered Branding & Title -->
+<div class="text-center flex flex-col items-center">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary" data-icon="swords" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span>דו-קרב מילים</span>
+</h1>
+<span class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>2 שחקנים במכשיר אחד</span>
+</span>
+</div>
+<!-- Trailing Settings / Rules Modal trigger -->
+<button aria-label="הגדרות דו-קרב" class="tactile-btn w-10 h-10 rounded-xl bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface-variant active:translate-y-0.5 transition-transform" type="button">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Main Canvas -->
+<main class="flex-1 px-4 py-3 space-y-4">
+<!-- 2. Duel Briefing Banner -->
+<div class="rounded-xl bg-surface-container border border-outline-variant p-3.5 flex items-start gap-3 shadow-md relative overflow-hidden">
+<div class="absolute -left-6 -top-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/20 border border-secondary flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+<div class="flex-1">
+<h2 class="text-label-lg font-label-lg text-secondary-fixed-dim">קרב ראש בראש על אוצר המילים!</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 leading-snug">
+            שני הסיירים מתחרים על אותו מכשיר: כל שחקן עונה בתורו על אותו סט שאלות בדיוק. מי שיודע יותר פירושים ומילים נרדפות יזכה בעיטור הניצחון!
+          </p>
+</div>
+</div>
+<!-- 3. Players Duel Setup Stage (Bento Duel Hub) -->
+<div class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<span class="text-label-md font-label-md text-on-surface flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="sports_esports">sports_esports</span>
+<span>סיירי הקרב המשתתפים</span>
+</span>
+<span class="text-label-sm font-label-sm text-outline">החלף והגדר שמות</span>
+</div>
+<!-- Player Cards Split Layout with Center VS Pillar -->
+<div class="relative grid grid-cols-2 gap-2.5">
+<!-- Player 1: Blue / Cyan Explorer -->
+<div class="bg-surface-container-low rounded-xl border border-primary/30 p-3 flex flex-col justify-between relative blue-glow">
+<!-- Top Team Chip -->
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm bg-primary-container/20 text-primary border border-primary/40 px-2 py-0.5 rounded-full font-bold">
+                שחקן 1 (כחול)
+              </span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<!-- Avatar Hero Frame -->
+<div class="flex flex-col items-center text-center my-1">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high border-2 border-primary/50 flex items-center justify-center shadow-inner relative group">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="shield_person" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full p-1 border-2 border-surface-container-low">
+<span class="material-symbols-outlined text-xs block" data-icon="explore">explore</span>
+</div>
+</div>
+<!-- Name Field -->
+<div class="w-full mt-2.5">
+<label class="block text-right text-label-sm font-label-sm text-outline mb-1" for="player1-name">שם הסייר</label>
+<div class="relative">
+<input class="w-full text-center bg-surface-container border border-outline-variant rounded-lg px-2 py-1.5 text-label-lg font-label-lg font-bold text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="player1-name" type="text" value="איתי"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-sm pointer-events-none" data-icon="edit">edit</span>
+</div>
+</div>
+</div>
+<!-- Stats Bar -->
+<div class="mt-2.5 pt-2 border-t border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span>שיא:</span>
+</span>
+<span class="font-bold text-secondary">2,840 נק'</span>
+</div>
+</div>
+<!-- VS Badge Floating Absolute Center -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center pointer-events-none">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container border-2 border-secondary font-display-hero-mobile text-headline-sm font-black flex items-center justify-center vs-glow">
+              VS
+            </div>
+</div>
+<!-- Player 2: Violet / Magenta Contender -->
+<div class="bg-surface-container-low rounded-xl border border-secondary-fixed/30 p-3 flex flex-col justify-between relative purple-glow">
+<!-- Top Team Chip -->
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm bg-surface-container-highest text-secondary-fixed-dim border border-secondary-fixed/40 px-2 py-0.5 rounded-full font-bold">
+                שחקן 2 (סגול)
+              </span>
+<button aria-label="החלף אווטאר" class="text-secondary-fixed-dim hover:text-white transition-colors" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="autorenew">autorenew</span>
+</button>
+</div>
+<!-- Avatar Hero Frame -->
+<div class="flex flex-col items-center text-center my-1">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high border-2 border-secondary-fixed-dim/50 flex items-center justify-center shadow-inner relative group">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-4xl" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<div class="absolute -bottom-1 -right-1 bg-secondary text-on-secondary rounded-full p-1 border-2 border-surface-container-low">
+<span class="material-symbols-outlined text-xs block" data-icon="crown" style="font-variation-settings: 'FILL' 1;">crown</span>
+</div>
+</div>
+<!-- Name Field -->
+<div class="w-full mt-2.5">
+<label class="block text-right text-label-sm font-label-sm text-outline mb-1" for="player2-name">שם היריב</label>
+<div class="relative">
+<input class="w-full text-center bg-surface-container border border-outline-variant rounded-lg px-2 py-1.5 text-label-md font-label-md font-bold text-on-surface focus:outline-none focus:border-secondary-fixed-dim focus:ring-1 focus:ring-secondary-fixed-dim" id="player2-name" type="text" value="אבא / אמא / חבר"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-sm pointer-events-none" data-icon="edit">edit</span>
+</div>
+</div>
+</div>
+<!-- Role Selector Action -->
+<div class="mt-2.5 pt-2 border-t border-outline-variant/60 flex items-center justify-between">
+<button class="w-full py-1 rounded bg-surface-container hover:bg-surface-bright text-label-sm font-label-sm text-primary flex items-center justify-center gap-1 active:translate-y-0.5 transition-all" type="button">
+<span class="material-symbols-outlined text-xs" data-icon="swap_horiz">swap_horiz</span>
+<span>החלפת דמות</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Duel Length Selector (Tactile Capsule Pods) -->
+<div class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<label class="text-label-md font-label-md text-on-surface flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="timelapse">timelapse</span>
+<span>אורך הקרב (מספר שאלות)</span>
+</label>
+<span class="text-label-sm font-label-sm text-outline">תורות שווים לשניהם</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Option 1: 5 Questions -->
+<label class="cursor-pointer">
+<input class="sr-only peer" name="duel_length" type="radio" value="5"/>
+<div class="tactile-btn relative bg-surface-container-low border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center justify-center min-h-[76px] peer-checked:bg-surface-container peer-checked:border-primary transition-all">
+<div class="text-label-lg font-label-lg font-black text-on-surface flex items-center gap-0.5">
+<span>5</span>
+<span class="text-label-sm font-normal text-outline">שאלות</span>
+</div>
+<div class="text-label-sm font-label-sm text-outline mt-0.5">קרב בזק (~2 דק')</div>
+<div class="tactile-lip absolute bottom-0 left-2 right-2 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+</label>
+<!-- Option 2: 10 Questions (Standard Selected in Gold) -->
+<label class="cursor-pointer">
+<input checked="" class="sr-only peer" name="duel_length" type="radio" value="10"/>
+<div class="tactile-btn relative bg-surface-container-high border-2 border-secondary rounded-xl p-2.5 text-center flex flex-col items-center justify-center min-h-[76px] vs-glow peer-checked:border-secondary transition-all">
+<span class="absolute -top-2 bg-secondary text-on-secondary px-2 py-0.2 rounded-full text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                מומלץ
+              </span>
+<div class="text-label-lg font-label-lg font-black text-secondary flex items-center gap-0.5 mt-0.5">
+<span>10</span>
+<span class="text-label-sm font-normal text-secondary-fixed">שאלות</span>
+</div>
+<div class="text-label-sm font-label-sm text-secondary-fixed-dim font-bold mt-0.5">סטנדרטי מתואם</div>
+<div class="tactile-lip absolute bottom-0 left-2 right-2 h-1.5 bg-secondary-container rounded-full"></div>
+</div>
+</label>
+<!-- Option 3: 15 Questions -->
+<label class="cursor-pointer">
+<input class="sr-only peer" name="duel_length" type="radio" value="15"/>
+<div class="tactile-btn relative bg-surface-container-low border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center justify-center min-h-[76px] peer-checked:bg-surface-container peer-checked:border-primary transition-all">
+<div class="text-label-lg font-label-lg font-black text-on-surface flex items-center gap-0.5">
+<span>15</span>
+<span class="text-label-sm font-normal text-outline">שאלות</span>
+</div>
+<div class="text-label-sm font-label-sm text-outline mt-0.5">קרב אלופים</div>
+<div class="tactile-lip absolute bottom-0 left-2 right-2 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+</label>
+</div>
+</div>
+<!-- 5. Content Realms Selection for Duel (4 Interactive Chips with Checkboxes) -->
+<div class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<label class="text-label-md font-label-md text-on-surface flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="map">map</span>
+<span>עולמות תוכן באתגר המילים</span>
+</label>
+<span class="text-label-sm font-label-sm text-primary font-medium">4 נבחרו (הכל כלול)</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- World 1: Harbor of Basics -->
+<label class="cursor-pointer select-none">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="p-2.5 rounded-xl border border-outline-variant bg-surface-container-low flex items-center gap-2.5 peer-checked:border-primary peer-checked:bg-surface-container active:scale-[0.98] transition-all shadow-sm">
+<div class="w-6 h-6 rounded-md bg-primary-container flex items-center justify-center text-on-primary shrink-0 peer-checked:bg-primary-container">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="text-label-md font-label-md font-bold text-on-surface truncate">נמל היסודות</div>
+<div class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>מילים שימושיות</span>
+</div>
+</div>
+</div>
+</label>
+<!-- World 2: Woodland of Expansion -->
+<label class="cursor-pointer select-none">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="p-2.5 rounded-xl border border-outline-variant bg-surface-container-low flex items-center gap-2.5 peer-checked:border-tertiary peer-checked:bg-surface-container active:scale-[0.98] transition-all shadow-sm">
+<div class="w-6 h-6 rounded-md bg-tertiary-container flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="text-label-md font-label-md font-bold text-on-surface truncate">יער ההרחבה</div>
+<div class="text-label-sm font-label-sm text-tertiary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>נרדפות וניגודים</span>
+</div>
+</div>
+</div>
+</label>
+<!-- World 3: Precision Mountains -->
+<label class="cursor-pointer select-none">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="p-2.5 rounded-xl border border-outline-variant bg-surface-container-low flex items-center gap-2.5 peer-checked:border-secondary peer-checked:bg-surface-container active:scale-[0.98] transition-all shadow-sm">
+<div class="w-6 h-6 rounded-md bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="text-label-md font-label-md font-bold text-on-surface truncate">הרי הדיוק</div>
+<div class="text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>דיוק לשוני וניקוד</span>
+</div>
+</div>
+</div>
+</label>
+<!-- World 4: Experts Tower -->
+<label class="cursor-pointer select-none">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="p-2.5 rounded-xl border border-outline-variant bg-surface-container-low flex items-center gap-2.5 peer-checked:border-primary-fixed-dim peer-checked:bg-surface-container active:scale-[0.98] transition-all shadow-sm">
+<div class="w-6 h-6 rounded-md bg-surface-bright border border-primary-fixed-dim flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="text-label-md font-label-md font-bold text-on-surface truncate">מגדל המומחים</div>
+<div class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span>
+<span>ניבים וביטויים</span>
+</div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Quick Fair Play Rule Badge -->
+<div class="bg-surface-container/60 rounded-lg p-2.5 border border-outline-variant/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="sync">sync</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">
+          בסיום שאלת שחקן 1, המסך יחשיך לרגע להעברת המכשיר לשחקן 2 ללא הצצה.
+        </span>
+</div>
+</main>
+<!-- 6. Fixed Bottom Action Drawer (3D Tactile Action Button Model) -->
+<div class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-high/90 backdrop-blur-md border-t border-outline-variant/60 py-3 px-4">
+<div class="max-w-md mx-auto">
+<button class="tactile-btn w-full h-14 bg-tertiary-container hover:bg-tertiary-container/90 text-white rounded-xl border-b-4 border-on-tertiary-fixed-variant flex items-center justify-center gap-3 shadow-lg active:border-b-0 active:translate-y-1 transition-all" type="button">
+<span class="material-symbols-outlined text-2xl" data-icon="swords" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span class="text-headline-sm font-headline-sm font-bold tracking-wide">התחל דו-קרב!</span>
+<span class="material-symbols-outlined text-xl rotate-180" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    // Lightweight tactile micro-interaction audio-visual feedback simulation
+    document.querySelectorAll('.tactile-btn').forEach(button => {
+      button.addEventListener('touchstart', () => {
+        button.style.transform = 'translateY(3px)';
+      });
+      button.addEventListener('touchend', () => {
+        button.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body></html>

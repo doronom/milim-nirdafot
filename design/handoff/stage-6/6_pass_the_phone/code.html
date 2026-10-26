@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - העבר את הטלפון</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts - Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#005321",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#003c16",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "error": "#ffb4ab",
+            "on-primary-container": "#003751",
+            "on-primary": "#00344d",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-lowest": "#060e20",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#4ae176",
+            "primary-container": "#0ea5e9",
+            "on-error": "#690005",
+            "surface-bright": "#31394d",
+            "primary": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#171f33",
+            "tertiary-container": "#00b351",
+            "surface-container-highest": "#2d3449",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-tint": "#89ceff",
+            "background": "#0b1326",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#dae2fd",
+            "tertiary": "#4ae176",
+            "on-tertiary": "#003915",
+            "surface-variant": "#2d3449",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-background": "#dae2fd",
+            "on-surface-variant": "#bec8d2",
+            "on-secondary-fixed": "#2a1700",
+            "outline": "#88929b",
+            "inverse-primary": "#006591",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-on-surface": "#283044",
+            "surface": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#0b1326",
+            "surface-container-low": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom game keyframe animations for tactile & mystical immersion */
+    @keyframes subtle-pulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.45)); }
+      50% { transform: scale(1.03); filter: drop-shadow(0 0 26px rgba(139, 92, 246, 0.65)); }
+    }
+    
+    @keyframes orbit-cw {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes phone-tilt {
+      0%, 100% { transform: rotate(-5deg) translateY(-2px); }
+      50% { transform: rotate(7deg) translateY(4px); }
+    }
+
+    .animate-pulse-glow {
+      animation: subtle-pulse 3.5s ease-in-out infinite;
+    }
+
+    .animate-orbit {
+      animation: orbit-cw 12s linear infinite;
+    }
+
+    .animate-tilt {
+      animation: phone-tilt 4s ease-in-out infinite;
+    }
+
+    /* Tactile 3D Button compress */
+    .tactile-button:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center p-0 select-none overflow-x-hidden font-body-md antialiased selection:bg-primary selection:text-on-primary">
+<!-- Mobile Screen Container (390x844 base) -->
+<main class="w-full max-w-[412px] min-h-screen bg-background relative flex flex-col justify-between shadow-2xl overflow-hidden border-x border-outline-variant/30">
+<!-- Background Atmospheric Glyphs and Gradients -->
+<div class="absolute inset-0 pointer-events-none opacity-40">
+<div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary-container/20 blur-3xl"></div>
+<div class="absolute top-1/2 -left-28 w-80 h-80 rounded-full bg-secondary-container/15 blur-3xl"></div>
+<div class="absolute -bottom-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl"></div>
+<!-- Compass line grid decoration -->
+<div class="absolute inset-0 bg-[radial-gradient(#3e4850_1px,transparent_1px)] [background-size:24px_24px] opacity-25"></div>
+</div>
+<!-- Screen Header / Navigation Bar (Task-Focused: No global nav tabs per Shell filter) -->
+<header class="relative z-10 px-margin pt-4 pb-2 flex items-center justify-between border-b border-outline-variant/30 bg-surface-container-low/80 backdrop-blur-md">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary border border-outline-variant/50 shadow-sm">
+<span class="material-symbols-outlined text-headline-sm" data-icon="sports_esports">sports_esports</span>
+</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">דו-קרב חוקרים</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">קרב מילים טקטי ראש-בראש</span>
+</div>
+</div>
+<!-- Round pill status -->
+<div class="px-2.5 py-1 rounded-full bg-surface-container-high border border-outline-variant/60 flex items-center gap-1.5 shadow-inner">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-md text-label-md text-secondary font-bold">סיבוב 1 מתוך 2</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<div class="relative z-10 flex-1 px-margin py-space-md flex flex-col justify-between gap-space-md">
+<!-- 1. Player 1 Completion Card -->
+<section class="bg-surface-container-high/90 border border-outline-variant/80 rounded-xl p-3 shadow-md backdrop-blur-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1.5 h-full bg-tertiary-container"></div>
+<div class="flex items-center justify-between pr-2">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-11 h-11 rounded-full bg-surface-container border-2 border-tertiary flex items-center justify-center text-tertiary shadow-sm">
+<span class="material-symbols-outlined text-headline-md" data-icon="person_check">person_check</span>
+</div>
+<span class="absolute -bottom-1 -left-1 w-4 h-4 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="check">check</span>
+</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">איתי סיים את הסיבוב שלו!</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="done_all">done_all</span>
+                10 שאלות נענו בהצלחה
+              </span>
+</div>
+</div>
+<!-- Secret score preview lock -->
+<div class="bg-surface-container-lowest px-2.5 py-1.5 rounded-lg border border-outline-variant/50 flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-label-md text-secondary" data-icon="visibility_off">visibility_off</span>
+<span class="font-label-sm text-label-sm tracking-wider">?? ניקוד</span>
+</div>
+</div>
+</section>
+<!-- 2. Central Action Visual: The Passing Smartphone Artifact -->
+<section class="flex flex-col items-center justify-center text-center my-auto py-2">
+<!-- Glowing Interactive Vector Illustration -->
+<div class="relative w-52 h-52 flex items-center justify-center mb-3">
+<!-- Outer orbital rotating arrows representing handing over -->
+<svg class="absolute inset-0 w-full h-full animate-orbit pointer-events-none" fill="none" viewbox="0 0 200 200">
+<circle cx="100" cy="100" r="88" stroke="url(#arcGradient)" stroke-dasharray="16 12" stroke-linecap="round" stroke-width="2.5"></circle>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="arcGradient" x1="0" x2="200" y1="0" y2="200">
+<stop stop-color="#0ea5e9" stop-opacity="0.9"></stop>
+<stop offset="0.5" stop-color="#89ceff" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#ee9800" stop-opacity="0.9"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Glowing circular portal backdrop -->
+<div class="w-40 h-40 rounded-full bg-gradient-to-tr from-surface-container-high via-surface-container to-surface-container-low border border-primary-container/40 flex items-center justify-center shadow-[0_0_35px_rgba(14,165,233,0.25)] animate-pulse-glow relative">
+<!-- Orbiting Pass Icons -->
+<div class="absolute -top-2 right-6 bg-surface-container-highest/90 border border-primary text-primary w-7 h-7 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[16px]" data-icon="sync_alt">sync_alt</span>
+</div>
+<div class="absolute -bottom-1 left-7 bg-surface-container-highest/90 border border-secondary text-secondary w-7 h-7 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[16px]" data-icon="hourglass_top">hourglass_top</span>
+</div>
+<!-- Hand-drawn vector explorer smartphone -->
+<div class="animate-tilt flex flex-col items-center justify-center">
+<svg class="filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.6)]" fill="none" height="126" viewbox="0 0 92 136" width="86">
+<!-- Device Chassis with 3D tactile edge -->
+<rect fill="#131b2e" height="130" rx="16" stroke="#3e4850" stroke-width="3" width="88" x="2" y="3"></rect>
+<rect fill="#060e20" height="6" rx="3" width="88" x="2" y="126"></rect>
+<!-- Inner Screen Bezel -->
+<rect fill="#060e20" height="114" rx="11" width="78" x="7" y="10"></rect>
+<!-- Screen Content Wash -->
+<rect fill="url(#screenGrad)" height="108" rx="8" width="72" x="10" y="13"></rect>
+<!-- Animated Passing Arrows on Screen -->
+<path d="M30 52 L62 52 M52 42 L64 52 L52 62" stroke="#89ceff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<path d="M62 76 L30 76 M40 66 L28 76 L40 86" stroke="#ffb95f" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Top Speaker Notch -->
+<rect fill="#3e4850" height="2.5" rx="1.25" width="20" x="36" y="6"></rect>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="screenGrad" x1="10" x2="82" y1="13" y2="121">
+<stop stop-color="#171f33"></stop>
+<stop offset="0.5" stop-color="#0b1326"></stop>
+<stop offset="1" stop-color="#171f33"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+</div>
+<!-- Callouts & Player Turn Info -->
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-on-surface font-extrabold tracking-tight mb-1 text-transparent bg-clip-text bg-gradient-to-l from-on-surface via-primary-fixed to-primary">
+          העבירו את הטלפון!
+        </h1>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-primary-container/50 shadow-sm mt-1">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span>
+<p class="font-headline-sm text-headline-sm text-primary font-bold">
+            תור שחקן 2: <span class="text-secondary-fixed">תומר (אבא)</span>
+</p>
+</div>
+</section>
+<!-- 3. Anti-peek Privacy Guard Card -->
+<section class="bg-surface-container-low border-2 border-secondary-container/40 rounded-xl p-3.5 shadow-lg relative">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border border-secondary-container/80 flex-shrink-0 flex items-center justify-center text-secondary shadow-[0_0_12px_rgba(238,152,0,0.3)]">
+<span class="material-symbols-outlined text-headline-md" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex flex-col text-right">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="font-label-md text-label-md text-secondary font-bold">מגן פרטיות וסודיות</span>
+<span class="px-1.5 py-0.2 bg-secondary-container/20 text-secondary text-[11px] font-bold rounded">נעול</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              התשובות והניקוד של איתי מוסתרים כעת כדי לשמור על הוגנות הקרב. אף רמז לא ייחשף עד לסיום כל השאלות!
+            </p>
+</div>
+</div>
+</section>
+<!-- 4. Challenge Quest Status Chips & Info -->
+<section class="bg-surface-container/70 border border-outline-variant/60 rounded-xl p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-md text-label-md flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-primary text-headline-sm" data-icon="auto_stories">auto_stories</span>
+            אתגר המשלחת הממתין:
+          </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-highest text-primary font-bold">
+            10 אתגרים
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-body-md" data-icon="explore">explore</span>
+          ממתינות לך 10 שאלות מילים נרדפות מעולמות 1–4
+        </p>
+<!-- World badges indicator row -->
+<div class="grid grid-cols-4 gap-1.5 pt-1">
+<div class="bg-surface-container-highest/80 rounded-lg py-1 px-1 flex flex-col items-center justify-center border border-outline-variant/40">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mb-0.5"></span>
+<span class="text-[10px] font-label-sm text-on-surface-variant font-medium">1. נמל היסוד</span>
+</div>
+<div class="bg-surface-container-highest/80 rounded-lg py-1 px-1 flex flex-col items-center justify-center border border-outline-variant/40">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container mb-0.5"></span>
+<span class="text-[10px] font-label-sm text-on-surface-variant font-medium">2. יער השרשים</span>
+</div>
+<div class="bg-surface-container-highest/80 rounded-lg py-1 px-1 flex flex-col items-center justify-center border border-outline-variant/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container mb-0.5"></span>
+<span class="text-[10px] font-label-sm text-on-surface-variant font-medium">3. רכס הגילוי</span>
+</div>
+<div class="bg-surface-container-highest/80 rounded-lg py-1 px-1 flex flex-col items-center justify-center border border-outline-variant/40">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mb-0.5"></span>
+<span class="text-[10px] font-label-sm text-on-surface-variant font-medium">4. מגדל המילים</span>
+</div>
+</div>
+</section>
+</div>
+<!-- 5. Bottom Action Drawer with Giant Tactile Button -->
+<footer class="relative z-20 px-margin pt-2 pb-6 bg-surface-container-lowest/95 border-t border-outline-variant/40 backdrop-blur-md">
+<!-- Primary Giant Tactile Action Button (Cyan / Indigo Glow) -->
+<button class="tactile-button w-full min-h-[58px] bg-primary-container text-on-primary font-headline-md text-headline-md rounded-xl border-b-4 border-[#0369a1] active:border-b flex items-center justify-center gap-3 shadow-[0_8px_20px_rgba(14,165,233,0.35)] transition-all duration-100 cursor-pointer group" id="ready-btn" onclick="handleReadyTransition()">
+<span class="material-symbols-outlined text-headline-lg group-hover:scale-110 transition-transform" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="tracking-tight">אני מוכן! התחל את התור שלי</span>
+</button>
+<!-- Timer & Fair-play Guidance Note -->
+<div class="flex items-center justify-center gap-1.5 mt-2.5 text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="timer">timer</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium">
+          לחיצה מתחילה את טיימר השאלה הראשונה (30 שניות לשאלה)
+        </p>
+</div>
+<!-- Safe Area Spacer Indicator -->
+<div class="w-32 h-1 bg-outline-variant/40 rounded-full mx-auto mt-3"></div>
+</footer>
+</main>
+<!-- Lightweight Audio-Tactile Interaction Script -->
+<script>
+    function handleReadyTransition() {
+      const btn = document.getElementById('ready-btn');
+      
+      // Haptic feedback if supported by browser/device
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate([40, 30, 80]);
+      }
+
+      // Visual feedback state
+      btn.classList.add('brightness-125');
+      btn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin text-headline-lg" data-icon="progress_activity">progress_activity</span>
+        <span>פותח שער לשאלה 1...</span>
+      `;
+
+      // Simulating seamless game route advancement
+      setTimeout(() => {
+        btn.classList.remove('brightness-125');
+        // Normal game engine transition callback would trigger here
+      }, 700);
+    }
+  </script>
+</body></html>

@@ -4,7 +4,7 @@ import { speak } from '../../audio/speak';
 import type { Entry, Sentence } from '../../content/types';
 import { motion } from '../../design/tokens';
 import { BIN_LABEL, BINS } from '../../games/registerSort/build';
-import type { ContextItem, LevelItem, PracticeItem, RegisterItem, ScaleItem } from '../../games/types';
+import type { ContextItem, IdiomItem, LevelItem, PracticeItem, RegisterItem, ScaleItem } from '../../games/types';
 import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
 import { ProgressBar } from '../../ui/ProgressBar';
@@ -41,6 +41,8 @@ function describe(
         speech: item.context.options.join(', '),
         noun: 'הבחנה',
       };
+    case 'idiom':
+      return { title: item.idiom.idiom, speech: item.idiom.idiom, noun: 'ביטוי' };
   }
 }
 
@@ -80,7 +82,9 @@ export function LearnCards({ items, sentenceFor, displayWord, onDone }: Props) {
                     ? 'סולם עוצמה:'
                     : item.kind === 'register'
                       ? 'משמעות:'
-                      : 'מילים קרובות:'}
+                      : item.kind === 'idiom'
+                        ? 'ביטוי:'
+                        : 'מילים קרובות:'}
               </p>
               <p className={item.kind === 'pair' ? styles.word : styles.title}>{title}</p>
               {item.kind === 'pair' && item.entry.hint && <Pill tone="world">{item.entry.hint}</Pill>}
@@ -100,6 +104,7 @@ export function LearnCards({ items, sentenceFor, displayWord, onDone }: Props) {
           {item.kind === 'scale' && <ScaleBody item={item} displayWord={displayWord} />}
           {item.kind === 'register' && <RegisterBody item={item} displayWord={displayWord} />}
           {item.kind === 'context' && <ContextBody item={item} />}
+          {item.kind === 'idiom' && <IdiomBody item={item} />}
         </m.article>
       </AnimatePresence>
       <button
@@ -220,5 +225,23 @@ function ContextBody({ item }: { item: ContextItem }) {
       </p>
       <p>{item.context.explanation}</p>
     </blockquote>
+  );
+}
+
+function IdiomBody({ item }: { item: IdiomItem }) {
+  return (
+    <>
+      <div>
+        <p className={styles.sectionTitle}>
+          <Icon name="book" size="sm" />
+          פירוש:
+        </p>
+        <p className={styles.meaning}>{item.idiom.meaning}</p>
+      </div>
+      <blockquote className={styles.sentence}>
+        <p className={styles.sectionTitle}>שימוש ביומן המסע:</p>
+        <p>{item.idiom.example}</p>
+      </blockquote>
+    </>
   );
 }

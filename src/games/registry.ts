@@ -1,6 +1,12 @@
 import type { GameId } from '../config/game';
 import { gameInfo } from './catalog';
 import { buildContextRound } from './contextChoice/build';
+import { buildCrosswordRound } from './crossword/build';
+import { Crossword } from './crossword/Crossword';
+import { buildIdiomRound } from './idiomMatch/build';
+import { IdiomMatch } from './idiomMatch/IdiomMatch';
+import { buildTypeRound } from './typeSynonym/build';
+import { TypeSynonym } from './typeSynonym/TypeSynonym';
 import { ContextChoice } from './contextChoice/ContextChoice';
 import { buildDragRound } from './dragPairs/build';
 import { DragPairs } from './dragPairs/DragPairs';
@@ -73,6 +79,24 @@ export function createGames(env: GameEnv): Map<GameId, AnyGame> {
     }),
     defineGame({ ...gameInfo('registerSort'), minWorld: 3, buildRound: buildRegisterRound, Component: RegisterSort }),
     defineGame({ ...gameInfo('contextChoice'), minWorld: 3, buildRound: buildContextRound, Component: ContextChoice }),
+    defineGame({
+      ...gameInfo('idiomMatch'),
+      minWorld: 4,
+      buildRound: (i, d, r, s) => buildIdiomRound(env, i, d, r, s),
+      Component: IdiomMatch,
+    }),
+    defineGame({
+      ...gameInfo('typeSynonym'),
+      minWorld: 4,
+      buildRound: (i, d, r) => buildTypeRound(env, i, d, r),
+      Component: TypeSynonym,
+    }),
+    defineGame({
+      ...gameInfo('crossword'),
+      minWorld: 4,
+      buildRound: (i, d, r) => buildCrosswordRound(env, i, d, r),
+      Component: Crossword,
+    }),
   ];
   return new Map(games.map((g) => [g.id, g]));
 }
