@@ -1,61 +1,88 @@
 import type { WorldId } from '../config/game';
-import type { Content, Entry } from '../content/types';
 import { type Difficulty } from '../engine/adaptive';
 import { dayKey } from '../engine/dates';
 import { chooseTier } from '../engine/distractors';
 import { selectGuests } from '../engine/guests';
 import type { LevelDef } from '../engine/layout';
-import type { LeitnerState } from '../engine/leitner';
-import { planStages, startRun, type LevelRun } from '../engine/level-run';
+import { dueKeys, weakestKeys, type LeitnerState } from '../engine/leitner';
+import { planRounds, startRun, type LevelRun } from '../engine/level-run';
 import { createRng } from '../engine/rng';
-import { practiceItemFor } from './practice';
 import { GAME_CATALOG } from './catalog';
-import type { PracticeItem } from './types';
+import { sourceId, type ItemResolver } from './items';
+import { practiceItemFor } from './practice';
+import type { LevelItem, PlanContext } from './types';
 
 export interface LevelSession {
-  /** The level's new entries (learn cards). */
-  entries: Entry[];
-  /** New items and guests, in play order. */
-  items: PracticeItem[];
+  /** The level's new items, shown as learn cards. Empty for review levels. */
+  learn: LevelItem[];
+  /** New items and guests (or the review draw), in play order. */
+  items: LevelItem[];
   run: LevelRun;
 }
 
-/** Levels whose items are entries (worlds 1-2 and custom words) can be played with the World 1-2 games. */
-export const isEntryLevel = (level: LevelDef, content: Content): boolean =>
-  level.kind === 'learn' &&
-  level.itemIds.length > 0 &&
-  level.itemIds.every((id) => content.entries.some((e) => e.id === id));
+/** Learn levels with content the games can play, and review levels. Boss levels arrive in milestone 6. */
+export const isPlayableLevel = (level: LevelDef, resolver: ItemResolver): boolean =>
+  level.kind === 'review' ||
+  (level.kind === 'learn' && level.itemIds.length > 0 && level.itemIds.every((id) => resolver.byId(id) !== null));
 
-/** Starting difficulty: the world's tier, nudged by how well these pairs are already known; three options. */
-export function startDifficulty(world: WorldId, items: PracticeItem[], leitner: LeitnerState): Difficulty {
+/** Starting difficulty: the world's tier, nudged by how well these items are already known; three options. */
+export function startDifficulty(world: WorldId, items: readonly LevelItem[], leitner: LeitnerState): Difficulty {
   const boxes = items.map((i) => leitner[i.key]?.box).filter((b): b is NonNullable<typeof b> => b !== undefined);
   const box = boxes.length > 0 ? Math.round(boxes.reduce((a, b) => a + b, 0) / boxes.length) : undefined;
   return { tier: chooseTier({ world, box }), options: 3 };
 }
 
 export interface SessionOptions {
-  /** Entries guests may come from (the reviewed-only subset when that setting is on). */
-  guestPool?: readonly Entry[];
+  /** Resolves the level's own items. */
+  resolver: ItemResolver;
+  /** Resolves guests and review items (narrowed by the reviewed-only setting). Defaults to `resolver`. */
+  guestResolver?: ItemResolver;
+  ctx: PlanContext;
   today?: string;
+  /** Items a review level falls back to before anything is due (the world's own material). */
+  reviewFallback?: readonly string[];
+}
+
+/** A pair item resolved by id practises the synonym the child knows least. */
+function teach(item: LevelItem, leitner: LeitnerState): LevelItem {
+  return item.kind === 'pair' ? practiceItemFor(item.entry, leitner) : item;
 }
 
 /**
- * Learn cards for the level's new entries, then 3 rounds (recognition, discrimination, production) over the new items
- * plus ~30% guests (due items from earlier levels), deterministic by seed. Guests skip the learn cards.
+ * Learn levels: learn cards for the level's new items, then rounds over the new items plus ~30% guests.
+ * Review levels: no learn cards; due items weakest first (topped up with the weakest known items, then the world's
+ * material). Rounds go recognition -> discrimination -> production and are deterministic by seed.
  */
 export function buildLevelSession(
   level: LevelDef,
-  content: Content,
   leitner: LeitnerState,
   seed: string,
-  { guestPool = content.entries, today = dayKey() }: SessionOptions = {},
+  { resolver, guestResolver = resolver, ctx, today = dayKey(), reviewFallback = [] }: SessionOptions,
 ): LevelSession {
-  const byId = new Map(content.entries.map((e) => [e.id, e]));
-  const entries = level.itemIds.map((id) => byId.get(id)!).filter(Boolean);
-  const fresh = entries.map((e) => practiceItemFor(e, leitner));
-  const guests = selectGuests(leitner, level.itemIds, fresh.length, today, guestPool);
   const rng = createRng(`${seed}:plan`);
-  const items = guests.length > 0 ? rng.shuffle([...fresh, ...guests]) : fresh;
-  const stages = planStages(level.worldId, GAME_CATALOG, items, rng, content);
-  return { entries, items, run: startRun(stages, items, startDifficulty(level.worldId, items, leitner)) };
+  let learn: LevelItem[] = [];
+  let items: LevelItem[];
+  if (level.kind === 'review') {
+    const want = level.drawCount ?? 8;
+    const keys = [...new Set([...dueKeys(leitner, today), ...weakestKeys(leitner)])];
+    const drawn: LevelItem[] = [];
+    const used = new Set<string>();
+    const add = (item: LevelItem | null) => {
+      if (!item || drawn.length >= want || used.has(sourceId(item))) return;
+      used.add(sourceId(item));
+      drawn.push(item);
+    };
+    keys.forEach((k) => add(guestResolver.byKey(k)));
+    reviewFallback.forEach((id) => {
+      const item = guestResolver.byId(id);
+      add(item ? teach(item, leitner) : null);
+    });
+    items = rng.shuffle(drawn);
+  } else {
+    learn = level.itemIds.map((id) => resolver.byId(id)).flatMap((i) => (i ? [teach(i, leitner)] : []));
+    const guests = selectGuests(leitner, learn.map(sourceId), learn.length, today, guestResolver);
+    items = guests.length > 0 ? rng.shuffle([...learn, ...guests]) : learn;
+  }
+  const rounds = planRounds(level.worldId, GAME_CATALOG, items, rng, ctx);
+  return { learn, items, run: startRun(rounds, startDifficulty(level.worldId, items, leitner)) };
 }

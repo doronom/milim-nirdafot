@@ -20,7 +20,13 @@ export interface Progress {
   streak: { days: number; freezes: number; lastPlayed: string | null };
   /** Leitner boxes per practice item key. */
   leitner: LeitnerState;
-  settings: { unlockAll: boolean; reviewedOnly: boolean };
+  settings: {
+    unlockAll: boolean;
+    /** "Reviewed words only": unreviewed entries are left out. */
+    reviewedOnly: boolean;
+    /** "Reviewed sentences only": swapWord skips unreviewed sentences (default off; reported ones are out anyway). */
+    reviewedSentencesOnly?: boolean;
+  };
 }
 
 export const initialProgress = (): Progress => ({
@@ -30,7 +36,7 @@ export const initialProgress = (): Progress => ({
   xp: 0,
   streak: { days: 0, freezes: 1, lastPlayed: null },
   leitner: {},
-  settings: { unlockAll: false, reviewedOnly: false },
+  settings: { unlockAll: false, reviewedOnly: false, reviewedSentencesOnly: false },
 });
 
 export const isWorldUnlocked = (p: Progress, world: WorldId): boolean =>

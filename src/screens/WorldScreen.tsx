@@ -3,7 +3,8 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { BOSS_SIZE, WORLDS, type WorldId } from '../config/game';
 import type { LevelDef, StationDef, WorldDef } from '../engine/layout';
 import { currentLevel, isLevelDone, isLevelUnlocked, isWorldUnlocked, type Progress } from '../engine/progress';
-import { guestPool, itemLabel, layout } from '../app/data';
+import { content, guestPool, itemLabel, layout } from '../app/data';
+import { createResolver } from '../games/items';
 import { dayKey } from '../engine/dates';
 import { selectGuests } from '../engine/guests';
 import { useProgress } from '../state/progress-context';
@@ -67,7 +68,7 @@ export function WorldScreen() {
           current.itemIds,
           current.itemIds.length,
           dayKey(),
-          guestPool(progress.settings.reviewedOnly),
+          createResolver(content, guestPool(progress.settings.reviewedOnly)),
         ).length
       : 0;
 

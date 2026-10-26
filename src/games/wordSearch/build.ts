@@ -1,7 +1,7 @@
 import { pairKey } from '../practice';
 import type { Difficulty } from '../../engine/adaptive';
 import type { Rng } from '../../engine/rng';
-import type { GameEnv, PracticeItem } from '../types';
+import { isPair, type GameEnv, type LevelItem, type PracticeItem } from '../types';
 import { generateWordSearch, gridLetters, type WordSearchGrid } from './generate';
 
 export const GRID_SIZE = 10;
@@ -37,7 +37,7 @@ export function buildWordSearchRound(
   for (const item of items) {
     if (chosen.length >= WORDS.min) break;
     for (const synonym of item.entry.synonyms) {
-      add({ key: pairKey(item.entry, synonym), entry: item.entry, synonym, isGuest: item.isGuest });
+      add({ kind: 'pair', key: pairKey(item.entry, synonym), entry: item.entry, synonym, isGuest: item.isGuest });
     }
   }
   const grid = generateWordSearch(
@@ -49,5 +49,5 @@ export function buildWordSearchRound(
 }
 
 /** Items the word search can use: synonyms that fit the grid. */
-export const wordSearchPlayable = (items: readonly PracticeItem[]): readonly PracticeItem[] =>
-  items.filter((i) => i.entry.synonyms.some(fits));
+export const wordSearchPlayable = (items: readonly LevelItem[]): PracticeItem[] =>
+  items.filter(isPair).filter((i) => i.entry.synonyms.some(fits));

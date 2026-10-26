@@ -4,7 +4,7 @@ import { isSwapEligible } from '../../content/model';
 import type { Difficulty } from '../../engine/adaptive';
 import { pickDistractors } from '../../engine/distractors';
 import type { Rng } from '../../engine/rng';
-import type { GameEnv, PracticeItem } from '../types';
+import type { GameEnv, PlanContext, PracticeItem } from '../types';
 
 export interface SwapOption {
   word: string;
@@ -47,12 +47,21 @@ export function splitAtHeadword(
   };
 }
 
-/** Sentences swapWord may use for an item: reviewed only, with at least one fitting synonym. */
-export const swapSentences = (env: Pick<GameEnv, 'content'>, item: PracticeItem): Sentence[] =>
-  env.content.sentences.filter((s) => s.entryId === item.entry.id && s.reviewed && isSwapEligible(s));
+/**
+ * Sentences swapWord may use for an item: with at least one fitting synonym, not reported (unless approved), and
+ * reviewed when the "reviewed sentences only" setting is on.
+ */
+export const swapSentences = (ctx: PlanContext, item: PracticeItem): Sentence[] =>
+  ctx.content.sentences.filter(
+    (s) =>
+      s.entryId === item.entry.id &&
+      isSwapEligible(s) &&
+      (s.reviewed || !ctx.sentences.reviewedOnly) &&
+      !ctx.sentences.blocked.has(s.id),
+  );
 
 /**
- * One question per item that has a reviewed sentence: the sentence with the headword as a slot, and a word bank of
+ * One question per item that has a usable sentence: the sentence with the headword as a slot, and a word bank of
  * one fitting synonym plus distractors. Correct means the word is in the sentence's `fits` list.
  */
 export function buildSwapRound(env: GameEnv, items: PracticeItem[], difficulty: Difficulty, rng: Rng): SwapRound {

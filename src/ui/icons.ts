@@ -8,6 +8,7 @@ export const ICON_NAMES = [
   'compass',
   'crown',
   'eye-off',
+  'flag',
   'flame',
   'forward',
   'key',

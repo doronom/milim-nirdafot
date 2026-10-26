@@ -1,43 +1,80 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
 import { XP } from '../config/game';
+import type { Sentence } from '../content/types';
 import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
 import { findLevel, type LevelDef, type StationDef, type WorldDef } from '../engine/layout';
 import { applySession } from '../engine/leitner';
-import { finishRound, isRunDone, levelOutcome, type LevelOutcome, type LevelRun } from '../engine/level-run';
+import {
+  createPlanner,
+  finishRound,
+  isRunDone,
+  levelOutcome,
+  type LevelOutcome,
+  type LevelRun,
+} from '../engine/level-run';
 import { currentLevel, isLevelUnlocked, recordLevel } from '../engine/progress';
-import { reportAlsoCorrect, listReports, pendingKeys } from '../engine/review-queue';
+import { listReports, pendingKeys, reportAlsoCorrect, reportItemDispute } from '../engine/review-queue';
 import { createRng } from '../engine/rng';
+import { blockedSentenceIds, listSentenceReports, reportSentence } from '../engine/sentence-reports';
 import { content, displayWord, entryPool, graph, guestPool, itemLabel, layout, links, sentenceFor } from '../app/data';
+import { GAME_CATALOG } from '../games/catalog';
 import { GameEnvContext } from '../games/env-context';
+import { createResolver } from '../games/items';
 import { pairKey } from '../games/practice';
-import { createGames, REVIEW_GAME } from '../games/registry';
-import { buildLevelSession, isEntryLevel } from '../games/session';
-import type { GameEnv, PracticeItem, RoundResult } from '../games/types';
+import { createGames } from '../games/registry';
+import { buildLevelSession, isPlayableLevel } from '../games/session';
+import { isPair, type GameEnv, type LevelItem, type PlanContext, type RoundResult } from '../games/types';
 import { useProgress } from '../state/progress-context';
 import { useStore } from '../state/store-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
+import { TactileButton } from '../ui/TactileButton';
 import { IconButton, TopBar } from '../ui/TopBar';
 import { EndOfLevel } from './level/EndOfLevel';
 import { LearnCards } from './level/LearnCards';
 import { levelNumber, levelTitle } from './levelText';
 import styles from './LevelScreen.module.css';
 
+const levelResolver = createResolver(content);
+
+/** Review queues that change what a level may offer; loaded before the level is planned. */
+interface Queues {
+  pending: Set<string>;
+  blocked: Set<string>;
+}
+
 export function LevelScreen() {
   const { levelId = '' } = useParams();
   const [params] = useSearchParams();
+  const store = useStore();
   const { progress, loaded } = useProgress();
   const [attempt, setAttempt] = useState(0);
   // A fixed ?seed= makes every round reproducible (tests); otherwise each play differs.
   const [baseSeed] = useState(() => params.get('seed') ?? String(Date.now()));
+  const [queues, setQueues] = useState<Queues | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([listReports(store), listSentenceReports(store)])
+      .then(([pairs, sentences]) => ({
+        pending: pendingKeys(pairs),
+        blocked: blockedSentenceIds(sentences, content.sentences),
+      }))
+      .catch(() => ({ pending: new Set<string>(), blocked: new Set<string>() }))
+      .then((q) => !cancelled && setQueues(q));
+    return () => {
+      cancelled = true;
+    };
+  }, [store, attempt]);
+
   const found = findLevel(layout, levelId);
-  if (!loaded) return null;
+  if (!loaded || !queues) return null;
   if (!found || !isLevelUnlocked(progress, found.world, levelId)) return <Navigate to="/" replace />;
   const { world, station, level } = found;
+  if (!isPlayableLevel(level, levelResolver)) return <ComingLater world={world} station={station} level={level} />;
   const seed = `${baseSeed}:${attempt}`;
-  if (!isEntryLevel(level, content)) return <ComingLater world={world} station={station} level={level} />;
   return (
     <LevelPlayer
       key={seed}
@@ -45,7 +82,11 @@ export function LevelScreen() {
       station={station}
       level={level}
       seed={seed}
-      onReplay={() => setAttempt((a) => a + 1)}
+      queues={queues}
+      onReplay={() => {
+        setQueues(null);
+        setAttempt((a) => a + 1);
+      }}
     />
   );
 }
@@ -85,7 +126,21 @@ const levelName = (level: LevelDef, station?: StationDef) => {
   return number ? `שלב ${number}: ${levelTitle(level, station)}` : levelTitle(level, station);
 };
 
-type Phase = 'learn' | 'play' | 'end';
+/** A short label for "words to practise" on the result screen. */
+function practiseLabel(item: LevelItem): string {
+  switch (item.kind) {
+    case 'pair':
+      return `${displayWord(item.entry.headword)} = ${displayWord(item.synonym)}`;
+    case 'scale':
+      return item.scale.weakToStrong.map(displayWord).join(' < ');
+    case 'register':
+      return item.register.meaning;
+    case 'context':
+      return item.context.options.map(displayWord).join(' / ');
+  }
+}
+
+type Phase = 'learn' | 'intro' | 'play' | 'end';
 
 interface Finished {
   outcome: LevelOutcome;
@@ -98,84 +153,101 @@ function LevelPlayer({
   station,
   level,
   seed,
+  queues,
   onReplay,
 }: {
   world: WorldDef;
   station?: StationDef;
   level: LevelDef;
   seed: string;
+  queues: Queues;
   onReplay: () => void;
 }) {
   const navigate = useNavigate();
   const store = useStore();
   const { progress, update } = useProgress();
-  // Snapshot the Leitner state at the start, so the session does not shift while it is played.
-  const [session] = useState(() =>
-    buildLevelSession(level, content, progress.leitner, seed, { guestPool: guestPool(progress.settings.reviewedOnly) }),
+  const { reviewedOnly, reviewedSentencesOnly = false } = progress.settings;
+  const [pending, setPending] = useState(queues.pending);
+  const [blocked, setBlocked] = useState(queues.blocked);
+  const ctx: PlanContext = useMemo(
+    () => ({ content, sentences: { reviewedOnly: reviewedSentencesOnly, blocked } }),
+    [reviewedSentencesOnly, blocked],
   );
-  const [phase, setPhase] = useState<Phase>('learn');
+  // Snapshot the Leitner state and queues at the start, so the plan does not shift while it is played.
+  const [session] = useState(() =>
+    buildLevelSession(level, progress.leitner, seed, {
+      resolver: levelResolver,
+      guestResolver: createResolver(content, guestPool(reviewedOnly)),
+      ctx,
+      reviewFallback: world.stations.flatMap((s) => s.levels.flatMap((l) => l.itemIds)),
+    }),
+  );
+  const [planner] = useState(() => createPlanner(world.id, GAME_CATALOG, ctx));
+  const [phase, setPhase] = useState<Phase>(session.learn.length > 0 ? 'learn' : 'intro');
   const [known, setKnown] = useState<string[]>([]);
   const [run, setRun] = useState(session.run);
-  const [pending, setPending] = useState<Set<string>>(new Set());
   const [finished, setFinished] = useState<Finished | null>(null);
   const [round, setRound] = useState<unknown>(null);
-  const reviewedOnly = progress.settings.reviewedOnly;
-
-  useEffect(() => {
-    listReports(store)
-      .then((r) => setPending(pendingKeys(r)))
-      .catch(() => undefined);
-  }, [store]);
 
   const env: GameEnv = useMemo(
     () => ({
-      content,
+      ...ctx,
       graph,
       links,
       pool: entryPool(reviewedOnly, world.id),
       decisions: { confirmedTraps: trapKeys(content.notSynonyms), pending },
       displayWord,
     }),
-    [reviewedOnly, pending, world.id],
+    [ctx, reviewedOnly, pending, world.id],
   );
   const games = useMemo(() => createGames(env), [env]);
-
   const plan = run.rounds[run.index];
+
   // Each round is built once, when it starts, from the adapted difficulty and any re-inserted items.
   const startRound = (r: LevelRun) => {
     const p = r.rounds[r.index]!;
-    setRound(games.get(p.gameId)!.buildRound(p.items, p.difficulty, createRng(`${seed}:round:${r.index}`)));
+    setRound(games.get(p.gameId)!.buildRound(p.items, p.difficulty, createRng(`${seed}:round:${r.index}`), p.stage));
+    setPhase('play');
   };
 
-  const finish = (done: typeof run) => {
+  const finish = (done: LevelRun) => {
     const outcome = levelOutcome(done);
     const xp = outcome.correctAnswers * XP.perCorrectAnswer + outcome.stars * XP.perStar;
     const today = dayKey();
-    const knownKeys = session.items.filter((i) => known.includes(i.entry.id)).map((i) => i.key);
     const record = {
       levelId: level.id,
       stars: outcome.stars,
       accuracy: outcome.accuracy,
       xp,
-      leitner: applySession(progress.leitner, outcome.perItem, knownKeys, today),
+      leitner: applySession(progress.leitner, outcome.perItem, known, today),
       completedAt: new Date().toISOString(),
     };
     const next = currentLevel(recordLevel(progress, record), world);
-    update((p) => recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, knownKeys, today) }));
+    update((p) => recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, known, today) }));
     setFinished({ outcome, xp, nextId: next?.id });
     setPhase('end');
   };
 
   const onRoundDone = (result: RoundResult) => {
-    const nextRun = finishRound(run, result, REVIEW_GAME);
+    const nextRun = finishRound(run, result, planner);
     setRun(nextRun);
     if (isRunDone(nextRun)) finish(nextRun);
     else startRound(nextRun);
   };
 
-  const onAlsoCorrect = (item: PracticeItem, word: string, nodeId: string) => {
-    setPending((p) => new Set(p).add(pairKey(item.entry, word)));
-    void reportAlsoCorrect(store, { target: item.entry, word, nodeId, gameId: plan?.gameId ?? 'unknown' });
+  const gameId = plan?.gameId ?? 'unknown';
+  const onAlsoCorrect = (item: LevelItem, word: string, nodeId?: string) => {
+    if (isPair(item)) {
+      setPending((p) => new Set(p).add(pairKey(item.entry, word)));
+      void reportAlsoCorrect(store, { target: item.entry, word, nodeId: nodeId ?? word, gameId });
+    } else {
+      void reportItemDispute(store, { itemKey: item.key, answer: word, gameId });
+    }
+  };
+  const onReportSentence = (sentence: Sentence) => {
+    // Out of play right away (unless already approved), and queued for the parent.
+    if (!sentence.reviewed) setBlocked((b) => new Set(b).add(sentence.id));
+    void reportSentence(store, sentence, gameId);
   };
 
   const name = levelName(level, station);
@@ -187,11 +259,11 @@ function LevelPlayer({
         : station?.title;
   const game = plan ? games.get(plan.gameId) : undefined;
   const nextLevel = finished?.nextId ? findLevel(layout, finished.nextId) : null;
-  const newItems = session.items.filter((i) => !i.isGuest);
+  const counted = session.learn.length > 0 ? session.learn : session.items;
   const practise = (finished?.outcome.missed ?? [])
     .map((key) => session.items.find((i) => i.key === key))
-    .filter((i): i is PracticeItem => Boolean(i))
-    .map((i) => `${displayWord(i.entry.headword)} = ${displayWord(i.synonym)}`);
+    .filter((i): i is LevelItem => Boolean(i))
+    .map(practiseLabel);
 
   return (
     <GameEnvContext.Provider value={env}>
@@ -208,23 +280,38 @@ function LevelPlayer({
         <main className={styles.body}>
           {phase === 'learn' && (
             <LearnCards
-              entries={session.entries}
+              items={session.learn}
               sentenceFor={(e) => sentenceFor(e, reviewedOnly)}
               displayWord={displayWord}
               onDone={(k) => {
                 setKnown(k);
                 startRound(run);
-                setPhase('play');
               }}
             />
+          )}
+          {phase === 'intro' && (
+            <>
+              <MascotBubble>
+                {session.items.length > 0
+                  ? `סבב חזרה: ${session.items.length} פריטים מהמסע שלכם, החלשים ביותר קודם.`
+                  : 'אין עדיין מה לחזור עליו. שחקו עוד שלבים וחזרו לכאן.'}
+              </MascotBubble>
+              {session.items.length > 0 && plan && (
+                <TactileButton block size="lg" icon="play" onClick={() => startRound(run)}>
+                  מתחילים
+                </TactileButton>
+              )}
+            </>
           )}
           {phase === 'play' && game && plan && round !== null && (
             <game.Component
               key={run.index}
               round={round as never}
               difficulty={plan.difficulty}
+              stage={plan.stage}
               onDone={onRoundDone}
               onAlsoCorrect={onAlsoCorrect}
+              onReportSentence={onReportSentence}
             />
           )}
           {phase === 'end' && finished && (
@@ -233,8 +320,8 @@ function LevelPlayer({
               stars={finished.outcome.stars}
               accuracy={finished.outcome.accuracy}
               xp={finished.xp}
-              wordsLearned={newItems.filter((i) => !finished.outcome.missed.includes(i.key)).length}
-              wordsTotal={newItems.length}
+              wordsLearned={counted.filter((i) => !finished.outcome.missed.includes(i.key)).length}
+              wordsTotal={counted.length}
               practise={practise}
               nextTo={nextLevel ? `/level/${nextLevel.level.id}` : undefined}
               nextLabel={nextLevel ? `לשלב הבא (${levelName(nextLevel.level, nextLevel.station)})` : undefined}

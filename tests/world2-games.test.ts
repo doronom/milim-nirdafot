@@ -1,68 +1,56 @@
 import { describe, expect, it } from 'vitest';
-import { buildContent, content, sources } from '../src/content';
-import { createDisplayWord } from '../src/content/display';
-import type { Content } from '../src/content/types';
-import { buildSynonymGraph } from '../src/engine/graph';
+import { content } from '../src/content';
 import { buildLayout } from '../src/engine/layout';
-import { planStages } from '../src/engine/level-run';
-import { buildSynonymLinks } from '../src/engine/links';
+import { planRounds } from '../src/engine/level-run';
 import { createRng } from '../src/engine/rng';
+import { GAME_CATALOG } from '../src/games/catalog';
 import { buildOddRound, canHostOdd, isIntruder } from '../src/games/oddOneOut/build';
-import { GAME_CATALOG } from '../src/games/registry';
-import { buildLevelSession } from '../src/games/session';
-import { buildSwapRound, fitsSentence, splitAtHeadword } from '../src/games/swapWord/build';
-import type { GameEnv } from '../src/games/types';
+import { buildSwapRound, fitsSentence, splitAtHeadword, swapSentences } from '../src/games/swapWord/build';
+import type { PlanContext } from '../src/games/types';
 import { buildWordSearchRound } from '../src/games/wordSearch/build';
 import { generateWordSearch, gridLetters, matchSelection, selectionCells } from '../src/games/wordSearch/generate';
+import { ctxFor, envFor, pairs, sessionFor, withReviewedSentences } from './helpers';
 
-const envFor = (c: Content): GameEnv => ({
-  content: c,
-  graph: buildSynonymGraph(c),
-  links: buildSynonymLinks(c),
-  pool: c.entries,
-  decisions: {},
-  displayWord: createDisplayWord(c),
-});
-const env = envFor(content);
+const env = envFor();
 const layout = buildLayout(content);
-const world2Sessions = layout.worlds[1]!.stations.flatMap((s) => s.levels).map((l) =>
-  buildLevelSession(l, content, {}, 'w2'),
-);
+const world2Sessions = layout.worlds[1]!.stations.flatMap((s) => s.levels).map((l) => {
+  const s = sessionFor(l, {}, 'w2');
+  return { ...s, items: pairs(s.items) };
+});
 const difficulty = { tier: 2 as const, options: 4 as const };
+const gamesPlanned = (world: 1 | 2, items: (typeof world2Sessions)[number]['items'], ctx: PlanContext, seeds = 40) => {
+  const seen = new Set<string>();
+  for (let seed = 0; seed < seeds; seed++)
+    for (const r of planRounds(world, GAME_CATALOG, items, createRng(seed), ctx)) seen.add(r.gameId);
+  return seen;
+};
 
 describe('World 2 level planning', () => {
-  it('chooses each stage from World 1 and World 2 games', () => {
-    const seen = new Set<string>();
-    for (let seed = 0; seed < 40; seed++) {
-      for (const g of planStages(2, GAME_CATALOG, world2Sessions[0]!.items, createRng(seed), content)) seen.add(g);
-    }
-    expect(seen).toEqual(new Set(['pickSynonym', 'wordSearch', 'dragPairs', 'oddOneOut', 'memory']));
+  it('chooses each stage from World 1 and World 2 games, swapWord included by default', () => {
+    expect(gamesPlanned(2, world2Sessions[0]!.items, ctxFor())).toEqual(
+      new Set(['pickSynonym', 'wordSearch', 'dragPairs', 'oddOneOut', 'memory', 'swapWord']),
+    );
   });
 
-  it('leaves swapWord out until sentences are reviewed, then includes it', () => {
-    const reviewed = buildContent({
-      ...sources,
-      sentences: {
-        ...sources.sentences,
-        sentences: sources.sentences.sentences.map((s) => ({ ...s, reviewed: true })),
-      },
-    });
-    const items = buildLevelSession(layout.worlds[1]!.stations[0]!.levels[0]!, reviewed, {}, 'x').items;
-    const seen = new Set<string>();
-    for (let seed = 0; seed < 40; seed++)
-      for (const g of planStages(2, GAME_CATALOG, items, createRng(seed), reviewed)) seen.add(g);
-    expect(seen.has('swapWord')).toBe(true);
-    for (let seed = 0; seed < 40; seed++)
-      expect(planStages(2, GAME_CATALOG, items, createRng(seed), content)).not.toContain('swapWord');
+  it('leaves swapWord out under "reviewed sentences only" until sentences are reviewed', () => {
+    const items = world2Sessions[0]!.items;
+    expect(gamesPlanned(2, items, ctxFor(content, [], true)).has('swapWord')).toBe(false);
+    const reviewed = withReviewedSentences(content);
+    expect(gamesPlanned(2, items, ctxFor(reviewed, [], true)).has('swapWord')).toBe(true);
+  });
+
+  it('never uses a reported sentence, unless it was approved', () => {
+    const item = world2Sessions[0]!.items[0]!;
+    const [sentence] = swapSentences(ctxFor(), item);
+    expect(sentence).toBeDefined();
+    expect(swapSentences(ctxFor(content, [sentence!.id]), item)).not.toContainEqual(sentence);
   });
 
   it('keeps World 1 levels on World 1 games', () => {
     for (let seed = 0; seed < 20; seed++) {
-      expect(planStages(1, GAME_CATALOG, world2Sessions[0]!.items, createRng(seed), content)).toEqual([
-        'pickSynonym',
-        'dragPairs',
-        'memory',
-      ]);
+      expect(
+        planRounds(1, GAME_CATALOG, world2Sessions[0]!.items, createRng(seed), ctxFor()).map((r) => r.gameId),
+      ).toEqual(['pickSynonym', 'dragPairs', 'memory']);
     }
   });
 });
@@ -117,16 +105,12 @@ describe('swapWord', () => {
     }
   });
 
-  it('uses reviewed sentences only, and offers exactly one word that fits', () => {
+  it('under "reviewed sentences only" needs reviewed sentences, and offers exactly one word that fits', () => {
     const items = world2Sessions[0]!.items;
-    expect(buildSwapRound(env, items, difficulty, createRng(1)).questions).toEqual([]);
-    const reviewed = buildContent({
-      ...sources,
-      sentences: {
-        ...sources.sentences,
-        sentences: sources.sentences.sentences.map((s) => ({ ...s, reviewed: true })),
-      },
-    });
+    expect(
+      buildSwapRound(envFor(content, ctxFor(content, [], true)), items, difficulty, createRng(1)).questions,
+    ).toEqual([]);
+    const reviewed = withReviewedSentences(content);
     const round = buildSwapRound(envFor(reviewed), items, difficulty, createRng(1));
     expect(round.questions.length).toBeGreaterThan(0);
     for (const q of round.questions) {
