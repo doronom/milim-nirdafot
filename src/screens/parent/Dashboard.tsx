@@ -1,10 +1,14 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { WORLDS } from '../../config/game';
 import { dailyGoal, minutesOn, recentMinutes } from '../../engine/activity';
 import { BOXES, boxCounts, masteredKeys, strugglingKeys, wordSummary } from '../../engine/dashboard';
 import { dayKey } from '../../engine/dates';
 import { isLevelDone, isWorldUnlocked, worldStats } from '../../engine/progress';
 import { useGameData } from '../../state/content-context';
+import { failedSincePreviousEntry, listLog } from '../../state/parent-log';
 import { useProgress } from '../../state/progress-context';
+import { useStore } from '../../state/store-context';
 import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
 import { ProgressBar } from '../../ui/ProgressBar';
@@ -31,6 +35,15 @@ const BOX_NOTE: Record<number, string> = {
 export function Dashboard() {
   const { progress } = useProgress();
   const { layout, resolver, displayWord } = useGameData();
+  const store = useStore();
+  const [failed, setFailed] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    void listLog(store).then((log) => !cancelled && setFailed(failedSincePreviousEntry(log)));
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
   const today = dayKey();
   const goal = dailyGoal(progress);
   const todayMinutes = minutesOn(progress, today);
@@ -55,6 +68,15 @@ export function Dashboard() {
       title="מבט כולל"
       subtitle={progress.settings.childName ? `המסע של ${progress.settings.childName}` : undefined}
     >
+      {failed > 0 && (
+        <Link to="/parent/log" className={styles.error} role="alert">
+          <strong>
+            <Icon name="lock" size="sm" /> {failed === 1 ? 'ניסיון כניסה שגוי אחד' : `${failed} ניסיונות כניסה שגויים`}{' '}
+            מאז הכניסה הקודמת
+          </strong>
+          <span>לפרטים ביומן הפעילות</span>
+        </Link>
+      )}
       <div className={styles.grid2}>
         <section className={styles.card} aria-label="דקות היום">
           <span className={styles.muted}>

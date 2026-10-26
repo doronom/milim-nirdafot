@@ -54,8 +54,17 @@ Around the games: learn cards, adaptive difficulty, Leitner spaced repetition (b
 levels, placement challenge, XP and ranks, sticker album, streak with a weekly freeze, two-player duel on one device,
 speed challenge, and a certificate per world.
 
-The **parent area** (lock icon on the map: hold 3 seconds, then answer a multiplication) has a dashboard, settings,
-"my new words" with voice recording, content review and editing, and backup.
+The **parent area** (lock icon on the map) has a dashboard, settings, "my new words" with voice recording, content
+review and editing, backup, and an activity log.
+
+**Parent lock.** Entry takes a 3-second hold, then a parent passcode of at least 8 characters (any letters, digits or
+symbols; no single repeated character or simple sequence), set on the first visit to the parent area. Only a salted
+PBKDF2-SHA256 hash (600,000 iterations, WebCrypto) is stored, never the passcode. Three wrong attempts lock entry for
+1 minute, then 5, 15 and 60; the lockout survives restarts. At setup a one-time recovery code is shown: it resets a
+forgotten passcode. Without the passcode or the recovery code, the only way back in is clearing the site data in the
+browser, which also deletes the child's progress (keep a backup). Every entry, failed attempt and change in the parent
+area is recorded in the activity log on the device. Backups never contain the passcode, and importing one keeps this
+device's passcode.
 
 ## Development
 

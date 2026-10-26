@@ -17,6 +17,7 @@ import { dayKey } from '../../engine/dates';
 import { useContent } from '../../state/content-context';
 import { useStore } from '../../state/store-context';
 import { useContentEditor } from '../../state/use-content-editor';
+import { useParentLog } from '../../state/use-parent-log';
 import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
 import { EditForm } from './EditForm';
@@ -40,6 +41,7 @@ export function ContentReview() {
   const [tab, setTab] = useState<Tab>('reports');
   const [queues, setQueues] = useState<Queues>({ pairs: [], sentences: [], disputes: [] });
   const [exported, setExported] = useState(false);
+  const log = useParentLog();
 
   const loadQueues = useCallback(async () => {
     const [pairs, sentences, disputes] = await Promise.all([
@@ -80,6 +82,7 @@ export function ContentReview() {
       `word-quest-content-changes-${dayKey()}.json`,
     );
     setExported(true);
+    log('יוצא קובץ שינויי תוכן');
   };
 
   return (
@@ -122,15 +125,22 @@ export function ContentReview() {
           queues={queues}
           onDecidePair={async (id, status) => {
             await decideReport(store, id, status);
+            const r = queues.pairs.find((x) => x.id === id);
+            log(
+              `דיווח "גם זו תשובה נכונה" (${r?.targetWord} / ${r?.word}): ${status === 'accepted' ? 'אושר כנרדפת' : 'נדחה'}`,
+            );
             await reload();
             await refresh();
           }}
           onDecideSentence={async (id, status) => {
             await decideSentenceReport(store, id, status);
+            const text = data.full.sentences.find((s) => s.id === id)?.text ?? id;
+            log(`דיווח על משפט "${text}": ${status === 'kept' ? 'נשאר' : 'הוסר'}`);
             await reload();
           }}
           onDecideDispute={async (d, status) => {
             await decideItemDispute(store, d.itemKey, d.answer, status);
+            log(`ערעור על תשובה (${d.answer}): ${status === 'accepted' ? 'הילד צודק' : 'נדחה'}`);
             await reload();
           }}
         />
@@ -374,16 +384,28 @@ function ItemCard({ item, decisions }: { item: ReviewItem; decisions: boolean })
         <div className={styles.actions}>
           {decisions && !item.decision && (
             <>
-              <button type="button" className={styles.linkButton} onClick={() => void run(decide(item.id, 'approved'))}>
+              <button
+                type="button"
+                className={styles.linkButton}
+                onClick={() => void run(decide(item.id, 'approved', item.kind))}
+              >
                 <Icon name="check" size="sm" /> לאשר
               </button>
-              <button type="button" className={styles.linkButton} onClick={() => void run(decide(item.id, 'rejected'))}>
+              <button
+                type="button"
+                className={styles.linkButton}
+                onClick={() => void run(decide(item.id, 'rejected', item.kind))}
+              >
                 <Icon name="close" size="sm" /> לדחות
               </button>
             </>
           )}
           {decisions && item.decision && (
-            <button type="button" className={styles.linkButton} onClick={() => void run(decide(item.id, null))}>
+            <button
+              type="button"
+              className={styles.linkButton}
+              onClick={() => void run(decide(item.id, null, item.kind))}
+            >
               <Icon name="refresh" size="sm" /> ביטול ההחלטה
             </button>
           )}

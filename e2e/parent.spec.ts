@@ -1,17 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
-import { hold, openParent, progress, readKey, seed, today } from './helpers';
+import { openParent, progress, readKey, seed, today } from './helpers';
 
 const card = (box: number, lapses = 0) => ({ box, due: '2026-01-01', seen: 3, lapses, lastSeen: '2026-01-01' });
-
-test('the gate keeps the child out until a 3-second hold and the right answer', async ({ page }) => {
-  await seed(page, { progress: progress() });
-  await page.goto('./#/parent');
-  await hold(page, 1000);
-  await expect(page.getByText('שאלת חשבון')).toHaveCount(0);
-  await openParent(page);
-  await expect(page.getByText('דקות משחק בשבוע האחרון')).toBeVisible();
-});
 
 test('dashboard shows play time and the words to strengthen', async ({ page }) => {
   await seed(page, {

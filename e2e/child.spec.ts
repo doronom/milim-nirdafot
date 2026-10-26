@@ -42,7 +42,7 @@ test('works offline once loaded: reload without a network', async ({ page, conte
   await expect(page.getByRole('article', { name: /כרטיס לימוד/ })).toBeVisible();
   // The parent area loads on first use; it is precached too.
   await page.goto('./#/parent');
-  await expect(page.getByRole('heading', { name: 'שער בקרת הורים' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'כניסה לאזור ההורים' })).toBeVisible();
   await context.setOffline(false);
 });
 

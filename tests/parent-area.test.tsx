@@ -5,33 +5,52 @@ import { App } from '../src/app/App';
 import type { ContentOverrides } from '../src/content/overrides';
 import { applyTokens } from '../src/design/tokens';
 import { initialProgress, type Progress } from '../src/engine/progress';
+import { newRecoveryCode } from '../src/engine/passcode';
+import { setupLock } from '../src/state/parent-lock';
 import { memoryStore, type KeyValueStore } from '../src/storage/kv';
 
 const started = (extra: Partial<Progress> = {}): Progress => ({ ...initialProgress(), onboarded: true, ...extra });
 
-/** Renders the app at a hash; the progress lives in the store so screens read and write it like on a device. */
-async function renderAt(hash: string, progress: Progress = started(), store: KeyValueStore = memoryStore()) {
-  await store.set('progress', progress);
-  window.location.hash = hash;
-  applyTokens();
-  render(<App store={store} />);
+/** The passcode in tests (the lock is stored with a low PBKDF2 cost so tests stay fast). */
+const PASS = 'Tiger&Moon7';
+const FAST = 1000;
+
+/** A store whose parent passcode is already set. */
+async function lockedStore(): Promise<KeyValueStore> {
+  const store = memoryStore();
+  await setupLock(store, PASS, newRecoveryCode(), { iterations: FAST });
   return store;
 }
 
-/** Passes the gate: holds the button for 3 seconds, then answers the multiplication on the keypad. */
-async function openGate() {
-  const hold = await screen.findByRole('button', { name: /החזיקו לחוץ/ });
+/** Renders the app at a hash; the progress lives in the store so screens read and write it like on a device. */
+async function renderAt(hash: string, progress: Progress = started(), store?: KeyValueStore) {
+  const s = store ?? (await lockedStore());
+  await s.set('progress', progress);
+  window.location.hash = hash;
+  applyTokens();
+  render(<App store={s} />);
+  return s;
+}
+
+/** Holds the entry button for `ms` (fake animation frames). */
+async function hold(ms = 3100) {
+  const button = await screen.findByRole('button', { name: /החזיקו לחוץ/ });
   vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame', 'performance'] });
-  fireEvent.pointerDown(hold);
-  await act(async () => vi.advanceTimersByTime(3100));
-  fireEvent.pointerUp(hold);
+  fireEvent.pointerDown(button);
+  await act(async () => vi.advanceTimersByTime(ms));
+  fireEvent.pointerUp(button);
   vi.useRealTimers();
-  const [a, b] = screen
-    .getByText(/× .* = \?/)
-    .textContent!.match(/\d+/g)!
-    .map(Number) as [number, number];
-  for (const ch of String(a * b)) fireEvent.click(screen.getByRole('button', { name: ch }));
-  fireEvent.click(screen.getByRole('button', { name: /אימות וכניסה/ }));
+}
+
+async function typePasscode(value: string) {
+  fireEvent.change(await screen.findByLabelText('קוד הורים'), { target: { value } });
+  fireEvent.click(screen.getByRole('button', { name: 'כניסה' }));
+}
+
+/** Passes the lock: the 3-second hold, then the passcode. */
+async function openGate() {
+  await hold();
+  await typePasscode(PASS);
 }
 
 beforeEach(() => {
@@ -44,34 +63,86 @@ afterEach(() => {
   window.location.hash = '';
 });
 
-describe('parent gate', () => {
-  it('needs a full 3-second hold before the question', async () => {
+describe('parent lock', () => {
+  it('needs a full 3-second hold before the passcode field', async () => {
     await renderAt('#/parent');
-    const hold = await screen.findByRole('button', { name: /החזיקו לחוץ/ });
-    vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame', 'performance'] });
-    fireEvent.pointerDown(hold);
-    await act(async () => vi.advanceTimersByTime(1500));
-    fireEvent.pointerUp(hold);
-    vi.useRealTimers();
-    expect(screen.queryByText('שאלת חשבון')).toBeNull();
-    expect(hold.textContent).toContain('0%');
+    await hold(1500);
+    expect(screen.queryByLabelText('קוד הורים')).toBeNull();
+    await hold(3100);
+    expect(await screen.findByLabelText('קוד הורים')).toBeTruthy();
   });
 
-  it('a wrong answer asks a new question; the right one opens the dashboard', async () => {
-    await renderAt('#/parent');
-    const hold = await screen.findByRole('button', { name: /החזיקו לחוץ/ });
-    vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame', 'performance'] });
-    fireEvent.pointerDown(hold);
-    await act(async () => vi.advanceTimersByTime(3100));
-    vi.useRealTimers();
-    fireEvent.click(screen.getByRole('button', { name: '1' }));
-    fireEvent.click(screen.getByRole('button', { name: /אימות וכניסה/ }));
-    expect(await screen.findByText('לא נכון. הנה תרגיל חדש.')).toBeTruthy();
-    cleanup();
-    await renderAt('#/parent');
-    await openGate();
+  it('first entry sets a passcode twice, shows a one-time recovery code, and stores only hashes', async () => {
+    const store = memoryStore();
+    await renderAt('#/parent', started(), store);
+    await hold();
+    const [first, second] = await screen.findAllByLabelText(/קוד הורים|שוב, לאישור/);
+    expect(first!.getAttribute('type')).toBe('password');
+    expect(first!.getAttribute('autocomplete')).toBe('off');
+    expect(first!.getAttribute('autocorrect')).toBe('off');
+    fireEvent.click(screen.getAllByRole('button', { name: 'הצגת הקוד' })[0]!);
+    expect(first!.getAttribute('type')).toBe('text');
+
+    fireEvent.change(first!, { target: { value: '12345678' } });
+    fireEvent.change(second!, { target: { value: '12345678' } });
+    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('רצף פשוט');
+
+    fireEvent.change(first!, { target: { value: 'מסע-המילים!7' } });
+    fireEvent.change(second!, { target: { value: 'מסע-המילים!8' } });
+    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('לא זהים');
+
+    fireEvent.change(second!, { target: { value: 'מסע-המילים!7' } });
+    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
+    const code = (await screen.findByLabelText('קוד השחזור')).textContent!;
+    expect(code).toMatch(/^([A-Z0-9]{4}-){4}[A-Z0-9]{4}$/);
+    expect(screen.getByText(/למחוק את נתוני האתר/)).toBeTruthy();
+    // Nothing is saved until the parent confirms writing the code down.
+    expect(await store.get('parent:lock')).toBeUndefined();
+    const finish = screen.getByRole('button', { name: 'סיום וכניסה' });
+    expect(finish.hasAttribute('disabled')).toBe(true);
+    fireEvent.click(screen.getByRole('checkbox', { name: /רשמתי את קוד השחזור/ }));
+    fireEvent.click(finish);
     expect(await screen.findByText('דקות משחק בשבוע האחרון')).toBeTruthy();
-    expect(screen.getByRole('navigation', { name: 'ניווט אזור ההורים' })).toBeTruthy();
+    const saved = JSON.stringify(await store.get('parent:lock'));
+    expect(saved).toContain('PBKDF2-SHA256');
+    expect(saved).not.toContain('מסע-המילים');
+    expect(saved).not.toContain(code);
+  });
+
+  it('a wrong passcode counts down to a lockout that refuses even the right one', async () => {
+    await renderAt('#/parent');
+    await hold();
+    await typePasscode('wrong-pass-1');
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toContain('נותרו 2 ניסיונות'));
+    await typePasscode('wrong-pass-2');
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toContain('נותר ניסיון אחד'));
+    await typePasscode('wrong-pass-3');
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toMatch(/לנסות שוב בעוד/));
+    expect((screen.getByLabelText('קוד הורים') as HTMLInputElement).disabled).toBe(true);
+  });
+
+  it('shows failed attempts since the previous entry on the dashboard, and logs entries and changes', async () => {
+    const store = await lockedStore();
+    await renderAt('#/parent', started(), store);
+    await openGate();
+    await screen.findByText('דקות משחק בשבוע האחרון');
+    cleanup();
+    await renderAt('#/parent', started(), store);
+    await hold();
+    await typePasscode('wrong-pass-1');
+    await screen.findByRole('alert');
+    await typePasscode(PASS);
+    await screen.findByText('דקות משחק בשבוע האחרון');
+    expect((await screen.findByRole('alert')).textContent).toContain('ניסיון כניסה שגוי אחד');
+
+    fireEvent.click(screen.getByRole('link', { name: 'הגדרות' }));
+    fireEvent.click(await screen.findByRole('switch', { name: /פתיחת כל השלבים/ }));
+    fireEvent.click(screen.getByRole('link', { name: 'יומן הפעילות' }));
+    expect(await screen.findByText('הגדרה: פתיחת כל השלבים והעולמות: הופעל')).toBeTruthy();
+    expect(screen.getByText('ניסיון כניסה עם קוד שגוי')).toBeTruthy();
+    expect(screen.getAllByText('כניסה לאזור ההורים')).toHaveLength(2);
   });
 });
 
