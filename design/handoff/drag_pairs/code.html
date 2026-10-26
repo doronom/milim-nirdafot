@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - גרור זוגות מילים</title>
+<!-- Google Fonts: Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#2d3449",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-bright": "#31394d",
+            "surface-container-lowest": "#060e20",
+            "tertiary": "#4ae176",
+            "outline-variant": "#3e4850",
+            "on-error": "#690005",
+            "primary-container": "#0ea5e9",
+            "on-tertiary-container": "#003c16",
+            "primary": "#89ceff",
+            "tertiary-container": "#00b351",
+            "secondary-fixed": "#ffddb8",
+            "background": "#0b1326",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-tertiary": "#003915",
+            "inverse-surface": "#dae2fd",
+            "primary-fixed": "#c9e6ff",
+            "secondary-container": "#ee9800",
+            "on-surface-variant": "#bec8d2",
+            "surface": "#0b1326",
+            "on-primary-fixed": "#001e2f",
+            "outline": "#88929b",
+            "surface-tint": "#89ceff",
+            "secondary-fixed-dim": "#ffb95f",
+            "surface-dim": "#0b1326",
+            "surface-container-highest": "#2d3449",
+            "on-secondary-container": "#5b3800",
+            "on-secondary": "#472a00",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#002109",
+            "on-primary-container": "#003751",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-primary": "#00344d",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-fixed-variant": "#004c6e",
+            "surface-container-high": "#222a3d",
+            "on-background": "#dae2fd",
+            "inverse-on-surface": "#283044",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#dae2fd",
+            "on-secondary-fixed": "#2a1700",
+            "surface-container": "#171f33",
+            "primary-fixed-dim": "#89ceff",
+            "surface-container-low": "#131b2e",
+            "secondary": "#ffb95f",
+            "inverse-primary": "#006591",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-lg": "1rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-md": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    @keyframes beamPulse {
+      0%, 100% { stroke-dashoffset: 0; opacity: 0.95; }
+      50% { stroke-dashoffset: 16; opacity: 0.7; }
+    }
+    .beam-path {
+      stroke-dasharray: 6 3;
+      animation: beamPulse 2.5s linear infinite;
+    }
+    @keyframes draggingFloat {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      50% { transform: translateY(-4px) rotate(1.5deg); }
+    }
+    .drag-floating {
+      animation: draggingFloat 2s ease-in-out infinite;
+    }
+    @keyframes bounceShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(3px); }
+    }
+    .shake-anim {
+      animation: bounceShake 0.6s ease-in-out;
+    }
+    @keyframes targetGlowPulse {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.4), inset 0 0 14px rgba(14, 165, 233, 0.2); }
+      50% { box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.8), inset 0 0 22px rgba(14, 165, 233, 0.35); }
+    }
+    .target-highlight {
+      animation: targetGlowPulse 1.8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0f1d] text-on-surface antialiased font-body-md flex justify-center selection:bg-primary-container selection:text-white min-h-screen">
+<!-- 390x844 Mobile Device Viewport Container -->
+<div class="w-full max-w-[390px] min-h-[844px] bg-[#0a0f1d] relative flex flex-col justify-between overflow-x-hidden border-x border-outline-variant/30 pb-20 shadow-2xl">
+<!-- TOP APP BAR (Shared Components JSON Anchor) -->
+<header class="bg-surface-container dark:bg-surface-container border-b border-outline-variant dark:border-outline-variant fixed top-0 left-0 right-0 max-w-[390px] mx-auto z-50 h-14 flex items-center justify-between px-margin">
+<!-- Trailing Action: 120 XP / In-game XP -->
+<div class="flex items-center gap-1.5 bg-surface-container-high px-space-sm py-1 rounded-full border border-secondary-container/40">
+<span class="material-symbols-outlined text-secondary material-symbols-fill text-[18px]">military_tech</span>
+<span class="font-label-md text-label-md text-secondary font-bold">145 XP</span>
+</div>
+<!-- Center Headline: נמל היסודות -->
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">נמל היסודות</h1>
+</div>
+<!-- Leading Navigation Icon (Arrow Forward in RTL = Return/Exit) -->
+<button aria-label="חזרה למפה" class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center border-b-2 border-outline-variant active:translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined text-primary text-[20px]">arrow_forward</span>
+</button>
+</header>
+<!-- CONTENT WRAPPER -->
+<main class="flex-1 flex flex-col pt-16 px-margin">
+<!-- QUEST HUD PROGRESS & STREAK BAR -->
+<section class="mt-space-sm bg-surface-container-low/90 rounded-xl p-space-sm border border-outline-variant/40 backdrop-blur-sm shadow-inner">
+<div class="flex items-center justify-between gap-3">
+<!-- Stage Progress Indicators -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[15px]">explore</span>
+                שלב 3 מתוך 4
+              </span>
+<span class="font-label-sm text-label-sm text-primary font-bold">75%</span>
+</div>
+<!-- Segmented Gauge -->
+<div class="w-full bg-surface-container-highest rounded-full h-2.5 p-0.5 flex gap-1">
+<div class="h-full bg-tertiary-container rounded-full flex-1"></div>
+<div class="h-full bg-tertiary-container rounded-full flex-1"></div>
+<div class="h-full bg-primary-container rounded-full flex-1 shadow-[0_0_8px_rgba(14,165,233,0.8)]"></div>
+<div class="h-full bg-surface-variant rounded-full flex-1 opacity-50"></div>
+</div>
+</div>
+<!-- Streak Badge -->
+<div class="flex items-center gap-1 bg-surface-container-high px-2.5 py-1.5 rounded-lg border-b-2 border-secondary-container">
+<span class="material-symbols-outlined text-secondary material-symbols-fill text-[18px]">local_fire_department</span>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-secondary font-extrabold leading-none">3</span>
+<span class="text-[9px] text-secondary font-semibold leading-none">רצף</span>
+</div>
+</div>
+</div>
+</section>
+<!-- QUEST PROMPT HEADER -->
+<div class="my-space-md bg-surface-container-high/60 px-space-md py-2.5 rounded-xl border-r-4 border-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0">touch_app</span>
+<p class="font-label-md text-label-md text-on-surface font-medium leading-tight">
+          גרור כל מילה אל המילה הנרדפת שלה כדי לחבר את הצמד:
+        </p>
+</div>
+<!-- EXPEDITION CATEGORY BADGE -->
+<div class="flex items-center justify-between mb-space-sm px-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[16px]">psychology</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">קטגוריה:</span>
+<span class="bg-surface-variant/80 text-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-md font-bold">רגשות ותחושות</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">סייר יסודות #14</span>
+</div>
+<!-- GAME INTERACTION ARENA (Two RTL Columns with SVG Link Beams) -->
+<div class="relative w-full flex-1 my-1">
+<!-- SVG Canvas for Pairing Beam & Drag Vector -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" preserveaspectratio="none" viewbox="0 0 358 310">
+<defs>
+<!-- Glowing Gradients -->
+<lineargradient id="energyBeamSolved" x1="100%" x2="0%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#4ae176" stop-opacity="1"></stop>
+<stop offset="50%" stop-color="#00b351" stop-opacity="0.9"></stop>
+<stop offset="100%" stop-color="#4ae176" stop-opacity="1"></stop>
+</lineargradient>
+<lineargradient id="dragBeam" x1="100%" x2="0%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#89ceff" stop-opacity="0.4"></stop>
+</lineargradient>
+<filter height="140%" id="glowGreen" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3.5"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+<filter height="140%" id="glowCyan" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- SOLVED PAIR 1 BEAM: שמחה (RTL Right/Col 1) to חדוה (Col 2) -->
+<path class="beam-path" d="M 235 34 C 180 34, 180 34, 122 34" fill="none" filter="url(#glowGreen)" stroke="url(#energyBeamSolved)" stroke-width="4"></path>
+<!-- Solved Node Gems -->
+<circle cx="235" cy="34" fill="#4ae176" r="5"></circle>
+<circle cx="122" cy="34" fill="#4ae176" r="5"></circle>
+<!-- DRAGGING PAIR 2 DYNAMIC ARROW/TRAIL: כעס (Col 1 dragged) aiming to זעם (Col 2 target) -->
+<path d="M 230 110 Q 170 120, 130 110" fill="none" filter="url(#glowCyan)" stroke="url(#dragBeam)" stroke-dasharray="5 5" stroke-width="3"></path>
+<!-- Arrow head toward target slot -->
+<polygon fill="#0ea5e9" filter="url(#glowCyan)" points="122,110 134,104 134,116"></polygon>
+</svg>
+<!-- Column Grid: Left=Target Source Words, Right=Synonym Receptor Slots -->
+<div class="grid grid-cols-2 gap-space-lg relative z-20">
+<!-- COLUMN 1: מילות מקור (Source Words) -->
+<div class="flex flex-col gap-space-md">
+<!-- 1. שִׂמְחָה: Paired & Solved State -->
+<div class="relative group">
+<div class="w-full h-14 bg-surface-container-high rounded-xl border-2 border-tertiary-container shadow-[0_0_12px_rgba(74,225,118,0.35)] flex items-center justify-between px-3 border-b-4 border-b-on-tertiary-container">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-[12px]">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</span>
+<span class="font-headline-sm text-headline-sm font-bold text-tertiary tracking-wide">שִׂמְחָה</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px]">lock</span>
+</div>
+<!-- Synced indicator -->
+<span class="absolute -top-1.5 -right-1 text-[10px] bg-tertiary-container text-white px-1.5 py-0.2 rounded-full font-bold">חובר</span>
+</div>
+<!-- 2. כַּעַס: Active Dragging State -->
+<div class="relative">
+<!-- Empty slot ghost underneath -->
+<div class="w-full h-14 bg-surface-container-lowest/80 rounded-xl border-2 border-dashed border-outline-variant/60 flex items-center justify-center">
+<span class="text-[11px] text-outline font-semibold">גרירה פעילה...</span>
+</div>
+<!-- Floating Dragged Chip -->
+<div class="absolute -top-1 -left-2 w-[108%] h-14 bg-surface-bright rounded-xl border-2 border-primary-container shadow-[0_8px_20px_rgba(14,165,233,0.45)] flex items-center justify-between px-3.5 border-b-4 border-b-on-primary-container z-30 drag-floating cursor-grab">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">drag_indicator</span>
+<span class="font-headline-sm text-headline-sm font-bold text-white tracking-wide">כַּעַס</span>
+</div>
+<span class="material-symbols-outlined text-primary animate-pulse text-[20px]">near_me</span>
+</div>
+</div>
+<!-- 3. פַּחַד: Idle State -->
+<div class="w-full h-14 bg-surface-container rounded-xl border border-outline-variant hover:border-primary/50 flex items-center justify-between px-3.5 border-b-4 border-b-surface-variant active:translate-y-0.5 transition-all cursor-grab shadow-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline-variant text-[16px]">radio_button_unchecked</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-wide">פַּחַד</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">pan_tool</span>
+</div>
+<!-- 4. בּוּשָׁה: Wrong bounce-back state -->
+<div class="relative">
+<div class="w-full h-14 bg-error-container/40 rounded-xl border-2 border-error shake-anim flex items-center justify-between px-3.5 border-b-4 border-b-on-error shadow-[0_0_14px_rgba(255,180,171,0.3)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">close</span>
+<span class="font-headline-sm text-headline-sm font-bold text-error tracking-wide">בּוּשָׁה</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-[10px] text-error font-bold">לא מתאים</span>
+<span class="material-symbols-outlined text-error text-[16px]">sync_problem</span>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUMN 2: מילים נרדפות / משבצות יעד (Synonym Target Slots) -->
+<div class="flex flex-col gap-space-md">
+<!-- 1. חֶדְוָה: Solved & Locked Receptor -->
+<div class="w-full h-14 bg-surface-container-high rounded-xl border-2 border-tertiary-container shadow-[0_0_12px_rgba(74,225,118,0.35)] flex items-center justify-between px-3 border-b-4 border-b-on-tertiary-container">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary material-symbols-fill text-[18px]">verified</span>
+<span class="font-headline-sm text-headline-sm font-bold text-tertiary tracking-wide">חֶדְוָה</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px]">link</span>
+</div>
+<!-- 2. זַעַם: Highlighted Target Drop Zone (Waiting for כעס) -->
+<div class="w-full h-14 bg-primary-container/15 rounded-xl border-2 border-dashed border-primary target-highlight flex items-center justify-between px-3 border-b-4 border-b-primary-container">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary tracking-wide">זַעַם</span>
+</div>
+<div class="flex items-center gap-1 bg-primary-container/30 px-2 py-0.5 rounded-md border border-primary/40">
+<span class="text-[10px] text-primary-fixed font-bold">שחרר כאן</span>
+<span class="material-symbols-outlined text-primary text-[14px]">south</span>
+</div>
+</div>
+<!-- 3. אֵימָה: Slot ready for 'פחד' -->
+<div class="w-full h-14 bg-surface-container-low rounded-xl border border-dashed border-outline/50 flex items-center justify-between px-3.5 border-b-4 border-b-surface-variant hover:border-outline">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant tracking-wide">אֵימָה</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">touch_app</span>
+</div>
+<!-- 4. כְּלִימָה: Slot for 'בושה' -->
+<div class="w-full h-14 bg-surface-container-low rounded-xl border border-outline-variant flex items-center justify-between px-3.5 border-b-4 border-b-surface-variant">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant tracking-wide">כְּלִימָה</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">lightbulb</span>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM MASCOT FEEDBACK & CONTROLS SECTION -->
+<section class="mt-space-md mb-2 bg-surface-container-high/90 rounded-2xl p-space-md border border-outline-variant/60 shadow-xl relative backdrop-blur-md">
+<div class="flex items-center gap-3">
+<!-- Mascot "מצפוני" Avatar Badge -->
+<div class="relative shrink-0">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-secondary-container via-secondary to-primary-fixed p-0.5 shadow-lg flex items-center justify-center">
+<div class="w-full h-full bg-surface-container-lowest rounded-[14px] flex flex-col items-center justify-center overflow-hidden relative">
+<!-- Compass Explorer Mascot Graphic -->
+<span class="material-symbols-outlined text-secondary text-[32px] material-symbols-fill animate-bounce">explore</span>
+<div class="absolute -bottom-1 w-full bg-secondary-container/80 text-[8px] text-center font-bold text-on-secondary-container py-0.2">
+                  מַצְפּוֹנִי
+                </div>
+</div>
+</div>
+<!-- Cheering Stars Sparkle -->
+<span class="material-symbols-outlined text-secondary material-symbols-fill absolute -top-1 -right-1 text-[16px]">arrow_back_ios_new</span>
+</div>
+<!-- Speech Dialog Bubble -->
+<div class="flex-1 bg-surface-variant/70 rounded-xl p-2.5 border border-outline-variant/40 relative">
+<!-- Bubble tail RTL -->
+<div class="absolute top-1/2 -right-1.5 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[7px] border-l-surface-variant/70"></div>
+<p class="font-label-md text-label-md text-on-surface font-medium leading-snug">
+              ״כמעט שם! נשאר רק עוד זוג אחד להשלמת המפה!״
+            </p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[11px] text-tertiary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">add_circle</span>
+                +25 XP לסיום מושלם
+              </span>
+</div>
+</div>
+<!-- Reset / Hint Tool Button -->
+<div class="flex flex-col gap-1.5 shrink-0">
+<button class="w-10 h-10 rounded-xl bg-surface-container-highest text-secondary border-b-2 border-secondary-container flex items-center justify-center active:translate-y-0.5 transition-transform" title="רמז">
+<span class="material-symbols-outlined text-[20px] material-symbols-fill">lightbulb</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface-variant border-b-2 border-outline flex items-center justify-center active:translate-y-0.5 transition-transform" title="איפוס לוח">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BOTTOM NAVIGATION BAR (Shared Components JSON Anchor) -->
+<!-- Destination Rule: 'הרפתקה' is active for the current Quest/Mini-game -->
+<nav class="bg-surface-container-high dark:bg-surface-container-high border-t border-outline-variant dark:border-outline-variant fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-space-xs max-w-[390px] mx-auto">
+<!-- 1. מפה (Map) - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]">explore</span>
+<span class="font-label-sm text-label-sm">מפה</span>
+</a>
+<!-- 2. הרפתקה (Adventure / Mini-game) - ACTIVE STATE -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-space-md py-space-xs border-b-4 border-on-primary-container active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px] material-symbols-fill">swords</span>
+<span class="font-label-sm text-label-sm font-bold">הרפתקה</span>
+</a>
+<!-- 3. אוצרות (Treasures) - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]">auto_stories</span>
+<span class="font-label-sm text-label-sm">אוצרות</span>
+</a>
+<!-- 4. פרופיל (Profile) - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[22px]">military_tech</span>
+<span class="font-label-sm text-label-sm">פרופיל</span>
+</a>
+</nav>
+</div>
+</body></html>

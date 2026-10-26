@@ -1,0 +1,4895 @@
+{
+  "meta": {
+    "note": "Generated example sentences, one or two per headword. fits = synonyms that can replace the headword in this sentence as written. Draft: needs parent review."
+  },
+  "sentences": [
+    {
+      "id": "sent-b001-1",
+      "entryId": "b001",
+      "text": "יש לי אהבה גדולה לכלב שלי.",
+      "fits": [
+        "חיבה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b002-1",
+      "entryId": "b002",
+      "text": "הכבאי היה אמיץ ונכנס לבית הבוער.",
+      "fits": [
+        "נועז",
+        "גיבור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b003-1",
+      "entryId": "b003",
+      "text": "אני אסיר תודה לך על העזרה.",
+      "fits": [
+        "מכיר טובה",
+        "מודה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b004-1",
+      "entryId": "b004",
+      "text": "הזקן הרגיש בודד בבית הגדול.",
+      "fits": [
+        "גלמוד",
+        "לבד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b005-1",
+      "entryId": "b005",
+      "text": "הוא הסמיק מרוב בושה.",
+      "fits": [
+        "מבוכה",
+        "כלימה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b006-1",
+      "entryId": "b006",
+      "text": "יש לי געגועים לסבתא שגרה רחוק.",
+      "fits": [
+        "כמיהה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b007-1",
+      "entryId": "b007",
+      "text": "פתחתי את הדלת ופי נפער מרוב הפתעה.",
+      "fits": [
+        "תדהמה",
+        "השתאות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b008-1",
+      "entryId": "b008",
+      "text": "בבוקר אני תמיד ישנוני.",
+      "fits": [
+        "מנומנם",
+        "רדום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b009-1",
+      "entryId": "b009",
+      "text": "אבא היה כועס כי שכחתי לסדר את החדר.",
+      "fits": [
+        "זועם",
+        "רוגז",
+        "נרגז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b010-1",
+      "entryId": "b010",
+      "text": "הוא טרק את הדלת בכעס.",
+      "fits": [
+        "זעם",
+        "רוגז",
+        "חמה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b011-1",
+      "entryId": "b011",
+      "text": "אחרי השאלה הקשה הייתי מבולבל.",
+      "fits": [
+        "אובד עצות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b012-1",
+      "entryId": "b012",
+      "text": "אבא היה מודאג כי איחרתי.",
+      "fits": [
+        "דואג",
+        "חרד",
+        "מוטרד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b013-1",
+      "entryId": "b013",
+      "text": "הייתי מופתע לראות את כל החברים במסיבה.",
+      "fits": [
+        "נדהם",
+        "המום",
+        "משתאה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b014-1",
+      "entryId": "b014",
+      "text": "הגור היה מפוחד והסתתר מתחת למיטה.",
+      "fits": [
+        "מבוהל",
+        "נפחד",
+        "חושש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b015-1",
+      "entryId": "b015",
+      "text": "דני היה מרוצה מהציון שלו.",
+      "fits": [
+        "שבע רצון",
+        "מסופק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b016-1",
+      "entryId": "b016",
+      "text": "הוא היה נבוך כשכולם הסתכלו עליו.",
+      "fits": [
+        "מבויש",
+        "נכלם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b017-1",
+      "entryId": "b017",
+      "text": "לפני ההופעה הייתי נרגש מאוד.",
+      "fits": [
+        "מתרגש",
+        "נלהב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b018-1",
+      "entryId": "b018",
+      "text": "הילד היה סקרן ושאל המון שאלות.",
+      "fits": [
+        "מתעניין",
+        "צמא דעת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b019-1",
+      "entryId": "b019",
+      "text": "אחרי הטיול הארוך הייתי עייף.",
+      "fits": [
+        "יגע",
+        "תשוש",
+        "מותש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b020-1",
+      "entryId": "b020",
+      "text": "כשהחתול נעלם, הרגשתי עצב גדול.",
+      "fits": [
+        "צער",
+        "יגון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b021-1",
+      "entryId": "b021",
+      "text": "הוא היה עצוב כי החבר שלו עבר דירה.",
+      "fits": [
+        "עגום",
+        "מדוכדך",
+        "נוגה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b022-1",
+      "entryId": "b022",
+      "text": "השומר נשאר ערני כל הלילה.",
+      "fits": [
+        "דרוך",
+        "ער"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b023-1",
+      "entryId": "b023",
+      "text": "הוא רעד מפחד כשהאורות כבו.",
+      "fits": [
+        "אימה",
+        "מורא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b024-1",
+      "entryId": "b024",
+      "text": "הים היה רגוע הבוקר.",
+      "fits": [
+        "שליו",
+        "שקט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b025-1",
+      "entryId": "b025",
+      "text": "בגינה של סבא תמיד יש שלווה.",
+      "fits": [
+        "רוגע",
+        "נחת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b026-1",
+      "entryId": "b026",
+      "text": "דני שמח כי קיבל אופניים חדשים.",
+      "fits": [
+        "מאושר",
+        "צוהל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b027-1",
+      "entryId": "b027",
+      "text": "כשהודיעו על הטיול, הכיתה התמלאה שמחה.",
+      "fits": [
+        "אושר",
+        "גיל",
+        "חדווה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b028-1",
+      "entryId": "b028",
+      "text": "יש לי תקווה שמחר נצא לטיול.",
+      "fits": [
+        "ציפייה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b029-1",
+      "entryId": "b029",
+      "text": "הטיול היה ארוך ומעייף.",
+      "fits": [
+        "ממושך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b030-1",
+      "entryId": "b030",
+      "text": "העץ בחצר גבוה ויפה.",
+      "fits": [
+        "נישא",
+        "תמיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b031-1",
+      "entryId": "b031",
+      "text": "ראינו בגן החיות פיל גדול.",
+      "fits": [
+        "ענק",
+        "עצום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b032-1",
+      "entryId": "b032",
+      "text": "החתול נראה דק אחרי המחלה.",
+      "fits": [
+        "רזה",
+        "צנום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b033-1",
+      "entryId": "b033",
+      "text": "העיפרון חד מאוד.",
+      "fits": [
+        "מושחז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b034-1",
+      "entryId": "b034",
+      "text": "הטלפון של אבא חדש ומשוכלל.",
+      "fits": [
+        "חדיש",
+        "עדכני"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b035-1",
+      "entryId": "b035",
+      "text": "המרק חם מדי, חכה רגע.",
+      "fits": [
+        "לוהט",
+        "רותח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b036-1",
+      "entryId": "b036",
+      "text": "החדר היה חשוך ולא ראינו כלום.",
+      "fits": [
+        "אפל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b037-1",
+      "entryId": "b037",
+      "text": "בקיץ השדה יבש לגמרי.",
+      "fits": [
+        "צחיח",
+        "חרב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b038-1",
+      "entryId": "b038",
+      "text": "איזה נוף יפה רואים מההר!",
+      "fits": [
+        "נאה",
+        "מקסים",
+        "מרהיב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b039-1",
+      "entryId": "b039",
+      "text": "המעיל של אחי ישן וקרוע.",
+      "fits": [
+        "בלוי",
+        "משומש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b040-1",
+      "entryId": "b040",
+      "text": "החייל עמד ישר ליד הדגל.",
+      "fits": [
+        "זקוף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b041-1",
+      "entryId": "b041",
+      "text": "השיער שלו מבולגן כשהוא מתעורר.",
+      "fits": [
+        "פרוע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b042-1",
+      "entryId": "b042",
+      "text": "החדר מואר ונעים.",
+      "fits": [
+        "בהיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b043-1",
+      "entryId": "b043",
+      "text": "קיר האבן מחוספס למגע.",
+      "fits": [
+        "לא חלק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b044-1",
+      "entryId": "b044",
+      "text": "הסל מלא בתפוחים.",
+      "fits": [
+        "גדוש",
+        "עמוס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b045-1",
+      "entryId": "b045",
+      "text": "הבגד מלוכלך מבוץ.",
+      "fits": [
+        "מטונף",
+        "מזוהם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b046-1",
+      "entryId": "b046",
+      "text": "החדר של אחותי תמיד מסודר.",
+      "fits": [
+        "מאורגן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b047-1",
+      "entryId": "b047",
+      "text": "קיבלתי כוכב נוצץ ליומן.",
+      "fits": [
+        "מבריק",
+        "זוהר",
+        "מנצנץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b048-1",
+      "entryId": "b048",
+      "text": "המזרן הזה נוקשה מדי.",
+      "fits": [
+        "קשיח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b049-1",
+      "entryId": "b049",
+      "text": "הוא נמוך מכולם בכיתה.",
+      "fits": [
+        "קצר קומה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b050-1",
+      "entryId": "b050",
+      "text": "אחרי המקלחת הכלב נקי.",
+      "fits": [
+        "רחוץ",
+        "מצוחצח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b051-1",
+      "entryId": "b051",
+      "text": "החתול שלנו עבה ופרוותי.",
+      "fits": [
+        "שמנמן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b052-1",
+      "entryId": "b052",
+      "text": "השולחן במטבח עגול.",
+      "fits": [
+        "מעוגל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b053-1",
+      "entryId": "b053",
+      "text": "הבור הזה עמוק מאוד.",
+      "fits": [
+        "תהומי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b054-1",
+      "entryId": "b054",
+      "text": "המסמר עקום ולא נכנס לקיר.",
+      "fits": [
+        "מעוקם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b055-1",
+      "entryId": "b055",
+      "text": "מצאנו מטבע עתיק בחפירות.",
+      "fits": [
+        "קדום",
+        "ישן נושן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b056-1",
+      "entryId": "b056",
+      "text": "התוכי צבעוני ויפה.",
+      "fits": [
+        "ססגוני",
+        "רב צבעים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b057-1",
+      "entryId": "b057",
+      "text": "המעבר בין הסלעים צר מאוד.",
+      "fits": [
+        "דחוק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b058-1",
+      "entryId": "b058",
+      "text": "מצאתי בגינה חרק קטן.",
+      "fits": [
+        "זעיר",
+        "קטנטן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b059-1",
+      "entryId": "b059",
+      "text": "המורה ביקשה סיכום קצר.",
+      "fits": [
+        "תמציתי",
+        "קצרצר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b060-1",
+      "entryId": "b060",
+      "text": "המיץ קר ומרענן.",
+      "fits": [
+        "צונן",
+        "קריר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b061-1",
+      "entryId": "b061",
+      "text": "הבית שלנו קרוב לבית הספר.",
+      "fits": [
+        "סמוך",
+        "צמוד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b062-1",
+      "entryId": "b062",
+      "text": "יש לנו סלון רחב.",
+      "fits": [
+        "מרווח",
+        "נרחב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b063-1",
+      "entryId": "b063",
+      "text": "סבא גר בכפר רחוק.",
+      "fits": [
+        "מרוחק",
+        "נידח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b064-1",
+      "entryId": "b064",
+      "text": "השיער שלי רטוב מהגשם.",
+      "fits": [
+        "לח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b065-1",
+      "entryId": "b065",
+      "text": "הכיסא הזה ריק, אפשר לשבת.",
+      "fits": [
+        "פנוי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b066-1",
+      "entryId": "b066",
+      "text": "הצמר של הכבש רך ונעים.",
+      "fits": [
+        "עדין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b067-1",
+      "entryId": "b067",
+      "text": "הצעצוע שבור ואי אפשר לשחק בו.",
+      "fits": [
+        "הרוס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b068-1",
+      "entryId": "b068",
+      "text": "המגרש שטוח ונוח למשחק.",
+      "fits": [
+        "מישורי",
+        "חלק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b069-1",
+      "entryId": "b069",
+      "text": "עבר יום שלם מאז שראיתי אותו.",
+      "fits": [
+        "תמים",
+        "מלא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b070-1",
+      "entryId": "b070",
+      "text": "הוא אכל בקצב איטי.",
+      "fits": [
+        "מתון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b071-1",
+      "entryId": "b071",
+      "text": "בסיפור, המלך היה אכזרי לתושבים.",
+      "fits": [
+        "קשוח",
+        "רשע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b072-1",
+      "entryId": "b072",
+      "text": "הילד החדש ביישן ולא מדבר הרבה.",
+      "fits": [
+        "מבויש",
+        "חסר ביטחון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b073-1",
+      "entryId": "b073",
+      "text": "סבא כבר בן שמונים, אבל הוא בריא וחזק.",
+      "fits": [
+        "חסון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b074-1",
+      "entryId": "b074",
+      "text": "המוכר היה הגון והחזיר לי את העודף.",
+      "fits": [
+        "ישר",
+        "הוגן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b075-1",
+      "entryId": "b075",
+      "text": "הנהג היה זהיר ליד בית הספר.",
+      "fits": [
+        "נזהר",
+        "שקול"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b076-1",
+      "entryId": "b076",
+      "text": "השכן שלנו זקן ונעים.",
+      "fits": [
+        "קשיש",
+        "ישיש",
+        "מבוגר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b077-1",
+      "entryId": "b077",
+      "text": "השוער זריז ותופס כל כדור.",
+      "fits": [
+        "מהיר",
+        "קל רגליים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b078-1",
+      "entryId": "b078",
+      "text": "מחר אני חופשי, בוא נשחק.",
+      "fits": [
+        "פנוי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b079-1",
+      "entryId": "b079",
+      "text": "הסבל חזק ומרים ארגזים כבדים.",
+      "fits": [
+        "חסון",
+        "עוצמתי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b080-1",
+      "entryId": "b080",
+      "text": "הינשוף בסיפור היה חכם ונתן עצות טובות.",
+      "fits": [
+        "נבון",
+        "פיקח",
+        "חריף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b081-1",
+      "entryId": "b081",
+      "text": "אחרי המחלה הוא היה חלש.",
+      "fits": [
+        "רפה",
+        "תשוש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b082-1",
+      "entryId": "b082",
+      "text": "הוא היה חצוף למורה.",
+      "fits": [
+        "חוצפן",
+        "עז פנים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b083-1",
+      "entryId": "b083",
+      "text": "דני חרוץ ומכין תמיד שיעורי בית.",
+      "fits": [
+        "שקדן",
+        "מתמיד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b084-1",
+      "entryId": "b084",
+      "text": "השכן שלנו טוב לב ועוזר לכולם.",
+      "fits": [
+        "רחום",
+        "רחמן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b085-1",
+      "entryId": "b085",
+      "text": "הזאב בסיפור היה טיפש ונפל בפח.",
+      "fits": [
+        "כסיל",
+        "שוטה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b086-1",
+      "entryId": "b086",
+      "text": "אני מוכן ליציאה.",
+      "fits": [
+        "ערוך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b087-1",
+      "entryId": "b087",
+      "text": "הצייר הצעיר מוכשר מאוד.",
+      "fits": [
+        "כישרוני",
+        "מחונן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b088-1",
+      "entryId": "b088",
+      "text": "הילד אמר תודה, הוא מנומס מאוד.",
+      "fits": [
+        "אדיב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b089-1",
+      "entryId": "b089",
+      "text": "הזמר הזה מפורסם בכל הארץ.",
+      "fits": [
+        "ידוע",
+        "נודע",
+        "מוכר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b090-1",
+      "entryId": "b090",
+      "text": "שמענו סיפור מצחיק.",
+      "fits": [
+        "משעשע",
+        "מבדח",
+        "היתולי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b091-1",
+      "entryId": "b091",
+      "text": "הוא חבר נאמן שתמיד אפשר לסמוך עליו.",
+      "fits": [
+        "אמין",
+        "מהימן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b092-1",
+      "entryId": "b092",
+      "text": "הדוד שלי נדיב ותמיד מביא מתנות.",
+      "fits": [
+        "רחב לב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b093-1",
+      "entryId": "b093",
+      "text": "המוכר בחנות נחמד מאוד.",
+      "fits": [
+        "חביב",
+        "אדיב",
+        "נעים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b094-1",
+      "entryId": "b094",
+      "text": "המדריך סבלני ומסביר שוב ושוב.",
+      "fits": [
+        "ארך אפיים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b095-1",
+      "entryId": "b095",
+      "text": "הגור עליז ומקפץ בכל הבית.",
+      "fits": [
+        "שמח",
+        "שובב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b096-1",
+      "entryId": "b096",
+      "text": "בסיפור, האיכר היה עני ולא היה לו לחם.",
+      "fits": [
+        "דל",
+        "אביון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b097-1",
+      "entryId": "b097",
+      "text": "אבא עסוק עכשיו בעבודה.",
+      "fits": [
+        "טרוד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b098-1",
+      "entryId": "b098",
+      "text": "החתול שלנו עצלן וישן כל היום.",
+      "fits": [
+        "עצל",
+        "בטלן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b099-1",
+      "entryId": "b099",
+      "text": "אחי הקטן עקשן ולא מוותר.",
+      "fits": [
+        "עיקש",
+        "קשה עורף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b100-1",
+      "entryId": "b100",
+      "text": "הסוחר בסיפור היה עשיר מאוד.",
+      "fits": [
+        "אמיד",
+        "מבוסס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b101-1",
+      "entryId": "b101",
+      "text": "הוא פזיז ורץ לכביש בלי להסתכל.",
+      "fits": [
+        "נמהר",
+        "חפוז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b102-1",
+      "entryId": "b102",
+      "text": "אף שזכה בפרס, הוא נשאר צנוע.",
+      "fits": [
+        "עניו",
+        "פשוט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b103-1",
+      "entryId": "b103",
+      "text": "השחקן עוד צעיר, אבל כבר מוכשר.",
+      "fits": [
+        "רך בשנים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b104-1",
+      "entryId": "b104",
+      "text": "בסיפור, הסוחר היה קמצן ולא נתן לאף אחד.",
+      "fits": [
+        "כילי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b105-1",
+      "entryId": "b105",
+      "text": "חזרתי מהאימון רעב מאוד.",
+      "fits": [
+        "מורעב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b106-1",
+      "entryId": "b106",
+      "text": "השופט נראה רציני מאוד.",
+      "fits": [
+        "כבד ראש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b107-1",
+      "entryId": "b107",
+      "text": "הגור שובב וגונב גרביים.",
+      "fits": [
+        "קונדס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b108-1",
+      "entryId": "b108",
+      "text": "השחקן היה שחצן וסיפר לכולם כמה הוא טוב.",
+      "fits": [
+        "יהיר",
+        "רברבן",
+        "גאוותן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b109-1",
+      "entryId": "b109",
+      "text": "זה יהלום אמיתי, לא חיקוי.",
+      "fits": [
+        "מקורי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b110-1",
+      "entryId": "b110",
+      "text": "אסור לחצות את הכביש באור אדום.",
+      "fits": [
+        "לא מותר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b111-1",
+      "entryId": "b111",
+      "text": "לסיים את העבודה עד מחר זה אפשרי.",
+      "fits": [
+        "בר ביצוע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b112-1",
+      "entryId": "b112",
+      "text": "המקום הזה בטוח ואפשר לשחק בו.",
+      "fits": [
+        "מוגן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b113-1",
+      "entryId": "b113",
+      "text": "ההסבר של המורה היה ברור.",
+      "fits": [
+        "מובן",
+        "בהיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b114-1",
+      "entryId": "b114",
+      "text": "הציור שלך דומה לציור שלי.",
+      "fits": [
+        "זהה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b115-1",
+      "entryId": "b115",
+      "text": "קניתי משחק זול בשוק.",
+      "fits": [
+        "מוזל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b116-1",
+      "entryId": "b116",
+      "text": "זה מבחן חשוב, צריך ללמוד.",
+      "fits": [
+        "משמעותי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b117-1",
+      "entryId": "b117",
+      "text": "קראתי ספר טוב בחופש.",
+      "fits": [
+        "נהדר",
+        "מצוין",
+        "מעולה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b118-1",
+      "entryId": "b118",
+      "text": "סבתא הכינה מרק טעים.",
+      "fits": [
+        "משובח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b119-1",
+      "entryId": "b119",
+      "text": "השעון הזה יקר מאוד.",
+      "fits": [
+        "יוקרתי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b120-1",
+      "entryId": "b120",
+      "text": "הסוס מהיר כמו הרוח.",
+      "fits": [
+        "זריז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b121-1",
+      "entryId": "b121",
+      "text": "שמעתי רעש מוזר מהמטבח.",
+      "fits": [
+        "משונה",
+        "יוצא דופן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b122-1",
+      "entryId": "b122",
+      "text": "יש לי בול מיוחד באוסף.",
+      "fits": [
+        "ייחודי",
+        "נדיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b123-1",
+      "entryId": "b123",
+      "text": "התרגיל הזה מסובך.",
+      "fits": [
+        "מורכב",
+        "סבוך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b124-1",
+      "entryId": "b124",
+      "text": "לשחק ליד הכביש זה מסוכן.",
+      "fits": [
+        "לא בטוח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b125-1",
+      "entryId": "b125",
+      "text": "ראינו סרט מעניין על כרישים.",
+      "fits": [
+        "מרתק",
+        "מסקרן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b126-1",
+      "entryId": "b126",
+      "text": "שמענו סיפור מפחיד ליד המדורה.",
+      "fits": [
+        "מבהיל",
+        "מעורר אימה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b127-1",
+      "entryId": "b127",
+      "text": "הקפה של אבא מר מאוד.",
+      "fits": [
+        "מריר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b128-1",
+      "entryId": "b128",
+      "text": "אני משוכנע שהמפתח בתיק.",
+      "fits": [
+        "בטוח",
+        "סמוך ובטוח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b129-1",
+      "entryId": "b129",
+      "text": "השיעור היה משעמם.",
+      "fits": [
+        "מייגע",
+        "חדגוני"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b130-1",
+      "entryId": "b130",
+      "text": "המיץ הזה מתוק מדי.",
+      "fits": [
+        "מתקתק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b131-1",
+      "entryId": "b131",
+      "text": "היה מזג אוויר נורא בטיול.",
+      "fits": [
+        "איום",
+        "מחריד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b132-1",
+      "entryId": "b132",
+      "text": "הפתרון שלך נכון.",
+      "fits": [
+        "מדויק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b133-1",
+      "entryId": "b133",
+      "text": "היה טיול נעים בחורש.",
+      "fits": [
+        "מהנה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b134-1",
+      "entryId": "b134",
+      "text": "היה לנו יום נפלא בים.",
+      "fits": [
+        "מופלא",
+        "מדהים",
+        "נהדר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b135-1",
+      "entryId": "b135",
+      "text": "הלוויתן הוא בעל חיים עצום.",
+      "fits": [
+        "אדיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b136-1",
+      "entryId": "b136",
+      "text": "המתכון פשוט מאוד.",
+      "fits": [
+        "קל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b137-1",
+      "entryId": "b137",
+      "text": "המבחן היה קל.",
+      "fits": [
+        "פשוט",
+        "קליל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b138-1",
+      "entryId": "b138",
+      "text": "התרגיל האחרון היה קשה.",
+      "fits": [
+        "מסובך",
+        "מורכב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b139-1",
+      "entryId": "b139",
+      "text": "זה היה יום רגיל בבית הספר.",
+      "fits": [
+        "שגרתי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b140-1",
+      "entryId": "b140",
+      "text": "הרחוב הזה רועש מאוד.",
+      "fits": [
+        "סואן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b141-1",
+      "entryId": "b141",
+      "text": "הציון שלי היה רע הפעם.",
+      "fits": [
+        "גרוע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b142-1",
+      "entryId": "b142",
+      "text": "הפתרון שלך שגוי, נסה שוב.",
+      "fits": [
+        "מוטעה",
+        "לא נכון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b143-1",
+      "entryId": "b143",
+      "text": "כל פתית שלג שונה מהאחר.",
+      "fits": [
+        "נבדל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b144-1",
+      "entryId": "b144",
+      "text": "היא דיברה בקול שקט.",
+      "fits": [
+        "חרישי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b145-1",
+      "entryId": "b145",
+      "text": "הכלב אכל את כל האוכל בקערה.",
+      "fits": [
+        "זלל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b146-1",
+      "entryId": "b146",
+      "text": "הדוור בא בבוקר.",
+      "fits": [
+        "הגיע",
+        "הופיע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b147-1",
+      "entryId": "b147",
+      "text": "סבא בנה לנו בית על העץ.",
+      "fits": [
+        "הקים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b148-1",
+      "entryId": "b148",
+      "text": "העכבר ברח מהחתול.",
+      "fits": [
+        "נמלט",
+        "נס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b149-1",
+      "entryId": "b149",
+      "text": "הוא דחף את העגלה בכוח.",
+      "fits": [
+        "הדף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b150-1",
+      "entryId": "b150",
+      "text": "השחקן הכה בכדור בכל הכוח.",
+      "fits": [
+        "חבט",
+        "היכה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b151-1",
+      "entryId": "b151",
+      "text": "סבא הלך לאט ברחוב.",
+      "fits": [
+        "צעד",
+        "פסע",
+        "התהלך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b152-1",
+      "entryId": "b152",
+      "text": "הסנאי הסתיר אגוזים מתחת לעץ.",
+      "fits": [
+        "החביא",
+        "הטמין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b153-1",
+      "entryId": "b153",
+      "text": "אבא הרים את הארגז הכבד.",
+      "fits": [
+        "נשא",
+        "הגביה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b154-1",
+      "entryId": "b154",
+      "text": "הוא התעורר מוקדם בבוקר.",
+      "fits": [
+        "קם",
+        "ניעור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b155-1",
+      "entryId": "b155",
+      "text": "העלה זז ברוח.",
+      "fits": [
+        "נע",
+        "התנועע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b156-1",
+      "entryId": "b156",
+      "text": "הוא זרק את הכדור רחוק.",
+      "fits": [
+        "השליך",
+        "הטיל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b157-1",
+      "entryId": "b157",
+      "text": "אבא חזר מהעבודה.",
+      "fits": [
+        "שב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b158-1",
+      "entryId": "b158",
+      "text": "סבא חיבק אותי חזק.",
+      "fits": [
+        "גיפף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b159-1",
+      "entryId": "b159",
+      "text": "הוא חתך את הנייר במספריים.",
+      "fits": [
+        "גזר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b160-1",
+      "entryId": "b160",
+      "text": "החתול טיפס על העץ.",
+      "fits": [
+        "עלה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b161-1",
+      "entryId": "b161",
+      "text": "הילד ירד במגלשה.",
+      "fits": [
+        "גלש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b162-1",
+      "entryId": "b162",
+      "text": "הוא ישב על הכיסא.",
+      "fits": [
+        "התיישב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b163-1",
+      "entryId": "b163",
+      "text": "התינוק ישן כל הלילה.",
+      "fits": [
+        "נם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b164-1",
+      "entryId": "b164",
+      "text": "הוא לקח עוגייה מהצלחת.",
+      "fits": [
+        "נטל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b165-1",
+      "entryId": "b165",
+      "text": "הוא מיהר לתחנה כדי לא לאחר.",
+      "fits": [
+        "נחפז",
+        "הזדרז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b166-1",
+      "entryId": "b166",
+      "text": "הכלב משך את החבל.",
+      "fits": [
+        "גרר",
+        "סחב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b167-1",
+      "entryId": "b167",
+      "text": "הוא נגע בפרווה הרכה של החתול.",
+      "fits": [
+        "מישש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b168-1",
+      "entryId": "b168",
+      "text": "אחרי הריצה הוא נח בצל.",
+      "fits": [
+        "נפש",
+        "התרגע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b169-1",
+      "entryId": "b169",
+      "text": "הוא ניקה את הרצפה.",
+      "fits": [
+        "שטף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b170-1",
+      "entryId": "b170",
+      "text": "האור נכנס דרך החלון.",
+      "fits": [
+        "חדר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b171-1",
+      "entryId": "b171",
+      "text": "הוא נפל על המדרגות.",
+      "fits": [
+        "מעד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b172-1",
+      "entryId": "b172",
+      "text": "הוא נרדם מול הטלוויזיה.",
+      "fits": [
+        "שקע בשינה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b173-1",
+      "entryId": "b173",
+      "text": "דני נתן לי מתנה.",
+      "fits": [
+        "העניק",
+        "מסר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b174-1",
+      "entryId": "b174",
+      "text": "השוטר סגר את הכביש.",
+      "fits": [
+        "חסם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b175-1",
+      "entryId": "b175",
+      "text": "הוא סובב את הכפתור של הרדיו.",
+      "fits": [
+        "גלגל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b176-1",
+      "entryId": "b176",
+      "text": "הקפטן לא עזב את הספינה.",
+      "fits": [
+        "נטש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b177-1",
+      "entryId": "b177",
+      "text": "החייל עמד ליד השער.",
+      "fits": [
+        "ניצב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b178-1",
+      "entryId": "b178",
+      "text": "הבלון עף לשמיים.",
+      "fits": [
+        "טס",
+        "ריחף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b179-1",
+      "entryId": "b179",
+      "text": "הכלב קפץ מעל הגדר.",
+      "fits": [
+        "זינק",
+        "ניתר",
+        "דילג"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b180-1",
+      "entryId": "b180",
+      "text": "הוא רץ לתפוס את האוטובוס.",
+      "fits": [
+        "מיהר",
+        "טס",
+        "דהר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b181-1",
+      "entryId": "b181",
+      "text": "הכדור שבר את החלון.",
+      "fits": [
+        "ניפץ",
+        "ריסק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b182-1",
+      "entryId": "b182",
+      "text": "הוא שכב על החול בחוף.",
+      "fits": [
+        "נשכב",
+        "התפרקד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b183-1",
+      "entryId": "b183",
+      "text": "הוא שם את הספר על השולחן.",
+      "fits": [
+        "הניח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b184-1",
+      "entryId": "b184",
+      "text": "הוא שתה כוס מים קרים.",
+      "fits": [
+        "גמע",
+        "לגם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b185-1",
+      "entryId": "b185",
+      "text": "אבא תיקן את האופניים.",
+      "fits": [
+        "שיפץ",
+        "סידר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b186-1",
+      "entryId": "b186",
+      "text": "השוער תפס את הכדור.",
+      "fits": [
+        "לכד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b187-1",
+      "entryId": "b187",
+      "text": "המורה אמר שמחר יש מבחן.",
+      "fits": [
+        "הגיד",
+        "ציין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b188-1",
+      "entryId": "b188",
+      "text": "הוא ביקש שנבוא בזמן.",
+      "fits": [
+        "דרש",
+        "הפציר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b189-1",
+      "entryId": "b189",
+      "text": "התינוק בכה כל הלילה.",
+      "fits": [
+        "יבב",
+        "התייפח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b190-1",
+      "entryId": "b190",
+      "text": "הוא הבטיח לחזור מוקדם.",
+      "fits": [
+        "התחייב",
+        "נדר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b191-1",
+      "entryId": "b191",
+      "text": "המנהל הודיע על יום כיף.",
+      "fits": [
+        "בישר",
+        "הכריז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b192-1",
+      "entryId": "b192",
+      "text": "המציל הזהיר שהים סוער.",
+      "fits": [
+        "התריע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b193-1",
+      "entryId": "b193",
+      "text": "בנאום הוא הזכיר את כל המתנדבים.",
+      "fits": [
+        "ציין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b194-1",
+      "entryId": "b194",
+      "text": "המורה הסביר את השאלה.",
+      "fits": [
+        "פירש",
+        "ביאר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b195-1",
+      "entryId": "b195",
+      "text": "אבא הסכים שנלך לים.",
+      "fits": [
+        "אישר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b196-1",
+      "entryId": "b196",
+      "text": "הוא העליב את החבר שלו.",
+      "fits": [
+        "השפיל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b197-1",
+      "entryId": "b197",
+      "text": "הוא התוודה ששבר את הצלחת.",
+      "fits": [
+        "הודה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b198-1",
+      "entryId": "b198",
+      "text": "הוא התווכח עם אחיו על השלט.",
+      "fits": [
+        "רב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b199-1",
+      "entryId": "b199",
+      "text": "הוא התחנן שניתן לו עוד הזדמנות.",
+      "fits": [
+        "הפציר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b200-1",
+      "entryId": "b200",
+      "text": "הוא התלונן על הרעש.",
+      "fits": [
+        "קבל",
+        "רטן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b201-1",
+      "entryId": "b201",
+      "text": "כשקיבל את הפרס, הוא חייך.",
+      "fits": [
+        "קרן משמחה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b202-1",
+      "entryId": "b202",
+      "text": "הוא כתב את הכתובת בפנקס.",
+      "fits": [
+        "רשם",
+        "שרבט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b203-1",
+      "entryId": "b203",
+      "text": "הוא לחש משהו שלא הבנתי.",
+      "fits": [
+        "מלמל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b204-1",
+      "entryId": "b204",
+      "text": "כשנפלתי, הוא רק עמד ולעג.",
+      "fits": [
+        "התגרה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b205-1",
+      "entryId": "b205",
+      "text": "סבא סיפר לנו על הטיול שלו.",
+      "fits": [
+        "דיווח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b206-1",
+      "entryId": "b206",
+      "text": "הוא סירב לאכול ירקות.",
+      "fits": [
+        "מיאן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b207-1",
+      "entryId": "b207",
+      "text": "הוא ענה על כל השאלות.",
+      "fits": [
+        "השיב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b208-1",
+      "entryId": "b208",
+      "text": "הוא פטפט כל השיעור.",
+      "fits": [
+        "קשקש",
+        "להג"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b209-1",
+      "entryId": "b209",
+      "text": "הוא פנה אליי בשמי.",
+      "fits": [
+        "קרא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b210-1",
+      "entryId": "b210",
+      "text": "הוא צחק מהבדיחה.",
+      "fits": [
+        "צחקק",
+        "גיחך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b211-1",
+      "entryId": "b211",
+      "text": "הוא צעק לחבר מהצד השני של המגרש.",
+      "fits": [
+        "קרא בקול",
+        "צרח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b212-1",
+      "entryId": "b212",
+      "text": "אבא קרא בעיתון של הבוקר.",
+      "fits": [
+        "עיין",
+        "דפדף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b213-1",
+      "entryId": "b213",
+      "text": "הוא שאל מה השעה.",
+      "fits": [
+        "התעניין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b214-1",
+      "entryId": "b214",
+      "text": "הוא שוחח עם סבא בטלפון.",
+      "fits": [
+        "דיבר",
+        "פטפט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b215-1",
+      "entryId": "b215",
+      "text": "המורה שיבח את הציור שלי.",
+      "fits": [
+        "הילל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b216-1",
+      "entryId": "b216",
+      "text": "הוא שיקר לגבי השיעורים.",
+      "fits": [
+        "כיזב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b217-1",
+      "entryId": "b217",
+      "text": "הוא שר שיר יפה במסיבה.",
+      "fits": [
+        "זימר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b218-1",
+      "entryId": "b218",
+      "text": "הוא אהב לשחק כדורגל.",
+      "fits": [
+        "חיבב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b219-1",
+      "entryId": "b219",
+      "text": "הרופא בדק את הגרון שלי.",
+      "fits": [
+        "בחן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b220-1",
+      "entryId": "b220",
+      "text": "הוא בחר את הספר הכי מעניין.",
+      "fits": [
+        "העדיף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b221-1",
+      "entryId": "b221",
+      "text": "הוא גילה מטבע ישן בחול.",
+      "fits": [
+        "מצא",
+        "חשף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b222-1",
+      "entryId": "b222",
+      "text": "אבא דאג כשלא חזרתי בזמן.",
+      "fits": [
+        "חשש",
+        "הוטרד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b223-1",
+      "entryId": "b223",
+      "text": "הוא דמיין שהוא טס לירח.",
+      "fits": [
+        "חלם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b224-1",
+      "entryId": "b224",
+      "text": "סוף סוף הוא הבין את התרגיל.",
+      "fits": [
+        "תפס",
+        "קלט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b225-1",
+      "entryId": "b225",
+      "text": "השופט החליט שהשער נכון.",
+      "fits": [
+        "קבע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b226-1",
+      "entryId": "b226",
+      "text": "מיד הוא הכיר את הקול של סבתא.",
+      "fits": [
+        "זיהה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b227-1",
+      "entryId": "b227",
+      "text": "הוא המציא משחק חדש.",
+      "fits": [
+        "יצר",
+        "הגה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b228-1",
+      "entryId": "b228",
+      "text": "הוא הסתכל על הכוכבים.",
+      "fits": [
+        "התבונן",
+        "הביט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b229-1",
+      "entryId": "b229",
+      "text": "הוא הקשיב למוזיקה.",
+      "fits": [
+        "האזין",
+        "הטה אוזן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b230-1",
+      "entryId": "b230",
+      "text": "הוא הרגיש את הרוח על הפנים.",
+      "fits": [
+        "חש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b231-1",
+      "entryId": "b231",
+      "text": "הוא התגעגע לכלב שלו.",
+      "fits": [
+        "נכסף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b232-1",
+      "entryId": "b232",
+      "text": "הוא התכונן למבחן כל הערב.",
+      "fits": [
+        "נערך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b233-1",
+      "entryId": "b233",
+      "text": "הוא התפלא כשראה את הקוסם.",
+      "fits": [
+        "השתומם",
+        "נדהם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b234-1",
+      "entryId": "b234",
+      "text": "הוא התרכז בשאלה.",
+      "fits": [
+        "התמקד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b235-1",
+      "entryId": "b235",
+      "text": "הוא זכר את כל השירים בעל פה.",
+      "fits": [
+        "לא שכח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b236-1",
+      "entryId": "b236",
+      "text": "הוא חיפש בתיק את המחק.",
+      "fits": [
+        "חיטט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b237-1",
+      "entryId": "b237",
+      "text": "הוא חשב הרבה על השאלה.",
+      "fits": [
+        "הרהר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b238-1",
+      "entryId": "b238",
+      "text": "הוא ידע את התשובה.",
+      "fits": [
+        "הכיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b239-1",
+      "entryId": "b239",
+      "text": "סבא לימד אותי לשחק שחמט.",
+      "fits": [
+        "הדריך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b240-1",
+      "entryId": "b240",
+      "text": "הוא למד את המילים לשיר.",
+      "fits": [
+        "שינן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b241-1",
+      "entryId": "b241",
+      "text": "הוא מצא את הכדור מתחת לספה.",
+      "fits": [
+        "איתר",
+        "גילה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b242-1",
+      "entryId": "b242",
+      "text": "הוא ניחש שיהיה גשם.",
+      "fits": [
+        "שיער",
+        "העריך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b243-1",
+      "entryId": "b243",
+      "text": "הוא סלח לחבר שלו.",
+      "fits": [
+        "מחל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b244-1",
+      "entryId": "b244",
+      "text": "הוא פחד מהחושך.",
+      "fits": [
+        "חשש",
+        "ירא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b245-1",
+      "entryId": "b245",
+      "text": "הוא קיווה שיירד שלג.",
+      "fits": [
+        "ייחל",
+        "ציפה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b246-1",
+      "entryId": "b246",
+      "text": "הוא ראה שהדלת פתוחה.",
+      "fits": [
+        "הבחין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b247-1",
+      "entryId": "b247",
+      "text": "הוא רצה מאוד לנסוע לים.",
+      "fits": [
+        "השתוקק",
+        "חפץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b248-1",
+      "entryId": "b248",
+      "text": "הוא שכנע את אבא לקנות כלב.",
+      "fits": [
+        "שידל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b249-1",
+      "entryId": "b249",
+      "text": "הוא שם לב שהשמיים התקדרו.",
+      "fits": [
+        "הבחין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b250-1",
+      "entryId": "b250",
+      "text": "הוא שמע רעש מוזר.",
+      "fits": [
+        "קלט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b251-1",
+      "entryId": "b251",
+      "text": "הוא תכנן מסיבת הפתעה.",
+      "fits": [
+        "הכין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b252-1",
+      "entryId": "b252",
+      "text": "הוא איבד נקודה במשחק.",
+      "fits": [
+        "הפסיד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b253-1",
+      "entryId": "b253",
+      "text": "סבא אירח את כל המשפחה בחג.",
+      "fits": [
+        "הזמין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b254-1",
+      "entryId": "b254",
+      "text": "הוא אסף צדפים בחוף.",
+      "fits": [
+        "ליקט",
+        "קיבץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b255-1",
+      "entryId": "b255",
+      "text": "הוא ביקר את סבתא בבית החולים.",
+      "fits": [
+        "פקד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b256-1",
+      "entryId": "b256",
+      "text": "הצמח גדל מהר.",
+      "fits": [
+        "צמח",
+        "התפתח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b257-1",
+      "entryId": "b257",
+      "text": "הוא גמר את השיעורים.",
+      "fits": [
+        "סיים",
+        "השלים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b258-1",
+      "entryId": "b258",
+      "text": "הכלב הגן על הבית.",
+      "fits": [
+        "שמר",
+        "גונן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b259-1",
+      "entryId": "b259",
+      "text": "המורה הוסיף עוד שאלה למבחן.",
+      "fits": [
+        "צירף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b260-1",
+      "entryId": "b260",
+      "text": "אבא הכין ארוחת ערב.",
+      "fits": [
+        "ערך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b261-1",
+      "entryId": "b261",
+      "text": "הוא המשיך לרוץ למרות הגשם.",
+      "fits": [
+        "הוסיף",
+        "התמיד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b262-1",
+      "entryId": "b262",
+      "text": "הוא הפסיד במשחק השחמט.",
+      "fits": [
+        "נוצח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b263-1",
+      "entryId": "b263",
+      "text": "הגשם הפסיק בצהריים.",
+      "fits": [
+        "חדל",
+        "עצר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b264-1",
+      "entryId": "b264",
+      "text": "המציל הציל ילד מהים.",
+      "fits": [
+        "חילץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b265-1",
+      "entryId": "b265",
+      "text": "הוא הצליח לפתור את החידה.",
+      "fits": [
+        "עלה בידו"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b266-1",
+      "entryId": "b266",
+      "text": "הוא הראה לי את האוסף שלו.",
+      "fits": [
+        "הציג"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b267-1",
+      "entryId": "b267",
+      "text": "הגל הרס את ארמון החול.",
+      "fits": [
+        "החריב",
+        "השמיד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b268-1",
+      "entryId": "b268",
+      "text": "הוא השתמש בסרגל כדי למתוח קו.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b269-1",
+      "entryId": "b269",
+      "text": "השיעור התחיל בשמונה.",
+      "fits": [
+        "החל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b270-1",
+      "entryId": "b270",
+      "text": "הוא חיכה לאוטובוס.",
+      "fits": [
+        "המתין",
+        "ציפה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b271-1",
+      "entryId": "b271",
+      "text": "הוא חילק את הפיצה לשמונה חלקים.",
+      "fits": [
+        "פיצל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b272-1",
+      "entryId": "b272",
+      "text": "הוא טייל בגליל עם המשפחה.",
+      "fits": [
+        "סייר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b273-1",
+      "entryId": "b273",
+      "text": "הוא יצר פסל מחימר.",
+      "fits": [
+        "עשה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b274-1",
+      "entryId": "b274",
+      "text": "הוא ניסה לטפס על החבל.",
+      "fits": [
+        "השתדל",
+        "התאמץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b275-1",
+      "entryId": "b275",
+      "text": "הוא ניצח במרוץ.",
+      "fits": [
+        "זכה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b276-1",
+      "entryId": "b276",
+      "text": "הוא נכשל בניסיון הראשון.",
+      "fits": [
+        "כשל",
+        "לא הצליח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b277-1",
+      "entryId": "b277",
+      "text": "בבוקר הוא נסע, ובערב כבר היה בבית.",
+      "fits": [
+        "יצא לדרך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b278-1",
+      "entryId": "b278",
+      "text": "הוא סידר את הספרים על המדף.",
+      "fits": [
+        "ארגן",
+        "ערך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b279-1",
+      "entryId": "b279",
+      "text": "הוא עבד קשה כל היום.",
+      "fits": [
+        "עמל",
+        "טרח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b280-1",
+      "entryId": "b280",
+      "text": "הוא עזר לסבתא לסחוב את הסלים.",
+      "fits": [
+        "סייע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b281-1",
+      "entryId": "b281",
+      "text": "בדרך הביתה הוא פגש במורה.",
+      "fits": [
+        "נתקל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b282-1",
+      "entryId": "b282",
+      "text": "מספר הציפורים בעיר פחת.",
+      "fits": [
+        "קטן",
+        "הצטמצם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b283-1",
+      "entryId": "b283",
+      "text": "המורה ציין את הטעויות באדום.",
+      "fits": [
+        "סימן",
+        "הדגיש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b284-1",
+      "entryId": "b284",
+      "text": "הוא קיבל פרס על הציור.",
+      "fits": [
+        "השיג",
+        "זכה ב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b285-1",
+      "entryId": "b285",
+      "text": "הוא קישט את העוגה בתותים.",
+      "fits": [
+        "עיטר",
+        "ייפה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b286-1",
+      "entryId": "b286",
+      "text": "הוא קנה לחם במכולת.",
+      "fits": [
+        "רכש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b287-1",
+      "entryId": "b287",
+      "text": "הוא רקד כל הערב במסיבה.",
+      "fits": [
+        "פיזז",
+        "כרכר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b288-1",
+      "entryId": "b288",
+      "text": "הוא שיחק עם הכלב בחצר.",
+      "fits": [
+        "השתעשע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b289-1",
+      "entryId": "b289",
+      "text": "הוא שינה את הצבע של החדר.",
+      "fits": [
+        "החליף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b290-1",
+      "entryId": "b290",
+      "text": "הוא שלח מכתב לסבא.",
+      "fits": [
+        "שיגר",
+        "העביר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b291-1",
+      "entryId": "b291",
+      "text": "הוא שמר את כל המכתבים בקופסה.",
+      "fits": [
+        "שימר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b292-1",
+      "entryId": "b292",
+      "text": "הצבא תקף בלילה.",
+      "fits": [
+        "הסתער",
+        "התנפל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b293-1",
+      "entryId": "b293",
+      "text": "כל אבא אוהב את ילדיו.",
+      "fits": [
+        "אב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b294-1",
+      "entryId": "b294",
+      "text": "בסיפור, הגיבור ניצח את האויב.",
+      "fits": [
+        "יריב",
+        "שונא",
+        "צר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b295-1",
+      "entryId": "b295",
+      "text": "הגיע אורח לארוחת הערב.",
+      "fits": [
+        "מבקר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b296-1",
+      "entryId": "b296",
+      "text": "איש זקן ישב על הספסל.",
+      "fits": [
+        "גבר",
+        "אדון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b297-1",
+      "entryId": "b297",
+      "text": "אישה עם כובע אדום עלתה לאוטובוס.",
+      "fits": [
+        "גברת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b298-1",
+      "entryId": "b298",
+      "text": "אמא שלי מורה.",
+      "fits": [
+        "אימא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b299-1",
+      "entryId": "b299",
+      "text": "ישראל היא ארץ קטנה.",
+      "fits": [
+        "מדינה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b300-1",
+      "entryId": "b300",
+      "text": "יש להם בית ליד הים.",
+      "fits": [
+        "דירה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b301-1",
+      "entryId": "b301",
+      "text": "טיפסנו על גבעה ירוקה.",
+      "fits": [
+        "רמה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b302-1",
+      "entryId": "b302",
+      "text": "שיחקנו בגינה של סבתא.",
+      "fits": [
+        "גן",
+        "חצר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b303-1",
+      "entryId": "b303",
+      "text": "בחרנו דרך בין העצים.",
+      "fits": [
+        "שביל",
+        "נתיב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b304-1",
+      "entryId": "b304",
+      "text": "יש לי חבר טוב בכיתה.",
+      "fits": [
+        "ידיד",
+        "רֵעַ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b305-1",
+      "entryId": "b305",
+      "text": "קנינו לחם בחנות ליד הבית.",
+      "fits": [
+        "מכולת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b306-1",
+      "entryId": "b306",
+      "text": "יצאנו לטיול בגליל.",
+      "fits": [
+        "סיור",
+        "מסע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b307-1",
+      "entryId": "b307",
+      "text": "ילד קטן בכה בגן.",
+      "fits": [
+        "פעוט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b308-1",
+      "entryId": "b308",
+      "text": "ילדה עם צמות קפצה בחבל.",
+      "fits": [
+        "ילדונת",
+        "נערה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b309-1",
+      "entryId": "b309",
+      "text": "הלכנו לאיבוד ביער.",
+      "fits": [
+        "חורש",
+        "סבך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b310-1",
+      "entryId": "b310",
+      "text": "סבא גר בכפר קטן.",
+      "fits": [
+        "יישוב",
+        "מושב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b311-1",
+      "entryId": "b311",
+      "text": "יש לנו מורה חדש למדעים.",
+      "fits": [
+        "מחנך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b312-1",
+      "entryId": "b312",
+      "text": "בסיפור יש מלך חכם.",
+      "fits": [
+        "שליט",
+        "מושל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b313-1",
+      "entryId": "b313",
+      "text": "הוזמנתי למסיבה של דני.",
+      "fits": [
+        "חגיגה",
+        "אירוע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b314-1",
+      "entryId": "b314",
+      "text": "מצאנו מקום יפה לפיקניק.",
+      "fits": [
+        "אתר",
+        "אזור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b315-1",
+      "entryId": "b315",
+      "text": "בחג אנחנו נפגשים עם המשפחה.",
+      "fits": [
+        "קרובים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b316-1",
+      "entryId": "b316",
+      "text": "שחינו בנהר הקר.",
+      "fits": [
+        "נחל",
+        "פלג"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b317-1",
+      "entryId": "b317",
+      "text": "תל אביב היא עיר גדולה.",
+      "fits": [
+        "קריה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b318-1",
+      "entryId": "b318",
+      "text": "הקבוצה שלנו ניצחה.",
+      "fits": [
+        "חבורה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b319-1",
+      "entryId": "b319",
+      "text": "הקהל מחא כפיים.",
+      "fits": [
+        "ציבור",
+        "המון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b320-1",
+      "entryId": "b320",
+      "text": "הלכתי לרופא כי כאב לי הגרון.",
+      "fits": [
+        "דוקטור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b321-1",
+      "entryId": "b321",
+      "text": "חצינו את הרחוב במעבר החציה.",
+      "fits": [
+        "כביש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b322-1",
+      "entryId": "b322",
+      "text": "פרחים צמחו בשדה.",
+      "fits": [
+        "אחו",
+        "כר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b323-1",
+      "entryId": "b323",
+      "text": "קנינו פירות בשוק.",
+      "fits": [
+        "יריד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b324-1",
+      "entryId": "b324",
+      "text": "בכיתה שלנו יש תלמיד חדש.",
+      "fits": [
+        "חניך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b325-1",
+      "entryId": "b325",
+      "text": "זרקתי אבן לאגם.",
+      "fits": [
+        "חלוק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b326-1",
+      "entryId": "b326",
+      "text": "שתלנו את הזרעים באדמה.",
+      "fits": [
+        "קרקע",
+        "עפר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b327-1",
+      "entryId": "b327",
+      "text": "אין אוכל במקרר.",
+      "fits": [
+        "מזון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b328-1",
+      "entryId": "b328",
+      "text": "הפיראטים קברו אוצר באי.",
+      "fits": [
+        "מטמון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b329-1",
+      "entryId": "b329",
+      "text": "אור השמש נכנס מהחלון.",
+      "fits": [
+        "זוהר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b330-1",
+      "entryId": "b330",
+      "text": "מהמדורה עלתה אש גבוהה.",
+      "fits": [
+        "להבה",
+        "שלהבת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b331-1",
+      "entryId": "b331",
+      "text": "קניתי בגד חדש לחג.",
+      "fits": [
+        "מלבוש",
+        "לבוש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b332-1",
+      "entryId": "b332",
+      "text": "יש לנו בעיה עם המחשב.",
+      "fits": [
+        "תקלה",
+        "קושי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b333-1",
+      "entryId": "b333",
+      "text": "ירד גשם חזק כל הלילה.",
+      "fits": [
+        "מטר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b334-1",
+      "entryId": "b334",
+      "text": "הייתה לי דאגה גדולה לפני המבחן.",
+      "fits": [
+        "חרדה",
+        "טרדה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b335-1",
+      "entryId": "b335",
+      "text": "בכיתה שררה דממה.",
+      "fits": [
+        "שקט",
+        "דומייה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b336-1",
+      "entryId": "b336",
+      "text": "יש חוק שאסור לעבור באדום.",
+      "fits": [
+        "כלל",
+        "תקנה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b337-1",
+      "entryId": "b337",
+      "text": "בחושך לא רואים כלום.",
+      "fits": [
+        "אופל",
+        "אפלה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b338-1",
+      "entryId": "b338",
+      "text": "החלום שלי הוא להיות טייס.",
+      "fits": [
+        "חזון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b339-1",
+      "entryId": "b339",
+      "text": "מצאנו חפץ מוזר בחול.",
+      "fits": [
+        "פריט",
+        "דבר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b340-1",
+      "entryId": "b340",
+      "text": "עשיתי טעות בתרגיל.",
+      "fits": [
+        "שגיאה",
+        "משגה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b341-1",
+      "entryId": "b341",
+      "text": "ראינו את הירח בין העננים.",
+      "fits": [
+        "לבנה",
+        "סהר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b342-1",
+      "entryId": "b342",
+      "text": "צריך להתייחס למבוגרים בכבוד.",
+      "fits": [
+        "הערכה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b343-1",
+      "entryId": "b343",
+      "text": "הוא בעט בכדור בכל הכוח.",
+      "fits": [
+        "עוצמה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b344-1",
+      "entryId": "b344",
+      "text": "הפטיש הוא כלי עבודה.",
+      "fits": [
+        "מכשיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b345-1",
+      "entryId": "b345",
+      "text": "חסכתי כסף לאופניים.",
+      "fits": [
+        "ממון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b346-1",
+      "entryId": "b346",
+      "text": "המטרה שלי: לסיים את הספר עד שבת.",
+      "fits": [
+        "יעד",
+        "תכלית"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b347-1",
+      "entryId": "b347",
+      "text": "אבא חנה את המכונית ליד הבית.",
+      "fits": [
+        "רכב",
+        "אוטו"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b348-1",
+      "entryId": "b348",
+      "text": "קיבלתי מכתב מסבא.",
+      "fits": [
+        "איגרת",
+        "פתק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b349-1",
+      "entryId": "b349",
+      "text": "בסיפור, שני המלכים יצאו למלחמה.",
+      "fits": [
+        "קרב",
+        "מאבק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b350-1",
+      "entryId": "b350",
+      "text": "ראינו משחק כדורגל בטלוויזיה.",
+      "fits": [
+        "תחרות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b351-1",
+      "entryId": "b351",
+      "text": "קיבלנו משימה חשובה.",
+      "fits": [
+        "מטלה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b352-1",
+      "entryId": "b352",
+      "text": "קיבלתי מתנה ליום ההולדת.",
+      "fits": [
+        "שי",
+        "תשורה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b353-1",
+      "entryId": "b353",
+      "text": "חגגנו את הניצחון של הקבוצה.",
+      "fits": [
+        "הצלחה",
+        "זכייה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b354-1",
+      "entryId": "b354",
+      "text": "יש לי סוד, אל תספר לאף אחד.",
+      "fits": [
+        "רז"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b355-1",
+      "entryId": "b355",
+      "text": "לא הבנתי מה הסיבה לכעס שלו.",
+      "fits": [
+        "גורם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b356-1",
+      "entryId": "b356",
+      "text": "סבתא סיפרה לנו סיפור לפני השינה.",
+      "fits": [
+        "אגדה",
+        "מעשה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b357-1",
+      "entryId": "b357",
+      "text": "יש סכנה לשחות כשהים סוער.",
+      "fits": [
+        "סיכון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b358-1",
+      "entryId": "b358",
+      "text": "בלילה הייתה סערה חזקה.",
+      "fits": [
+        "סופה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b359-1",
+      "entryId": "b359",
+      "text": "העבודה בגינה לקחה את כל היום.",
+      "fits": [
+        "מלאכה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b360-1",
+      "entryId": "b360",
+      "text": "תודה על העזרה!",
+      "fits": [
+        "סיוע",
+        "תמיכה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b361-1",
+      "entryId": "b361",
+      "text": "שתלנו עץ בגינה.",
+      "fits": [
+        "אילן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b362-1",
+      "entryId": "b362",
+      "text": "קטפתי פרח בשדה.",
+      "fits": [
+        "ציץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b363-1",
+      "entryId": "b363",
+      "text": "מצאנו פתרון לבעיה.",
+      "fits": [
+        "מוצא",
+        "תשובה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b364-1",
+      "entryId": "b364",
+      "text": "ראיתי ציפור על הגג.",
+      "fits": [
+        "עוף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b365-1",
+      "entryId": "b365",
+      "text": "הרוח העיפה את הכובע שלי.",
+      "fits": [
+        "בריזה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b366-1",
+      "entryId": "b366",
+      "text": "יש לי רעיון למשחק.",
+      "fits": [
+        "מחשבה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b367-1",
+      "entryId": "b367",
+      "text": "יש רעש חזק ברחוב.",
+      "fits": [
+        "שאון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b368-1",
+      "entryId": "b368",
+      "text": "כולנו מקווים לשלום בין העמים.",
+      "fits": [
+        "רעות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b369-1",
+      "entryId": "b369",
+      "text": "השמיים כחולים היום.",
+      "fits": [
+        "שחקים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b370-1",
+      "entryId": "b370",
+      "text": "השמש זורחת בבוקר.",
+      "fits": [
+        "חמה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b371-1",
+      "entryId": "b371",
+      "text": "בחום צריך הרבה שתייה.",
+      "fits": [
+        "משקה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b372-1",
+      "entryId": "b372",
+      "text": "השתתפתי בתחרות ריצה.",
+      "fits": [
+        "מירוץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b373-1",
+      "entryId": "b373",
+      "text": "חיכיתי לתשובה מהמורה.",
+      "fits": [
+        "מענה",
+        "תגובה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b374-1",
+      "entryId": "b374",
+      "text": "רציתי לצאת, אבל ירד גשם.",
+      "fits": [
+        "אך",
+        "אולם",
+        "ברם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b375-1",
+      "entryId": "b375",
+      "text": "אולי נלך לים מחר.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b376-1",
+      "entryId": "b376",
+      "text": "קודם נאכל, ואחר כך נשחק.",
+      "fits": [
+        "לאחר מכן",
+        "אחרי זה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b377-1",
+      "entryId": "b377",
+      "text": "השולחן עומד באמצע החדר.",
+      "fits": [
+        "מרכז",
+        "תווך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b378-1",
+      "entryId": "b378",
+      "text": "אף פעם לא ראיתי שלג.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b379-1",
+      "entryId": "b379",
+      "text": "לא יצאנו בגלל הגשם.",
+      "fits": [
+        "עקב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b380-1",
+      "entryId": "b380",
+      "text": "בבוקר שמעתי ציפורים.",
+      "fits": [
+        "שחר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b381-1",
+      "entryId": "b381",
+      "text": "בטח שאבוא למסיבה!",
+      "fits": [
+        "כמובן",
+        "ודאי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b382-1",
+      "entryId": "b382",
+      "text": "נלך ביחד לבית הספר.",
+      "fits": [
+        "יחדיו",
+        "בצוותא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b383-1",
+      "entryId": "b383",
+      "text": "קר בחוץ, בואו נשב בפנים.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b384-1",
+      "entryId": "b384",
+      "text": "גם אני רוצה גלידה!",
+      "fits": [
+        "אף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b385-1",
+      "entryId": "b385",
+      "text": "יש לי הרבה חברים.",
+      "fits": [
+        "המון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b386-1",
+      "entryId": "b386",
+      "text": "ההתחלה של הסרט הייתה מצחיקה.",
+      "fits": [
+        "פתיחה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b387-1",
+      "entryId": "b387",
+      "text": "לכל דבר יש זמן.",
+      "fits": [
+        "עת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b388-1",
+      "entryId": "b388",
+      "text": "שים את התיק כאן.",
+      "fits": [
+        "פה",
+        "במקום הזה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b389-1",
+      "entryId": "b389",
+      "text": "כולם באו למסיבה.",
+      "fits": [
+        "כל האנשים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b390-1",
+      "entryId": "b390",
+      "text": "השעה כמעט שמונה.",
+      "fits": [
+        "בערך",
+        "קרוב ל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b391-1",
+      "entryId": "b391",
+      "text": "כן, אני רוצה לבוא.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b392-1",
+      "entryId": "b392",
+      "text": "הצב הולך לאט.",
+      "fits": [
+        "באיטיות",
+        "בנחת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b393-1",
+      "entryId": "b393",
+      "text": "הוא הלך הביתה לבד.",
+      "fits": [
+        "לבדו",
+        "ביחידות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b394-1",
+      "entryId": "b394",
+      "text": "בלילה רואים כוכבים.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b395-1",
+      "entryId": "b395",
+      "text": "הכדור נפל למטה.",
+      "fits": [
+        "מטה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b396-1",
+      "entryId": "b396",
+      "text": "החתול טיפס למעלה.",
+      "fits": [
+        "מעלה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b397-1",
+      "entryId": "b397",
+      "text": "לפעמים אני הולך לסבתא אחרי בית הספר.",
+      "fits": [
+        "מדי פעם",
+        "לעיתים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b398-1",
+      "entryId": "b398",
+      "text": "אני מאוד אוהב גלידה.",
+      "fits": [
+        "במיוחד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b399-1",
+      "entryId": "b399",
+      "text": "הגענו מאוחר לסרט.",
+      "fits": [
+        "באיחור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b400-1",
+      "entryId": "b400",
+      "text": "הוא רץ מהר.",
+      "fits": [
+        "במהירות",
+        "בזריזות",
+        "חיש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b401-1",
+      "entryId": "b401",
+      "text": "הגענו מוקדם לתחנה.",
+      "fits": [
+        "בעוד מועד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b402-1",
+      "entryId": "b402",
+      "text": "בוא הנה מיד!",
+      "fits": [
+        "מייד",
+        "תכף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b403-1",
+      "entryId": "b403",
+      "text": "שמתי מעט סוכר בתה.",
+      "fits": [
+        "קצת",
+        "טיפה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b404-1",
+      "entryId": "b404",
+      "text": "בסוף הסרט כולם מחאו כפיים.",
+      "fits": [
+        "סיום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b405-1",
+      "entryId": "b405",
+      "text": "אני לא יכול לדבר עכשיו.",
+      "fits": [
+        "כעת",
+        "עתה",
+        "ברגע זה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b406-1",
+      "entryId": "b406",
+      "text": "יצאנו לטייל בערב, לפני שהחשיך.",
+      "fits": [
+        "דמדומים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b407-1",
+      "entryId": "b407",
+      "text": "פתאום התחיל לרדת גשם.",
+      "fits": [
+        "לפתע",
+        "לפתע פתאום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b408-1",
+      "entryId": "b408",
+      "text": "חכה רגע, אני כבר בא.",
+      "fits": [
+        "שנייה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b409-1",
+      "entryId": "b409",
+      "text": "נשארה רק עוגייה אחת.",
+      "fits": [
+        "אך ורק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b410-1",
+      "entryId": "b410",
+      "text": "הוא שוב שכח את המפתח.",
+      "fits": [
+        "עוד פעם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-b411-1",
+      "entryId": "b411",
+      "text": "סבתא תמיד שמחה לראות אותנו.",
+      "fits": [
+        "בכל עת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e001-1",
+      "entryId": "e001",
+      "text": "הוא היה מאוכזב מהתוצאה.",
+      "fits": [
+        "מבואס",
+        "נכזב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e002-1",
+      "entryId": "e002",
+      "text": "הוא נשאר אדיש לכל מה שקרה.",
+      "fits": [
+        "שווה נפש",
+        "אפאתי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e003-1",
+      "entryId": "e003",
+      "text": "הוא נעלב כשלא הזמינו אותו.",
+      "fits": [
+        "נפגע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e004-1",
+      "entryId": "e004",
+      "text": "לפני המבחן הייתי מתוח.",
+      "fits": [
+        "לחוץ",
+        "עצבני",
+        "דרוך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e005-1",
+      "entryId": "e005",
+      "text": "הילדים קיבלו את ההודעה בהתלהבות.",
+      "fits": [
+        "התרגשות",
+        "להט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e006-1",
+      "entryId": "e006",
+      "text": "צריך אומץ כדי לקפוץ למים.",
+      "fits": [
+        "תעוזה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e007-1",
+      "entryId": "e007",
+      "text": "הוא הרגיש קנאה כשראה את האופניים של חברו.",
+      "fits": [
+        "צרות עין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e008-1",
+      "entryId": "e008",
+      "text": "אחרי שצעק, הוא הרגיש חרטה.",
+      "fits": [
+        "מוסר כליות"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e009-1",
+      "entryId": "e009",
+      "text": "הוא גאה בציור שהכין.",
+      "fits": [
+        "מתגאה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e010-1",
+      "entryId": "e010",
+      "text": "כשנשמעה האזעקה הייתה בהלה גדולה.",
+      "fits": [
+        "פאניקה",
+        "תבהלה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e011-1",
+      "entryId": "e011",
+      "text": "ביקרנו בארמון מפואר.",
+      "fits": [
+        "מהודר",
+        "מלכותי",
+        "מרהיב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e012-1",
+      "entryId": "e012",
+      "text": "השטח ליד הבית מוזנח.",
+      "fits": [
+        "עזוב",
+        "לא מטופח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e013-1",
+      "entryId": "e013",
+      "text": "האוויר בהרים שקוף.",
+      "fits": [
+        "צלול",
+        "זך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e014-1",
+      "entryId": "e014",
+      "text": "הזיכרון שלי מהטיול מעורפל.",
+      "fits": [
+        "עמום",
+        "מטושטש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e015-1",
+      "entryId": "e015",
+      "text": "המשטח של הקרח חלק.",
+      "fits": [
+        "חלקלק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e016-1",
+      "entryId": "e016",
+      "text": "האוטובוס היה צפוף.",
+      "fits": [
+        "דחוס",
+        "גדוש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e017-1",
+      "entryId": "e017",
+      "text": "הוא סחב ארגז כבד.",
+      "fits": [
+        "רב משקל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e018-1",
+      "entryId": "e018",
+      "text": "הגשר הישן רעוע.",
+      "fits": [
+        "לא יציב",
+        "מתפורר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e019-1",
+      "entryId": "e019",
+      "text": "השועל בסיפור ערמומי.",
+      "fits": [
+        "ממולח",
+        "נכלולי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e020-1",
+      "entryId": "e020",
+      "text": "הוא כל כך תמים שהוא מאמין לכל סיפור.",
+      "fits": [
+        "נאיבי",
+        "פתי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e021-1",
+      "entryId": "e021",
+      "text": "אחי פטפטן ולא שותק רגע.",
+      "fits": [
+        "דברן",
+        "להגן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e022-1",
+      "entryId": "e022",
+      "text": "השכן החדש שתקן ולא מספר על עצמו.",
+      "fits": [
+        "מופנם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e023-1",
+      "entryId": "e023",
+      "text": "הוא אחראי ותמיד מגיע בזמן.",
+      "fits": [
+        "אמין",
+        "רציני"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e024-1",
+      "entryId": "e024",
+      "text": "הוא חבר מסור.",
+      "fits": [
+        "נאמן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e025-1",
+      "entryId": "e025",
+      "text": "הוא היה גס רוח למלצר.",
+      "fits": [
+        "חסר נימוס"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e026-1",
+      "entryId": "e026",
+      "text": "הוא יצירתי ותמיד ממציא משחקים.",
+      "fits": [
+        "מקורי",
+        "בעל דמיון"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e027-1",
+      "entryId": "e027",
+      "text": "הוא היה אנוכי ולא חלק את הממתקים.",
+      "fits": [
+        "אגואיסט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e028-1",
+      "entryId": "e028",
+      "text": "היה לנו יום מושלם בים.",
+      "fits": [
+        "אידיאלי",
+        "מעולה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e029-1",
+      "entryId": "e029",
+      "text": "זה היה ניצחון מובהק.",
+      "fits": [
+        "ברור",
+        "חד משמעי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e030-1",
+      "entryId": "e030",
+      "text": "היה ריח מגעיל בפח.",
+      "fits": [
+        "דוחה",
+        "מבחיל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e031-1",
+      "entryId": "e031",
+      "text": "זה היה רגע מרגש.",
+      "fits": [
+        "מרטיט",
+        "נוגע ללב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e032-1",
+      "entryId": "e032",
+      "text": "הוא לבש כובע מגוחך.",
+      "fits": [
+        "מטופש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e033-1",
+      "entryId": "e033",
+      "text": "הסוף של הסיפור היה מפתיע.",
+      "fits": [
+        "לא צפוי",
+        "מפליא"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e034-1",
+      "entryId": "e034",
+      "text": "הגיבור העיקרי בסיפור הוא ילד.",
+      "fits": [
+        "מרכזי",
+        "ראשי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e035-1",
+      "entryId": "e035",
+      "text": "הוויכוח הזה מיותר.",
+      "fits": [
+        "לא נחוץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e036-1",
+      "entryId": "e036",
+      "text": "במסעדה יש תפריט מגוון.",
+      "fits": [
+        "רב גוני"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e037-1",
+      "entryId": "e037",
+      "text": "מצאנו פתרון יעיל.",
+      "fits": [
+        "אפקטיבי",
+        "מועיל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e038-1",
+      "entryId": "e038",
+      "text": "החתול התגנב למטבח.",
+      "fits": [
+        "חמק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e039-1",
+      "entryId": "e039",
+      "text": "הוא רעד מקור.",
+      "fits": [
+        "נרעד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e040-1",
+      "entryId": "e040",
+      "text": "החתול נסוג כשהכלב נבח.",
+      "fits": [
+        "נרתע",
+        "התרחק לאחור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e041-1",
+      "entryId": "e041",
+      "text": "הרקדן הסתובב מסביב לעצמו.",
+      "fits": [
+        "הסתחרר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e042-1",
+      "entryId": "e042",
+      "text": "הברווז דידה אל האגם.",
+      "fits": [
+        "צלע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e043-1",
+      "entryId": "e043",
+      "text": "הוא התכופף להרים את המטבע.",
+      "fits": [
+        "רכן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e044-1",
+      "entryId": "e044",
+      "text": "המפתח טבע במים העמוקים.",
+      "fits": [
+        "שקע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e045-1",
+      "entryId": "e045",
+      "text": "הוא נשען על הקיר.",
+      "fits": [
+        "נסמך",
+        "נתמך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e046-1",
+      "entryId": "e046",
+      "text": "הוא התפאר בציון שלו.",
+      "fits": [
+        "התרברב",
+        "התהדר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e047-1",
+      "entryId": "e047",
+      "text": "הוא הודה למורה על העזרה.",
+      "fits": [
+        "הביע תודה",
+        "הוקיר תודה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e048-1",
+      "entryId": "e048",
+      "text": "הוא רמז לי שיש הפתעה.",
+      "fits": [
+        "אותת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e049-1",
+      "entryId": "e049",
+      "text": "כולם הסכימו, רק הוא התנגד.",
+      "fits": [
+        "מחה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e050-1",
+      "entryId": "e050",
+      "text": "המורה ייעץ לי לקרוא יותר.",
+      "fits": [
+        "המליץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e051-1",
+      "entryId": "e051",
+      "text": "המורה נזף בו על האיחור.",
+      "fits": [
+        "גער"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e052-1",
+      "entryId": "e052",
+      "text": "הוא התבדח כל הערב.",
+      "fits": [
+        "התלוצץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e053-1",
+      "entryId": "e053",
+      "text": "מרוב התרגשות הוא גמגם.",
+      "fits": [
+        "דיבר בקושי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e054-1",
+      "entryId": "e054",
+      "text": "הוא טען שהוא צודק.",
+      "fits": [
+        "גרס",
+        "סבר",
+        "הצהיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e055-1",
+      "entryId": "e055",
+      "text": "הוא התלבט מה לבחור.",
+      "fits": [
+        "היסס",
+        "התחבט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e056-1",
+      "entryId": "e056",
+      "text": "מהעקבות הוא הסיק שעבר כאן כלב.",
+      "fits": [
+        "הגיע למסקנה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e057-1",
+      "entryId": "e057",
+      "text": "הוא התעלם מהשלט.",
+      "fits": [
+        "העלים עין"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e058-1",
+      "entryId": "e058",
+      "text": "הוא השווה בין שני הציורים.",
+      "fits": [
+        "הקביל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e059-1",
+      "entryId": "e059",
+      "text": "הוא חשד בסיפור המוזר שלה.",
+      "fits": [
+        "פקפק"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e060-1",
+      "entryId": "e060",
+      "text": "הוא התפעל מהזיקוקים.",
+      "fits": [
+        "התרשם",
+        "התלהב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e061-1",
+      "entryId": "e061",
+      "text": "הוא שכח את השם של המורה.",
+      "fits": [
+        "לא זכר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e062-1",
+      "entryId": "e062",
+      "text": "אבא הרגיע את התינוק.",
+      "fits": [
+        "השקיט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e063-1",
+      "entryId": "e063",
+      "text": "הוא העריך מאוד את העזרה שלנו.",
+      "fits": [
+        "הוקיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e064-1",
+      "entryId": "e064",
+      "text": "הוא השיג כרטיסים להופעה.",
+      "fits": [
+        "רכש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e065-1",
+      "entryId": "e065",
+      "text": "הוא בזבז את כל הכסף על ממתקים.",
+      "fits": [
+        "פיזר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e066-1",
+      "entryId": "e066",
+      "text": "הוא חסך כסף לאופניים.",
+      "fits": [
+        "קימץ"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e067-1",
+      "entryId": "e067",
+      "text": "סבא ייסד את המושב.",
+      "fits": [
+        "הקים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e068-1",
+      "entryId": "e068",
+      "text": "הוא התנדב בבית האבות.",
+      "fits": [
+        "תרם מזמנו"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e069-1",
+      "entryId": "e069",
+      "text": "הוא תיעד את הטיול במצלמה.",
+      "fits": [
+        "הנציח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e070-1",
+      "entryId": "e070",
+      "text": "הוא שיתף את החברים בסוד.",
+      "fits": [],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e071-1",
+      "entryId": "e071",
+      "text": "הוא ויתר על החוב של חברו.",
+      "fits": [
+        "מחל על"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e072-1",
+      "entryId": "e072",
+      "text": "הוא התאמן כל יום לקראת המשחק.",
+      "fits": [
+        "התכונן"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e073-1",
+      "entryId": "e073",
+      "text": "הוא פתר את החידה.",
+      "fits": [
+        "פיצח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e074-1",
+      "entryId": "e074",
+      "text": "הוא הקדיש שעה כל יום לקריאה.",
+      "fits": [
+        "ייחד",
+        "הועיד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e075-1",
+      "entryId": "e075",
+      "text": "לכל קבוצה צריך מנהיג.",
+      "fits": [
+        "מוביל",
+        "ראש"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e076-1",
+      "entryId": "e076",
+      "text": "אל תפתח את הדלת לזר.",
+      "fits": [
+        "נוכרי"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e077-1",
+      "entryId": "e077",
+      "text": "שאלנו מומחה מה לעשות.",
+      "fits": [
+        "מקצוען"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e078-1",
+      "entryId": "e078",
+      "text": "המלך גר בארמון גדול.",
+      "fits": [
+        "היכל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e079-1",
+      "entryId": "e079",
+      "text": "מצאנו מערה בהר.",
+      "fits": [
+        "נקרה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e080-1",
+      "entryId": "e080",
+      "text": "הגמלים הולכים במדבר.",
+      "fits": [
+        "ישימון",
+        "שממה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e081-1",
+      "entryId": "e081",
+      "text": "בשכונה שלנו יש גינה גדולה.",
+      "fits": [
+        "רובע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e082-1",
+      "entryId": "e082",
+      "text": "הנווד הלך מעיר לעיר.",
+      "fits": [
+        "נודד",
+        "הלך דרכים"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e083-1",
+      "entryId": "e083",
+      "text": "יצאנו להרפתקה ביער.",
+      "fits": [
+        "מסע"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e084-1",
+      "entryId": "e084",
+      "text": "הציפור יצאה לחופש.",
+      "fits": [
+        "חירות",
+        "דרור"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e085-1",
+      "entryId": "e085",
+      "text": "אני מעריך את הכנות שלך.",
+      "fits": [
+        "יושר",
+        "גילוי לב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e086-1",
+      "entryId": "e086",
+      "text": "הזקן היה מלא חוכמה.",
+      "fits": [
+        "תבונה",
+        "בינה",
+        "דעת"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e087-1",
+      "entryId": "e087",
+      "text": "צריך סבלנות כדי לבנות פאזל גדול.",
+      "fits": [
+        "אורך רוח"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e088-1",
+      "entryId": "e088",
+      "text": "בדרך היה מכשול גדול.",
+      "fits": [
+        "מחסום"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e089-1",
+      "entryId": "e089",
+      "text": "זאת הזדמנות טובה ללמוד משהו חדש.",
+      "fits": [
+        "שעת כושר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e090-1",
+      "entryId": "e090",
+      "text": "הציון הוא תוצאה של למידה.",
+      "fits": [
+        "תולדה",
+        "תוצר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e091-1",
+      "entryId": "e091",
+      "text": "הגענו עד הגבול של השדה.",
+      "fits": [
+        "קצה"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e092-1",
+      "entryId": "e092",
+      "text": "גל גדול הפיל אותי במים.",
+      "fits": [
+        "נחשול"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e093-1",
+      "entryId": "e093",
+      "text": "ענן שחור כיסה את השמש.",
+      "fits": [
+        "עב"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e094-1",
+      "entryId": "e094",
+      "text": "אנחנו מבקרים את סבתא לעיתים קרובות.",
+      "fits": [
+        "תכופות",
+        "תדיר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e095-1",
+      "entryId": "e095",
+      "text": "לבסוף מצאנו את הדרך הביתה.",
+      "fits": [
+        "בסופו של דבר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e096-1",
+      "entryId": "e096",
+      "text": "השמיים התבהרו בהדרגה.",
+      "fits": [
+        "לאט לאט"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e097-1",
+      "entryId": "e097",
+      "text": "שכחתי לגמרי מהמבחן.",
+      "fits": [
+        "לחלוטין",
+        "כליל"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e098-1",
+      "entryId": "e098",
+      "text": "יצאנו למרות הגשם.",
+      "fits": [
+        "חרף",
+        "על אף"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e099-1",
+      "entryId": "e099",
+      "text": "ירד גשם, לכן נשארנו בבית.",
+      "fits": [
+        "על כן",
+        "לפיכך",
+        "משום כך"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e100-1",
+      "entryId": "e100",
+      "text": "בעבר היה כאן שדה.",
+      "fits": [
+        "לפנים",
+        "פעם"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e101-1",
+      "entryId": "e101",
+      "text": "הוא עדיין ישן.",
+      "fits": [
+        "עוד"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e102-1",
+      "entryId": "e102",
+      "text": "קניתי כמה ספרים.",
+      "fits": [
+        "אחדים",
+        "מספר"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sent-e103-1",
+      "entryId": "e103",
+      "text": "כנראה שירד גשם מחר.",
+      "fits": [
+        "ככל הנראה",
+        "מן הסתם"
+      ],
+      "reviewed": false
+    }
+  ]
+}
