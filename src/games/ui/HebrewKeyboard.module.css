@@ -1,0 +1,38 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.row {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+}
+.key {
+  flex: 1;
+  max-inline-size: calc(var(--touch-min) - var(--space-1));
+  min-block-size: var(--touch-min);
+  border: none;
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-label-weight);
+  cursor: pointer;
+}
+.key:active {
+  transform: translateY(var(--press-offset));
+  box-shadow: 0 var(--border-thin) 0 var(--border);
+}
+.wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-inline-size: none;
+  flex: 1;
+}
+.space {
+  max-inline-size: none;
+  flex: 3;
+}

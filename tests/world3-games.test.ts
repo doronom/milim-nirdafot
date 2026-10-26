@@ -23,9 +23,9 @@ const itemsOf = (kind: string): LevelItem[] =>
     .map((id) => resolver.byId(id)!);
 
 describe('World 3 levels', () => {
-  it('are playable, including review levels', () => {
+  it('are playable, including review and boss levels', () => {
     for (const s of w3.stations) for (const l of s.levels) expect(isPlayableLevel(l, resolver), l.id).toBe(true);
-    expect(isPlayableLevel(w3.boss, resolver)).toBe(false);
+    expect(isPlayableLevel(w3.boss, resolver)).toBe(true);
   });
 
   it('play one game per content type through all three stages', () => {

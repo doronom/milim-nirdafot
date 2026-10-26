@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>בקרת הורים - גיבוי ויבוא נתונים | מסע המילים</title>
+<!-- Google Fonts: Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#005321",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#003c16",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "error": "#ffb4ab",
+            "on-primary-container": "#003751",
+            "on-primary": "#00344d",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-lowest": "#060e20",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#4ae176",
+            "primary-container": "#0ea5e9",
+            "on-error": "#690005",
+            "surface-bright": "#31394d",
+            "primary": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#171f33",
+            "tertiary-container": "#00b351",
+            "surface-container-highest": "#2d3449",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-tint": "#89ceff",
+            "background": "#0b1326",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#dae2fd",
+            "tertiary": "#4ae176",
+            "on-tertiary": "#003915",
+            "surface-variant": "#2d3449",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-background": "#dae2fd",
+            "on-surface-variant": "#bec8d2",
+            "on-secondary-fixed": "#2a1700",
+            "outline": "#88929b",
+            "inverse-primary": "#006591",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-on-surface": "#283044",
+            "surface": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#0b1326",
+            "surface-container-low": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* 3D Tactile Buttons & Surfaces */
+    .tactile-btn-primary {
+      border-bottom: 4px solid #0284c7;
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn-primary:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    .tactile-btn-tertiary {
+      border-bottom: 4px solid #15803d;
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn-tertiary:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    .tactile-btn-secondary {
+      border-bottom: 4px solid #3e4850;
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn-secondary:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    /* Recessed expedition slot */
+    .inset-slot {
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md select-none">
+<!-- ================= TOP APP BAR (Shared Component Anchor) ================= -->
+<!-- Note: Shared component TopAppBar with exact headline and tokens -->
+<header class="bg-surface-container dark:bg-surface-container text-primary dark:text-primary docked full-width top-0 sticky z-40 border-b border-outline-variant dark:border-outline-variant shadow-sm dark:shadow-sm">
+<div class="flex justify-between items-center w-full px-4 h-14 max-w-md mx-auto">
+<!-- Trailing in RTL is leading button (arrow_forward -> returns to dashboard) -->
+<button class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-surface-bright dark:hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 text-primary" onclick="window.history.back()" title="חזרה לדשבורד הורים">
+<span class="material-symbols-outlined text-[24px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Headline Token -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]" data-icon="cloud_sync">cloud_sync</span>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary tracking-tight">
+          בקרת הורים
+        </h1>
+</div>
+<!-- Trailing Action -->
+<button class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-surface-bright dark:hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150 text-on-surface-variant" title="הגדרות">
+<span class="material-symbols-outlined text-[22px]" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- ================= MAIN CONTENT CANVAS ================= -->
+<main class="flex-1 w-full max-w-md mx-auto px-4 pt-4 pb-28 space-y-4">
+<!-- Screen Title & Explorer Context Banner -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h2 class="text-label-lg font-label-lg text-on-surface font-bold">גיבוי, שחזור וסנכרון נתונים</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">ניהול מאובטח של תיק המסע וההתקדמות הלימודית</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-surface-container-highest rounded-full text-label-sm font-label-sm text-tertiary flex items-center gap-1 border border-tertiary-container/40">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+        מאובטח
+      </span>
+</div>
+<!-- ================= CARD 1: EXPORT BACKUP ================= -->
+<section class="bg-surface-container rounded-xl border border-outline-variant p-4 space-y-3.5 relative overflow-hidden">
+<!-- Decorative top ambient glow -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="upload_file">upload_file</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">יצוא נתוני התקדמות לקובץ</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">הורדת גיבוי מוצפן של כל הישגי הילד</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-lowest px-2 py-0.5 rounded text-primary-fixed-dim font-mono border border-outline-variant">
+          v1.2 JSON
+        </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+        יוצר קובץ JSON מוצפן המכיל את כל ההתקדמות, המדבקות, מילות הילד והרצפים.
+      </p>
+<!-- Expedition Snapshot Preview (Recessed slot / Bento preview) -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant inset-slot space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant border-b border-outline-variant pb-2">
+<span class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="travel_explore">travel_explore</span>
+            תמונת מצב עדכנית
+          </span>
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+            עודכן היום, 16:42
+          </span>
+</div>
+<!-- 4-Stat Micro Grid -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="bg-surface-container-high/60 rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="public">public</span>
+<span class="text-label-sm font-label-sm text-on-surface">עולמות שנפתחו</span>
+</div>
+<span class="text-headline-sm font-headline-sm text-secondary font-bold">4</span>
+</div>
+<div class="bg-surface-container-high/60 rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary" data-icon="menu_book">menu_book</span>
+<span class="text-label-sm font-label-sm text-on-surface">מילים נלמדו</span>
+</div>
+<span class="text-headline-sm font-headline-sm text-tertiary font-bold">42</span>
+</div>
+<div class="bg-surface-container-high/60 rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="hotel_class">hotel_class</span>
+<span class="text-label-sm font-label-sm text-on-surface">מדבקות ועיטורים</span>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary font-bold">8</span>
+</div>
+<div class="bg-surface-container-high/60 rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed" data-icon="local_fire_department">local_fire_department</span>
+<span class="text-label-sm font-label-sm text-on-surface">רצף יומי</span>
+</div>
+<span class="text-headline-sm font-headline-sm text-secondary-fixed font-bold">14 ימים</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-2 pt-1">
+<!-- Tactile Primary Download Button -->
+<button class="w-full bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 tactile-btn-primary cursor-pointer" id="downloadBtn" onclick="triggerDownloadFeedback()">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+<span>הורד קובץ גיבוי (word-quest-backup.json)</span>
+</button>
+<!-- Secondary Tactile Actions -->
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full bg-surface-container-high text-on-surface border border-outline-variant font-label-md text-label-md py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 tactile-btn-secondary" id="copyStringBtn" onclick="copyEncryptedString()">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="content_copy">content_copy</span>
+<span id="copyBtnText">העתק קוד מוצפן</span>
+</button>
+<button class="w-full bg-surface-container-high text-on-surface border border-outline-variant font-label-md text-label-md py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 tactile-btn-secondary" onclick="shareBackupData()">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="share">share</span>
+<span>שתף קובץ גיבוי</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ================= CARD 2: IMPORT & RESTORE ================= -->
+<section class="bg-surface-container rounded-xl border border-outline-variant p-4 space-y-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_backup_restore">settings_backup_restore</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">שחזור נתונים מקובץ גיבוי</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">טעינת התקדמות ממכשיר אחר או עותק שמור</p>
+</div>
+</div>
+<!-- Glowing Dropzone Container -->
+<div class="border-2 border-dashed border-primary/50 hover:border-primary bg-surface-container-low/70 hover:bg-surface-container-low transition-all duration-200 rounded-xl p-5 flex flex-col items-center justify-center text-center cursor-pointer group" id="dropzone" onclick="document.getElementById('fileInput').click()">
+<input accept=".json" class="hidden" id="fileInput" onchange="handleFileSelect(event)" type="file"/>
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-2 group-hover:scale-105 transition-transform duration-150">
+<span class="material-symbols-outlined text-[28px]" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface font-semibold">גררו לכאן קובץ JSON או לחצו לבחירה מהמכשיר</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">תומך בקבצי word-quest-backup (*.json)</p>
+<span class="hidden mt-2 px-2.5 py-1 bg-surface-container-highest rounded text-label-sm font-label-sm text-tertiary font-mono" id="fileBadge"></span>
+</div>
+<!-- Alternative Input Box -->
+<div class="space-y-1.5">
+<label class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1" for="recoveryCode">
+<span class="material-symbols-outlined text-[16px]" data-icon="key">key</span>
+          או הדביקו קוד שחזור כאן...
+        </label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-2.5 text-body-sm font-body-sm text-on-surface font-mono placeholder:text-outline-variant focus:outline-none focus:border-primary resize-none inset-slot" id="recoveryCode" placeholder="WQB64_eyJ2ZXIiOiIxLjIiLCJ3b3JsZHMiOjQsIndvcmRzIjo0MiwidGltZSI6MTcwOTY4MH0=..." rows="2"></textarea>
+</div>
+<!-- Caution Warning Banner -->
+<div class="bg-error-container/25 border border-error-container/60 rounded-xl p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div class="text-body-sm font-body-sm text-on-surface leading-snug">
+<span class="font-bold text-error">שים לב:</span>
+          שחזור ידרוס את ההתקדמות המקומית הנוכחית על מכשיר זה. מומלץ ליצא גיבאי קודם לכן.
+        </div>
+</div>
+<!-- Tactile Green Restore Button -->
+<button class="w-full bg-tertiary-container text-on-tertiary-container font-label-lg text-label-lg font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 tactile-btn-tertiary cursor-pointer" onclick="handleRestoreAction()">
+<span class="material-symbols-outlined text-[20px]" data-icon="restore" style="font-variation-settings: 'FILL' 1;">restore</span>
+<span>שחזר נתונים והחל על המשחק</span>
+</button>
+</section>
+<!-- ================= CARD 3: LOCAL STORAGE / SYSTEM INTEGRITY ================= -->
+<section class="bg-surface-container rounded-xl border border-outline-variant p-4 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="database">database</span>
+</div>
+<div>
+<h3 class="text-label-lg font-label-lg text-on-surface font-bold">אחסון וסנכרון מקומי</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">מצב מנוע הנתונים של הדפדפן</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary text-label-sm font-label-sm font-semibold">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse"></span>
+          פעיל
+        </div>
+</div>
+<!-- Storage Bar & Status -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant inset-slot space-y-2">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface">שמירה מקומית פעילה (Local Storage - 248 KB מנוצלים)</span>
+<span class="text-primary font-mono font-bold">5%</span>
+</div>
+<!-- Progress track -->
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 5%;"></div>
+</div>
+</div>
+<!-- Integrity Check Button -->
+<button class="w-full bg-surface-container-high text-on-surface border border-outline-variant font-label-md text-label-md py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 tactile-btn-secondary cursor-pointer" id="integrityBtn" onclick="runIntegrityCheck()">
+<span class="material-symbols-outlined text-[18px] text-tertiary" data-icon="fact_check">fact_check</span>
+<span id="integrityBtnText">בדיקת תקינות נתונים</span>
+</button>
+<!-- Status Toast / Result container -->
+<div class="hidden text-label-sm font-label-sm p-2 rounded-lg bg-surface-container-highest text-tertiary flex items-center justify-between" id="integrityResult">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified">verified</span>
+          כל 42 הרשומות תקינות וללא שגיאות סכמה
+        </span>
+<span class="text-on-surface-variant font-mono">0ms</span>
+</div>
+</section>
+</main>
+<!-- ================= BOTTOM NAVIGATION BAR (Shared Component Anchor) ================= -->
+<!-- Note: Shared component BottomNavBar executed with style_active_navigation and exact labels -->
+<!-- Active tab logic: We are in parent control panel focusing on safety/system settings -> 'בטיחות' is selected -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-3 py-2 max-w-md mx-auto bg-surface-container-high dark:bg-surface-container-high border-t border-outline-variant dark:border-outline-variant shadow-md dark:shadow-md">
+<!-- Item 1: מבט כולל (dashboard) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant active:translate-y-0.5 transition-transform duration-100" href="#overview">
+<span class="material-symbols-outlined text-[22px]" data-icon="dashboard">dashboard</span>
+<span class="text-label-sm font-label-sm mt-0.5">מבט כולל</span>
+</a>
+<!-- Item 2: התקדמות (insights) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant active:translate-y-0.5 transition-transform duration-100" href="#progress">
+<span class="material-symbols-outlined text-[22px]" data-icon="insights">insights</span>
+<span class="text-label-sm font-label-sm mt-0.5">התקדמות</span>
+</a>
+<!-- Item 3: זמני מסך (timer) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:bg-surface-variant dark:hover:bg-surface-variant active:translate-y-0.5 transition-transform duration-100" href="#screentime">
+<span class="material-symbols-outlined text-[22px]" data-icon="timer">timer</span>
+<span class="text-label-sm font-label-sm mt-0.5">זמני מסך</span>
+</a>
+<!-- Item 4: בטיחות (verified_user) - ACTIVE FOR BACKUP & PARENTAL RECOVERY -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-3 py-1.5 active:translate-y-0.5 transition-transform duration-100 font-bold" href="#safety">
+<span class="material-symbols-outlined text-[22px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-label-sm font-label-sm mt-0.5 font-bold">בטיחות</span>
+</a>
+</nav>
+<!-- ================= MICRO-INTERACTION LOGIC ================= -->
+<script>
+    // 1. Download feedback
+    function triggerDownloadFeedback() {
+      const btn = document.getElementById('downloadBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px] animate-spin" data-icon="sync">sync</span>
+        <span>מכין קובץ גיבוי מוצפן...</span>
+      `;
+      setTimeout(() => {
+        // Create mock JSON download
+        const backupData = {
+          game: "Word Quest",
+          version: "1.2",
+          exportDate: new Date().toISOString(),
+          worldsUnlocked: 4,
+          wordsLearned: 42,
+          stickersCount: 8,
+          streakDays: 14
+        };
+        const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "word-quest-backup.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+          <span>הקובץ הורד בהצלחה!</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 3000);
+      }, 700);
+    }
+
+    // 2. Copy encrypted string
+    function copyEncryptedString() {
+      const mockEncryptedString = "WQB64_eyJ2ZXIiOiIxLjIiLCJ3b3JsZHMiOjQsIndvcmRzIjo0Miwic3RpY2tlcnMiOjgsInN0cmVhazoxNH0=";
+      navigator.clipboard?.writeText(mockEncryptedString).catch(() => {});
+      const textSpan = document.getElementById('copyBtnText');
+      textSpan.textContent = "הועתק ללוח!";
+      setTimeout(() => {
+        textSpan.textContent = "העתק קוד מוצפן";
+      }, 2500);
+    }
+
+    // 3. Share action
+    function shareBackupData() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'גיבוי מסע המילים',
+          text: 'קובץ גיבוי נתוני התקדמות עבור שחקן מסע המילים.'
+        }).catch(() => {});
+      } else {
+        alert('שיתוף נתמך במכשירים ניידים תואמים.');
+      }
+    }
+
+    // 4. File drag/select
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const badge = document.getElementById('fileBadge');
+        badge.textContent = `נבחר: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        badge.classList.remove('hidden');
+      }
+    }
+
+    // 5. Restore Action with confirmation
+    function handleRestoreAction() {
+      const textarea = document.getElementById('recoveryCode');
+      const fileInput = document.getElementById('fileInput');
+      
+      const hasInput = (fileInput.files && fileInput.files.length > 0) || textarea.value.trim().length > 0;
+      
+      if (!hasInput) {
+        alert('אנא בחרו קובץ גיבוי JSON או הדביקו קוד שחזור מוצפן לפני הפעלת השחזור.');
+        return;
+      }
+
+      const confirmed = confirm('האם לשחזר נתונים כעת? פעולה זו תעדכן את כל הישגי המשחק במכשיר זה.');
+      if (confirmed) {
+        alert('הנתונים שוחזרו בהצלחה! המשחק מוכן עם כל 42 המילים והעולמות הפעילים.');
+      }
+    }
+
+    // 6. Integrity Check
+    function runIntegrityCheck() {
+      const btn = document.getElementById('integrityBtn');
+      const text = document.getElementById('integrityBtnText');
+      const result = document.getElementById('integrityResult');
+      
+      text.textContent = 'בודק קבצי מפתח...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        text.textContent = 'בדיקת תקינות נתונים';
+        btn.disabled = false;
+        result.classList.remove('hidden');
+      }, 600);
+    }
+  </script>
+</body></html>

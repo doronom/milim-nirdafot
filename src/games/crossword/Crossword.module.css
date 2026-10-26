@@ -1,0 +1,129 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+.current {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+}
+.clueTag {
+  color: var(--world-primary);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.clueText {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}
+.grid {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border-radius: var(--radius-card);
+  background: var(--surface-container);
+}
+.flash {
+  box-shadow: inset 0 0 0 var(--border-medium) var(--error);
+}
+.block {
+  aspect-ratio: 1;
+}
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-elevated);
+  color: var(--text);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  cursor: pointer;
+}
+.active {
+  border-color: var(--world-primary);
+  background: var(--world-surface);
+}
+.locked {
+  border-color: var(--success);
+  color: var(--success);
+}
+.number {
+  position: absolute;
+  inset-block-start: var(--space-1);
+  inset-inline-start: var(--space-1);
+  color: var(--world-accent);
+  font-size: var(--type-caption-size);
+  line-height: 1;
+}
+.clues {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.clue {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  inline-size: 100%;
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+  color: var(--text);
+  text-align: start;
+  cursor: pointer;
+}
+.clueSelected {
+  border-color: var(--world-primary);
+}
+.clueDone {
+  color: var(--success);
+  cursor: default;
+}
+.clueNumber {
+  color: var(--world-accent);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+}
+.tile {
+  min-block-size: var(--touch-min);
+  border: none;
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  cursor: pointer;
+}
+.tile:active {
+  transform: translateY(var(--press-offset));
+  box-shadow: 0 var(--border-thin) 0 var(--border);
+}
+.tools {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+}

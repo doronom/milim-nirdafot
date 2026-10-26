@@ -1,0 +1,42 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: calc(var(--touch-min) + var(--space-3));
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+}
+.ok {
+  border-color: var(--success);
+}
+.bad {
+  border-color: var(--error);
+}
+.typed {
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  letter-spacing: var(--space-1);
+}
+.placeholder {
+  color: var(--text-muted);
+}
+.clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--touch-min);
+  block-size: var(--touch-min);
+  border: none;
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+}

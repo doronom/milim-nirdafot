@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>סיכום דו-קרב מילים - מסע המילים</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#005321",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#003c16",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed": "#c9e6ff",
+            "secondary": "#ffb95f",
+            "error": "#ffb4ab",
+            "on-primary-container": "#003751",
+            "on-primary": "#00344d",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-lowest": "#060e20",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#4ae176",
+            "primary-container": "#0ea5e9",
+            "on-error": "#690005",
+            "surface-bright": "#31394d",
+            "primary": "#89ceff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#171f33",
+            "tertiary-container": "#00b351",
+            "surface-container-highest": "#2d3449",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-tint": "#89ceff",
+            "background": "#0b1326",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#dae2fd",
+            "tertiary": "#4ae176",
+            "on-tertiary": "#003915",
+            "surface-variant": "#2d3449",
+            "on-primary-fixed-variant": "#004c6e",
+            "on-background": "#dae2fd",
+            "on-surface-variant": "#bec8d2",
+            "on-secondary-fixed": "#2a1700",
+            "outline": "#88929b",
+            "inverse-primary": "#006591",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-on-surface": "#283044",
+            "surface": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#0b1326",
+            "surface-container-low": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-primary selection:text-on-primary antialiased">
+<!-- Container locked to mobile viewport 390px scale with auto margin -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col bg-background relative overflow-x-hidden shadow-2xl">
+<!-- TopAppBar -->
+<header class="bg-surface-container border-b border-outline-variant shadow-sm docked full-width top-0 sticky z-40">
+<div class="flex justify-between items-center w-full px-4 h-14 max-w-md mx-auto">
+<button aria-label="חזרה" class="w-10 h-10 rounded-xl flex items-center justify-center text-primary hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">
+          סיכום דו-קרב מילים
+        </h1>
+<button aria-label="הגדרות" class="w-10 h-10 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Arena Content -->
+<main class="flex-1 px-4 py-5 flex flex-col gap-5 pb-36">
+<!-- 1. Winner Announcement Hero Banner -->
+<section class="relative bg-surface-container-low rounded-xl p-5 border border-outline-variant overflow-hidden flex flex-col items-center text-center shadow-lg">
+<!-- Ambient radial glow in background -->
+<div class="absolute -top-16 inset-x-0 h-40 bg-secondary-container/20 blur-3xl pointer-events-none rounded-full"></div>
+<!-- Trophy & Explorer Insignia Cluster -->
+<div class="relative mb-3 flex items-center justify-center">
+<!-- Background Star Flares -->
+<span class="material-symbols-outlined text-secondary absolute -top-2 -right-4 text-2xl animate-pulse" data-icon="stars" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="material-symbols-outlined text-secondary-fixed absolute -bottom-1 -left-3 text-lg animate-pulse" data-icon="sparkles">arrow_back_ios_new</span>
+<!-- Gold Carved Trophy Housing -->
+<div class="w-20 h-20 rounded-2xl bg-gradient-to-b from-secondary to-secondary-container p-0.5 shadow-xl flex items-center justify-center border-b-4 border-on-secondary-fixed-variant">
+<div class="w-full h-full bg-surface-container-high rounded-[14px] flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-5xl" data-icon="military_tech" data-weight="fill" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+</div>
+</div>
+<!-- Quest Realm Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline-variant mb-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-label-sm font-label-sm text-tertiary font-bold">זירת נמל היסודות • דרג 4</span>
+</div>
+<h2 class="text-display-hero-mobile font-display-hero-mobile text-on-surface tracking-tight mb-1">
+          הניצחון שייך לאיתי!
+        </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs mb-4">
+          קרב צמוד ומותח שהוכרע בשניות הסיום בזכות דיוק יוצא דופן באוצר המילים העתיק.
+        </p>
+<!-- Final Score Comparison Capsule -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-3 flex items-center justify-around">
+<!-- Itai Score -->
+<div class="flex flex-col items-center">
+<span class="text-label-sm font-label-sm text-primary font-bold">איתי (מנצח)</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="text-headline-lg font-headline-lg text-secondary font-bold">850</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">נק'</span>
+</div>
+</div>
+<!-- VS Divider Pill -->
+<div class="h-8 w-px bg-outline-variant relative">
+<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface-container px-1 text-[11px] font-bold text-outline">נגד</span>
+</div>
+<!-- Tomer Score -->
+<div class="flex flex-col items-center">
+<span class="text-label-sm font-label-sm text-on-surface-variant">תומר</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold">780</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">נק'</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Dual Performance Breakdown (Head-to-head Bento Card) -->
+<section class="bg-surface-container rounded-xl p-4 border border-outline-variant shadow-md">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="equalizer">equalizer</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">השוואת ביצועים דו-צידית</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline">10 שאלות יסוד</span>
+</div>
+<!-- Two Columns Player Headers -->
+<div class="grid grid-cols-2 gap-3 mb-3">
+<!-- Right Col: Itai -->
+<div class="bg-surface-container-low border-2 border-primary-container/60 rounded-xl p-2.5 flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-sm">
+              א
+            </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-bold leading-tight">איתי</div>
+<div class="text-[11px] font-medium text-tertiary">מנצח הדו-קרב</div>
+</div>
+</div>
+<!-- Left Col: Tomer -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-2.5 flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-bright text-on-surface flex items-center justify-center font-bold text-headline-sm">
+              ת
+            </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-bold leading-tight">תומר</div>
+<div class="text-[11px] font-medium text-on-surface-variant">חוקר עמית</div>
+</div>
+</div>
+</div>
+<!-- Metric 1: Correct Answers -->
+<div class="bg-surface-container-low rounded-lg p-3 mb-2.5 border border-outline-variant/60">
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mb-2">
+<span class="font-bold text-on-surface">תשובות נכונות</span>
+<span class="material-symbols-outlined text-outline text-base" data-icon="task_alt">task_alt</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex items-baseline justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-primary-container">
+<span class="text-label-md font-label-md font-bold text-primary">9 מתוך 10</span>
+<span class="text-label-sm font-label-sm text-tertiary font-bold">90%</span>
+</div>
+<div class="flex items-baseline justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-outline">
+<span class="text-label-md font-label-md font-bold text-on-surface">8 מתוך 10</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">80%</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Average Time per Answer -->
+<div class="bg-surface-container-low rounded-lg p-3 mb-2.5 border border-outline-variant/60">
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mb-2">
+<span class="font-bold text-on-surface">זמן מענה ממוצע</span>
+<span class="material-symbols-outlined text-outline text-base" data-icon="speed">speed</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex items-center justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-primary-container">
+<span class="text-label-md font-label-md font-bold text-primary">3.2 שנ'</span>
+<span class="material-symbols-outlined text-tertiary text-base" data-icon="bolt">bolt</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-outline">
+<span class="text-label-md font-label-md font-bold text-on-surface">4.1 שנ'</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">+0.9 שנ'</span>
+</div>
+</div>
+</div>
+<!-- Metric 3: Max Streak -->
+<div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant/60">
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mb-2">
+<span class="font-bold text-on-surface">רצף מענה מרבי</span>
+<span class="material-symbols-outlined text-outline text-base" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex items-center justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-primary-container">
+<span class="text-label-md font-label-md font-bold text-primary">6 ברצף</span>
+<span class="material-symbols-outlined text-secondary text-base" data-icon="stars" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container px-2.5 py-1.5 rounded-lg border-r-2 border-outline">
+<span class="text-label-md font-label-md font-bold text-on-surface">4 ברצף</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">-2</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Deciding Words Section -->
+<section class="bg-surface-container rounded-xl p-4 border border-outline-variant shadow-md">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="auto_stories">auto_stories</span>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">המילים שהכריעו את הקרב</h3>
+<p class="text-[12px] text-on-surface-variant">ניתוח לקסיקלי של רגעי ההכרעה בדו-קרב</p>
+</div>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Word 1: שחון (Deciding Difference) -->
+<div class="p-3 rounded-lg bg-surface-container-low border-r-4 border-primary-container border-t border-l border-b border-outline-variant/70">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-headline-md text-on-surface font-bold">שָׁחוּן</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">= יבש וצחיח</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-primary-container/20 text-primary border border-primary-container/40">
+                הכרעת סיבוב
+              </span>
+</div>
+<!-- Individual Results -->
+<div class="flex items-center gap-4 text-label-sm font-label-sm pt-1 border-t border-outline-variant/40">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-base" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>איתי: דייק (בחר: יבש וצחיח)</span>
+</div>
+<div class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-base" data-icon="cancel" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span>תומר: שגה</span>
+</div>
+</div>
+</div>
+<!-- Word 2: כביר (Both Correct) -->
+<div class="p-3 rounded-lg bg-surface-container-low border-r-4 border-tertiary border-t border-l border-b border-outline-variant/70">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-headline-md text-on-surface font-bold">כַּבִּיר</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">= עצום ורב-ממדים</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-tertiary-container/20 text-tertiary border border-tertiary-container/40">
+                פיצוח משותף
+              </span>
+</div>
+<!-- Individual Results -->
+<div class="flex items-center gap-4 text-label-sm font-label-sm pt-1 border-t border-outline-variant/40">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-base" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>איתי: דייק (3.1 שנ')</span>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-base" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>תומר: דייק (3.8 שנ')</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. XP Quest Rewards Card -->
+<section class="bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low rounded-xl p-3.5 border border-secondary/40 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-secondary-container/30 border border-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<div class="text-label-md font-label-md text-secondary font-bold leading-tight">
+              +100 XP בונוס דו-קרב
+            </div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+              התווסף למסע האוצרות של איתי!
+            </div>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="stars" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">2,450 XP</span>
+</div>
+</section>
+</main>
+<!-- Bottom Action Drawer (Tactile Buttons) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-high/95 backdrop-blur-md border-t border-outline-variant px-4 py-3 max-w-md mx-auto">
+<div class="flex flex-col gap-2.5">
+<!-- Primary Rematch Button: Emerald Tactile 3D Action -->
+<button class="w-full min-h-[52px] bg-tertiary-container hover:bg-tertiary text-on-tertiary-container font-headline-sm text-headline-sm font-bold rounded-xl border-b-4 border-on-tertiary-fixed-variant flex items-center justify-center gap-2 active:translate-y-0.5 active:border-b transition-all duration-100 shadow-md" type="button">
+<span class="material-symbols-outlined text-2xl" data-icon="replay">replay</span>
+<span>קרב גומלין חוזר! (Rematch)</span>
+</button>
+<!-- Secondary Navigation Button: Dark Slate Tactile Action -->
+<button class="w-full min-h-[46px] bg-surface-container hover:bg-surface-bright text-on-surface font-label-lg text-label-lg font-bold rounded-xl border-b-4 border-outline-variant flex items-center justify-center gap-2 active:translate-y-0.5 active:border-b transition-all duration-100" type="button">
+<span class="material-symbols-outlined text-xl text-on-surface-variant" data-icon="dashboard">dashboard</span>
+<span>חזרה לדשבורד הורים / מסע ראשי</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

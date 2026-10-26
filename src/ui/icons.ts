@@ -2,6 +2,7 @@
 export const ICON_NAMES = [
   'anchor',
   'back',
+  'backspace',
   'bolt',
   'book',
   'check',

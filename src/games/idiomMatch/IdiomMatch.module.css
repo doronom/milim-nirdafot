@@ -1,0 +1,92 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+  box-shadow: var(--shadow-card-glow);
+  text-align: center;
+}
+.idiom {
+  font-family: var(--font-display);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  color: var(--world-primary);
+}
+.meaning {
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}
+.listen {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-badge);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-elevated);
+  color: var(--text);
+  cursor: pointer;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.option {
+  min-block-size: calc(var(--touch-min) + var(--space-2));
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-option-weight);
+  cursor: pointer;
+}
+.option:disabled {
+  cursor: default;
+}
+.right {
+  border-color: var(--success);
+}
+.wrong {
+  border-color: var(--error);
+}
+.faded {
+  opacity: var(--opacity-disabled);
+}
+.sentence {
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+  font-size: var(--type-title-size);
+  line-height: calc(var(--type-option-lh) * 1.6);
+}
+.blank {
+  display: inline-block;
+  margin-inline: var(--space-1);
+  padding-inline: var(--space-2);
+  border-block-end: var(--border-medium) dashed var(--world-primary);
+  color: var(--world-primary);
+  font-weight: var(--type-label-weight);
+}
+.bonusTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--world-accent);
+  font-weight: var(--type-label-weight);
+}

@@ -82,6 +82,8 @@ export function planRounds(
 }
 
 export interface LevelRun {
+  /** Boss and placement runs ask each item once: no re-inserted items or extra rounds. */
+  singlePass: boolean;
   rounds: RoundPlan[];
   /** Index of the round being played; equals rounds.length when the level is finished. */
   index: number;
@@ -91,8 +93,42 @@ export interface LevelRun {
   reinserted: string[];
 }
 
-export function startRun(rounds: Omit<RoundPlan, 'difficulty'>[], difficulty: Difficulty): LevelRun {
-  return { rounds: rounds.map((r) => ({ ...r, difficulty })), index: 0, difficulty, answers: [], reinserted: [] };
+export function startRun(
+  rounds: Omit<RoundPlan, 'difficulty'>[],
+  difficulty: Difficulty,
+  singlePass = false,
+): LevelRun {
+  return {
+    singlePass,
+    rounds: rounds.map((r) => ({ ...r, difficulty })),
+    index: 0,
+    difficulty,
+    answers: [],
+    reinserted: [],
+  };
+}
+
+/**
+ * A single pass for boss levels: each item asked once, grouped by kind into recognition rounds with the plain game
+ * for that kind (pick for pairs, the World 3-4 game for the rest), so 15 items mean 15 questions.
+ */
+export function planSinglePass(
+  world: WorldId,
+  catalog: readonly GameInfo[],
+  items: readonly LevelItem[],
+  ctx: PlanContext,
+): Omit<RoundPlan, 'difficulty'>[] {
+  const planner = createPlanner(world, catalog, ctx);
+  const rounds: Omit<RoundPlan, 'difficulty'>[] = [];
+  let left = [...items];
+  while (left.length > 0) {
+    const round = planner.reviewRound(left);
+    if (!round) break;
+    rounds.push(round);
+    const covered = new Set(round.items.map((i) => i.key));
+    left = left.filter((i) => !covered.has(i.key));
+  }
+  return rounds;
 }
 
 export function roundAccuracy(answers: readonly Answer[]): number {
@@ -109,7 +145,7 @@ export function finishRound(run: LevelRun, result: RoundResult, planner: Planner
   const { next, reinsertMissed } = adapt(run.difficulty, roundAccuracy(result.answers));
   const rounds = run.rounds.map((r, i) => (i > run.index ? { ...r, difficulty: next } : r));
   let reinserted = run.reinserted;
-  if (reinsertMissed) {
+  if (reinsertMissed && !run.singlePass) {
     const playing = rounds[run.index]!;
     const missedKeys = new Set(result.answers.filter((a) => a.outcome === 'wrong').map((a) => a.itemKey));
     let missed = playing.items.filter((i) => missedKeys.has(i.key) && !reinserted.includes(i.key));
@@ -129,7 +165,14 @@ export function finishRound(run: LevelRun, result: RoundResult, planner: Planner
       }
     }
   }
-  return { rounds, index: run.index + 1, difficulty: next, answers: [...run.answers, ...result.answers], reinserted };
+  return {
+    ...run,
+    rounds,
+    index: run.index + 1,
+    difficulty: next,
+    answers: [...run.answers, ...result.answers],
+    reinserted,
+  };
 }
 
 export const isRunDone = (run: LevelRun): boolean => run.index >= run.rounds.length;

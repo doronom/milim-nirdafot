@@ -1,0 +1,107 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  background: var(--surface);
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--gutter);
+}
+.best {
+  text-align: center;
+  color: var(--text-secondary);
+}
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* A ring that empties as time runs out. */
+.timer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--node-size);
+  block-size: var(--node-size);
+  border-radius: 50%;
+  background: conic-gradient(var(--world-primary) calc(var(--local-progress) * 360deg), var(--surface-elevated) 0);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  font-variant-numeric: tabular-nums;
+}
+.timer span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: calc(var(--node-size) - var(--space-3));
+  block-size: calc(var(--node-size) - var(--space-3));
+  border-radius: 50%;
+  background: var(--surface);
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.score {
+  color: var(--xp);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  font-variant-numeric: tabular-nums;
+}
+.combo {
+  color: var(--world-accent);
+  font-weight: var(--type-label-weight);
+}
+.word {
+  padding-block: var(--space-6);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+}
+.right {
+  border-color: var(--success);
+}
+.wrong {
+  border-color: var(--error);
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.option {
+  min-block-size: calc(var(--touch-min) + var(--space-3));
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  cursor: pointer;
+}
+.option:active {
+  transform: translateY(var(--press-offset));
+}
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+.final {
+  color: var(--xp);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  font-variant-numeric: tabular-nums;
+}

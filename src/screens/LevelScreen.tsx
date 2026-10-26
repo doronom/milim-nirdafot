@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
-import { XP } from '../config/game';
+import { BOSS_PASS, WORLDS, XP } from '../config/game';
 import type { Sentence } from '../content/types';
 import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
@@ -14,7 +14,7 @@ import {
   type LevelOutcome,
   type LevelRun,
 } from '../engine/level-run';
-import { currentLevel, isLevelUnlocked, recordLevel } from '../engine/progress';
+import { currentLevel, isLevelUnlocked, recordLevel, recordPractice, unlockWorld } from '../engine/progress';
 import { listReports, pendingKeys, reportAlsoCorrect, reportItemDispute } from '../engine/review-queue';
 import { createRng } from '../engine/rng';
 import { blockedSentenceIds, listSentenceReports, reportSentence } from '../engine/sentence-reports';
@@ -32,6 +32,7 @@ import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
 import { TactileButton } from '../ui/TactileButton';
 import { IconButton, TopBar } from '../ui/TopBar';
+import { BossResults } from './level/BossResults';
 import { EndOfLevel } from './level/EndOfLevel';
 import { LearnCards } from './level/LearnCards';
 import { levelNumber, levelTitle } from './levelText';
@@ -137,6 +138,8 @@ function practiseLabel(item: LevelItem): string {
       return item.register.meaning;
     case 'context':
       return item.context.options.map(displayWord).join(' / ');
+    case 'idiom':
+      return `${item.idiom.idiom} = ${item.idiom.meaning}`;
   }
 }
 
@@ -146,6 +149,8 @@ interface Finished {
   outcome: LevelOutcome;
   xp: number;
   nextId?: string;
+  /** Boss levels: whether the run passed (80% or more). */
+  bossPassed?: boolean;
 }
 
 function LevelPlayer({
@@ -222,6 +227,19 @@ function LevelPlayer({
       leitner: applySession(progress.leitner, outcome.perItem, known, today),
       completedAt: new Date().toISOString(),
     };
+    if (level.kind === 'boss') {
+      // A pass marks the boss done and opens the next world; "not yet" keeps the practice and takes nothing away.
+      const passed = outcome.accuracy >= BOSS_PASS;
+      update((p) => {
+        const leitner = applySession(p.leitner, outcome.perItem, known, today);
+        return passed
+          ? unlockWorld(recordLevel(p, { ...record, leitner }), world.id + 1)
+          : recordPractice(p, { xp, leitner });
+      });
+      setFinished({ outcome, xp, bossPassed: passed });
+      setPhase('end');
+      return;
+    }
     const next = currentLevel(recordLevel(progress, record), world);
     update((p) => recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, known, today) }));
     setFinished({ outcome, xp, nextId: next?.id });
@@ -251,11 +269,16 @@ function LevelPlayer({
   };
 
   const name = levelName(level, station);
+  const isBoss = level.kind === 'boss';
+  const bossNeeded = Math.ceil(session.items.length * BOSS_PASS);
+  const bossCorrect = run.answers.filter((a) => a.outcome !== 'wrong').length;
   const subtitle =
     phase === 'learn'
       ? 'כרטיסי לימוד'
       : phase === 'play'
-        ? `סבב ${run.index + 1} מתוך ${run.rounds.length}`
+        ? isBoss
+          ? `נכונות עד כה: ${bossCorrect} מתוך ${session.items.length} · יעד ${bossNeeded}`
+          : `סבב ${run.index + 1} מתוך ${run.rounds.length}`
         : station?.title;
   const game = plan ? games.get(plan.gameId) : undefined;
   const nextLevel = finished?.nextId ? findLevel(layout, finished.nextId) : null;
@@ -292,13 +315,15 @@ function LevelPlayer({
           {phase === 'intro' && (
             <>
               <MascotBubble>
-                {session.items.length > 0
-                  ? `סבב חזרה: ${session.items.length} פריטים מהמסע שלכם, החלשים ביותר קודם.`
-                  : 'אין עדיין מה לחזור עליו. שחקו עוד שלבים וחזרו לכאן.'}
+                {isBoss
+                  ? `שומר ${WORLDS.find((w) => w.id === world.id)!.name} מחכה: ${session.items.length} שאלות מכל העולם. ${bossNeeded} תשובות נכונות פותחות את הדרך הלאה.`
+                  : session.items.length > 0
+                    ? `סבב חזרה: ${session.items.length} פריטים מהמסע שלכם, החלשים ביותר קודם.`
+                    : 'אין עדיין מה לחזור עליו. שחקו עוד שלבים וחזרו לכאן.'}
               </MascotBubble>
               {session.items.length > 0 && plan && (
-                <TactileButton block size="lg" icon="play" onClick={() => startRound(run)}>
-                  מתחילים
+                <TactileButton block size="lg" icon={isBoss ? 'swords' : 'play'} onClick={() => startRound(run)}>
+                  {isBoss ? 'לקרב!' : 'מתחילים'}
                 </TactileButton>
               )}
             </>
@@ -314,7 +339,21 @@ function LevelPlayer({
               onReportSentence={onReportSentence}
             />
           )}
-          {phase === 'end' && finished && (
+          {phase === 'end' && finished && isBoss && (
+            <BossResults
+              passed={finished.bossPassed ?? false}
+              correct={finished.outcome.correctAnswers}
+              total={run.answers.length}
+              needed={bossNeeded}
+              unlocked={
+                world.id < 4 ? { id: world.id + 1, name: WORLDS.find((w) => w.id === world.id + 1)!.name } : undefined
+              }
+              practise={practise}
+              pathTo={`/world/${world.id}`}
+              onRetry={onReplay}
+            />
+          )}
+          {phase === 'end' && finished && !isBoss && (
             <EndOfLevel
               levelName={name}
               stars={finished.outcome.stars}

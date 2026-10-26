@@ -2,7 +2,8 @@
 
 - `handoff/stage-1` … `stage-6` — all screens: World 1 (map, path, learn card, pick, drag, end of level) and the
   motion spec; World 2 games; World 3 games; World 4 games and boss; motivation (rank up, album, streak freeze,
-  certificate); stage 6: parent gate and parent dashboard. Each of stages 2-5 has its handoff summary; stage 5 also has
+  certificate); stage 6: parent gate, dashboard, settings, my new words, content review, backup, duel (setup, pass the phone,
+  results) and edge states. Each of stages 2-5 has its handoff summary; stage 5 also has
   DESIGN.md v1.2.
 - `handoff-v1.1/` — v1.1 tokens, component sheet, summary and SVG assets (mascot, collectible).
 

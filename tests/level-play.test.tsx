@@ -6,6 +6,9 @@ import { content } from '../src/content';
 import { applyTokens } from '../src/design/tokens';
 import { buildSynonymLinks } from '../src/engine/links';
 import { initialProgress, type Progress } from '../src/engine/progress';
+
+/** A player past the welcome screen. */
+const started = (): Progress => ({ ...initialProgress(), onboarded: true });
 import { listReports } from '../src/engine/review-queue';
 import { memoryStore, type KeyValueStore } from '../src/storage/kv';
 
@@ -14,7 +17,7 @@ const links = buildSynonymLinks(content);
 const start = (store: KeyValueStore) => {
   window.location.hash = '#/level/w1-emotions-1?seed=7';
   applyTokens();
-  render(<App store={store} initialProgress={initialProgress()} />);
+  render(<App store={store} initialProgress={started()} />);
 };
 
 afterEach(() => {

@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 import type { GameId, WorldId } from '../config/game';
-import type { Content, ContextChoice, Entry, IntensityScale, RegisterSet, Sentence } from '../content/types';
+import type { Content, ContextChoice, Entry, Idiom, IntensityScale, RegisterSet, Sentence } from '../content/types';
 import type { Difficulty } from '../engine/adaptive';
 import type { Outcome } from '../engine/attempt';
 import type { PairDecisions, Tier } from '../engine/distractors';
@@ -40,13 +40,19 @@ export interface ContextItem extends ItemBase {
   context: ContextChoice;
 }
 
+export interface IdiomItem extends ItemBase {
+  kind: 'idiom';
+  idiom: Idiom;
+}
+
 /** Anything a level can teach and the Leitner scheduler can track. */
-export type LevelItem = PracticeItem | ScaleItem | RegisterItem | ContextItem;
+export type LevelItem = PracticeItem | ScaleItem | RegisterItem | ContextItem | IdiomItem;
 
 export const isPair = (i: LevelItem): i is PracticeItem => i.kind === 'pair';
 export const isScale = (i: LevelItem): i is ScaleItem => i.kind === 'scale';
 export const isRegister = (i: LevelItem): i is RegisterItem => i.kind === 'register';
 export const isContext = (i: LevelItem): i is ContextItem => i.kind === 'context';
+export const isIdiom = (i: LevelItem): i is IdiomItem => i.kind === 'idiom';
 
 export interface Answer {
   itemKey: string;
