@@ -16,12 +16,21 @@ function apiKey(): string {
   return key;
 }
 
-/** Errors carry Google's status and message only (they never contain the key). */
-async function call<T>(path: string, init: RequestInit = {}): Promise<T> {
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Errors carry Google's status and message only (they never contain the key). Rate limits (429) and transient server
+ * errors are retried with growing waits, since some voice families have a low per-minute quota.
+ */
+async function call<T>(path: string, init: RequestInit = {}, attempt = 0): Promise<T> {
   const res = await fetch(`${API}${path}`, {
     ...init,
     headers: { 'Content-Type': 'application/json', 'X-Goog-Api-Key': apiKey(), ...(init.headers ?? {}) },
   });
+  if ((res.status === 429 || res.status >= 500) && attempt < 8) {
+    await sleep(Math.min(60_000, 2_000 * 2 ** attempt));
+    return call<T>(path, init, attempt + 1);
+  }
   if (!res.ok) {
     let message = res.statusText;
     try {

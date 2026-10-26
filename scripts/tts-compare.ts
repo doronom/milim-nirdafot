@@ -3,7 +3,7 @@
  * Builds reports/voice-compare/index.html: 8 sample words and 2 sentences in every he-IL Google voice, next to the
  * browser's own Web Speech voices, for choosing the game's voice. Output is local (reports/ is not committed).
  */
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { content } from '../src/content';
 import { hebrewVoices, pool, synthesize, voiceFamily } from './tts/google';
@@ -24,13 +24,14 @@ const voices = await hebrewVoices();
 if (voices.length === 0) throw new Error('No he-IL voices returned');
 console.log(`${voices.length} he-IL voices: ${voices.map((v) => v.name).join(', ')}`);
 
-rmSync(OUT, { recursive: true, force: true });
+// Clips already made are kept, so a run interrupted by rate limits only fills in what is missing.
 mkdirSync(OUT, { recursive: true });
 const jobs = voices.flatMap((v) =>
   samples.map((s, i) => ({ voice: v.name, text: s.text, file: `${v.name}-${i}.mp3` })),
 );
 const failed = new Map<string, string>();
 await pool(jobs, 4, async (job) => {
+  if (existsSync(resolve(OUT, job.file))) return;
   try {
     writeFileSync(resolve(OUT, job.file), await synthesize(job.text, { voice: job.voice }));
   } catch (e) {

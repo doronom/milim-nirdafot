@@ -9,8 +9,11 @@ test('a new player goes from the welcome screen into the first level', async ({ 
   await page.getByRole('link', { name: /התחל במסע/ }).click();
   await page.getByRole('link', { name: /התחל שלב 1.1/ }).click();
 
-  // Learn cards, then the first round.
+  // Learn cards read the word with a generated clip, then the first round.
   await expect(page.getByRole('article', { name: /כרטיס לימוד/ })).toBeVisible();
+  const clip = page.waitForResponse((r) => /\/audio\/[0-9a-f]{16}\.mp3$/.test(r.url()) && r.ok());
+  await page.getByRole('button', { name: /^השמע: / }).click();
+  await clip;
   for (;;) {
     const next = page.getByRole('button', { name: /הבנתי/ });
     const label = await next.textContent();

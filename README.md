@@ -77,7 +77,7 @@ To regenerate after the content changes:
 
 1. Copy `.env.example` to `.env` and set `GOOGLE_TTS_API_KEY` (a key restricted to the Text-to-Speech API).
    `.env` is git-ignored; never commit it or add it to CI.
-2. The voice is set in `scripts/tts/config.json` (`npm run tts:compare` builds `reports/voice-compare/index.html` to
+2. The voice (he-IL-Chirp3-HD-Aoede) is set in `scripts/tts/config.json` (`npm run tts:compare` builds `reports/voice-compare/index.html` to
    choose one).
 3. `npm run gen:audio`. Only new or changed texts are synthesized; clips nothing uses any more are deleted.
 4. Commit `public/audio/` and `src/generated/audio-manifest.json`.
