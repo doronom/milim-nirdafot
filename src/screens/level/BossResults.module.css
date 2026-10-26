@@ -82,3 +82,7 @@
   gap: var(--space-3);
   inline-size: 100%;
 }
+.label {
+  color: var(--text-secondary);
+  font-weight: var(--type-label-weight);
+}

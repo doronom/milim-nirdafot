@@ -15,11 +15,23 @@ interface Props {
   unlocked?: { id: number; name: string };
   practise: string[];
   pathTo: string;
+  /** The certificate of the world just completed. */
+  certificateTo?: string;
   onRetry: () => void;
 }
 
 /** Boss results: a pass opens the next world; "not yet" lists the words to practise and never takes anything away. */
-export function BossResults({ passed, correct, total, needed, unlocked, practise, pathTo, onRetry }: Props) {
+export function BossResults({
+  passed,
+  correct,
+  total,
+  needed,
+  unlocked,
+  practise,
+  pathTo,
+  certificateTo,
+  onRetry,
+}: Props) {
   const pct = Math.round((correct / total) * 100);
   return (
     <div className={styles.screen}>
@@ -41,6 +53,7 @@ export function BossResults({ passed, correct, total, needed, unlocked, practise
           : `צריך ${needed} תשובות נכונות כדי לעבור. כל מה שלמדתם נשמר, ואפשר לנסות שוב מתי שרוצים.`}
       </p>
       <div className={styles.score}>
+        <span className={styles.label}>תשובות נכונות</span>
         <span className={styles.big}>
           {correct} / {total}
         </span>
@@ -62,6 +75,11 @@ export function BossResults({ passed, correct, total, needed, unlocked, practise
         {passed && unlocked && (
           <TactileButton tone="success" block size="lg" icon="forward" to={`/world/${unlocked.id}`}>
             לעולם הבא: {unlocked.name}
+          </TactileButton>
+        )}
+        {passed && certificateTo && (
+          <TactileButton block tone="quiet" icon="sparkle" to={certificateTo}>
+            פתיחת תעודת ההצטיינות
           </TactileButton>
         )}
         {!passed && (

@@ -1,7 +1,9 @@
 import { motion as m } from 'framer-motion';
 import { motion } from '../../design/tokens';
 import type { Stars } from '../../engine/progress';
+import type { Sticker as StickerDef } from '../../engine/album';
 import { Icon } from '../../ui/Icon';
+import { Sticker } from '../../ui/Sticker';
 import { Pill } from '../../ui/Pill';
 import { TactileButton } from '../../ui/TactileButton';
 import styles from './EndOfLevel.module.css';
@@ -25,6 +27,8 @@ interface Props {
   nextLabel?: string;
   pathTo: string;
   onReplay: () => void;
+  /** Set when this level awarded a new sticker. */
+  sticker?: StickerDef;
 }
 
 /** The result screen: stars revealed one by one, accuracy, XP, words to practise, and where to go next. */
@@ -40,6 +44,7 @@ export function EndOfLevel({
   nextLabel,
   pathTo,
   onReplay,
+  sticker,
 }: Props) {
   const reveal = motion('star_reveal');
   const verdict = VERDICT[stars];
@@ -79,6 +84,17 @@ export function EndOfLevel({
           <span className={styles.statLabel}>XP</span>
         </div>
       </div>
+      {sticker && (
+        <section className={styles.sticker} aria-label="מדבקה חדשה">
+          <Sticker sticker={sticker} />
+          <div>
+            <p className={styles.practiseTitle}>מדבקה חדשה נאספה!</p>
+            <TactileButton tone="quiet" icon="book" to="/treasures">
+              להדביק באלבום
+            </TactileButton>
+          </div>
+        </section>
+      )}
       {practise.length > 0 && (
         <section className={styles.practise} aria-label="מילים לתרגול">
           <p className={styles.practiseTitle}>מילים שכדאי לתרגל שוב:</p>

@@ -1,5 +1,6 @@
 import { type WorldId } from '../config/game';
 import type { LeitnerState } from './leitner';
+import { touchStreak, type Streak } from './streak';
 import { worldLevels, type Layout, type LevelDef, type WorldDef } from './layout';
 
 export type Stars = 0 | 1 | 2 | 3;
@@ -19,7 +20,9 @@ export interface Progress {
   /** Worlds opened by passing the previous boss or by the placement challenge. */
   unlockedWorlds: WorldId[];
   xp: number;
-  streak: { days: number; freezes: number; lastPlayed: string | null };
+  streak: Streak;
+  /** Stickers the child has placed in the album (level ids). */
+  album?: { placed: string[] };
   /** Leitner boxes per practice item key. */
   leitner: LeitnerState;
   settings: {
@@ -148,3 +151,6 @@ export function recordSpeedRun(p: Progress, run: { score: number; correct: numbe
 }
 
 export const needsOnboarding = (p: Progress): boolean => p.onboarded === false;
+
+/** Records play today for the streak (a level, a speed run or a duel). */
+export const markPlayed = (p: Progress, today: string): Progress => ({ ...p, streak: touchStreak(p.streak, today) });

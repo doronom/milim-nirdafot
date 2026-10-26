@@ -1,0 +1,106 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  background: var(--surface);
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--gutter);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-lip) solid var(--xp);
+  background: var(--surface-container);
+  text-align: center;
+}
+.seal {
+  display: inline-flex;
+  padding: var(--space-3);
+  border-radius: 50%;
+  border: var(--border-medium) solid var(--xp);
+  color: var(--xp);
+}
+.world {
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-badge);
+  border: var(--border-thin) solid var(--border);
+  color: var(--world-primary);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.title {
+  font-family: var(--font-display);
+  font-size: var(--type-word-size);
+  font-weight: var(--type-word-weight);
+  color: var(--text);
+}
+.sub {
+  color: var(--text-secondary);
+}
+.nameBox {
+  inline-size: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--xp);
+  background: var(--surface);
+}
+.name {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  color: var(--world-primary);
+}
+.rank {
+  color: var(--xp);
+  font-weight: var(--type-label-weight);
+}
+.achievement {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  text-align: start;
+}
+.achievement > span:first-child {
+  color: var(--success);
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  inline-size: 100%;
+  padding-block-start: var(--space-3);
+  border-block-start: var(--border-thin) solid var(--border);
+  font-size: var(--type-caption-size);
+}
+.stamp {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--xp);
+  text-align: start;
+}
+.dates {
+  text-align: end;
+  color: var(--text-secondary);
+}
+.notice {
+  padding: var(--space-3);
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  font-size: var(--type-label-size);
+  text-align: center;
+}

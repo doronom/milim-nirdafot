@@ -1,0 +1,44 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  inline-size: 100%;
+  max-inline-size: var(--content-max);
+  padding: var(--space-6);
+  border-radius: var(--radius-modal);
+  border: var(--border-medium) solid var(--xp);
+  background: var(--surface-container);
+  text-align: center;
+}
+.medal {
+  display: inline-flex;
+  padding: var(--space-4);
+  border-radius: 50%;
+  border: var(--border-lip) solid var(--xp);
+  color: var(--xp);
+  box-shadow: 0 0 var(--space-8) var(--xp);
+}
+.kicker {
+  color: var(--text-secondary);
+  font-weight: var(--type-label-weight);
+}
+.rank {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  color: var(--xp);
+}
+.mascot {
+  inline-size: var(--mascot-size);
+}

@@ -6,7 +6,7 @@ import { TactileButton } from '../ui/TactileButton';
 import { TopBar } from '../ui/TopBar';
 import styles from './AdventureScreen.module.css';
 
-/** Optional extras outside the path: the speed challenge now, the duel in a later milestone. */
+/** Optional extras outside the path: the speed challenge and the two-player duel. */
 export function AdventureScreen() {
   const { progress } = useProgress();
   const speed = speedAvailable(progress);
@@ -42,16 +42,19 @@ export function AdventureScreen() {
             </p>
           )}
         </article>
-        <article className={`${styles.card} ${styles.soon}`} aria-label="דו-קרב">
+        <article className={styles.card} aria-label="דו-קרב">
           <div className={styles.head}>
             <span className={styles.icon}>
               <Icon name="swords" size="xl" />
             </span>
             <div>
               <h2 className={styles.title}>דו-קרב</h2>
-              <p className={styles.text}>שני שחקנים, טלפון אחד. בקרוב!</p>
+              <p className={styles.text}>שני שחקנים, מכשיר אחד, אותן שאלות. מי יודע יותר?</p>
             </div>
           </div>
+          <TactileButton block icon="swords" to="/duel">
+            לדו-קרב
+          </TactileButton>
         </article>
       </div>
     </div>

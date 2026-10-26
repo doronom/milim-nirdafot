@@ -2,7 +2,7 @@ import { content, onlyReviewed } from '../content';
 import { createDisplayWord, createItemLabel } from '../content/display';
 import type { Entry, Sentence } from '../content/types';
 import { buildSynonymGraph } from '../engine/graph';
-import type { Layout } from '../engine/layout';
+import type { Layout, LevelDef } from '../engine/layout';
 import { buildSynonymLinks } from '../engine/links';
 import layoutJson from '../generated/layout.json';
 
@@ -35,3 +35,7 @@ export const guestPool = (reviewedOnly: boolean): readonly Entry[] =>
 export function sentenceFor(entry: Entry, reviewedOnly: boolean): Sentence | undefined {
   return content.sentences.find((s) => s.entryId === entry.id && (!reviewedOnly || s.reviewed));
 }
+
+/** A sticker is named after its level's first item; review and boss levels have none. */
+export const stickerLabel = (level: LevelDef): string =>
+  level.itemIds[0] ? (itemLabel(level.itemIds[0]) ?? 'חזרה') : 'חזרה';

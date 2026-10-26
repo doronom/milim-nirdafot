@@ -26,12 +26,11 @@ export function TypeSynonym({ round, onDone, onAlsoCorrect }: GameProps<TypeRoun
   const right = verdict !== null && verdict.kind !== 'wrong';
 
   const check = () => {
-    const v = judgeTyped(typed, q.accepted);
+    const v = judgeTyped(typed, q.accepted, round.vocabulary);
     setVerdict(v);
-    setAnswers((a) => [
-      ...a,
-      { itemKey: q.item.key, outcome: v.kind === 'wrong' ? 'wrong' : 'correct', chosen: typed },
-    ]);
+    // A tolerated slip is not a mistake, but it does not move the word up a box either.
+    const outcome = v.kind === 'exact' ? 'correct' : v.kind === 'typo' ? 'near-miss' : 'wrong';
+    setAnswers((a) => [...a, { itemKey: q.item.key, outcome, chosen: typed }]);
   };
   const claim = () => {
     onAlsoCorrect(q.item, typed.trim(), typed.trim());

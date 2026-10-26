@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../src/app/App';
 import { content } from '../src/content';
 import { applyTokens } from '../src/design/tokens';
+import { judgeTyped } from '../src/content/typing';
 import { buildLayout, worldLevels } from '../src/engine/layout';
 import { buildSynonymLinks } from '../src/engine/links';
 import { initialProgress, type Progress } from '../src/engine/progress';
@@ -59,16 +60,22 @@ describe('TypeSynonym', () => {
     fireEvent.click(screen.getByRole('button', { name: 'בדיקת תשובה' }));
     expect(screen.getByText('מדויק!')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'למילה הבאה' }));
-    const slip = q2!.item.synonym.length >= 3 ? q2!.item.synonym.slice(0, -1) : q2!.item.synonym;
+    // A substituted last letter: one edit away, and not itself a word (dropping a letter can make one, e.g. מוארך -> מואר).
+    const long = q2!.item.synonym.replace(/\s/g, '').length >= 4;
+    const sub = q2!.item.synonym.endsWith('ק') ? 'ש' : 'ק';
+    const slip = long ? q2!.item.synonym.slice(0, -1) + sub : q2!.item.synonym;
+    expect(judgeTyped(slip, q2!.accepted, round.vocabulary).kind).toBe(long ? 'typo' : 'exact');
     typeWord(slip);
     fireEvent.click(screen.getByRole('button', { name: 'בדיקת תשובה' }));
-    expect(screen.getByText(q2!.item.synonym.length >= 3 ? 'כמעט! בדוק את האיות' : 'מדויק!')).toBeTruthy();
+    expect(screen.getByText(long ? 'כמעט! בדוק את האיות' : 'מדויק!')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'למילה הבאה' }));
     typeWord('קקק');
     fireEvent.click(screen.getByRole('button', { name: 'בדיקת תשובה' }));
     expect(screen.getByText('עוד לא. הנה מילים נרדפות')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'סיום הסבב' }));
-    expect(onDone.mock.calls[0]![0].answers.map((a) => a.outcome)).toEqual(['correct', 'correct', 'wrong']);
+    // The slip on a 4+ letter word is a near miss: not a mistake, no promotion.
+    const slipped = q2!.item.synonym.replace(/\s/g, '').length >= 4 ? 'near-miss' : 'correct';
+    expect(onDone.mock.calls[0]![0].answers.map((a) => a.outcome)).toEqual(['correct', slipped, 'wrong']);
   });
 });
 

@@ -56,6 +56,16 @@ describe('Leitner scheduler', () => {
     expect(after.lapses).toBe(0);
   });
 
+  it('holds the box on a near miss (tolerated typo): no lapse, no promotion', () => {
+    const before = review(review(undefined, 'correct', today), 'correct', today);
+    const after = review(before, 'near-miss', '2026-10-26');
+    expect([after.box, after.due, after.lapses]).toEqual([before.box, before.due, 0]);
+    expect(review(undefined, 'near-miss', today).box).toBe(1);
+    expect(sessionOutcome(['near-miss', 'also-correct'])).toBe('near-miss');
+    expect(sessionOutcome(['near-miss', 'correct'])).toBe('correct');
+    expect(sessionOutcome(['near-miss', 'wrong'])).toBe('wrong');
+  });
+
   it('starts known words one box up', () => {
     expect(markKnown(undefined, today).box).toBe(2);
     const strong = { box: 4 as const, due: today, seen: 3, lapses: 0, lastSeen: today };
