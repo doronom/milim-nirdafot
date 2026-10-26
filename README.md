@@ -100,6 +100,15 @@ Firebase web config in `src/sync/config.ts` is public by design. The allowlist l
 with `npm run seed:parents` from `PARENT_EMAILS` in `.env`. Design, data model and one-time setup:
 [docs/cloud-sync.md](docs/cloud-sync.md).
 
+**Seeding the allowlist** needs Application Default Credentials for an owner of the Firebase project, set up once per
+machine with the [gcloud CLI](https://cloud.google.com/sdk/docs/install):
+
+```sh
+gcloud auth application-default login
+gcloud auth application-default set-quota-project word-quest-512809
+npm run seed:parents   # prints only how many addresses it wrote
+```
+
 ## Content
 
 The words live in `src/data/`: the booklet (`booklet.json`), extra content (`synonyms-extra.json`), example sentences,

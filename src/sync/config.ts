@@ -11,8 +11,11 @@ export const firebaseConfig = {
   appId: '1:172485408614:web:2c0138ad7e6a8ed0d57aa7',
 };
 
-/** reCAPTCHA Enterprise site key for App Check (public). App Check is off while it is empty. */
-export const APP_CHECK_SITE_KEY = '';
+/**
+ * reCAPTCHA Enterprise site key for App Check (public). Whether Firebase rejects requests without a valid App Check
+ * token is decided in the Firebase console (enforcement), not here.
+ */
+export const APP_CHECK_SITE_KEY = '6LfbvQEuAAAAAM6dZhYrkG6Pi6N_81d9I9Rv1B00';
 
 /** The one family of allowlisted parents; children pair to it. */
 export const FAMILY_ID = 'main';

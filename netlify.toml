@@ -63,6 +63,8 @@
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "no-referrer"
+    # Only the origin, never a path: the Firebase browser key is restricted to this site's referrer, so requests to
+    # Google APIs must carry it ("no-referrer" would make Firebase reject them).
+    Referrer-Policy = "strict-origin"
     # The microphone is for the parent's recordings, the camera for scanning a pairing QR code; this site only.
     Permissions-Policy = "microphone=(self), camera=(self), geolocation=()"

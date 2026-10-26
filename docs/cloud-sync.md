@@ -71,13 +71,16 @@ children only; a child may read and delete only its own.
 ## Setup (one-time, by the project owner)
 
 1. Deploy the rules: `npx firebase deploy --only firestore:rules`.
-2. Write the allowlist: put `PARENT_EMAILS=a@example.com,b@example.com` in `.env`, then `npm run seed:parents`.
+2. Write the allowlist: put `PARENT_EMAILS=a@example.com,b@example.com` in `.env`, then `npm run seed:parents`. The
+   script uses Application Default Credentials; set them up once with `gcloud auth application-default login` and
+   `gcloud auth application-default set-quota-project word-quest-512809`.
 3. Firebase console, Authentication, Settings, Authorized domains: add the site's domain (for Google sign-in).
 4. App Check: create a reCAPTCHA Enterprise key for the site's domain, register it for the web app in the Firebase
    console (App Check), put the site key in `APP_CHECK_SITE_KEY` (`src/sync/config.ts`), deploy, watch the metrics,
    then enforce App Check for Firestore and Authentication.
 5. Google Cloud console, APIs & Services, Credentials: restrict the Firebase "Browser key" to the site's domains
-   (HTTP referrers) and to the Firebase APIs (Identity Toolkit, Token Service, Cloud Firestore, Firebase Installations,
+   (HTTP referrers; this is why `netlify.toml` sends `Referrer-Policy: strict-origin`, not `no-referrer`) and to the
+   Firebase APIs (Identity Toolkit, Token Service, Cloud Firestore, Firebase Installations,
    Firebase App Check, reCAPTCHA Enterprise). The same project has Text-to-Speech enabled; the browser key must not be
    usable for it.
 
