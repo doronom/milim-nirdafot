@@ -1,5 +1,6 @@
 import { motion as m } from 'framer-motion';
 import collectible from '../../design/assets/collectible-anchor.svg';
+import { useSfx } from '../../audio/sfx';
 import { motion } from '../../design/tokens';
 import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
@@ -32,6 +33,7 @@ export function BossResults({
   certificateTo,
   onRetry,
 }: Props) {
+  useSfx(passed ? 'complete' : null);
   const pct = Math.round((correct / total) * 100);
   return (
     <div className={styles.screen}>

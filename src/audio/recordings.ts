@@ -1,6 +1,5 @@
 import type { KeyValueStore } from '../storage/kv';
-import { audioPrefs } from './prefs';
-import { speak } from './speak';
+import { say } from './player';
 
 /** The parent's recording of a custom word, stored as a Blob in IndexedDB under this prefix plus the entry id. */
 export const RECORDING_PREFIX = 'recording:';
@@ -33,11 +32,7 @@ export function playBlob(blob: Blob): () => void {
   }
 }
 
-/** A word aloud: the parent's recording when there is one (it wins over speech), otherwise text to speech. */
+/** A word aloud: the parent's recording when there is one (it wins over clips and speech). */
 export function playWord(text: string, recording?: Blob): void {
-  if (recording) {
-    if (audioPrefs.voice) playBlob(recording);
-    return;
-  }
-  speak(text);
+  void say(recording ? { recording } : text);
 }

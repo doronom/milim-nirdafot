@@ -1,0 +1,5 @@
+{
+  "voice": null,
+  "speakingRate": 1,
+  "note": "The voice chosen on the comparison page (npm run tts:compare). gen:audio reads it; changing it regenerates every clip."
+}

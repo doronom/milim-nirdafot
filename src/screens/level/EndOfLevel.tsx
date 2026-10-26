@@ -1,4 +1,5 @@
 import { motion as m } from 'framer-motion';
+import { useSfx } from '../../audio/sfx';
 import { motion } from '../../design/tokens';
 import type { Stars } from '../../engine/progress';
 import type { Sticker as StickerDef } from '../../engine/album';
@@ -46,6 +47,7 @@ export function EndOfLevel({
   onReplay,
   sticker,
 }: Props) {
+  useSfx('complete');
   const reveal = motion('star_reveal');
   const verdict = VERDICT[stars];
   return (

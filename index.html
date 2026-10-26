@@ -6,10 +6,44 @@
     <meta name="theme-color" content="#0a0f1d" />
     <meta name="description" content="מסע המילים: משחק מילים נרדפות בעברית" />
     <link rel="icon" type="image/svg+xml" href="./src/design/assets/mascot.svg" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="מסע המילים" />
     <title>מסע המילים</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Shown until the app renders (it replaces this), so the first paint never waits for the scripts. -->
+      <div
+        style="
+          min-height: 100dvh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          background: #0a0f1d;
+          color: #f8fafc;
+          font-family: Rubik, system-ui, sans-serif;
+        "
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="96" height="96" aria-hidden="true">
+          <circle cx="60" cy="60" r="54" fill="#131b2e" stroke="#0ea5e9" stroke-width="4" />
+          <circle cx="60" cy="60" r="44" fill="#0b1326" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3" />
+          <polygon points="60,24 68,60 60,54" fill="#0ea5e9" />
+          <polygon points="60,24 52,60 60,54" fill="#38bdf8" />
+          <polygon points="60,96 68,60 60,66" fill="#f59e0b" />
+          <polygon points="60,96 52,60 60,66" fill="#fbbf24" />
+          <circle cx="60" cy="60" r="8" fill="#f8fafc" stroke="#0369a1" stroke-width="2" />
+          <circle cx="56" cy="59" r="2" fill="#0b1326" />
+          <circle cx="64" cy="59" r="2" fill="#0b1326" />
+          <path d="M57 63 Q60 66 63 63" stroke="#0b1326" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        </svg>
+        <p style="margin: 0; font-size: 28px; font-weight: 800">מסע המילים</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

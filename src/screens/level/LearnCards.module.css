@@ -177,3 +177,24 @@
   font-size: var(--type-title-size);
   font-weight: var(--type-title-weight);
 }
+.listenLine {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.listenLine > span {
+  flex: 1;
+}
+.listenButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  inline-size: var(--touch-min);
+  block-size: var(--touch-min);
+  border: var(--border-thin) solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  color: var(--world-primary);
+  cursor: pointer;
+}

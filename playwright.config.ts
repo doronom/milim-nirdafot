@@ -6,7 +6,7 @@ export default defineConfig({
   timeout: 60_000,
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? 'github' : 'list',
+  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: { baseURL: 'http://localhost:4173/', trace: 'retain-on-failure' },
   projects: [
     { name: 'Pixel 7', use: { ...devices['Pixel 7'] } },
