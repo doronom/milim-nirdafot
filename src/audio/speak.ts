@@ -1,8 +1,11 @@
+import { audioPrefs } from './prefs';
+
 /**
- * Reads Hebrew text aloud with the browser's speech engine (he-IL). Silent when no engine or voice is available:
- * the child never sees an audio error. Pre-generated MP3s and parent recordings take priority in a later milestone.
+ * Reads Hebrew text aloud with the browser's speech engine (he-IL). Silent when no engine or voice is available, or
+ * when the parent turned reading aloud off: the child never sees an audio error.
  */
 export function speak(text: string): void {
+  if (!audioPrefs.voice) return;
   try {
     const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined;
     if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;

@@ -8,6 +8,12 @@ import { DuelScreen } from '../screens/DuelScreen';
 import { LevelScreen } from '../screens/LevelScreen';
 import { Onboarded } from '../screens/Onboarded';
 import { PlacementScreen } from '../screens/PlacementScreen';
+import { Backup } from '../screens/parent/Backup';
+import { ContentReview } from '../screens/parent/ContentReview';
+import { Dashboard } from '../screens/parent/Dashboard';
+import { MyWords } from '../screens/parent/MyWords';
+import { ParentArea } from '../screens/parent/ParentArea';
+import { ParentSettings } from '../screens/parent/ParentSettings';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { SpeedScreen } from '../screens/SpeedScreen';
 import { WelcomeScreen } from '../screens/WelcomeScreen';
@@ -29,13 +35,20 @@ export const routes: RouteObject[] = [
           { path: 'treasures', element: <AlbumScreen /> },
           { path: 'profile', element: <ProfileScreen /> },
           {
-            path: 'parent',
-            element: <ComingSoonScreen title="אזור הורים" message="אזור ההורים ייפתח בהמשך הבנייה." />,
-          },
-          {
             path: '*',
             element: <ComingSoonScreen title="לא נמצא" message="הדף הזה לא קיים. חזרו למפה דרך הניווט למטה." />,
           },
+        ],
+      },
+      {
+        path: 'parent',
+        element: <ParentArea />,
+        children: [
+          { index: true, element: <Dashboard /> },
+          { path: 'words', element: <MyWords /> },
+          { path: 'content', element: <ContentReview /> },
+          { path: 'settings', element: <ParentSettings /> },
+          { path: 'backup', element: <Backup /> },
         ],
       },
       { path: 'level/:levelId', element: <LevelScreen /> },

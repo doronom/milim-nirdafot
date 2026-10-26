@@ -100,3 +100,19 @@ export function applySession(
   for (const [key, outcome] of Object.entries(perItem)) next[key] = review(next[key], outcome, today);
   return next;
 }
+
+/**
+ * Keeps the boxes in line with a content edit: removed pairs lose their boxes; added pairs start in box 1 (due
+ * today) when `startNew` (the entry is already being learned, or it is a new custom word).
+ */
+export function applyPairChanges(
+  state: LeitnerState,
+  { removed, added }: { removed: readonly string[]; added: readonly string[] },
+  today: string,
+  startNew: boolean,
+): LeitnerState {
+  const drop = new Set(removed);
+  const next: LeitnerState = Object.fromEntries(Object.entries(state).filter(([k]) => !drop.has(k)));
+  if (startNew) for (const key of added) next[key] ??= { box: 1, due: today, seen: 0, lapses: 0, lastSeen: today };
+  return next;
+}

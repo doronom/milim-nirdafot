@@ -1,8 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router';
-import { content, displayWord, graph, links } from '../app/data';
-import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
 import { isWorldUnlocked, markPlayed, recordSpeedRun, speedAvailable } from '../engine/progress';
 import { motion } from '../design/tokens';
@@ -14,7 +12,7 @@ import {
   tallyAnswer,
   type SpeedTally,
 } from '../games/speedChallenge/speed';
-import type { GameEnv } from '../games/types';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -27,6 +25,7 @@ type Phase = 'intro' | 'play' | 'done';
 
 /** Opt-in 60-second challenge of quick pick-the-synonym questions, with a combo and a personal best. */
 export function SpeedScreen() {
+  const { content, displayWord, freePlay: env } = useGameData();
   const navigate = useNavigate();
   const { progress, loaded, update } = useProgress();
   const [phase, setPhase] = useState<Phase>('intro');
@@ -37,22 +36,10 @@ export function SpeedScreen() {
   const [flash, setFlash] = useState<'right' | 'wrong' | null>(null);
   const [newBest, setNewBest] = useState(false);
 
-  const env: GameEnv = useMemo(
-    () => ({
-      content,
-      sentences: { reviewedOnly: false, blocked: new Set() },
-      graph,
-      links,
-      pool: content.entries,
-      decisions: { confirmedTraps: trapKeys(content.notSynonyms) },
-      displayWord,
-    }),
-    [],
-  );
   // Words from the worlds the child has reached (booklet and extra entries).
   const entries = useMemo(
     () => content.entries.filter((e) => e.source !== 'custom' && (e.difficulty === 1 || isWorldUnlocked(progress, 2))),
-    [progress],
+    [content.entries, progress],
   );
   const questions = useMemo(() => buildSpeedQuestions(env, entries, seed), [env, entries, seed]);
 

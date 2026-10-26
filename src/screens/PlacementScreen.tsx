@@ -1,14 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { content, displayWord, graph, links } from '../app/data';
-import { trapKeys } from '../engine/distractors';
 import { createRng } from '../engine/rng';
 import { unlockWorld } from '../engine/progress';
 import { GameEnvContext } from '../games/env-context';
 import { buildPickRound } from '../games/pickSynonym/build';
 import { PickSynonym } from '../games/pickSynonym/PickSynonym';
 import { buildPlacement, placementUnlocks } from '../games/session';
-import type { GameEnv, RoundResult } from '../games/types';
+import type { RoundResult } from '../games/types';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -23,22 +22,11 @@ const DIFFICULTY = { tier: 2 as const, options: 4 as const };
  * It only decides where to start; it does not touch the Leitner boxes.
  */
 export function PlacementScreen() {
+  const { content, freePlay: env } = useGameData();
   const navigate = useNavigate();
   const { update } = useProgress();
   const [seed] = useState(() => String(Date.now()));
   const [result, setResult] = useState<{ unlocked: boolean; correct: number; total: number } | null>(null);
-  const env: GameEnv = useMemo(
-    () => ({
-      content,
-      sentences: { reviewedOnly: false, blocked: new Set() },
-      graph,
-      links,
-      pool: content.entries,
-      decisions: { confirmedTraps: trapKeys(content.notSynonyms) },
-      displayWord,
-    }),
-    [],
-  );
   const [placement] = useState(() => buildPlacement(content.entries, seed));
   const [round] = useState(() =>
     buildPickRound(

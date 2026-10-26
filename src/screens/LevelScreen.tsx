@@ -27,27 +27,17 @@ import {
 import { listReports, pendingKeys, reportAlsoCorrect, reportItemDispute } from '../engine/review-queue';
 import { createRng } from '../engine/rng';
 import { blockedSentenceIds, listSentenceReports, reportSentence } from '../engine/sentence-reports';
-import {
-  content,
-  displayWord,
-  entryPool,
-  graph,
-  guestPool,
-  itemLabel,
-  layout,
-  links,
-  sentenceFor,
-  stickerLabel,
-} from '../app/data';
+import type { GameData } from '../app/game-data';
 import { GAME_CATALOG } from '../games/catalog';
 import { GameEnvContext } from '../games/env-context';
-import { createResolver } from '../games/items';
 import { pairKey } from '../games/practice';
 import { createGames } from '../games/registry';
 import { buildLevelSession, isPlayableLevel } from '../games/session';
 import { isPair, type GameEnv, type LevelItem, type PlanContext, type RoundResult } from '../games/types';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { useStore } from '../state/store-context';
+import { getRecording } from '../audio/recordings';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
 import { TactileButton } from '../ui/TactileButton';
@@ -58,8 +48,6 @@ import { RankUp } from './level/RankUp';
 import { LearnCards } from './level/LearnCards';
 import { levelNumber, levelTitle } from './levelText';
 import styles from './LevelScreen.module.css';
-
-const levelResolver = createResolver(content);
 
 /** Review queues that change what a level may offer; loaded before the level is planned. */
 interface Queues {
@@ -76,6 +64,8 @@ export function LevelScreen() {
   // A fixed ?seed= makes every round reproducible (tests); otherwise each play differs.
   const [baseSeed] = useState(() => params.get('seed') ?? String(Date.now()));
   const [queues, setQueues] = useState<Queues | null>(null);
+  const data = useGameData();
+  const { content, layout, resolver } = data;
 
   useEffect(() => {
     let cancelled = false;
@@ -89,13 +79,14 @@ export function LevelScreen() {
     return () => {
       cancelled = true;
     };
-  }, [store, attempt]);
+  }, [store, attempt, content]);
 
   const found = findLevel(layout, levelId);
   if (!loaded || !queues) return null;
   if (!found || !isLevelUnlocked(progress, found.world, levelId)) return <Navigate to="/" replace />;
   const { world, station, level } = found;
-  if (!isPlayableLevel(level, levelResolver)) return <ComingLater world={world} station={station} level={level} />;
+  if (!isPlayableLevel(level, resolver))
+    return <ComingLater world={world} station={station} level={level} itemLabel={data.itemLabel} />;
   const seed = `${baseSeed}:${attempt}`;
   return (
     <LevelPlayer
@@ -105,6 +96,7 @@ export function LevelScreen() {
       level={level}
       seed={seed}
       queues={queues}
+      data={data}
       onReplay={() => {
         setQueues(null);
         setAttempt((a) => a + 1);
@@ -113,7 +105,17 @@ export function LevelScreen() {
   );
 }
 
-function ComingLater({ world, station, level }: { world: WorldDef; station?: StationDef; level: LevelDef }) {
+function ComingLater({
+  world,
+  station,
+  level,
+  itemLabel,
+}: {
+  world: WorldDef;
+  station?: StationDef;
+  level: LevelDef;
+  itemLabel: (id: string) => string | undefined;
+}) {
   const navigate = useNavigate();
   const words = level.itemIds.map((id) => itemLabel(id)).filter(Boolean);
   return (
@@ -149,7 +151,7 @@ const levelName = (level: LevelDef, station?: StationDef) => {
 };
 
 /** A short label for "words to practise" on the result screen. */
-function practiseLabel(item: LevelItem): string {
+function practiseLabel(item: LevelItem, displayWord: (w: string) => string): string {
   switch (item.kind) {
     case 'pair':
       return `${displayWord(item.entry.headword)} = ${displayWord(item.synonym)}`;
@@ -190,6 +192,7 @@ function LevelPlayer({
   level,
   seed,
   queues,
+  data,
   onReplay,
 }: {
   world: WorldDef;
@@ -197,8 +200,11 @@ function LevelPlayer({
   level: LevelDef;
   seed: string;
   queues: Queues;
+  /** Snapshot of the game data when the level started, so a content edit elsewhere does not reshape a running level. */
+  data: GameData;
   onReplay: () => void;
 }) {
+  const { content, displayWord, graph, links, layout } = data;
   const navigate = useNavigate();
   const store = useStore();
   const { progress, update } = useProgress();
@@ -207,13 +213,13 @@ function LevelPlayer({
   const [blocked, setBlocked] = useState(queues.blocked);
   const ctx: PlanContext = useMemo(
     () => ({ content, sentences: { reviewedOnly: reviewedSentencesOnly, blocked } }),
-    [reviewedSentencesOnly, blocked],
+    [content, reviewedSentencesOnly, blocked],
   );
   // Snapshot the Leitner state and queues at the start, so the plan does not shift while it is played.
   const [session] = useState(() =>
     buildLevelSession(level, progress.leitner, seed, {
-      resolver: levelResolver,
-      guestResolver: createResolver(content, guestPool(reviewedOnly)),
+      resolver: data.resolver,
+      guestResolver: data.guestResolver(reviewedOnly),
       ctx,
       reviewFallback: world.stations.flatMap((s) => s.levels.flatMap((l) => l.itemIds)),
     }),
@@ -225,17 +231,30 @@ function LevelPlayer({
   const [finished, setFinished] = useState<Finished | null>(null);
   const [round, setRound] = useState<unknown>(null);
   const [rankSeen, setRankSeen] = useState(false);
+  const [recordings, setRecordings] = useState<Record<string, Blob>>({});
+
+  // The parent's recordings of custom words, for the learn cards.
+  useEffect(() => {
+    let cancelled = false;
+    const ids = session.learn.flatMap((i) => (isPair(i) && i.entry.source === 'custom' ? [i.entry.id] : []));
+    void Promise.all(ids.map(async (id) => [id, await getRecording(store, id)] as const)).then((found) => {
+      if (!cancelled) setRecordings(Object.fromEntries(found.filter((f): f is [string, Blob] => f[1] !== undefined)));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [session, store]);
 
   const env: GameEnv = useMemo(
     () => ({
       ...ctx,
       graph,
       links,
-      pool: entryPool(reviewedOnly, world.id),
+      pool: data.entryPool(reviewedOnly, world.id),
       decisions: { confirmedTraps: trapKeys(content.notSynonyms), pending },
       displayWord,
     }),
-    [ctx, reviewedOnly, pending, world.id],
+    [ctx, data, content, graph, links, displayWord, reviewedOnly, pending, world.id],
   );
   const games = useMemo(() => createGames(env), [env]);
   const plan = run.rounds[run.index];
@@ -281,7 +300,9 @@ function LevelPlayer({
       setPhase('end');
       return;
     }
-    const next = currentLevel(recordLevel(progress, record), world);
+    // Custom words run their own short path; everything else follows the world's order.
+    const next =
+      station?.kind === 'custom' ? station.levels[level.index] : currentLevel(recordLevel(progress, record), world);
     update((p) =>
       markPlayed(recordLevel(p, { ...record, leitner: applySession(p.leitner, outcome.perItem, known, today) }), today),
     );
@@ -329,7 +350,7 @@ function LevelPlayer({
   const practise = (finished?.outcome.missed ?? [])
     .map((key) => session.items.find((i) => i.key === key))
     .filter((i): i is LevelItem => Boolean(i))
-    .map(practiseLabel);
+    .map((i) => practiseLabel(i, displayWord));
 
   return (
     <GameEnvContext.Provider value={env}>
@@ -347,8 +368,9 @@ function LevelPlayer({
           {phase === 'learn' && (
             <LearnCards
               items={session.learn}
-              sentenceFor={(e) => sentenceFor(e, reviewedOnly)}
+              sentenceFor={(e) => data.sentenceFor(e, reviewedOnly)}
               displayWord={displayWord}
+              recordingFor={(e) => recordings[e.id]}
               onDone={(k) => {
                 setKnown(k);
                 startRound(run);
@@ -410,7 +432,7 @@ function LevelPlayer({
               nextLabel={nextLevel ? `לשלב הבא (${levelName(nextLevel.level, nextLevel.station)})` : undefined}
               pathTo={`/world/${world.id}`}
               onReplay={onReplay}
-              sticker={finished.sticker ? stickerOf(world, level) : undefined}
+              sticker={finished.sticker ? stickerOf(data, world, level) : undefined}
             />
           )}
           {phase === 'end' && finished?.rankUp && !rankSeen && (
@@ -423,6 +445,6 @@ function LevelPlayer({
 }
 
 /** The sticker a level awards (its slot in the album). */
-function stickerOf(world: WorldDef, level: LevelDef) {
-  return worldStickers(layout, world.id, stickerLabel).find((s) => s.levelId === level.id);
+function stickerOf(data: GameData, world: WorldDef, level: LevelDef) {
+  return worldStickers(data.layout, world.id, data.stickerLabel).find((s) => s.levelId === level.id);
 }

@@ -4,6 +4,7 @@ import { createHashRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import type { Progress } from '../engine/progress';
 import { ProgressProvider } from '../state/progress';
+import { ContentProvider } from '../state/content';
 import { StoreContext } from '../state/store-context';
 import type { KeyValueStore } from '../storage/kv';
 import { routes } from './routes';
@@ -14,9 +15,11 @@ export function App({ store, initialProgress }: { store: KeyValueStore; initialP
   return (
     <MotionConfig reducedMotion="user">
       <StoreContext.Provider value={store}>
-        <ProgressProvider store={store} initial={initialProgress}>
-          <RouterProvider router={router} />
-        </ProgressProvider>
+        <ContentProvider store={store}>
+          <ProgressProvider store={store} initial={initialProgress}>
+            <RouterProvider router={router} />
+          </ProgressProvider>
+        </ContentProvider>
       </StoreContext.Provider>
     </MotionConfig>
   );

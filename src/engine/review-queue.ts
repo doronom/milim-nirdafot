@@ -134,3 +134,16 @@ export async function reportItemDispute(
   await store.set(DISPUTES, [...list.filter((d) => d !== existing), dispute]);
   return dispute;
 }
+
+export async function decideItemDispute(
+  store: KeyValueStore,
+  itemKey: string,
+  answer: string,
+  status: Exclude<ReportStatus, 'pending'>,
+): Promise<void> {
+  const list = await listItemDisputes(store);
+  await store.set(
+    DISPUTES,
+    list.map((d) => (d.itemKey === itemKey && d.answer === answer ? { ...d, status } : d)),
+  );
+}

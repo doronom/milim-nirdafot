@@ -1,5 +1,6 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
+import { playWord } from '../../audio/recordings';
 import { speak } from '../../audio/speak';
 import type { Entry, Sentence } from '../../content/types';
 import { motion } from '../../design/tokens';
@@ -15,6 +16,8 @@ interface Props {
   items: LevelItem[];
   sentenceFor: (entry: Entry) => Sentence | undefined;
   displayWord: (w: string) => string;
+  /** The parent's recording of a custom word; it plays instead of speech. */
+  recordingFor?: (entry: Entry) => Blob | undefined;
   /** Item keys the child marked "I already know this". */
   onDone: (knownKeys: string[]) => void;
 }
@@ -47,7 +50,7 @@ function describe(
 }
 
 /** One card per new item: tap to hear, what it teaches, and an "I already know this" switch. */
-export function LearnCards({ items, sentenceFor, displayWord, onDone }: Props) {
+export function LearnCards({ items, sentenceFor, displayWord, recordingFor, onDone }: Props) {
   const [index, setIndex] = useState(0);
   const [known, setKnown] = useState<string[]>([]);
   const item = items[index]!;
@@ -93,7 +96,7 @@ export function LearnCards({ items, sentenceFor, displayWord, onDone }: Props) {
               type="button"
               className={styles.speaker}
               aria-label={`השמע: ${title}`}
-              onClick={() => speak(speech)}
+              onClick={() => playWord(speech, item.kind === 'pair' ? recordingFor?.(item.entry) : undefined)}
             >
               <Icon name="speaker" size="lg" />
             </button>

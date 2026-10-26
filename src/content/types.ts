@@ -16,6 +16,8 @@ export interface Category {
 export interface Provenance {
   source: Source;
   reviewed: boolean;
+  /** Kept in the data (and in validation) but out of play: hidden by the parent or rejected in review. */
+  hidden?: boolean;
 }
 
 export interface Entry extends Provenance {
@@ -67,6 +69,7 @@ export interface Sentence {
   /** Synonyms of the entry that can replace the headword in this sentence as written. */
   fits: string[];
   reviewed: boolean;
+  hidden?: boolean;
 }
 
 /** One meaning of a spelling that the synonym graph must keep apart from its other meanings. */
