@@ -1,5 +1,5 @@
 import { content } from '../src/content';
-import { validateContent, type Issue } from '../src/content/validate';
+import { MAX_GROUP_WORDS, validateContent, type Issue } from '../src/content/validate';
 
 const report = validateContent(content);
 const { stats } = report;
@@ -42,8 +42,8 @@ line();
 line('Per part of speech');
 table([['pos', 'entries'], ...Object.entries(stats.byPos)]);
 line();
-line('Largest naive synonym groups (hints ignored; preview for the step 2 graph)');
-for (const g of stats.largestGroups) line(`  ${g.size} words: ${g.sample.join(', ')}${g.size > g.sample.length ? ', ...' : ''}`);
+line(`Synonym graph: ${stats.groups} groups. Largest 10 (warning above ${MAX_GROUP_WORDS} unless approved in large-groups.json; "#" marks a split sense):`);
+for (const g of stats.largestGroups) line(`  ${g.size}: ${g.words.join(', ')}`);
 
 const group = (issues: Issue[]) => {
   const byCode = new Map<string, Issue[]>();

@@ -1,5 +1,12 @@
 import type { Content, Entry } from './types';
 import { POS_VALUES } from './types';
+import { buildSynonymGraph, type SynonymGraph } from '../engine/graph';
+import { containsWord, HAS_NIQQUD, normalizeWord } from './text';
+
+export { containsWord, normalizeWord, stripNiqqud } from './text';
+
+/** Above this size a connected synonym group gets a warning: it often means a homograph merged two meanings. */
+export const MAX_GROUP_WORDS = 8;
 
 export interface Issue {
   code: string;
@@ -23,30 +30,15 @@ export interface ContentStats {
   reviewed: { reviewed: number; unreviewed: number };
   other: Record<string, number>;
   sentencesWithFits: number;
-  /** Naive synonym groups (word strings, hints ignored): a preview for the step 2 graph. */
-  largestGroups: { size: number; sample: string[] }[];
+  /** Connected groups in the synonym graph, and the largest ones (node ids; "#" marks a split sense). */
+  groups: number;
+  largestGroups: { size: number; words: string[] }[];
 }
 
-const HEB_LETTER = '\u05D0-\u05EA';
-// Cantillation and vowel points, excluding the maqaf (U+05BE).
-const NIQQUD = /[\u0591-\u05BD\u05BF-\u05C7]/g;
-const HAS_NIQQUD = /[\u0591-\u05BD\u05BF-\u05C7]/;
 /** Words: Hebrew letters, single inner spaces, maqaf, and niqqud (flagged separately). */
 const WORD_OK = /^[\u05D0-\u05EA\u0591-\u05BD\u05BF-\u05C7]+(?:[ \u05BE][\u05D0-\u05EA\u0591-\u05BD\u05BF-\u05C7]+)*\u05BE?$/;
 /** Free text (sentences, explanations): words plus everyday punctuation. */
-const TEXT_OK = /^[\u05D0-\u05EA\u0591-\u05C7 ,.!?:;"'\-\u2013=()0-9]+$/;
-const PREFIXES = '[ובכלמשה]{0,3}';
-
-export const stripNiqqud = (s: string): string => s.replace(NIQQUD, '');
-/** The comparison form of a word: no niqqud, no trailing maqaf, trimmed. */
-export const normalizeWord = (s: string): string => stripNiqqud(s).replace(/־$/, '').trim();
-
-/** True when `text` contains `word` as a whole word, optionally behind one-letter prefixes (ו, ה, ב, ל, מ, ש, כ). */
-export function containsWord(text: string, word: string): boolean {
-  const escaped = normalizeWord(word).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const re = new RegExp(`(^|[^${HEB_LETTER}])${PREFIXES}${escaped}($|[^${HEB_LETTER}])`);
-  return re.test(stripNiqqud(text));
-}
+const TEXT_OK = /^[\u05D0-\u05EA\u0591-\u05C7 ,.!?:;"'\-\u2013\u2026=()0-9]+$/;
 
 export function validateContent(content: Content): ValidationReport {
   const errors: Issue[] = [];
@@ -94,8 +86,8 @@ export function validateContent(content: Content): ValidationReport {
     const norm = e.synonyms.map(normalizeWord);
     if (new Set(norm).size !== norm.length) err('duplicate-synonym', e.id, `"${e.headword}" lists a synonym twice`);
     if (norm.includes(normalizeWord(e.headword))) err('self-synonym', e.id, `"${e.headword}" lists itself as a synonym`);
-    if (e.hint !== null && norm.includes(normalizeWord(e.hint))) {
-      warn('hint-gives-answer', e.id, `hint "${e.hint}" of "${e.headword}" is also one of its synonyms`);
+    if (e.hint !== null && [...norm, normalizeWord(e.headword)].includes(normalizeWord(e.hint))) {
+      err('hint-gives-answer', e.id, `hint "${e.hint}" of "${e.headword}" equals the headword or one of its synonyms`);
     }
     const key = normalizeWord(e.headword);
     headwordKeys.set(key, [...(headwordKeys.get(key) ?? []), e]);
@@ -103,34 +95,74 @@ export function validateContent(content: Content): ValidationReport {
   for (const [word, list] of headwordKeys) {
     if (list.length < 2) continue;
     const hints = list.map((e) => e.hint ?? '');
-    if (new Set(hints).size !== hints.length) {
-      warn('homograph-without-hint', list.map((e) => e.id).join(','), `headword "${word}" appears ${list.length} times without distinct hints`);
+    if (hints.includes('') || new Set(hints).size !== hints.length) {
+      err('homograph-without-hint', list.map((e) => e.id).join(','), `headword "${word}" appears ${list.length} times without distinct hints`);
     }
   }
 
-  // Hinted headwords whose plain spelling also appears as someone else's synonym: the graph must not join them blindly.
-  const hinted = content.entries.filter((e) => e.hint !== null);
-  for (const h of hinted) {
-    const key = normalizeWord(h.headword);
-    const users = content.entries.filter((e) => e.id !== h.id && e.synonyms.some((s) => normalizeWord(s) === key));
-    if (users.length > 0) {
-      warn('homograph-synonym', h.id, `"${h.headword}" (${h.hint}) also appears as a synonym of ${users.map((u) => `${u.headword} [${u.id}]`).join(', ')}`);
+  // senses.json: every split must point at items that really contain the word, each item in one sense only.
+  const itemWords = new Map<string, string[]>([
+    ...content.entries.map((e): [string, string[]] => [e.id, [e.headword, ...e.synonyms]]),
+    ...content.registers.map((r): [string, string[]] => [r.id, [...r.everyday, ...r.standard, ...r.literary]]),
+  ]);
+  const splitWords = new Set<string>();
+  for (const split of content.senseSplits) {
+    const word = normalizeWord(split.word);
+    if (splitWords.has(word)) err('sense-duplicate-word', split.word, 'word is split twice');
+    splitWords.add(word);
+    if (split.senses.length < 2) err('sense-single', split.word, 'a split needs at least two senses');
+    const keys = new Set<string>();
+    const items = new Set<string>();
+    for (const sense of split.senses) {
+      if (keys.has(sense.key)) err('sense-duplicate-key', split.word, `sense key "${sense.key}" repeats`);
+      keys.add(sense.key);
+      if (sense.items.length === 0) err('sense-empty', split.word, `sense "${sense.key}" lists no items`);
+      for (const id of sense.items) {
+        const words = itemWords.get(id);
+        if (!words) err('sense-unknown-item', split.word, `sense "${sense.key}" lists unknown item "${id}"`);
+        else if (!words.some((w) => normalizeWord(w) === word)) err('sense-word-missing', split.word, `item "${id}" does not contain "${split.word}"`);
+        if (items.has(id)) err('sense-item-twice', split.word, `item "${id}" is in two senses`);
+        items.add(id);
+      }
     }
   }
 
-  // The same spelling used by entries of different parts of speech is usually a homograph (ערב, חמה, נוגה...).
-  const posByWord = new Map<string, Map<string, string[]>>();
-  for (const e of content.entries) {
-    for (const w of [e.headword, ...e.synonyms].map(normalizeWord)) {
-      const m = posByWord.get(w) ?? new Map<string, string[]>();
-      m.set(e.pos, [...(m.get(e.pos) ?? []), e.id]);
-      posByWord.set(w, m);
+  // Synonym graph. A group above the threshold is a signal (often a homograph merging two meanings), not an error:
+  // warn unless large-groups.json approves it at its current size.
+  const graph = buildSynonymGraph(content);
+  for (const { a, b } of content.alsoSynonyms) {
+    for (const id of [a, b]) if (!graph.nodes.has(id)) err('also-synonym-unknown-node', id, `also-synonyms.json names unknown node "${id}"`);
+  }
+  const allSpellings = new Set([...graph.nodes.values()].map((n) => n.key));
+  const traps = new Set<string>();
+  for (const t of content.notSynonyms) {
+    if (!entriesById.has(t.targetId)) err('not-synonym-unknown-target', t.targetId, `not-synonyms.json names unknown entry "${t.targetId}"`);
+    if (!allSpellings.has(normalizeWord(t.distractor))) err('not-synonym-unknown-word', t.targetId, `"${t.distractor}" is not a word in the content`);
+    traps.add(`${t.targetId}|${normalizeWord(t.distractor)}`);
+  }
+  for (const { a, b } of content.alsoSynonyms) {
+    const node = graph.nodes.get(a);
+    for (const id of node?.entryIds ?? []) {
+      if (traps.has(`${id}|${normalizeWord(b.split('#')[0]!)}`)) err('pair-in-both-files', `${a}~${b}`, 'pair is both a synonym and a confirmed trap');
     }
   }
-  for (const [w, m] of posByWord) {
-    if (m.size < 2) continue;
-    const detail = [...m].map(([pos, ids]) => `${pos}: ${ids.join(',')}`).join(' | ');
-    warn('cross-pos-word', w, `"${w}" is shared across parts of speech (${detail})`);
+  for (const approval of content.approvedLargeGroups) {
+    if (!graph.nodes.has(approval.anchor)) err('large-group-unknown-anchor', approval.anchor, `large-groups.json names unknown node "${approval.anchor}"`);
+  }
+  for (const group of graph.groups) {
+    if (group.length <= MAX_GROUP_WORDS) continue;
+    const approval = content.approvedLargeGroups.find((a) => group.includes(a.anchor));
+    if (!approval) {
+      warn('group-large', group[0]!, `synonym group has ${group.length} words (threshold ${MAX_GROUP_WORDS}): ${group.join(', ')}`);
+    } else if (group.length > approval.maxSize) {
+      warn('group-grew', approval.anchor, `approved group grew to ${group.length} words (approved ${approval.maxSize}): ${group.join(', ')}`);
+    }
+  }
+  const sameMeaning = new Set(content.sameMeaning.map(normalizeWord));
+  for (const node of graph.nodes.values()) {
+    if (node.pos.length > 1 && !sameMeaning.has(node.key)) {
+      warn('cross-pos-word', node.id, `"${node.word}" is shared across parts of speech (${node.pos.join('/')} in ${node.entryIds.join(',')}); split it in senses.json or list it under sameMeaning`);
+    }
   }
 
   // Booklet category counts.
@@ -194,10 +226,10 @@ export function validateContent(content: Content): ValidationReport {
     if (e.source !== 'custom' && (n < 1 || n > 2)) err('sentence-count', e.id, `"${e.headword}" has ${n} sentences (needs 1-2)`);
   }
 
-  return { errors, warnings, stats: computeStats(content) };
+  return { errors, warnings, stats: computeStats(content, graph) };
 }
 
-function computeStats(content: Content): ContentStats {
+function computeStats(content: Content, graph: SynonymGraph): ContentStats {
   const byCategory: ContentStats['byCategory'] = {};
   for (const c of content.categories) byCategory[c.id] = { booklet: 0, extra: 0, custom: 0, expected: c.expectedCount };
   const byDifficulty: Record<string, number> = {};
@@ -236,33 +268,7 @@ function computeStats(content: Content): ContentStats {
       reviewedEntries: reviewed,
     },
     sentencesWithFits: content.sentences.filter((s) => s.fits.length > 0).length,
-    largestGroups: naiveGroups(content.entries),
+    groups: graph.groups.length,
+    largestGroups: graph.groups.slice(0, 10).map((g) => ({ size: g.length, words: g })),
   };
-}
-
-/** Union-find over plain word strings. Deliberately ignores hints so the report shows where homographs would merge groups. */
-function naiveGroups(entries: Entry[]): { size: number; sample: string[] }[] {
-  const parent = new Map<string, string>();
-  const find = (x: string): string => {
-    if (!parent.has(x)) parent.set(x, x);
-    let p = parent.get(x)!;
-    if (p !== x) {
-      p = find(p);
-      parent.set(x, p);
-    }
-    return p;
-  };
-  for (const e of entries) {
-    const h = normalizeWord(e.headword);
-    for (const s of e.synonyms) parent.set(find(normalizeWord(s)), find(h));
-  }
-  const groups = new Map<string, string[]>();
-  for (const w of parent.keys()) {
-    const root = find(w);
-    groups.set(root, [...(groups.get(root) ?? []), w]);
-  }
-  return [...groups.values()]
-    .sort((a, b) => b.length - a.length)
-    .slice(0, 5)
-    .map((g) => ({ size: g.length, sample: g.slice(0, 12) }));
 }

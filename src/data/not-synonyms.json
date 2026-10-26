@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "note": "Confirmed fair traps: tier 3 may offer distractor as a wrong option for the target entry even when it sits two hops away in the graph. targetId is the entry id; distractor is the spelling."
+  },
+  "pairs": []
+}

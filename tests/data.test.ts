@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bookletFile, buildContent, content, extraFile, onlyReviewed, sentencesFile, type Entry } from '../src/content';
+import { buildContent, content, isSwapEligible, onlyReviewed, sources, type Entry } from '../src/content';
 import { containsWord, normalizeWord, validateContent } from '../src/content/validate';
 
 describe('content data', () => {
@@ -14,7 +14,7 @@ describe('content data', () => {
     expect(booklet).toHaveLength(411);
     const words = new Set(booklet.flatMap((e) => [e.headword, ...e.synonyms]));
     expect(words.size).toBe(1195);
-    for (const c of bookletFile.categories) {
+    for (const c of sources.booklet.categories) {
       expect(booklet.filter((e) => e.categoryId === c.id)).toHaveLength(c.expectedCount!);
     }
   });
@@ -27,7 +27,8 @@ describe('content data', () => {
 
   it('marks provenance on every item', () => {
     expect(content.entries.every((e) => (e.source === 'booklet') === e.reviewed)).toBe(true);
-    for (const x of [...extraFile.intensityScales, ...extraFile.registerSets, ...extraFile.contextChoices, ...extraFile.idioms]) {
+    const { extra } = sources;
+    for (const x of [...extra.intensityScales, ...extra.registerSets, ...extra.contextChoices, ...extra.idioms]) {
       expect(x.source).toBe('extra');
       expect(x.reviewed).toBe(false);
     }
@@ -37,6 +38,21 @@ describe('content data', () => {
     const counts = new Map<string, number>();
     for (const s of content.sentences) counts.set(s.entryId, (counts.get(s.entryId) ?? 0) + 1);
     for (const e of content.entries) expect(counts.get(e.id), e.id).toBeGreaterThanOrEqual(1);
+  });
+
+  it('applies hint overrides without touching booklet.json', () => {
+    const fear = content.entries.filter((e) => e.headword === 'פחד');
+    expect(fear.map((e) => [e.pos, e.hint])).toEqual([
+      ['noun', 'הרגש'],
+      ['verb', 'הוא פחד מ…'],
+    ]);
+    expect(sources.booklet.entries.find((e) => e.id === 'b023')?.hint).toBeNull();
+    expect(content.entries.find((e) => e.id === 'e063')?.hint).toBe('נתן כבוד');
+  });
+
+  it('marks the seven sentences without a fitting synonym as not swap-eligible', () => {
+    const excluded = content.sentences.filter((s) => !isSwapEligible(s)).map((s) => s.entryId);
+    expect(excluded.sort()).toEqual(['b268', 'b375', 'b378', 'b383', 'b391', 'b394', 'e070']);
   });
 
   it('filters to reviewed content only', () => {
@@ -52,13 +68,53 @@ describe('content data', () => {
       id: 'c001', categoryId: 'custom', headword: 'מגניב', hint: null, synonyms: ['אחלה'],
       difficulty: 1, pos: 'adj', source: 'custom', reviewed: false,
     };
-    const merged = buildContent(bookletFile, extraFile, sentencesFile, [custom]);
+    const merged = buildContent({ ...sources, custom: [custom] });
     expect(merged.categories.at(-1)?.id).toBe('custom');
     expect(onlyReviewed(merged).entries.some((e) => e.id === 'c001')).toBe(true);
   });
 });
 
 describe('validator', () => {
+  it('fails when a hint equals a synonym or the headword', () => {
+    const e = content.entries.find((x) => x.id === 'e063')!;
+    for (const hint of ['הוקיר', 'העריך']) {
+      const broken = { ...content, entries: content.entries.map((x) => (x.id === e.id ? { ...x, hint } : x)) };
+      expect(validateContent(broken).errors.map((i) => i.code)).toContain('hint-gives-answer');
+    }
+  });
+
+  it('warns (does not fail) on groups above 8 words, unless approved at their size', () => {
+    const report = validateContent(content);
+    const large = report.warnings.filter((w) => w.code === 'group-large');
+    expect(large.length).toBeGreaterThan(0);
+    const anchor = large[0]!.ref;
+    const size = Number(/has (\d+) words/.exec(large[0]!.message)![1]);
+    const approved = validateContent({ ...content, approvedLargeGroups: [{ anchor, maxSize: size }] });
+    expect(approved.warnings.some((w) => w.ref === anchor && w.code === 'group-large')).toBe(false);
+    const outgrown = validateContent({ ...content, approvedLargeGroups: [{ anchor, maxSize: size - 1 }] });
+    expect(outgrown.warnings.some((w) => w.code === 'group-grew')).toBe(true);
+  });
+
+  it('fails on decision files that name unknown nodes or entries', () => {
+    const broken = {
+      ...content,
+      alsoSynonyms: [{ a: 'אין כזה', b: 'טוב' }],
+      notSynonyms: [{ targetId: 'zzz', distractor: 'טוב' }],
+    };
+    const codes = validateContent(broken).errors.map((i) => i.code);
+    expect(codes).toEqual(expect.arrayContaining(['also-synonym-unknown-node', 'not-synonym-unknown-target']));
+  });
+
+  it('fails when a sense split points at an item without the word', () => {
+    const broken = { ...content, senseSplits: [...content.senseSplits, { word: 'בית', senses: [{ key: 'a', gloss: '', items: ['b001'] }, { key: 'b', gloss: '', items: ['b300'] }] }] };
+    expect(validateContent(broken).errors.map((i) => i.code)).toContain('sense-word-missing');
+  });
+
+  it('fails on duplicate headwords without distinct hints', () => {
+    const broken = { ...content, entries: content.entries.map((x) => (x.id === 'b023' ? { ...x, hint: null } : x)) };
+    expect(validateContent(broken).errors.map((i) => i.code)).toContain('homograph-without-hint');
+  });
+
   it('flags a context answer missing from its options and a short scale', () => {
     const broken = {
       ...content,

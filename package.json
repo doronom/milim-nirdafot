@@ -6,12 +6,19 @@
   "scripts": {
     "validate:data": "tsx scripts/validate-data.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "report:near-misses": "tsx scripts/report-near-misses.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^4.1.12"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.3.0"
   }
 }

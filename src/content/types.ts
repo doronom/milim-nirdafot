@@ -69,6 +69,19 @@ export interface Sentence {
   reviewed: boolean;
 }
 
+/** One meaning of a spelling that the synonym graph must keep apart from its other meanings. */
+export interface Sense {
+  key: string;
+  gloss: string;
+  /** Entry or register-set ids whose occurrence of the word carries this sense. */
+  items: string[];
+}
+
+export interface SenseSplit {
+  word: string;
+  senses: Sense[];
+}
+
 export interface Content {
   categories: Category[];
   entries: Entry[];
@@ -77,6 +90,34 @@ export interface Content {
   contexts: ContextChoice[];
   idioms: Idiom[];
   sentences: Sentence[];
+  senseSplits: SenseSplit[];
+  /** Spellings deliberately left as one node even though they serve two parts of speech (same meaning). */
+  sameMeaning: string[];
+  /** Reviewed decisions about pairs the source lists miss or that look like synonyms. */
+  alsoSynonyms: AlsoSynonymPair[];
+  notSynonyms: NotSynonymPair[];
+  approvedLargeGroups: ApprovedLargeGroup[];
+}
+
+/** Two graph node ids (word or word#sense) confirmed as synonyms; the graph links them. */
+export interface AlsoSynonymPair {
+  a: string;
+  b: string;
+  note?: string;
+}
+
+/** A confirmed fair trap: `distractor` (a spelling) may be offered as wrong for entry `targetId`. */
+export interface NotSynonymPair {
+  targetId: string;
+  distractor: string;
+  note?: string;
+}
+
+export interface ApprovedLargeGroup {
+  /** Any node id in the group. */
+  anchor: string;
+  maxSize: number;
+  note?: string;
 }
 
 /** Raw file shapes (src/data/*.json). */
@@ -98,4 +139,26 @@ export interface ExtraFile {
 export interface SentencesFile {
   meta: { note: string };
   sentences: Sentence[];
+}
+
+export interface SensesFile {
+  meta: { note: string };
+  hints: Record<string, string>;
+  senses: SenseSplit[];
+  sameMeaning: string[];
+}
+
+export interface AlsoSynonymsFile {
+  meta: { note: string };
+  pairs: AlsoSynonymPair[];
+}
+
+export interface NotSynonymsFile {
+  meta: { note: string };
+  pairs: NotSynonymPair[];
+}
+
+export interface LargeGroupsFile {
+  meta: { note: string };
+  approved: ApprovedLargeGroup[];
 }
