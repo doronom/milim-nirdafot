@@ -13,6 +13,7 @@ export const ICON_NAMES = [
   'crown',
   'download',
   'edit',
+  'eye',
   'eye-off',
   'flag',
   'flame',

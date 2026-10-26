@@ -63,14 +63,35 @@ export async function hold(page: Page, ms: number): Promise<void> {
   await button!.dispatchEvent('pointerup');
 }
 
-/** Opens a parent page through the gate: a 3-second hold, then the multiplication on the keypad. */
+/** The parent passcode the e2e tests set. */
+export const PASS = 'Tiger&Moon7';
+
+/** Sets a new passcode on the setup screen (typed twice) and confirms the recovery code; returns that code. */
+export async function setPasscode(page: Page, passcode = PASS): Promise<string> {
+  await page.getByLabel('קוד הורים', { exact: true }).fill(passcode);
+  await page.getByLabel('שוב, לאישור').fill(passcode);
+  await page.getByRole('button', { name: 'המשך' }).click();
+  const code = (await page.getByLabel('קוד השחזור', { exact: true }).textContent())!.trim();
+  await page.getByRole('checkbox', { name: /רשמתי את קוד השחזור/ }).check();
+  await page.getByRole('button', { name: 'סיום וכניסה' }).click();
+  // Saving hashes the passcode and the code first; a reload before the area opens would cancel it.
+  await expect(page.getByRole('navigation', { name: 'ניווט אזור ההורים' })).toBeVisible();
+  return code;
+}
+
+export async function enterPasscode(page: Page, passcode = PASS): Promise<void> {
+  await page.getByLabel('קוד הורים', { exact: true }).fill(passcode);
+  await page.getByRole('button', { name: 'כניסה', exact: true }).click();
+}
+
+/** Opens a parent page through the lock: the 3-second hold, then the passcode (set on first entry). */
 export async function openParent(page: Page, path = ''): Promise<void> {
   await page.goto(`./#/parent${path}`);
   await page.reload();
   await hold(page, 3300);
-  const question = await page.getByText(/× .* = \?/).textContent();
-  const [a, b] = question!.match(/\d+/g)!.map(Number) as [number, number];
-  for (const ch of String(a * b)) await page.getByRole('button', { name: ch, exact: true }).click();
-  await page.getByRole('button', { name: /אימות וכניסה/ }).click();
+  // The setup screen (first entry) has a confirmation field; the entry screen does not.
+  await page.getByLabel('קוד הורים', { exact: true }).waitFor();
+  if ((await page.getByLabel('שוב, לאישור').count()) > 0) await setPasscode(page);
+  else await enterPasscode(page);
   await expect(page.getByRole('navigation', { name: 'ניווט אזור ההורים' })).toBeVisible();
 }

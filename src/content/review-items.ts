@@ -81,3 +81,22 @@ export function reviewItems(full: Content, ov: ContentOverrides): ReviewItem[] {
 /** Drafts: unreviewed items and sentences still waiting for (or holding) a decision. Custom words are the parent's. */
 export const draftItems = (items: readonly ReviewItem[]): ReviewItem[] =>
   items.filter((i) => i.filter !== 'custom' && (!i.reviewed || i.decision !== undefined));
+
+/** A short name for an item in the activity log. */
+export function itemTitle(full: Content, kind: OverrideKind, id: string): string {
+  const find = <T extends { id: string }>(list: readonly T[]) => list.find((x) => x.id === id);
+  switch (kind) {
+    case 'entries':
+      return find(full.entries)?.headword ?? id;
+    case 'scales':
+      return `סולם "${find(full.scales)?.theme ?? id}"`;
+    case 'registers':
+      return `משלבים "${find(full.registers)?.meaning ?? id}"`;
+    case 'contexts':
+      return `הקשר "${find(full.contexts)?.answer ?? id}"`;
+    case 'idioms':
+      return `ניב "${find(full.idioms)?.idiom ?? id}"`;
+    case 'sentences':
+      return `משפט "${find(full.sentences)?.text ?? id}"`;
+  }
+}

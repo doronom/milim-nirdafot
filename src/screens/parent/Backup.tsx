@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { totalStars, type Progress } from '../../engine/progress';
 import { dayKey } from '../../engine/dates';
 import { download, shareOrDownload } from '../../share/share-image';
+import { appendLog } from '../../state/parent-log';
 import { createBackup, parseBackup, PROGRESS_KEY, restoreBackup, type BackupFile } from '../../state/backup';
 import { useContent } from '../../state/content-context';
 import { useProgress } from '../../state/progress-context';
 import { useStore } from '../../state/store-context';
+import { useParentLog } from '../../state/use-parent-log';
 import { Icon } from '../../ui/Icon';
 import { TactileButton } from '../../ui/TactileButton';
 import { ParentPage } from './ParentArea';
@@ -42,6 +44,7 @@ export function Backup() {
   const [incoming, setIncoming] = useState<BackupFile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
+  const log = useParentLog();
   const filename = `word-quest-backup-${dayKey()}.json`;
 
   const file = async () => new Blob([JSON.stringify(await createBackup(store), null, 2)], { type: 'application/json' });
@@ -61,6 +64,8 @@ export function Backup() {
     if (!incoming) return;
     setRestoring(true);
     await restoreBackup(store, incoming);
+    // The log and the passcode stay on this device: a backup never carries them.
+    await appendLog(store, 'change', `שוחזרו נתונים מגיבוי מתאריך ${when.format(new Date(incoming.exportedAt))}`);
     // Every screen reads the store fresh after a reload, so nothing keeps the old progress in memory.
     window.location.reload();
   };
@@ -82,6 +87,7 @@ export function Backup() {
             onClick={async () => {
               download(await file(), filename);
               setStatus('קובץ הגיבוי נשמר.');
+              log('יוצא קובץ גיבוי');
             }}
           >
             הורדת קובץ גיבוי
@@ -92,6 +98,7 @@ export function Backup() {
             onClick={async () => {
               const r = await shareOrDownload(await file(), filename, 'גיבוי מסע המילים');
               setStatus(r === 'shared' ? 'הגיבוי שותף.' : r === 'downloaded' ? 'קובץ הגיבוי נשמר.' : null);
+              if (r !== 'cancelled') log(r === 'shared' ? 'שותף קובץ גיבוי' : 'יוצא קובץ גיבוי');
             }}
           >
             שיתוף

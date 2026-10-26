@@ -3,7 +3,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import { Icon } from '../../ui/Icon';
 import type { IconName } from '../../ui/icons';
 import { IconButton, TopBar } from '../../ui/TopBar';
-import { ParentGate } from './ParentGate';
+import { ParentLock } from './ParentLock';
 import styles from './parent.module.css';
 
 const TABS: { to: string; label: string; icon: IconName; end?: boolean }[] = [
@@ -15,7 +15,7 @@ const TABS: { to: string; label: string; icon: IconName; end?: boolean }[] = [
 ];
 
 /**
- * The parent area: behind the gate every time it is entered from the child's side. Moving between its tabs keeps it
+ * The parent area: behind the passcode every time it is entered from the child's side. Moving between its tabs keeps it
  * open; leaving to the game closes it.
  */
 export function ParentArea() {
@@ -25,7 +25,7 @@ export function ParentArea() {
   useEffect(() => {
     if (typeof window.scrollTo === 'function') window.scrollTo({ top: 0 });
   }, [pathname, open]);
-  if (!open) return <ParentGate onOpen={() => setOpen(true)} />;
+  if (!open) return <ParentLock onOpen={() => setOpen(true)} />;
   return (
     <div className={styles.area}>
       <Outlet />

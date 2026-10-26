@@ -2,9 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { addActivity, minutesOn, reachedGoal, recentMinutes } from '../src/engine/activity';
 import { boxCounts, masteredKeys, strugglingKeys, wordSummary } from '../src/engine/dashboard';
 import type { LeitnerCard } from '../src/engine/leitner';
-import { gateAnswer, gateQuestion } from '../src/engine/parent-gate';
 import { initialProgress, resetJourney } from '../src/engine/progress';
-import { createRng } from '../src/engine/rng';
 import { createBackup, parseBackup, restoreBackup } from '../src/state/backup';
 import { memoryStore } from '../src/storage/kv';
 
@@ -48,16 +46,6 @@ describe('dashboard numbers', () => {
     expect(wordSummary(leitner)).toEqual({ total: 6, mastered: 2, struggling: 2 });
     expect(strugglingKeys(leitner)).toEqual(['a', 'b']);
     expect(masteredKeys(leitner)).toEqual(['e', 'd']);
-  });
-});
-
-describe('parent gate', () => {
-  it('asks a multiplication with factors a child is unlikely to know by heart', () => {
-    for (let i = 0; i < 50; i++) {
-      const q = gateQuestion(createRng(i));
-      expect(Math.min(q.a, q.b)).toBeGreaterThanOrEqual(6);
-      expect(gateAnswer(q)).toBeGreaterThanOrEqual(36);
-    }
   });
 });
 

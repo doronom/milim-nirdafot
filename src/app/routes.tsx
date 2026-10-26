@@ -51,6 +51,10 @@ export const routes: RouteObject[] = [
             lazy: async () => ({ Component: (await import('../screens/parent/ParentSettings')).ParentSettings }),
           },
           { path: 'backup', lazy: async () => ({ Component: (await import('../screens/parent/Backup')).Backup }) },
+          {
+            path: 'log',
+            lazy: async () => ({ Component: (await import('../screens/parent/ActivityLog')).ActivityLog }),
+          },
         ],
       },
       {
