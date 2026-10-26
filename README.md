@@ -5,7 +5,7 @@ short levels of learn cards and mini-games (pick, drag, memory, word search, cro
 word read aloud, spaced repetition so words come back until they stick, and stickers, ranks and streaks along the way.
 It runs in the browser, installs on a phone like an app, and works fully offline. No accounts, ads or tracking.
 
-**Play it:** LIVE_URL (Hebrew, best on a phone; see [Install it on a phone](#install-it-on-a-phone))
+**Play it:** https://milim-nirdafot.netlify.app (Hebrew, best on a phone; see [Install it on a phone](#install-it-on-a-phone))
 
 ![Four screens of the game: the world map, a station path, a learn card and a pick-the-synonym question](docs/screenshot.png)
 
