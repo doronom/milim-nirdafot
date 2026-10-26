@@ -1,6 +1,6 @@
 {
   "meta": {
-    "note": "Overrides layered on top of booklet.json and synonyms-extra.json without editing them. hints: replaces an entry's hint. senses: splits one spelling into separate graph nodes; each sense lists the item ids (entries or register sets) whose occurrence of the word means that sense. Occurrences in unlisted items fall back to the plain word node."
+    "note": "Overrides layered on top of booklet.json and synonyms-extra.json without editing them. hints: replaces an entry's hint. senses: splits one spelling into separate graph nodes; each sense lists the item ids (entries or register sets) whose occurrence of the word means that sense. Occurrences in unlisted items fall back to the plain word node. separateHeadwords: entries whose headword is a meaning of its own, kept apart from the same spelling elsewhere in the synonym graph (homograph headwords are kept apart automatically). Hints are labels only and never change the graph."
   },
   "hints": {
     "b023": "הרגש",
@@ -231,7 +231,7 @@
           ]
         },
         {
-          "key": "whole",
+          "key": "complete",
           "gloss": "שלם",
           "items": [
             "b069"
@@ -553,5 +553,24 @@
     "רוגז",
     "נדהם",
     "ייתכן"
+  ],
+  "separateHeadwords": [
+    "b023",
+    "b039",
+    "b163",
+    "b212",
+    "b244",
+    "e009",
+    "e015",
+    "e017",
+    "e020",
+    "e041",
+    "e044",
+    "e047",
+    "e054",
+    "e063",
+    "e076",
+    "e092",
+    "e102"
   ]
 }

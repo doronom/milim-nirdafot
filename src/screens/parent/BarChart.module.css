@@ -1,0 +1,95 @@
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+}
+.plot {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-2);
+  align-items: end;
+  block-size: calc(var(--touch-min) * 3.5);
+  padding-block-start: var(--space-5);
+  border-block-end: var(--border-thin) solid var(--border);
+}
+.column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  block-size: 100%;
+  outline: none;
+}
+.value {
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+  font-variant-numeric: tabular-nums;
+}
+.bar {
+  inline-size: 60%;
+  block-size: calc((100% - var(--space-6)) * var(--local-h));
+  min-block-size: var(--border-medium);
+  border-start-start-radius: var(--radius-badge);
+  border-start-end-radius: var(--radius-badge);
+  background: var(--world-primary);
+}
+.highlight {
+  background: var(--success);
+}
+.empty {
+  background: var(--border);
+}
+.reference {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: calc((100% - var(--space-5) - var(--space-6)) * var(--local-at));
+  border-block-start: var(--border-thin) dashed var(--text-muted);
+  pointer-events: none;
+}
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+}
+.legendLine {
+  inline-size: var(--space-6);
+  border-block-start: var(--border-medium) dashed var(--text-muted);
+}
+.tooltip {
+  position: absolute;
+  inset-block-end: 100%;
+  z-index: var(--z-overlay);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-chip);
+  background: var(--surface-bright);
+  color: var(--text);
+  font-size: var(--type-caption-size);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-snap);
+}
+.column:hover .tooltip {
+  opacity: 1;
+}
+.axis {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+  text-align: center;
+}
+.axisToday {
+  color: var(--text);
+  font-weight: var(--type-label-weight);
+}

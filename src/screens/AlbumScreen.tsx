@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { WORLDS, type WorldId } from '../config/game';
 import { motion } from '../design/tokens';
 import { placeSticker, stickerState, worldStickers, type Sticker as StickerDef } from '../engine/album';
-import { layout, stickerLabel } from '../app/data';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { Pill } from '../ui/Pill';
@@ -66,6 +66,7 @@ function TrayItem({ sticker, onPlace }: { sticker: StickerDef; onPlace: () => vo
 
 /** The sticker album: one page per world, one slot per level; earned stickers wait in a tray to be dragged into place. */
 export function AlbumScreen() {
+  const { layout, stickerLabel } = useGameData();
   const { progress, update } = useProgress();
   const [world, setWorld] = useState<WorldId>(1);
   const sensors = useSensors(

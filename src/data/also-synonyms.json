@@ -1,9 +1,17 @@
 {
   "meta": {
-    "note": "Pairs confirmed as synonyms that the source lists miss. Each pair is linked in the synonym graph, so neither word is ever offered as a wrong option for the other's group. a and b are graph node ids as printed by validate:data (plain word, or word#sense)."
+    "note": "Pairs confirmed as synonyms that the source lists miss. Each pair is linked in the synonym graph, so neither word is ever offered as a wrong option for the other's group. a and b are stable graph node ids: a plain spelling, \"<entryId>.0\" for an entry's headword, or \"<firstItemId>.<senseKey>\" for a sense of a senses.json split (validate:data prints them with readable labels such as מתוח#tense). They never depend on hint text."
   },
   "pairs": [
-    { "a": "מתוח#tense", "b": "חרד", "note": "parent review: not a fair trap for a 10-year-old" },
-    { "a": "מתוח#tense", "b": "מוטרד", "note": "parent review: not a fair trap for a 10-year-old" }
+    {
+      "a": "e004.tense",
+      "b": "חרד",
+      "note": "parent review: not a fair trap for a 10-year-old"
+    },
+    {
+      "a": "e004.tense",
+      "b": "מוטרד",
+      "note": "parent review: not a fair trap for a 10-year-old"
+    }
   ]
 }

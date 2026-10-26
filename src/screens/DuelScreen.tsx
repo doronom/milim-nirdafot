@@ -1,8 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { WORLDS, type WorldId } from '../config/game';
-import { content, displayWord, graph, links } from '../app/data';
-import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
 import { isWorldUnlocked, markPlayed } from '../engine/progress';
 import {
@@ -15,7 +13,7 @@ import {
   type DuelLength,
   type DuelQuestion,
 } from '../games/duel/duel';
-import type { GameEnv } from '../games/types';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -29,6 +27,7 @@ type Phase =
 
 /** Two players, one device: same questions for both, taking turns, then a side-by-side comparison. */
 export function DuelScreen() {
+  const { freePlay: env } = useGameData();
   const navigate = useNavigate();
   const { progress, update } = useProgress();
   const open = WORLDS.filter((w) => isWorldUnlocked(progress, w.id)).map((w) => w.id);
@@ -38,18 +37,6 @@ export function DuelScreen() {
   const [phase, setPhase] = useState<Phase>({ kind: 'setup' });
   const [seed, setSeed] = useState(() => String(Date.now()));
   const [answers, setAnswers] = useState<[DuelAnswer[], DuelAnswer[]]>([[], []]);
-  const env: GameEnv = useMemo(
-    () => ({
-      content,
-      sentences: { reviewedOnly: false, blocked: new Set() },
-      graph,
-      links,
-      pool: content.entries,
-      decisions: { confirmedTraps: trapKeys(content.notSynonyms) },
-      displayWord,
-    }),
-    [],
-  );
   const questions = useMemo(() => buildDuel(env, worlds, length, seed), [env, worlds, length, seed]);
   const label = (i: 0 | 1) => names[i].trim() || (i === 0 ? 'שחקן 1' : 'שחקן 2');
 
@@ -179,6 +166,7 @@ function Turn({
   questions: DuelQuestion[];
   onDone: (a: DuelAnswer[]) => void;
 }) {
+  const { displayWord } = useGameData();
   const [index, setIndex] = useState(0);
   const [list, setList] = useState<DuelAnswer[]>([]);
   const [shownAt, setShownAt] = useState(() => performance.now());

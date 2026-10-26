@@ -9,16 +9,28 @@ interface Props {
   icon?: IconName;
   /** World buttons follow the surrounding data-world accent. */
   /** quiet: secondary actions, on a surface instead of the accent. */
-  tone?: 'world' | 'success' | 'quiet';
+  /** danger: destructive actions (reset, delete), always behind a second step. */
+  tone?: 'world' | 'success' | 'quiet' | 'danger';
   size?: 'md' | 'lg';
   block?: boolean;
   to?: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: 'button' | 'submit';
 }
 
 /** The pushable game button: a solid lip under the face that compresses on press. */
-export function TactileButton({ children, icon, tone = 'world', size = 'md', block, to, onClick, disabled }: Props) {
+export function TactileButton({
+  children,
+  icon,
+  tone = 'world',
+  size = 'md',
+  block,
+  to,
+  onClick,
+  disabled,
+  type = 'button',
+}: Props) {
   const className = [styles.button, styles[tone], styles[size] ?? '', block ? styles.block : ''].join(' ');
   const body = (
     <>
@@ -34,7 +46,7 @@ export function TactileButton({ children, icon, tone = 'world', size = 'md', blo
     );
   }
   return (
-    <button type="button" className={className} onClick={onClick} disabled={disabled}>
+    <button type={type} className={className} onClick={onClick} disabled={disabled}>
       {body}
     </button>
   );

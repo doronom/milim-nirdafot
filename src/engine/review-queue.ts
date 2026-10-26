@@ -1,7 +1,7 @@
 import type { AlsoSynonymPair, Entry, NotSynonymPair } from '../content/types';
 import type { KeyValueStore } from '../storage/kv';
 import { pairKey } from './distractors';
-import type { SynonymGraph } from './graph';
+import { headwordAlias, type SynonymGraph } from './graph';
 
 export type ReportStatus = 'pending' | 'accepted' | 'rejected';
 
@@ -84,7 +84,7 @@ export const pendingKeys = (reports: readonly AlsoCorrectReport[]): Set<string> 
 
 /**
  * Decided reports in the shape of also-synonyms.json and not-synonyms.json, ready to export and commit.
- * Accepted reports link the target headword's node with the offered word's node.
+ * Accepted reports link the target's headword (by its stable alias, "<entryId>.0") with the offered word's node.
  */
 export function exportDecisions(
   reports: readonly AlsoCorrectReport[],
@@ -98,7 +98,7 @@ export function exportDecisions(
     const target = byId.get(r.targetId);
     if (!target) continue;
     if (r.status === 'accepted')
-      alsoSynonyms.push({ a: graph.headwordNode(target), b: r.nodeId, note: `reported in ${r.gameId}` });
+      alsoSynonyms.push({ a: headwordAlias(target.id), b: graph.migrate(r.nodeId), note: `reported in ${r.gameId}` });
     if (r.status === 'rejected')
       notSynonyms.push({ targetId: r.targetId, distractor: r.word, note: `reported in ${r.gameId}` });
   }
@@ -133,4 +133,17 @@ export async function reportItemDispute(
     : { ...input, reportedAt: now.toISOString(), count: 1, status: 'pending' };
   await store.set(DISPUTES, [...list.filter((d) => d !== existing), dispute]);
   return dispute;
+}
+
+export async function decideItemDispute(
+  store: KeyValueStore,
+  itemKey: string,
+  answer: string,
+  status: Exclude<ReportStatus, 'pending'>,
+): Promise<void> {
+  const list = await listItemDisputes(store);
+  await store.set(
+    DISPUTES,
+    list.map((d) => (d.itemKey === itemKey && d.answer === answer ? { ...d, status } : d)),
+  );
 }

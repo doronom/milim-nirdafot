@@ -28,6 +28,13 @@
   background: var(--success);
   box-shadow: 0 var(--border-lip) 0 var(--success-deep);
 }
+.danger {
+  background: var(--error);
+  box-shadow: 0 var(--border-lip) 0 var(--error-deep);
+}
+.danger:active:not(:disabled) {
+  box-shadow: 0 var(--border-thin) 0 var(--error-deep);
+}
 .quiet {
   background: var(--surface-elevated);
   color: var(--text);

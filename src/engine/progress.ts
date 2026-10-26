@@ -1,7 +1,8 @@
 import { type WorldId } from '../config/game';
+import type { DailyGoal } from './activity';
 import type { LeitnerState } from './leitner';
 import { touchStreak, type Streak } from './streak';
-import { worldLevels, type Layout, type LevelDef, type WorldDef } from './layout';
+import { isCustomLevel, worldLevels, type Layout, type LevelDef, type WorldDef } from './layout';
 
 export type Stars = 0 | 1 | 2 | 3;
 
@@ -35,7 +36,15 @@ export interface Progress {
     speedMode?: boolean;
     /** The child's name, for the certificate and greetings. */
     childName?: string;
+    /** Sound effects (default on). */
+    sound?: boolean;
+    /** Reading words aloud on learn cards (default on). */
+    voice?: boolean;
+    /** Minutes a day the parent suggests; reaching it shows a gentle note, nothing more. */
+    dailyGoal?: DailyGoal;
   };
+  /** Seconds of play per day (YYYY-MM-DD), for the parent dashboard. */
+  activity?: Record<string, number>;
   /** Best speed-challenge score so far. */
   speedBest?: { score: number; correct: number; at: string };
 }
@@ -48,7 +57,15 @@ export const initialProgress = (): Progress => ({
   xp: 0,
   streak: { days: 0, freezes: 1, lastPlayed: null },
   leitner: {},
-  settings: { unlockAll: false, reviewedOnly: false, reviewedSentencesOnly: false, speedMode: true },
+  settings: {
+    unlockAll: false,
+    reviewedOnly: false,
+    reviewedSentencesOnly: false,
+    speedMode: true,
+    sound: true,
+    voice: true,
+    dailyGoal: 15,
+  },
 });
 
 export const isWorldUnlocked = (p: Progress, world: WorldId): boolean =>
@@ -59,7 +76,7 @@ export const isLevelDone = (p: Progress, levelId: string): boolean => (p.levels[
 /** Levels open in order inside a world; the boss opens once every other level of the world is done. */
 export function isLevelUnlocked(p: Progress, world: WorldDef, levelId: string): boolean {
   if (!isWorldUnlocked(p, world.id)) return false;
-  if (p.settings.unlockAll) return true;
+  if (p.settings.unlockAll || isCustomLevel(levelId)) return true;
   const levels = worldLevels(world);
   const i = levels.findIndex((l) => l.id === levelId);
   if (i <= 0) return i === 0;
@@ -153,4 +170,11 @@ export function recordSpeedRun(p: Progress, run: { score: number; correct: numbe
 export const needsOnboarding = (p: Progress): boolean => p.onboarded === false;
 
 /** Records play today for the streak (a level, a speed run or a duel). */
+/** Starts the journey over: levels, XP, streak, album, boxes and play time go; settings and onboarding stay. */
+export const resetJourney = (p: Progress): Progress => ({
+  ...initialProgress(),
+  onboarded: p.onboarded,
+  settings: p.settings,
+});
+
 export const markPlayed = (p: Progress, today: string): Progress => ({ ...p, streak: touchStreak(p.streak, today) });

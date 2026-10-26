@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { entryPool } from '../src/app/data';
+import { baseData } from '../src/app/data';
 import { WORLDS } from '../src/config/game';
 import { content } from '../src/content';
 import { normalizeWord } from '../src/content/text';
@@ -50,7 +50,7 @@ describe('game registry', () => {
 describe('pickSynonym', () => {
   it('has exactly one directly linked option per question, at every difficulty, for all World 1 levels', () => {
     // World 1 draws distractors from its own (smaller) word pool; it must still fill 5 options.
-    const worldOneEnv = { ...env, pool: entryPool(false, 1) };
+    const worldOneEnv = { ...env, pool: baseData.entryPool(false, 1) };
     for (const s of sessions) {
       for (const d of difficulties) {
         const round = buildPickRound(worldOneEnv, s.items, d, createRng(`${s.items[0]!.key}:${d.tier}`));

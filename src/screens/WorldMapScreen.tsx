@@ -2,10 +2,13 @@ import { motion as m, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import { rankForXp, WORLDS } from '../config/game';
 import { motion } from '../design/tokens';
+import { dailyGoal, reachedGoal } from '../engine/activity';
+import { dayKey } from '../engine/dates';
 import { activeWorld, currentLevel, isWorldUnlocked, totalStars, worldStats } from '../engine/progress';
-import { layout } from '../app/data';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
+import { MascotBubble } from '../ui/MascotBubble';
 import { Pill } from '../ui/Pill';
 import { ProgressBar } from '../ui/ProgressBar';
 import { StatusPills } from '../ui/StatusPills';
@@ -14,6 +17,7 @@ import { IconButton, TopBar } from '../ui/TopBar';
 import styles from './WorldMapScreen.module.css';
 
 export function WorldMapScreen() {
+  const { layout } = useGameData();
   const { progress } = useProgress();
   const navigate = useNavigate();
   const reduced = useReducedMotion();
@@ -52,6 +56,14 @@ export function WorldMapScreen() {
           </Pill>
         </span>
       </section>
+
+      {reachedGoal(progress, dayKey()) && (
+        <div className={styles.goal}>
+          <MascotBubble>
+            כל הכבוד! הגעתם ליעד היומי של {dailyGoal(progress)} דקות. אפשר להמשיך לשחק, או לנוח ולחזור מחר.
+          </MascotBubble>
+        </div>
+      )}
 
       <header className={styles.intro}>
         <Pill tone="world">מפת מסע ארבעת העולמות</Pill>

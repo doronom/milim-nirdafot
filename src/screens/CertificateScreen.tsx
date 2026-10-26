@@ -4,8 +4,8 @@ import { Navigate, useNavigate, useParams } from 'react-router';
 import { rankForXp, WORLDS, type WorldId } from '../config/game';
 import { certificateDates } from '../engine/certificate';
 import { isLevelDone } from '../engine/progress';
-import { layout } from '../app/data';
 import { shareOrDownload, type ShareResult } from '../share/share-image';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -15,6 +15,7 @@ import styles from './CertificateScreen.module.css';
 
 /** The certificate for a completed world: rendered to PNG and shared, or saved when sharing is not available. */
 export function CertificateScreen() {
+  const { layout } = useGameData();
   const { worldId } = useParams();
   const navigate = useNavigate();
   const { progress, loaded } = useProgress();

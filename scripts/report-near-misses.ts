@@ -2,7 +2,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { content } from '../src/content';
 import type { Entry } from '../src/content/types';
 import { rankNearMisses, trapKeys, type NearMiss } from '../src/engine/distractors';
-import { buildSynonymGraph } from '../src/engine/graph';
+import { buildSynonymGraph, headwordAlias } from '../src/engine/graph';
 
 /**
  * Writes two review files:
@@ -22,7 +22,7 @@ const header: Row = ['target', 'targetId', 'targetNode', 'distractor', 'distract
 const toRow = (target: Entry, nm: NearMiss): Row => [
   target.hint ? `${target.headword} (${target.hint})` : target.headword,
   target.id,
-  graph.headwordNode(target),
+  headwordAlias(target.id),
   nm.word,
   nm.nodeId,
   titles.get(target.categoryId) ?? target.categoryId,

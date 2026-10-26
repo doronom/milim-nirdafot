@@ -39,7 +39,12 @@ export interface WorldDef {
 
 export interface Layout {
   worlds: WorldDef[];
+  /** The parent's words, added at runtime as a World 1 station that is always open and never blocks the boss. */
+  custom?: StationDef;
 }
+
+export const CUSTOM_STATION_ID = 'w1-custom';
+export const isCustomLevel = (levelId: string): boolean => levelId.startsWith(`${CUSTOM_STATION_ID}-`);
 
 /** Splits n items into level sizes within LEVEL_SIZE where possible, otherwise the closest fit. */
 export function levelSizes(n: number): number[] {
@@ -194,6 +199,8 @@ export function findLevel(
   layout: Layout,
   levelId: string,
 ): { world: WorldDef; station?: StationDef; level: LevelDef } | null {
+  const custom = layout.custom?.levels.find((l) => l.id === levelId);
+  if (custom && layout.custom) return { world: layout.worlds[0]!, station: layout.custom, level: custom };
   for (const world of layout.worlds) {
     if (world.boss.id === levelId) return { world, level: world.boss };
     for (const station of world.stations) {

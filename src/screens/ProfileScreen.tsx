@@ -2,7 +2,7 @@ import { nextRank, RANKS, rankForXp, WORLDS } from '../config/game';
 import { dayKey } from '../engine/dates';
 import { isLevelDone } from '../engine/progress';
 import { currentStreak, weekCalendar } from '../engine/streak';
-import { layout } from '../app/data';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { Pill } from '../ui/Pill';
@@ -15,6 +15,7 @@ const DAY_LETTERS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
 
 /** Rank and XP, the streak with its weekly calendar (no guilt), and certificates for completed worlds. */
 export function ProfileScreen() {
+  const { layout } = useGameData();
   const { progress } = useProgress();
   const today = dayKey();
   const rank = rankForXp(progress.xp);

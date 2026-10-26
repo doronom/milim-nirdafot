@@ -1,9 +1,20 @@
 import { normalizeWord } from '../content/text';
 import type { Content, Entry, Pos, Sense } from '../content/types';
 
+/**
+ * Node ids never depend on hint text, so editing a hint only changes a label:
+ * - a plain spelling: "מהיר";
+ * - a separated headword (a homograph, or listed in senses.json separateHeadwords): its entry id plus ".0", "b039.0";
+ * - a sense from senses.json: the sense's first item plus its key in senses.json, "b406.evening" (an index would
+ *   collide: two split words can share a first item).
+ * "<entryId>.0" is also accepted for any entry as an alias of its headword node, whatever that node is.
+ */
+export const headwordAlias = (entryId: string): string => `${entryId}.0`;
+
 export interface GraphNode {
-  /** "מהיר", "ערב#evening" (sense split) or "ישן#b039" (hinted headword). */
   id: string;
+  /** Readable name for reports: "מהיר", "ערב#evening" (sense key), "ישן#b039" (separated headword). */
+  label: string;
   /** Normalized spelling; two nodes may share it (homographs). */
   key: string;
   /** Display form as first written (keeps niqqud, e.g. רֵעַ). */
@@ -22,6 +33,10 @@ export interface SynonymGraph {
   groups: string[][];
   /** Node id for an occurrence of `word` inside an entry or register set. */
   resolve(itemId: string, word: string): string;
+  /** The node an id or alias ("b031.0") stands for, or undefined. */
+  canonical(id: string): string | undefined;
+  /** Maps an id written before stable ids ("מתוח#tense", "ישן#b039") to today's id; other ids pass through. */
+  migrate(id: string): string;
   headwordNode(entry: Entry): string;
   /** Normalized spellings of every node in the node's group: a distractor must match none of them. */
   groupKeys(nodeId: string): Set<string>;
@@ -45,13 +60,23 @@ export interface GraphOptions {
 export function buildSynonymGraph(content: Content, { includeRegisters = true }: GraphOptions = {}): SynonymGraph {
   const entriesById = new Map(content.entries.map((e) => [e.id, e]));
   const splits = new Map<string, Sense[]>(content.senseSplits.map((s) => [normalizeWord(s.word), s.senses]));
+  const separated = separatedHeadwords(content);
+  const labels = new Map<string, string>();
 
   const resolve = (itemId: string, word: string): string => {
     const key = normalizeWord(word);
-    const sense = splits.get(key)?.find((s) => s.items.includes(itemId));
-    if (sense) return `${key}#${sense.key}`;
+    const senses = splits.get(key);
+    const index = senses?.findIndex((s) => s.items.includes(itemId)) ?? -1;
+    if (senses && index >= 0) {
+      const id = senseNodeId(senses[index]!);
+      labels.set(id, `${key}#${senses[index]!.key}`);
+      return id;
+    }
     const entry = entriesById.get(itemId);
-    if (entry && entry.hint !== null && normalizeWord(entry.headword) === key) return `${key}#${entry.id}`;
+    if (entry && separated.has(entry.id) && normalizeWord(entry.headword) === key) {
+      labels.set(headwordAlias(entry.id), `${key}#${entry.id}`);
+      return headwordAlias(entry.id);
+    }
     return key;
   };
 
@@ -60,7 +85,8 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
   const touch = (id: string, word: string, entry?: Entry): string => {
     let node = nodes.get(id);
     if (!node) {
-      node = { id, key: normalizeWord(word), word, categoryIds: [], pos: [], entryIds: [], group: -1 };
+      const label = labels.get(id) ?? id;
+      node = { id, label, key: normalizeWord(word), word, categoryIds: [], pos: [], entryIds: [], group: -1 };
       nodes.set(id, node);
       edges.set(id, new Set());
     }
@@ -88,9 +114,17 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
     }
   }
 
+  // Every entry's "<id>.0" names its headword node, so a pair written that way survives any change to the node.
+  const aliases = new Map<string, string>();
+  for (const e of content.entries) aliases.set(headwordAlias(e.id), resolve(e.id, e.headword));
+  const canonical = (id: string) => (nodes.has(id) ? id : aliases.get(id));
+  const byLabel = new Map([...nodes.values()].map((n) => [n.label, n.id]));
+  const migrate = (id: string) => (canonical(id) ? id : (byLabel.get(id) ?? id));
+
   // Reviewed pairs the sources miss. Unknown node ids are reported by validation and skipped here.
   for (const { a, b } of content.alsoSynonyms) {
-    if (nodes.has(a) && nodes.has(b)) link(a, b);
+    const [x, y] = [canonical(a), canonical(b)];
+    if (x && y) link(x, y);
   }
 
   const groups: string[][] = [];
@@ -121,7 +155,7 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
   const keysCache = new Map<number, Set<string>>();
   const groupKeys = (nodeId: string): Set<string> => {
     const group = nodes.get(nodeId)?.group;
-    if (group === undefined) return new Set([normalizeWord(nodeId.split('#')[0]!)]);
+    if (group === undefined) return new Set([normalizeWord(nodeId)]);
     let keys = keysCache.get(group);
     if (!keys) {
       keys = new Set(sorted[group]!.map((id) => nodes.get(id)!.key));
@@ -149,8 +183,43 @@ export function buildSynonymGraph(content: Content, { includeRegisters = true }:
     edges,
     groups: sorted,
     resolve,
+    canonical,
+    migrate,
     headwordNode: (entry) => resolve(entry.id, entry.headword),
     groupKeys,
     twoHopGroups,
   };
+}
+
+/** A sense's node id: its first item and its key ("0" is kept for headwords). */
+export const senseNodeId = (sense: Sense): string => `${sense.items[0]}.${sense.key}`;
+
+/**
+ * Headwords that get a node of their own instead of merging with the same spelling elsewhere: those listed in
+ * senses.json (a meaning the spelling has nowhere else), and every homograph headword (two entries, one spelling).
+ */
+export function separatedHeadwords(content: Pick<Content, 'entries' | 'separateHeadwords'>): Set<string> {
+  const byKey = new Map<string, string[]>();
+  for (const e of content.entries) {
+    const key = normalizeWord(e.headword);
+    byKey.set(key, [...(byKey.get(key) ?? []), e.id]);
+  }
+  const homographs = [...byKey.values()].filter((ids) => ids.length > 1).flat();
+  return new Set([...content.separateHeadwords, ...homographs]);
+}
+
+/**
+ * The spelling a node id stands for, from the content alone (answer checking does not build the graph): the entry's
+ * headword for "<id>.0", the split word for a sense id, the id itself for a plain spelling.
+ */
+export function nodeSpelling(content: Pick<Content, 'entries' | 'senseSplits'>, id: string): string {
+  const m = /^([a-z][\w-]*)\.([\w-]+)$/i.exec(id);
+  if (!m) return normalizeWord(id);
+  const [, item, tag] = m as unknown as [string, string, string];
+  if (tag === '0') {
+    const entry = content.entries.find((e) => e.id === item);
+    return entry ? normalizeWord(entry.headword) : id;
+  }
+  const split = content.senseSplits.find((s) => s.senses.some((x) => x.key === tag && x.items[0] === item));
+  return split ? normalizeWord(split.word) : id;
 }

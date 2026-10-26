@@ -3,10 +3,9 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { BOSS_SIZE, WORLDS, type WorldId } from '../config/game';
 import type { LevelDef, StationDef, WorldDef } from '../engine/layout';
 import { currentLevel, isLevelDone, isLevelUnlocked, isWorldUnlocked, type Progress } from '../engine/progress';
-import { content, guestPool, itemLabel, layout } from '../app/data';
-import { createResolver } from '../games/items';
 import { dayKey } from '../engine/dates';
 import { selectGuests } from '../engine/guests';
+import { useGameData } from '../state/content-context';
 import { useProgress } from '../state/progress-context';
 import { Icon } from '../ui/Icon';
 import { MascotBubble } from '../ui/MascotBubble';
@@ -20,7 +19,7 @@ import styles from './WorldScreen.module.css';
 
 type NodeState = 'done' | 'current' | 'open' | 'locked';
 
-const preview = (level: LevelDef) =>
+const preview = (level: LevelDef, itemLabel: (id: string) => string | undefined) =>
   level.itemIds
     .slice(0, 3)
     .map((id) => itemLabel(id))
@@ -37,6 +36,7 @@ export function WorldScreen() {
   const { worldId } = useParams();
   const navigate = useNavigate();
   const { progress, loaded } = useProgress();
+  const { layout, itemLabel, guestResolver } = useGameData();
   const currentRef = useRef<HTMLLIElement>(null);
   const dockRef = useRef<HTMLDivElement>(null);
   const world = layout.worlds.find((w) => String(w.id) === worldId);
@@ -68,7 +68,7 @@ export function WorldScreen() {
           current.itemIds,
           current.itemIds.length,
           dayKey(),
-          createResolver(content, guestPool(progress.settings.reviewedOnly)),
+          guestResolver(progress.settings.reviewedOnly),
         ).length
       : 0;
 
@@ -76,7 +76,7 @@ export function WorldScreen() {
     const state = nodeState(progress, world, level, current);
     const number = levelNumber(level, station);
     const title = levelTitle(level, station);
-    const words = preview(level);
+    const words = preview(level, itemLabel);
     const stars = progress.levels[level.id]?.stars ?? 0;
     const name = number ? `שלב ${number}: ${title}` : title;
     const to = `/level/${level.id}`;
@@ -164,7 +164,7 @@ export function WorldScreen() {
         <li className={styles.start}>
           <Pill icon="compass">נקודת היציאה</Pill>
         </li>
-        {world.stations.map((station) => (
+        {[...world.stations, ...(world.id === 1 && layout.custom ? [layout.custom] : [])].map((station) => (
           <li key={station.id} className={styles.stationGroup}>
             <ol className={styles.stationLevels}>
               <li className={styles.stationMarker}>
@@ -183,7 +183,9 @@ export function WorldScreen() {
                   <span className={styles.stationName}>
                     תחנה {station.index}: {station.title}
                   </span>
-                  <span className={styles.stationMeta}>{station.levels.length} שלבים</span>
+                  <span className={styles.stationMeta}>
+                    {station.kind === 'custom' ? 'המילים שהוסיפו ההורים · פתוח תמיד' : `${station.levels.length} שלבים`}
+                  </span>
                 </span>
               </li>
               {station.levels.map((level) => renderLevel(level, station))}

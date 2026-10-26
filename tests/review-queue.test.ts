@@ -46,7 +46,7 @@ describe('review queue', () => {
     const reports = await listReports(store);
     expect(pendingKeys(reports).size).toBe(0);
     const out = exportDecisions(reports, graph, content.entries);
-    expect(out.alsoSynonyms).toEqual([{ a: 'מתוח#tense', b: 'חושש', note: 'reported in pickSynonym' }]);
+    expect(out.alsoSynonyms).toEqual([{ a: 'e004.0', b: 'חושש', note: 'reported in pickSynonym' }]);
     expect(out.notSynonyms).toEqual([{ targetId: 'e004', distractor: 'רדום', note: 'reported in pickSynonym' }]);
   });
 

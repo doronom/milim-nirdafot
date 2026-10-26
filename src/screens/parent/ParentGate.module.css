@@ -1,0 +1,95 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  inline-size: var(--space-8);
+  block-size: var(--space-8);
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  color: var(--world-primary);
+  font-weight: var(--type-label-weight);
+}
+.hold {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-button);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: start;
+  touch-action: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  cursor: pointer;
+}
+.ring {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: calc(var(--touch-min) * 1.8);
+  block-size: calc(var(--touch-min) * 1.8);
+  border-radius: 50%;
+  background: conic-gradient(var(--success) calc(var(--local-progress) * 1turn), var(--surface-bright) 0);
+}
+.ringInner {
+  display: grid;
+  place-items: center;
+  inline-size: calc(100% - var(--space-3) * 2);
+  block-size: calc(100% - var(--space-3) * 2);
+  border-radius: 50%;
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-weight: var(--type-title-weight);
+  font-variant-numeric: tabular-nums;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+}
+.answerBox {
+  border-color: var(--world-primary);
+}
+.question {
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  font-variant-numeric: tabular-nums;
+  color: var(--world-primary);
+}
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.key {
+  min-block-size: calc(var(--touch-min) + var(--space-2));
+  border: none;
+  border-radius: var(--radius-button);
+  background: var(--surface-elevated);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--type-option-size);
+  cursor: pointer;
+}
+.key:active {
+  transform: translateY(var(--press-offset));
+  box-shadow: 0 var(--border-thin) 0 var(--border);
+}

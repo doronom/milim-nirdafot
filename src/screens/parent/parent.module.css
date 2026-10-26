@@ -1,0 +1,346 @@
+.area {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  padding: var(--gutter);
+  padding-block-end: var(--space-8);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.cardHead > :last-child:not(:first-child) {
+  margin-inline-start: auto;
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-lh);
+}
+.muted {
+  color: var(--text-secondary);
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-lh);
+}
+.caption {
+  color: var(--text-muted);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-lh);
+}
+.big {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  line-height: var(--type-hero-lh);
+  font-variant-numeric: tabular-nums;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.row > :last-child:not(:first-child) {
+  margin-inline-start: auto;
+}
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+}
+.itemHead {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.word {
+  font-family: var(--font-display);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  line-height: var(--type-option-lh);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--text-secondary);
+  font-size: var(--type-label-size);
+}
+.input {
+  min-block-size: var(--touch-min);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-button);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--type-body-size);
+}
+.input:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+textarea.input {
+  min-block-size: calc(var(--touch-min) * 2);
+  resize: vertical;
+}
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  border: var(--border-thin) solid var(--error);
+  background: var(--error-glow);
+  color: var(--text);
+  font-size: var(--type-label-size);
+}
+.notice {
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  font-size: var(--type-label-size);
+}
+.ok {
+  color: var(--success);
+}
+.danger {
+  color: var(--error);
+}
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-button);
+  background: var(--surface-container);
+  overflow-x: auto;
+}
+.tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-3);
+  border: none;
+  border-radius: var(--radius-chip);
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tabActive {
+  background: var(--world-primary);
+  color: var(--text-on-accent);
+}
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-2);
+}
+.segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-block-size: var(--touch-min);
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.segmentOn {
+  border-color: var(--world-primary);
+  box-shadow: var(--shadow-card-glow);
+}
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: var(--touch-min);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.toggleText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+}
+.toggleTitle {
+  font-weight: var(--type-option-weight);
+}
+.switch {
+  position: relative;
+  flex: none;
+  inline-size: calc(var(--touch-min) + var(--space-3));
+  block-size: calc(var(--touch-min) / 1.6);
+  border-radius: var(--radius-chip);
+  background: var(--surface-bright);
+  transition: background var(--motion-snap);
+}
+.knob {
+  position: absolute;
+  inset-block: var(--space-1);
+  inset-inline-start: var(--space-1);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--text);
+  transition: inset-inline-start var(--motion-snap);
+}
+.switchOn {
+  background: var(--world-primary);
+}
+.switchOn .knob {
+  inset-inline-start: calc(100% - var(--space-1) - (var(--touch-min) / 1.6) + var(--space-2));
+}
+.divider {
+  border: none;
+  border-block-start: var(--border-thin) solid var(--border);
+  margin: 0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  font-size: var(--type-label-size);
+}
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-block-size: var(--touch-min);
+  padding-inline: var(--space-3);
+  border: var(--border-thin) solid var(--border);
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--type-label-size);
+  cursor: pointer;
+}
+.linkButton:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: default;
+}
+.visuallyHidden {
+  position: absolute;
+  inline-size: var(--border-thin);
+  block-size: var(--border-thin);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.nav {
+  position: sticky;
+  inset-block-end: 0;
+  z-index: var(--z-nav);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  min-block-size: var(--nav-height);
+  padding-block-end: env(safe-area-inset-bottom);
+  background: var(--surface-elevated);
+  border-block-start: var(--border-thin) solid var(--border);
+}
+.navTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-block-size: var(--touch-min);
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  text-decoration: none;
+}
+.navTab .navIcon {
+  display: inline-flex;
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+}
+.navActive {
+  color: var(--text);
+}
+.navActive .navIcon {
+  background: var(--world-primary);
+  color: var(--text-on-accent);
+}
+.chipRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}

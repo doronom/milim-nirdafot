@@ -5,10 +5,12 @@ import senses from '../data/senses.json';
 import alsoSynonyms from '../data/also-synonyms.json';
 import notSynonyms from '../data/not-synonyms.json';
 import largeGroups from '../data/large-groups.json';
+import customWords from '../data/custom-words.json';
 import { buildContent } from './model';
 import type {
   AlsoSynonymsFile,
   BookletFile,
+  Entry,
   ExtraFile,
   LargeGroupsFile,
   NotSynonymsFile,
@@ -24,6 +26,8 @@ export const sources = {
   alsoSynonyms: alsoSynonyms as AlsoSynonymsFile,
   notSynonyms: notSynonyms as NotSynonymsFile,
   largeGroups: largeGroups as LargeGroupsFile,
+  /** The parent's words committed with apply:content-changes. */
+  custom: customWords as Entry[],
 };
 
 export const content = buildContent(sources);
