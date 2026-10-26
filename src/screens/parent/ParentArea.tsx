@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import { Icon } from '../../ui/Icon';
 import type { IconName } from '../../ui/icons';
 import { IconButton, TopBar } from '../../ui/TopBar';
+import { useParentChrome } from './chrome';
 import { ParentLock } from './ParentLock';
 import styles from './parent.module.css';
 
@@ -61,11 +62,12 @@ export function ParentPage({
   children: ReactNode;
 }) {
   const navigate = useNavigate();
+  const { home, homeLabel } = useParentChrome();
   return (
     <>
       <TopBar
         start={
-          <IconButton label="חזרה למסע" onClick={() => navigate('/')}>
+          <IconButton label={homeLabel} onClick={() => navigate(home)}>
             <Icon name="forward" />
           </IconButton>
         }

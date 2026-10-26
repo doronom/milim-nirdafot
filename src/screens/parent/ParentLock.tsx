@@ -1,57 +1,50 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import {
   GATE_HOLD_SECONDS,
   lockedFor,
-  newRecoveryCode,
   passcodeProblems,
   PROBLEM_TEXT,
   type PasscodeProblem,
 } from '../../engine/passcode';
-import {
-  getLock,
-  getLockout,
-  resetWithRecovery,
-  setupLock,
-  tryPasscode,
-  tryRecoveryCode,
-  type AttemptResult,
-} from '../../state/parent-lock';
+import { getLock, getLockout, tryPasscode, type AttemptResult, type ParentLock as Lock } from '../../state/parent-lock';
 import { useStore } from '../../state/store-context';
+import { useSync } from '../../sync/sync-context';
 import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
 import { TactileButton } from '../../ui/TactileButton';
 import { IconButton, TopBar } from '../../ui/TopBar';
 import { PasscodeField } from './controls';
+import { PairDevice } from './PairDevice';
 import styles from './ParentLock.module.css';
 import p from './parent.module.css';
 
-type Phase =
-  | { kind: 'loading' }
-  | { kind: 'hold'; hasLock: boolean }
-  | { kind: 'setup' }
-  | { kind: 'enter' }
-  | { kind: 'recover' }
-  | { kind: 'recover-new'; code: string }
-  /** The new recovery code, shown once; nothing is saved until the parent confirms writing it down. */
-  | { kind: 'show-code'; passcode: string; recoveryCode: string; oldCode?: string };
+type Phase = 'hold' | 'enter' | 'pair' | 'waiting';
 
 /**
- * The parent lock: a 3-second hold (so it never opens by accident), then the passcode. On first entry the parent sets
- * a passcode (twice) and gets a one-time recovery code. Wrong attempts lock entry for 1, 5, 15, then 60 minutes.
+ * The parent lock: a 3-second hold (so it never opens by accident), then the passcode. The passcode is set in parent
+ * mode on a parent's phone and reaches this device by pairing; it is checked here, offline. A device that was never
+ * paired offers only pairing. Wrong attempts lock entry for 1, 5, 15, then 60 minutes.
  */
 export function ParentLock({ onOpen }: { onOpen: () => void }) {
   const store = useStore();
   const navigate = useNavigate();
-  const [phase, setPhase] = useState<Phase>({ kind: 'loading' });
+  const [params] = useSearchParams();
+  const pairCode = params.get('pair') ?? '';
+  const { paired } = useSync();
+  const [lock, setLock] = useState<Lock | null | undefined>(undefined);
+  const [phase, setPhase] = useState<Phase>('hold');
 
   useEffect(() => {
     let cancelled = false;
-    void getLock(store).then((lock) => !cancelled && setPhase({ kind: 'hold', hasLock: lock !== undefined }));
+    void getLock(store).then((l) => !cancelled && setLock(l ?? null));
     return () => {
       cancelled = true;
     };
-  }, [store]);
+  }, [store, phase]);
+
+  // A scanned pairing link always leads to pairing; otherwise a device with a passcode asks for it.
+  const next = (l: Lock | null): Phase => (pairCode || (!l && !paired) ? 'pair' : l ? 'enter' : 'waiting');
 
   return (
     <div className={p.area}>
@@ -70,47 +63,85 @@ export function ParentLock({ onOpen }: { onOpen: () => void }) {
           </Pill>
           <h2 className={p.cardTitle}>כניסה לאזור ההורים</h2>
         </div>
-        {phase.kind === 'hold' && <HoldStep onDone={() => setPhase({ kind: phase.hasLock ? 'enter' : 'setup' })} />}
-        {phase.kind === 'setup' && (
-          <NewPasscode
-            title="קביעת קוד הורים"
-            intro="קוד ההורים שומר על ההגדרות, על התוכן ועל ההתקדמות. בחרו קוד שהילד לא יכול לנחש: לפחות 8 תווים, אותיות בעברית או באנגלית, ספרות וסימנים."
-            submit="המשך"
-            onDone={(passcode) => setPhase({ kind: 'show-code', passcode, recoveryCode: newRecoveryCode() })}
-          />
-        )}
-        {phase.kind === 'show-code' && (
-          <RecoveryCode
-            code={phase.recoveryCode}
-            onConfirm={async () => {
-              if (phase.oldCode) await resetWithRecovery(store, phase.oldCode, phase.passcode, phase.recoveryCode);
-              else await setupLock(store, phase.passcode, phase.recoveryCode);
-              onOpen();
-            }}
-          />
-        )}
-        {phase.kind === 'enter' && <EnterPasscode onOpen={onOpen} onForgot={() => setPhase({ kind: 'recover' })} />}
-        {phase.kind === 'recover' && (
-          <EnterRecovery
-            onBack={() => setPhase({ kind: 'enter' })}
-            onAccepted={(code) => setPhase({ kind: 'recover-new', code })}
-          />
-        )}
-        {phase.kind === 'recover-new' && (
-          <NewPasscode
-            title="קוד הורים חדש"
-            intro="קוד השחזור התקבל. קבעו קוד הורים חדש; אחר כך יוצג קוד שחזור חדש, והקודם יפסיק לעבוד."
-            submit="המשך"
-            onDone={(passcode) =>
-              setPhase({ kind: 'show-code', passcode, recoveryCode: newRecoveryCode(), oldCode: phase.code })
+        {phase === 'hold' && lock !== undefined && paired !== null && <HoldStep onDone={() => setPhase(next(lock))} />}
+        {phase === 'enter' && (
+          <EnterPasscode
+            onOpen={onOpen}
+            footer={
+              lock?.source === 'cloud' ? (
+                <p className={p.caption}>
+                  שכחתם את הקוד? קבעו קוד חדש במצב הורים בטלפון שלכם; הוא יגיע למכשיר הזה בסנכרון הבא.
+                </p>
+              ) : (
+                <button type="button" className={p.linkButton} onClick={() => setPhase('pair')}>
+                  חיבור לטלפון של ההורה (מחליף את הקוד שבמכשיר)
+                </button>
+              )
             }
           />
         )}
+        {phase === 'pair' && (
+          <>
+            {!lock && (
+              <div className={p.notice} role="note">
+                אזור ההורים נפתח רק במכשיר שחובר לטלפון של ההורה. קוד ההורים נקבע במצב הורים בטלפון שלכם, ומגיע למכשיר
+                הזה בחיבור. מכשיר שעוד לא היה מחובר לאינטרנט לא יכול לפתוח את אזור ההורים עד שיחובר.
+              </div>
+            )}
+            <PairDevice initialCode={pairCode} onPaired={() => setPhase('waiting')} />
+            {lock && (
+              <button type="button" className={p.linkButton} onClick={() => setPhase('enter')}>
+                חזרה להקלדת קוד ההורים
+              </button>
+            )}
+          </>
+        )}
+        {phase === 'waiting' && <WaitingForPasscode onReady={() => setPhase('enter')} />}
         <TactileButton tone="quiet" icon="compass" to="/">
           חזרה למסע של הילד
         </TactileButton>
       </main>
     </div>
+  );
+}
+
+/** Paired, but the parents have not set a passcode yet (or it has not arrived): check again on demand. */
+function WaitingForPasscode({ onReady }: { onReady: () => void }) {
+  const store = useStore();
+  const { syncNow } = useSync();
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    void getLock(store).then((l) => !cancelled && l && onReady());
+    return () => {
+      cancelled = true;
+    };
+  }, [store, onReady]);
+  return (
+    <Step title="המכשיר מחובר">
+      <p className={p.muted}>
+        המכשיר מחובר לטלפון של ההורה, אבל עוד לא התקבל קוד הורים. קבעו קוד במצב הורים בטלפון שלכם, ואז לחצו ״בדיקה״.
+      </p>
+      {message && (
+        <p className={p.danger} role="alert">
+          {message}
+        </p>
+      )}
+      <TactileButton
+        icon="refresh"
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          const result = await syncNow();
+          setBusy(false);
+          if (await getLock(store)) return onReady();
+          setMessage(result === 'offline' ? 'אין חיבור לאינטרנט.' : 'עוד לא נקבע קוד הורים במצב הורים.');
+        }}
+      >
+        {busy ? 'בודק...' : 'בדיקה'}
+      </TactileButton>
+    </Step>
   );
 }
 
@@ -175,47 +206,6 @@ function HoldStep({ onDone }: { onDone: () => void }) {
   );
 }
 
-/** A new passcode, typed twice, with the rules checked as it is typed. */
-function NewPasscode({
-  title,
-  intro,
-  submit,
-  onDone,
-}: {
-  title: string;
-  intro: string;
-  submit: string;
-  onDone: (passcode: string) => void;
-}) {
-  const [first, setFirst] = useState('');
-  const [second, setSecond] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const problems = passcodeProblems(first);
-  const send = (e: FormEvent) => {
-    e.preventDefault();
-    if (problems.length > 0) return setError(`הקוד צריך: ${problems.map((x) => PROBLEM_TEXT[x]).join('; ')}`);
-    if (first !== second) return setError('שני הקודים לא זהים. הקלידו שוב.');
-    onDone(first);
-  };
-  return (
-    <form className={p.card} aria-label={title} onSubmit={send}>
-      <h3 className={p.toggleTitle}>{title}</h3>
-      <p className={p.muted}>{intro}</p>
-      <PasscodeField label="קוד הורים" value={first} onChange={setFirst} autoFocus describedBy="passcode-rules" />
-      <PasscodeRules id="passcode-rules" passcode={first} />
-      <PasscodeField label="שוב, לאישור" value={second} onChange={setSecond} />
-      {error && (
-        <p className={p.danger} role="alert">
-          {error}
-        </p>
-      )}
-      <TactileButton type="submit" tone="success" icon="check">
-        {submit}
-      </TactileButton>
-    </form>
-  );
-}
-
 export function PasscodeRules({ id, passcode }: { id?: string; passcode: string }) {
   const problems = new Set(passcodeProblems(passcode));
   const rules: PasscodeProblem[] = ['too-short', 'repeated', 'sequence'];
@@ -231,46 +221,6 @@ export function PasscodeRules({ id, passcode }: { id?: string; passcode: string 
         );
       })}
     </ul>
-  );
-}
-
-/** Shown once: the recovery code, and what happens without it. */
-function RecoveryCode({ code, onConfirm }: { code: string; onConfirm: () => Promise<void> }) {
-  const [written, setWritten] = useState(false);
-  const [busy, setBusy] = useState(false);
-  return (
-    <section className={p.card} aria-label="קוד שחזור">
-      <h3 className={p.toggleTitle}>קוד שחזור: רשמו אותו עכשיו</h3>
-      <p className={p.muted}>
-        אם תשכחו את קוד ההורים, קוד השחזור מאפשר לקבוע קוד חדש. הוא מוצג רק הפעם ולא נשמר במכשיר: נשמר רק גיבוב (hash)
-        שלו, שאי אפשר לשחזר ממנו את הקוד. רשמו אותו על נייר או במנהל הסיסמאות שלכם, הרחק מהילד.
-      </p>
-      <p className={p.code} dir="ltr" aria-label="קוד השחזור">
-        {code}
-      </p>
-      <div className={p.error} role="note">
-        <strong>בלי קוד ההורים ובלי קוד השחזור אין דרך חזרה לאזור ההורים.</strong>
-        <span>
-          האפשרות היחידה תהיה למחוק את נתוני האתר בהגדרות הדפדפן, וזה מוחק גם את כל ההתקדמות של הילד (אלא אם שמרתם קובץ
-          גיבוי).
-        </span>
-      </div>
-      <label className={p.check}>
-        <input type="checkbox" checked={written} onChange={(e) => setWritten(e.target.checked)} />
-        <span>רשמתי את קוד השחזור במקום בטוח</span>
-      </label>
-      <TactileButton
-        tone="success"
-        icon="lock"
-        disabled={!written || busy}
-        onClick={async () => {
-          setBusy(true);
-          await onConfirm();
-        }}
-      >
-        {busy ? 'שומר...' : 'סיום וכניסה'}
-      </TactileButton>
-    </section>
   );
 }
 
@@ -321,7 +271,7 @@ function AttemptMessage({ result, locked }: { result: AttemptResult | null; lock
   return null;
 }
 
-function EnterPasscode({ onOpen, onForgot }: { onOpen: () => void; onForgot: () => void }) {
+function EnterPasscode({ onOpen, footer }: { onOpen: () => void; footer: ReactNode }) {
   const store = useStore();
   const [value, setValue] = useState('');
   const [busy, setBusy] = useState(false);
@@ -346,55 +296,7 @@ function EnterPasscode({ onOpen, onForgot }: { onOpen: () => void; onForgot: () 
       <TactileButton type="submit" tone="success" icon="lock" disabled={busy || locked > 0 || value === ''}>
         {busy ? 'בודק...' : 'כניסה'}
       </TactileButton>
-      <button type="button" className={p.linkButton} onClick={onForgot}>
-        שכחתי את הקוד
-      </button>
-    </form>
-  );
-}
-
-function EnterRecovery({ onBack, onAccepted }: { onBack: () => void; onAccepted: (code: string) => void }) {
-  const store = useStore();
-  const [code, setCode] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState<AttemptResult | null>(null);
-  const [locked, setUntil] = useLockout();
-  const send = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!code.trim() || locked > 0) return;
-    setBusy(true);
-    const r = await tryRecoveryCode(store, code);
-    setBusy(false);
-    if (r.kind === 'ok') return onAccepted(code);
-    setResult(r);
-    setUntil(r.kind === 'locked' ? r.until : null);
-  };
-  return (
-    <form className={p.card} aria-label="כניסה עם קוד השחזור" onSubmit={send}>
-      <h3 className={p.toggleTitle}>כניסה עם קוד השחזור</h3>
-      <p className={p.muted}>הקלידו את קוד השחזור שרשמתם כשקבעתם את קוד ההורים (אותיות וספרות, עם מקפים או בלי).</p>
-      <label className={p.field}>
-        <span>קוד שחזור</span>
-        <input
-          className={p.input}
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          dir="ltr"
-          disabled={locked > 0}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="characters"
-          spellCheck={false}
-          placeholder="XXXX-XXXX-XXXX-XXXX-XXXX"
-        />
-      </label>
-      <AttemptMessage result={result} locked={locked} />
-      <TactileButton type="submit" icon="key" disabled={busy || locked > 0 || code.trim() === ''}>
-        {busy ? 'בודק...' : 'אימות קוד השחזור'}
-      </TactileButton>
-      <button type="button" className={p.linkButton} onClick={onBack}>
-        חזרה להקלדת קוד ההורים
-      </button>
+      {footer}
     </form>
   );
 }
