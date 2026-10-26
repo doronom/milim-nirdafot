@@ -395,3 +395,18 @@ textarea.input {
 .rules .met {
   color: var(--success);
 }
+.scanner {
+  inline-size: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-button);
+  background: var(--surface);
+}
+.qr {
+  display: block;
+  inline-size: min(100%, calc(var(--touch-min) * 5));
+  margin-inline: auto;
+  aspect-ratio: 1;
+  border-radius: var(--radius-button);
+  image-rendering: pixelated;
+}

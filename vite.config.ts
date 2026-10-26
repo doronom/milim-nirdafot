@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vitest/config';
+import pkg from './package.json';
 import tokens from './src/design/tokens.json';
 
 const background = tokens.colors.base.bg_dark;
@@ -8,6 +9,7 @@ const background = tokens.colors.base.bg_dark;
 export default defineConfig({
   // Relative asset paths so the build works from any sub-path (GitHub Pages) and from the home-screen app.
   base: './',
+  define: { __APP_VERSION__: JSON.stringify(pkg.version) },
   plugins: [
     react(),
     VitePWA({

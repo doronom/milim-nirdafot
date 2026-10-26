@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from 'react-router';
 import mascot from '../design/assets/mascot.svg';
 import { needsOnboarding } from '../engine/progress';
 import { useProgress } from '../state/progress-context';
+import { isParentDevice } from '../sync/device-mode';
 import { TactileButton } from '../ui/TactileButton';
 import styles from './WelcomeScreen.module.css';
 
@@ -13,6 +14,8 @@ export function WelcomeScreen() {
   const [name, setName] = useState(progress.settings.childName ?? '');
   if (!loaded) return null;
   if (!needsOnboarding(progress)) return <Navigate to="/" replace />;
+  // A parent's phone opens straight into parent mode.
+  if (isParentDevice()) return <Navigate to="/parent-mode" replace />;
 
   const saveName = () => update((p) => ({ ...p, settings: { ...p.settings, childName: name.trim() || undefined } }));
   return (
@@ -54,6 +57,9 @@ export function WelcomeScreen() {
         אתגר מיון: 20 שאלות
       </TactileButton>
       <p className={styles.note}>באתגר המיון אפשר לפתוח ישר את יער ההרחבה.</p>
+      <TactileButton tone="quiet" icon="shield" to="/parent-mode">
+        הטלפון של ההורה? כניסה למצב הורים
+      </TactileButton>
     </div>
   );
 }

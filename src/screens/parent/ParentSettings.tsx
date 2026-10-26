@@ -1,16 +1,15 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { DAILY_GOALS, dailyGoal, type DailyGoal } from '../../engine/activity';
 import { resetJourney, type Progress } from '../../engine/progress';
-import { passcodeProblems, PROBLEM_TEXT } from '../../engine/passcode';
-import { changePasscode } from '../../state/parent-lock';
 import { useProgress } from '../../state/progress-context';
-import { useStore } from '../../state/store-context';
 import { useParentLog } from '../../state/use-parent-log';
 import { Icon } from '../../ui/Icon';
 import { TactileButton } from '../../ui/TactileButton';
-import { Field, PasscodeField, Segmented, Toggle } from './controls';
-import { PasscodeRules } from './ParentLock';
+import type { CloudResult } from '../../sync/child';
+import { useSync } from '../../sync/sync-context';
+import { Field, Segmented, Toggle } from './controls';
+import { PairDevice } from './PairDevice';
 import { ParentPage } from './ParentArea';
 import styles from './parent.module.css';
 
@@ -124,7 +123,7 @@ export function ParentSettings() {
         />
       </section>
 
-      <ChangePasscode />
+      <CloudSection />
 
       <section className={styles.card} aria-labelledby="set-reset">
         <h2 id="set-reset" className={`${styles.cardTitle} ${styles.danger}`}>
@@ -171,57 +170,111 @@ export function ParentSettings() {
   );
 }
 
-/** Changing the passcode needs the current one; a wrong one counts towards the lockout. */
-function ChangePasscode() {
-  const store = useStore();
-  const [current, setCurrent] = useState('');
-  const [next, setNext] = useState('');
-  const [again, setAgain] = useState('');
+const when = new Intl.DateTimeFormat('he', { dateStyle: 'short', timeStyle: 'short' });
+
+/**
+ * Cloud sync on this (the child's) device: pairing with the parents' phones, the last upload, and unpairing or deleting
+ * the cloud data. The passcode itself is set and changed in parent mode on a parent's phone.
+ */
+function CloudSection() {
+  const { paired, lastUploadAt, syncNow, unpair, deleteCloudData } = useSync();
+  const [pairing, setPairing] = useState(false);
+  const [confirm, setConfirm] = useState<'unpair' | 'delete' | null>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
   const [busy, setBusy] = useState(false);
-  const send = async (e: FormEvent) => {
-    e.preventDefault();
-    const problems = passcodeProblems(next);
-    if (problems.length > 0)
-      return setMessage({ ok: false, text: `הקוד החדש צריך: ${problems.map((x) => PROBLEM_TEXT[x]).join('; ')}` });
-    if (next !== again) return setMessage({ ok: false, text: 'שני הקודים החדשים לא זהים.' });
+  const run = async (action: () => Promise<CloudResult>, ok: string) => {
     setBusy(true);
-    const r = await changePasscode(store, current, next);
+    const result = await action();
     setBusy(false);
-    setCurrent('');
-    if (r.kind === 'ok') {
-      setNext('');
-      setAgain('');
-      return setMessage({ ok: true, text: 'קוד ההורים שונה. קוד השחזור לא השתנה.' });
-    }
-    setMessage({
-      ok: false,
-      text:
-        r.kind === 'locked'
-          ? 'יותר מדי ניסיונות שגויים. שינוי הקוד והכניסה נעולים זמנית.'
-          : `הקוד הנוכחי שגוי (${r.left === 1 ? 'נותר ניסיון אחד' : `נותרו ${r.left} ניסיונות`} לפני נעילה).`,
-    });
+    setConfirm(null);
+    setMessage(
+      result === 'ok'
+        ? { ok: true, text: ok }
+        : {
+            ok: false,
+            text: result === 'offline' ? 'אין חיבור לאינטרנט. נסו שוב כשיש רשת.' : 'הפעולה לא הצליחה. נסו שוב.',
+          },
+    );
   };
   return (
-    <form className={styles.card} aria-labelledby="set-passcode" onSubmit={send}>
-      <h2 id="set-passcode" className={styles.cardTitle}>
-        <Icon name="lock" /> קוד הורים
+    <section className={styles.card} aria-labelledby="set-cloud">
+      <h2 id="set-cloud" className={styles.cardTitle}>
+        <Icon name="upload" /> סנכרון עם הטלפון של ההורה
       </h2>
-      <p className={styles.muted}>
-        כל כניסה וכל שינוי כאן נרשמים ב<Link to="/parent/log">יומן הפעילות</Link>.
-      </p>
-      <PasscodeField label="הקוד הנוכחי" value={current} onChange={setCurrent} />
-      <PasscodeField label="קוד חדש" value={next} onChange={setNext} />
-      <PasscodeRules passcode={next} />
-      <PasscodeField label="הקוד החדש שוב, לאישור" value={again} onChange={setAgain} />
+      {paired ? (
+        <>
+          <p className={styles.muted}>
+            המכשיר מחובר. ההתקדמות נשלחת לטלפון של ההורה כשיש רשת (שם פרטי והתקדמות בלבד, בלי הקלטות). קוד ההורים נקבע
+            ומשתנה במצב הורים בטלפון.
+          </p>
+          <p className={styles.caption}>
+            סנכרון אחרון: {lastUploadAt ? when.format(new Date(lastUploadAt)) : 'עוד לא'}
+          </p>
+          <div className={styles.actions}>
+            <button
+              type="button"
+              className={styles.linkButton}
+              disabled={busy}
+              onClick={() => void run(syncNow, 'הסנכרון הושלם.')}
+            >
+              <Icon name="refresh" size="sm" /> סנכרון עכשיו
+            </button>
+            <button type="button" className={styles.linkButton} disabled={busy} onClick={() => setConfirm('unpair')}>
+              <Icon name="close" size="sm" /> ניתוק מהטלפון של ההורה
+            </button>
+            <button type="button" className={styles.linkButton} disabled={busy} onClick={() => setConfirm('delete')}>
+              <Icon name="trash" size="sm" /> מחיקת נתוני הענן
+            </button>
+          </div>
+          {confirm && (
+            <div className={styles.error} role="alert">
+              <strong>{confirm === 'unpair' ? 'לנתק את המכשיר?' : 'למחוק את נתוני הענן?'}</strong>
+              <span>
+                {confirm === 'unpair'
+                  ? 'ההורים לא יראו יותר את ההתקדמות. ההתקדמות וקוד ההורים במכשיר נשארים.'
+                  : 'הפרופיל נמחק מהענן והמכשיר מתנתק. ההתקדמות וקוד ההורים במכשיר נשארים.'}
+              </span>
+              <div className={styles.actions}>
+                <TactileButton
+                  tone="danger"
+                  disabled={busy}
+                  onClick={() =>
+                    void run(
+                      confirm === 'unpair' ? unpair : deleteCloudData,
+                      confirm === 'unpair' ? 'המכשיר נותק.' : 'נתוני הענן נמחקו.',
+                    )
+                  }
+                >
+                  {confirm === 'unpair' ? 'כן, לנתק' : 'כן, למחוק'}
+                </TactileButton>
+                <TactileButton tone="quiet" onClick={() => setConfirm(null)}>
+                  ביטול
+                </TactileButton>
+              </div>
+            </div>
+          )}
+        </>
+      ) : pairing ? (
+        <PairDevice onPaired={() => setPairing(false)} />
+      ) : (
+        <>
+          <p className={styles.muted}>
+            המכשיר לא מחובר. חיבור לטלפון של ההורה מאפשר לראות את ההתקדמות מרחוק, ומעביר למכשיר את קוד ההורים שנקבע במצב
+            הורים (במקום הקוד שבמכשיר).
+          </p>
+          <TactileButton tone="quiet" icon="key" onClick={() => setPairing(true)}>
+            חיבור לטלפון של ההורה
+          </TactileButton>
+        </>
+      )}
       {message && (
         <p className={message.ok ? styles.ok : styles.danger} role={message.ok ? 'status' : 'alert'}>
           {message.text}
         </p>
       )}
-      <TactileButton type="submit" tone="quiet" icon="lock" disabled={busy || !current || !next}>
-        {busy ? 'בודק...' : 'שינוי הקוד'}
-      </TactileButton>
-    </form>
+      <p className={styles.caption}>
+        כל כניסה וכל שינוי כאן נרשמים ב<Link to="/parent/log">יומן הפעילות</Link>.
+      </p>
+    </section>
   );
 }

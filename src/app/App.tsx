@@ -6,6 +6,7 @@ import type { Progress } from '../engine/progress';
 import { ProgressProvider } from '../state/progress';
 import { ContentProvider } from '../state/content';
 import { StoreContext } from '../state/store-context';
+import { SyncProvider } from '../sync/SyncProvider';
 import type { KeyValueStore } from '../storage/kv';
 import { routes } from './routes';
 
@@ -17,7 +18,9 @@ export function App({ store, initialProgress }: { store: KeyValueStore; initialP
       <StoreContext.Provider value={store}>
         <ContentProvider store={store}>
           <ProgressProvider store={store} initial={initialProgress}>
-            <RouterProvider router={router} />
+            <SyncProvider store={store}>
+              <RouterProvider router={router} />
+            </SyncProvider>
           </ProgressProvider>
         </ContentProvider>
       </StoreContext.Provider>

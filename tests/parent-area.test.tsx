@@ -5,8 +5,8 @@ import { App } from '../src/app/App';
 import type { ContentOverrides } from '../src/content/overrides';
 import { applyTokens } from '../src/design/tokens';
 import { initialProgress, type Progress } from '../src/engine/progress';
-import { newRecoveryCode } from '../src/engine/passcode';
-import { setupLock } from '../src/state/parent-lock';
+import { hashPasscode } from '../src/engine/passcode';
+import { installCloudPasscode } from '../src/state/parent-lock';
 import { memoryStore, type KeyValueStore } from '../src/storage/kv';
 
 const started = (extra: Partial<Progress> = {}): Progress => ({ ...initialProgress(), onboarded: true, ...extra });
@@ -15,10 +15,10 @@ const started = (extra: Partial<Progress> = {}): Progress => ({ ...initialProgre
 const PASS = 'Tiger&Moon7';
 const FAST = 1000;
 
-/** A store whose parent passcode is already set. */
+/** A store whose parent passcode already arrived from parent mode. */
 async function lockedStore(): Promise<KeyValueStore> {
   const store = memoryStore();
-  await setupLock(store, PASS, newRecoveryCode(), { iterations: FAST });
+  await installCloudPasscode(store, await hashPasscode(PASS, FAST), 1000);
   return store;
 }
 
@@ -72,43 +72,29 @@ describe('parent lock', () => {
     expect(await screen.findByLabelText('קוד הורים')).toBeTruthy();
   });
 
-  it('first entry sets a passcode twice, shows a one-time recovery code, and stores only hashes', async () => {
+  it('an unpaired device without a passcode never offers to create one: only pairing, with the reason', async () => {
     const store = memoryStore();
     await renderAt('#/parent', started(), store);
     await hold();
-    const [first, second] = await screen.findAllByLabelText(/קוד הורים|שוב, לאישור/);
-    expect(first!.getAttribute('type')).toBe('password');
-    expect(first!.getAttribute('autocomplete')).toBe('off');
-    expect(first!.getAttribute('autocorrect')).toBe('off');
-    fireEvent.click(screen.getAllByRole('button', { name: 'הצגת הקוד' })[0]!);
-    expect(first!.getAttribute('type')).toBe('text');
-
-    fireEvent.change(first!, { target: { value: '12345678' } });
-    fireEvent.change(second!, { target: { value: '12345678' } });
-    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
-    expect((await screen.findByRole('alert')).textContent).toContain('רצף פשוט');
-
-    fireEvent.change(first!, { target: { value: 'מסע-המילים!7' } });
-    fireEvent.change(second!, { target: { value: 'מסע-המילים!8' } });
-    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
-    expect((await screen.findByRole('alert')).textContent).toContain('לא זהים');
-
-    fireEvent.change(second!, { target: { value: 'מסע-המילים!7' } });
-    fireEvent.click(screen.getByRole('button', { name: 'המשך' }));
-    const code = (await screen.findByLabelText('קוד השחזור')).textContent!;
-    expect(code).toMatch(/^([A-Z0-9]{4}-){4}[A-Z0-9]{4}$/);
-    expect(screen.getByText(/למחוק את נתוני האתר/)).toBeTruthy();
-    // Nothing is saved until the parent confirms writing the code down.
+    expect(await screen.findByRole('form', { name: 'חיבור לטלפון של ההורה' })).toBeTruthy();
+    expect(screen.getByText(/אזור ההורים נפתח רק במכשיר שחובר לטלפון של ההורה/)).toBeTruthy();
+    expect(screen.getByText(/מכשיר שעוד לא היה מחובר לאינטרנט לא יכול לפתוח/)).toBeTruthy();
+    expect(screen.queryByLabelText('קוד הורים')).toBeNull();
+    expect(screen.queryByText(/קביעת קוד/)).toBeNull();
+    expect(screen.queryByText(/קוד שחזור/)).toBeNull();
+    // A malformed code is caught before anything goes to the network.
+    fireEvent.change(screen.getByLabelText('קוד חיבור'), { target: { value: '1234' } });
+    fireEvent.click(screen.getByRole('button', { name: 'חיבור' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('8 אותיות וספרות');
     expect(await store.get('parent:lock')).toBeUndefined();
-    const finish = screen.getByRole('button', { name: 'סיום וכניסה' });
-    expect(finish.hasAttribute('disabled')).toBe(true);
-    fireEvent.click(screen.getByRole('checkbox', { name: /רשמתי את קוד השחזור/ }));
-    fireEvent.click(finish);
-    expect(await screen.findByText('דקות משחק בשבוע האחרון')).toBeTruthy();
-    const saved = JSON.stringify(await store.get('parent:lock'));
-    expect(saved).toContain('PBKDF2-SHA256');
-    expect(saved).not.toContain('מסע-המילים');
-    expect(saved).not.toContain(code);
+  });
+
+  it('a device with a passcode from parent mode asks for it, and points to parent mode instead of a recovery code', async () => {
+    await renderAt('#/parent');
+    await hold();
+    expect(await screen.findByLabelText('קוד הורים')).toBeTruthy();
+    expect(screen.getByText(/קבעו קוד חדש במצב הורים בטלפון שלכם/)).toBeTruthy();
+    expect(screen.queryByText('שכחתי את הקוד')).toBeNull();
   });
 
   it('a wrong passcode counts down to a lockout that refuses even the right one', async () => {

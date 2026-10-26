@@ -13,6 +13,7 @@ import { Icon } from '../../ui/Icon';
 import { Pill } from '../../ui/Pill';
 import { ProgressBar } from '../../ui/ProgressBar';
 import { BarChart } from './BarChart';
+import { useParentChrome } from './chrome';
 import { itemLine } from './labels';
 import { ParentPage } from './ParentArea';
 import styles from './parent.module.css';
@@ -36,6 +37,7 @@ export function Dashboard() {
   const { progress } = useProgress();
   const { layout, resolver, displayWord } = useGameData();
   const store = useStore();
+  const { logPath } = useParentChrome();
   const [failed, setFailed] = useState(0);
   useEffect(() => {
     let cancelled = false;
@@ -69,13 +71,13 @@ export function Dashboard() {
       subtitle={progress.settings.childName ? `המסע של ${progress.settings.childName}` : undefined}
     >
       {failed > 0 && (
-        <Link to="/parent/log" className={styles.error} role="alert">
+        <div className={styles.error} role="alert">
           <strong>
             <Icon name="lock" size="sm" /> {failed === 1 ? 'ניסיון כניסה שגוי אחד' : `${failed} ניסיונות כניסה שגויים`}{' '}
             מאז הכניסה הקודמת
           </strong>
-          <span>לפרטים ביומן הפעילות</span>
-        </Link>
+          <Link to={logPath}>לפרטים ביומן הפעילות</Link>
+        </div>
       )}
       <div className={styles.grid2}>
         <section className={styles.card} aria-label="דקות היום">

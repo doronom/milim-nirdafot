@@ -1,0 +1,126 @@
+rules_version = '2';
+
+// Word Quest cloud sync. Security comes from these rules (the web config in the app is public by design).
+//
+//   config/parents          allowlist { emails: [...] }; no client can read or write it (Firebase console or the
+//                           local admin script only). Rules read it with get(), which bypasses read rules.
+//   families/{family}       the parents' shared config: the passcode hash. Parents write; paired children read.
+//   pairingCodes/{code}     8-character code, created by a parent, valid 10 minutes, used once by one child.
+//   pairings/{childUid}     links a child device (anonymous auth) to a family; created only by redeeming a code.
+//   children/{childUid}     the child's progress snapshot; written only by that device while paired.
+//   children/{uid}/commands phase 2 (parent -> child commands); not open yet.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function provider() {
+      return request.auth.token.firebase.sign_in_provider;
+    }
+    function isParent() {
+      return signedIn()
+        && provider() == 'google.com'
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.lower() in get(/databases/$(database)/documents/config/parents).data.emails;
+    }
+    function isChild(uid) {
+      return signedIn() && provider() == 'anonymous' && request.auth.uid == uid;
+    }
+    function pairingPath(uid) {
+      return /databases/$(database)/documents/pairings/$(uid);
+    }
+    function codePath(code) {
+      return /databases/$(database)/documents/pairingCodes/$(code);
+    }
+    function pairedTo(uid, family) {
+      return exists(pairingPath(uid)) && get(pairingPath(uid)).data.family == family;
+    }
+    // A PBKDF2 hash record, never a passcode: fixed algorithm, high cost, base64 salt (16 bytes) and hash (32 bytes).
+    function isHashRecord(h) {
+      return h is map
+        && h.keys().hasOnly(['algorithm', 'iterations', 'salt', 'hash'])
+        && h.algorithm == 'PBKDF2-SHA256'
+        && h.iterations is int && h.iterations >= 600000
+        && h.salt is string && h.salt.size() == 24
+        && h.hash is string && h.hash.size() == 44;
+    }
+
+    match /config/{doc} {
+      allow read, write: if false;
+    }
+
+    match /families/{family} {
+      allow read: if isParent() || (signedIn() && pairedTo(request.auth.uid, family));
+      allow create, update: if isParent()
+        && request.resource.data.keys().hasOnly(['passcode', 'passcodeUpdatedAt', 'passcodeUpdatedBy'])
+        && isHashRecord(request.resource.data.passcode)
+        && request.resource.data.passcodeUpdatedAt == request.time
+        && request.resource.data.passcodeUpdatedBy == request.auth.uid;
+      allow delete: if false;
+    }
+
+    match /pairingCodes/{code} {
+      allow create: if isParent()
+        && code.matches('^[A-HJKMNP-Z2-9]{8}$')
+        && request.resource.data.keys().hasOnly(['family', 'createdBy', 'createdAt', 'used'])
+        && request.resource.data.family is string
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.used == false;
+      // The parent who made it watches it to see the child connect; nobody else can read codes.
+      allow get: if isParent() && resource.data.createdBy == request.auth.uid;
+      allow list: if false;
+      // Redeemed once, within 10 minutes, together with creating the child's pairing (see pairings).
+      allow update: if signedIn()
+        && provider() == 'anonymous'
+        && resource.data.used == false
+        && request.time < resource.data.createdAt + duration.value(10, 'm')
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used', 'usedBy', 'usedAt'])
+        && request.resource.data.used == true
+        && request.resource.data.usedBy == request.auth.uid
+        && request.resource.data.usedAt == request.time
+        && existsAfter(pairingPath(request.auth.uid))
+        && getAfter(pairingPath(request.auth.uid)).data.code == code;
+      allow delete: if isParent() && resource.data.createdBy == request.auth.uid;
+    }
+
+    match /pairings/{uid} {
+      allow create: if isChild(uid)
+        && request.resource.data.keys().hasOnly(['family', 'code', 'pairedAt'])
+        && request.resource.data.pairedAt == request.time
+        && request.resource.data.code is string
+        && exists(codePath(request.resource.data.code))
+        && get(codePath(request.resource.data.code)).data.used == false
+        && request.time < get(codePath(request.resource.data.code)).data.createdAt + duration.value(10, 'm')
+        && request.resource.data.family == get(codePath(request.resource.data.code)).data.family
+        && getAfter(codePath(request.resource.data.code)).data.usedBy == uid;
+      allow read: if isChild(uid) || isParent();
+      allow update: if false;
+      // Unpairing works from both sides.
+      allow delete: if isChild(uid) || isParent();
+    }
+
+    match /children/{uid} {
+      allow read: if isChild(uid) || (isParent() && exists(pairingPath(uid)));
+      allow create, update: if isChild(uid)
+        && exists(pairingPath(uid))
+        && request.resource.data.keys().hasOnly(['schema', 'name', 'updatedAt', 'appVersion', 'snapshot'])
+        && request.resource.data.schema == 1
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.snapshot is map;
+      // "Delete cloud data" works from both sides; a parent may delete a profile even after unpairing.
+      allow delete: if isChild(uid) || isParent();
+
+      // Phase 2: parents will queue commands (approve a report, edit content) here, and the child device will apply
+      // and delete them. Closed until that is built.
+      match /commands/{commandId} {
+        allow read, write: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
