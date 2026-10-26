@@ -1,3 +1,4 @@
+import { hashPasscode } from '../src/engine/passcode';
 import { expect, type Page } from '@playwright/test';
 
 /** Local YYYY-MM-DD, as the app keys days. */
@@ -63,20 +64,18 @@ export async function hold(page: Page, ms: number): Promise<void> {
   await button!.dispatchEvent('pointerup');
 }
 
-/** The parent passcode the e2e tests set. */
+/** The parent passcode the e2e tests use. */
 export const PASS = 'Tiger&Moon7';
 
-/** Sets a new passcode on the setup screen (typed twice) and confirms the recovery code; returns that code. */
-export async function setPasscode(page: Page, passcode = PASS): Promise<string> {
-  await page.getByLabel('קוד הורים', { exact: true }).fill(passcode);
-  await page.getByLabel('שוב, לאישור').fill(passcode);
-  await page.getByRole('button', { name: 'המשך' }).click();
-  const code = (await page.getByLabel('קוד השחזור', { exact: true }).textContent())!.trim();
-  await page.getByRole('checkbox', { name: /רשמתי את קוד השחזור/ }).check();
-  await page.getByRole('button', { name: 'סיום וכניסה' }).click();
-  // Saving hashes the passcode and the code first; a reload before the area opens would cancel it.
-  await expect(page.getByRole('navigation', { name: 'ניווט אזור ההורים' })).toBeVisible();
-  return code;
+/**
+ * Puts a passcode hash on the device, as pairing with parent mode does (a low PBKDF2 cost keeps tests fast).
+ * `source: 'local'` mimics a passcode set on the device before cloud sync.
+ */
+export async function seedPasscode(page: Page, passcode = PASS, source: 'cloud' | 'local' = 'cloud'): Promise<void> {
+  const record = await hashPasscode(passcode, 1000);
+  await seed(page, {
+    'parent:lock': { passcode: record, source, changedAt: new Date().toISOString(), cloudUpdatedAt: 1 },
+  });
 }
 
 export async function enterPasscode(page: Page, passcode = PASS): Promise<void> {
@@ -84,14 +83,12 @@ export async function enterPasscode(page: Page, passcode = PASS): Promise<void> 
   await page.getByRole('button', { name: 'כניסה', exact: true }).click();
 }
 
-/** Opens a parent page through the lock: the 3-second hold, then the passcode (set on first entry). */
+/** Opens a parent page through the lock: the 3-second hold, then the passcode (seeded if the device has none). */
 export async function openParent(page: Page, path = ''): Promise<void> {
+  if (!(await readKey(page, 'parent:lock'))) await seedPasscode(page);
   await page.goto(`./#/parent${path}`);
   await page.reload();
   await hold(page, 3300);
-  // The setup screen (first entry) has a confirmation field; the entry screen does not.
-  await page.getByLabel('קוד הורים', { exact: true }).waitFor();
-  if ((await page.getByLabel('שוב, לאישור').count()) > 0) await setPasscode(page);
-  else await enterPasscode(page);
+  await enterPasscode(page);
   await expect(page.getByRole('navigation', { name: 'ניווט אזור ההורים' })).toBeVisible();
 }

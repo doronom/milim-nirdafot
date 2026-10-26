@@ -12,6 +12,46 @@ import { WorldScreen } from '../screens/WorldScreen';
 export const routes: RouteObject[] = [
   { path: 'welcome', element: <WelcomeScreen /> },
   {
+    // Parent mode: a parent's own phone (Google sign-in), outside the child's game and its onboarding.
+    path: 'parent-mode',
+    lazy: async () => ({ Component: (await import('../screens/parentMode/ParentMode')).ParentMode }),
+    children: [
+      { index: true, lazy: async () => ({ Component: (await import('../screens/parentMode/ParentHome')).ParentHome }) },
+      {
+        path: 'child/:uid',
+        lazy: async () => {
+          const [{ ChildView }, { Dashboard }] = await Promise.all([
+            import('../screens/parentMode/ChildView'),
+            import('../screens/parent/Dashboard'),
+          ]);
+          return {
+            Component: () => (
+              <ChildView>
+                <Dashboard />
+              </ChildView>
+            ),
+          };
+        },
+      },
+      {
+        path: 'child/:uid/log',
+        lazy: async () => {
+          const [{ ChildView }, { ActivityLog }] = await Promise.all([
+            import('../screens/parentMode/ChildView'),
+            import('../screens/parent/ActivityLog'),
+          ]);
+          return {
+            Component: () => (
+              <ChildView>
+                <ActivityLog />
+              </ChildView>
+            ),
+          };
+        },
+      },
+    ],
+  },
+  {
     path: 'placement',
     lazy: async () => ({ Component: (await import('../screens/PlacementScreen')).PlacementScreen }),
   },

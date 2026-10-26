@@ -19,6 +19,8 @@ import { idbStore } from './storage/kv';
 
 applyTokens();
 
+if (import.meta.env.VITE_FIREBASE_EMULATOR === 'true') void import('./app/test-hooks');
+
 // Ask the browser not to clear progress under storage pressure (granted to installed apps; a no-op elsewhere).
 void navigator.storage?.persist?.().catch(() => false);
 

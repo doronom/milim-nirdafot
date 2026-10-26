@@ -1,29 +1,23 @@
 import { describe, expect, it } from 'vitest';
 import {
   hashPasscode,
-  hashRecoveryCode,
   initialLockout,
   lockedFor,
-  newRecoveryCode,
   passcodeProblems,
   PBKDF2_ITERATIONS,
   registerFailure,
   registerSuccess,
   verifyPasscode,
-  verifyRecoveryCode,
   type LockoutState,
 } from '../src/engine/passcode';
 import { createBackup, restoreBackup, parseBackup } from '../src/state/backup';
 import {
-  changePasscode,
   getLock,
   getLockout,
+  installCloudPasscode,
   LOCK_KEY,
   LOCKOUT_KEY,
-  resetWithRecovery,
-  setupLock,
   tryPasscode,
-  tryRecoveryCode,
 } from '../src/state/parent-lock';
 import { failedSincePreviousEntry, listLog, LOG_KEY } from '../src/state/parent-log';
 import { memoryStore } from '../src/storage/kv';
@@ -73,17 +67,6 @@ describe('hashing', () => {
   });
 });
 
-describe('recovery codes', () => {
-  it('are random, readable and checked case-insensitively with or without dashes', async () => {
-    const code = newRecoveryCode();
-    expect(code).toMatch(/^([A-HJKMNP-Z2-9]{4}-){4}[A-HJKMNP-Z2-9]{4}$/);
-    expect(new Set(Array.from({ length: 20 }, newRecoveryCode)).size).toBe(20);
-    const record = await hashRecoveryCode(code, FAST);
-    expect(await verifyRecoveryCode(code.toLowerCase().replace(/-/g, ' '), record)).toBe(true);
-    expect(await verifyRecoveryCode(newRecoveryCode(), record)).toBe(false);
-  });
-});
-
 describe('lockout timing', () => {
   const fail = (s: LockoutState, now: number, n: number) => {
     for (let i = 0; i < n; i++) s = registerFailure(s, now);
@@ -115,10 +98,9 @@ describe('the lock on the device', () => {
   const setup = async () => {
     const store = memoryStore();
     let now = Date.UTC(2026, 9, 26, 10);
-    const o = { iterations: FAST, now: () => now };
-    const code = newRecoveryCode();
-    await setupLock(store, 'Tiger&Moon', code, o);
-    return { store, o, code, tick: (ms: number) => (now += ms) };
+    const o = { now: () => now };
+    await installCloudPasscode(store, await hashPasscode('Tiger&Moon', FAST), 1000, o);
+    return { store, o, tick: (ms: number) => (now += ms) };
   };
 
   it('keeps hashes only, and lets the right passcode in', async () => {
@@ -150,25 +132,6 @@ describe('the lock on the device', () => {
     ]);
   });
 
-  it('the recovery code resets the passcode and issues a new code; the old one stops working', async () => {
-    const { store, o, code } = await setup();
-    expect(await tryRecoveryCode(store, 'AAAA-BBBB-CCCC-DDDD-EEEE', o)).toEqual({ kind: 'wrong', left: 2 });
-    expect(await tryRecoveryCode(store, code, o)).toEqual({ kind: 'ok' });
-    const next = newRecoveryCode();
-    expect(await resetWithRecovery(store, code, 'River#Stone9', next, o)).toBe(true);
-    expect(await tryPasscode(store, 'Tiger&Moon', o)).toEqual({ kind: 'wrong', left: 2 });
-    expect(await tryPasscode(store, 'River#Stone9', o)).toEqual({ kind: 'ok' });
-    expect(await resetWithRecovery(store, code, 'Other#Pass9', newRecoveryCode(), o)).toBe(false);
-    expect(await tryRecoveryCode(store, next, o)).toEqual({ kind: 'ok' });
-  });
-
-  it('changing the passcode needs the current one', async () => {
-    const { store, o } = await setup();
-    expect((await changePasscode(store, 'wrong-one', 'River#Stone9', o)).kind).toBe('wrong');
-    expect(await changePasscode(store, 'Tiger&Moon', 'River#Stone9', o)).toEqual({ kind: 'ok' });
-    expect(await tryPasscode(store, 'River#Stone9', o)).toEqual({ kind: 'ok' });
-  });
-
   it('counts the failed attempts since the previous entry, for the dashboard badge', async () => {
     const { store, o } = await setup();
     await tryPasscode(store, 'Tiger&Moon', o);
@@ -188,9 +151,44 @@ describe('the lock on the device', () => {
     for (const key of [LOCK_KEY, LOCKOUT_KEY, LOG_KEY, 'PBKDF2']) expect(text).not.toContain(key);
 
     const other = memoryStore();
-    await setupLock(other, 'River#Stone9', newRecoveryCode(), o);
+    await installCloudPasscode(other, await hashPasscode('River#Stone9', FAST), 1000, o);
     await restoreBackup(other, parseBackup(backup));
     expect(await tryPasscode(other, 'River#Stone9', o)).toEqual({ kind: 'ok' });
     expect(await other.get('progress')).toMatchObject({ xp: 5 });
+  });
+});
+
+describe('passcode hash transfer from parent mode', () => {
+  it('installs the hash from the cloud, applies only newer ones, and keeps the device lockout', async () => {
+    const store = memoryStore();
+    const first = await hashPasscode('Tiger&Moon', FAST);
+    expect(await installCloudPasscode(store, first, 1000)).toBe(true);
+    expect((await getLock(store))?.source).toBe('cloud');
+    expect(await tryPasscode(store, 'Tiger&Moon')).toEqual({ kind: 'ok' });
+
+    // Locked out on this device; a passcode change in parent mode does not lift it.
+    for (let i = 0; i < 3; i++) await tryPasscode(store, 'wrong-wrong');
+    const lockout = await getLockout(store);
+    const second = await hashPasscode('River#Stone9', FAST);
+    expect(await installCloudPasscode(store, second, 2000)).toBe(true);
+    expect(await getLockout(store)).toEqual(lockout);
+    expect(await installCloudPasscode(store, first, 1500)).toBe(false);
+    expect((await getLock(store))?.passcode).toEqual(second);
+
+    const texts = (await listLog(store)).filter((e) => e.kind === 'passcode').map((e) => e.text);
+    expect(texts).toEqual(['התקבל קוד ההורים מהטלפון של ההורה', 'קוד ההורים עודכן מהטלפון של ההורה']);
+  });
+
+  it('a passcode set on the device before cloud sync keeps working until pairing replaces it (logged)', async () => {
+    const store = memoryStore();
+    // The shape PR #11 stored: hash and recovery hash, no source.
+    const legacy = await hashPasscode('Old&Local9', FAST);
+    await store.set(LOCK_KEY, { passcode: legacy, recovery: legacy, createdAt: 'x', changedAt: 'x' });
+    expect((await getLock(store))?.source).toBe('local');
+    expect(await tryPasscode(store, 'Old&Local9')).toEqual({ kind: 'ok' });
+    await installCloudPasscode(store, await hashPasscode('Tiger&Moon', FAST), 1000);
+    expect(await tryPasscode(store, 'Old&Local9')).toEqual({ kind: 'wrong', left: 2 });
+    expect(await tryPasscode(store, 'Tiger&Moon')).toEqual({ kind: 'ok' });
+    expect((await listLog(store)).map((e) => e.text)).toContain('קוד ההורים המקומי הוחלף בקוד שנקבע בטלפון של ההורה');
   });
 });

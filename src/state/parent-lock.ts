@@ -1,13 +1,10 @@
 import {
   ATTEMPTS_PER_ROUND,
-  hashPasscode,
-  hashRecoveryCode,
   initialLockout,
   lockedFor,
   registerFailure,
   registerSuccess,
   verifyPasscode,
-  verifyRecoveryCode,
   type HashRecord,
   type LockoutState,
 } from '../engine/passcode';
@@ -17,136 +14,93 @@ import { appendLog } from './parent-log';
 export const LOCK_KEY = 'parent:lock';
 export const LOCKOUT_KEY = 'parent:lockout';
 
-/** What the device stores about the parent passcode: salted hashes only. */
+/**
+ * The passcode hash this device checks entries against (salted PBKDF2, never the passcode). It is set in parent mode
+ * on a parent's phone and arrives with pairing and sync ("cloud"). "local" is a passcode set on the device before cloud
+ * sync existed; it keeps working until the device is paired, which replaces it.
+ */
 export interface ParentLock {
   passcode: HashRecord;
-  recovery: HashRecord;
-  createdAt: string;
+  source: 'local' | 'cloud';
   changedAt: string;
+  /** For cloud hashes: when parent mode last set it (epoch ms), to apply only newer ones. */
+  cloudUpdatedAt?: number;
 }
 
 export type AttemptResult = { kind: 'ok' } | { kind: 'wrong'; left: number } | { kind: 'locked'; until: number };
 
-export const getLock = (store: KeyValueStore): Promise<ParentLock | undefined> => store.get<ParentLock>(LOCK_KEY);
+/** Reads the lock; records from before cloud sync have no source and count as local. */
+export async function getLock(store: KeyValueStore): Promise<ParentLock | undefined> {
+  const lock = await store.get<Partial<ParentLock> & { passcode?: HashRecord; changedAt?: string }>(LOCK_KEY);
+  if (!lock?.passcode) return undefined;
+  return {
+    passcode: lock.passcode,
+    source: lock.source ?? 'local',
+    changedAt: lock.changedAt ?? new Date(0).toISOString(),
+    cloudUpdatedAt: lock.cloudUpdatedAt,
+  };
+}
+
 export const getLockout = async (store: KeyValueStore): Promise<LockoutState> =>
   (await store.get<LockoutState>(LOCKOUT_KEY)) ?? initialLockout();
 
-/** Options for tests: a lower PBKDF2 cost and a fixed clock. */
+/** A fixed clock for tests. */
 export interface LockOptions {
-  iterations?: number;
   now?: () => number;
 }
 
 const clock = (o: LockOptions) => o.now ?? Date.now;
 const minutes = (ms: number) => Math.round(ms / 60_000);
 
-/** Saves a new passcode and recovery code (as hashes). Used at setup, after recovery and when changing it. */
-async function saveLock(
+/**
+ * Installs the passcode hash from parent mode (at pairing, then whenever a newer one syncs). Replaces a local passcode
+ * from before cloud sync. The lockout stays as it is: it belongs to this device. Returns whether anything changed.
+ */
+export async function installCloudPasscode(
   store: KeyValueStore,
-  passcode: string,
-  recoveryCode: string,
-  o: LockOptions,
-  keepCreated?: string,
-) {
-  const at = new Date(clock(o)()).toISOString();
-  const [p, r] = await Promise.all([
-    hashPasscode(passcode, o.iterations),
-    hashRecoveryCode(recoveryCode, o.iterations),
-  ]);
-  await store.set<ParentLock>(LOCK_KEY, { passcode: p, recovery: r, createdAt: keepCreated ?? at, changedAt: at });
-  await store.set(LOCKOUT_KEY, initialLockout());
-}
-
-export async function setupLock(store: KeyValueStore, passcode: string, recoveryCode: string, o: LockOptions = {}) {
-  if (await getLock(store)) throw new Error('a passcode is already set');
-  await saveLock(store, passcode, recoveryCode, o);
-  await appendLog(store, 'passcode', 'נקבע קוד הורים', new Date(clock(o)()));
+  passcode: HashRecord,
+  updatedAt: number,
+  o: LockOptions = {},
+): Promise<boolean> {
+  const current = await getLock(store);
+  if (current?.source === 'cloud' && (current.cloudUpdatedAt ?? 0) >= updatedAt) return false;
+  const now = clock(o)();
+  await store.set<ParentLock>(LOCK_KEY, {
+    passcode,
+    source: 'cloud',
+    changedAt: new Date(now).toISOString(),
+    cloudUpdatedAt: updatedAt,
+  });
+  const text = !current
+    ? 'התקבל קוד ההורים מהטלפון של ההורה'
+    : current.source === 'local'
+      ? 'קוד ההורים המקומי הוחלף בקוד שנקבע בטלפון של ההורה'
+      : 'קוד ההורים עודכן מהטלפון של ההורה';
+  await appendLog(store, 'passcode', text, new Date(now));
+  return true;
 }
 
 /**
- * One attempt at a secret, under the shared lockout: refused while locked; a wrong secret counts towards the next
- * lockout (every third: 1, 5, 15, then 60 minutes); the right one clears the count. Logged either way.
+ * One passcode attempt: refused while locked; a wrong one counts towards the next lockout (every third: 1, 5, 15,
+ * then 60 minutes); the right one clears the count. Logged either way. Works offline: the hash is on the device.
  */
-async function attempt(
-  store: KeyValueStore,
-  check: (lock: ParentLock) => Promise<boolean>,
-  /** ok: null when the caller logs the success itself. */
-  kinds: { ok: 'entry' | 'recovery' | null; failed: 'entry-failed' | 'recovery-failed' },
-  texts: { ok: string; failed: string },
-  o: LockOptions,
-): Promise<AttemptResult> {
+export async function tryPasscode(store: KeyValueStore, passcode: string, o: LockOptions = {}): Promise<AttemptResult> {
   const now = clock(o)();
   const lock = await getLock(store);
-  if (!lock) throw new Error('no passcode set');
+  if (!lock) throw new Error('no passcode on this device');
   const state = await getLockout(store);
   if (lockedFor(state, now) > 0) return { kind: 'locked', until: state.lockedUntil! };
-  if (await check(lock)) {
+  if (await verifyPasscode(passcode, lock.passcode)) {
     await store.set(LOCKOUT_KEY, registerSuccess());
-    if (kinds.ok) await appendLog(store, kinds.ok, texts.ok, new Date(now));
+    await appendLog(store, 'entry', 'כניסה לאזור ההורים', new Date(now));
     return { kind: 'ok' };
   }
   const next = registerFailure(state, now);
   await store.set(LOCKOUT_KEY, next);
-  await appendLog(store, kinds.failed, texts.failed, new Date(now));
+  await appendLog(store, 'entry-failed', 'ניסיון כניסה עם קוד שגוי', new Date(now));
   if (next.lockedUntil !== null && next.lockedUntil > now) {
     await appendLog(store, 'lockout', `הכניסה ננעלה ל־${minutes(next.lockedUntil - now)} דקות`, new Date(now));
     return { kind: 'locked', until: next.lockedUntil };
   }
   return { kind: 'wrong', left: ATTEMPTS_PER_ROUND - next.failures };
-}
-
-export const tryPasscode = (store: KeyValueStore, passcode: string, o: LockOptions = {}) =>
-  attempt(
-    store,
-    (lock) => verifyPasscode(passcode, lock.passcode),
-    { ok: 'entry', failed: 'entry-failed' },
-    { ok: 'כניסה לאזור ההורים', failed: 'ניסיון כניסה עם קוד שגוי' },
-    o,
-  );
-
-/** Checks a recovery code (counts towards the same lockout). On success the caller asks for a new passcode. */
-export const tryRecoveryCode = (store: KeyValueStore, code: string, o: LockOptions = {}) =>
-  attempt(
-    store,
-    (lock) => verifyRecoveryCode(code, lock.recovery),
-    { ok: 'recovery', failed: 'recovery-failed' },
-    { ok: 'כניסה עם קוד שחזור', failed: 'ניסיון עם קוד שחזור שגוי' },
-    o,
-  );
-
-/** Replaces the passcode after the recovery code was accepted (checked again here), with a new recovery code. */
-export async function resetWithRecovery(
-  store: KeyValueStore,
-  code: string,
-  passcode: string,
-  newRecoveryCode: string,
-  o: LockOptions = {},
-): Promise<boolean> {
-  const lock = await getLock(store);
-  if (!lock || !(await verifyRecoveryCode(code, lock.recovery))) return false;
-  await saveLock(store, passcode, newRecoveryCode, o, lock.createdAt);
-  await appendLog(store, 'passcode', 'קוד ההורים אופס בעזרת קוד השחזור, ונוצר קוד שחזור חדש', new Date(clock(o)()));
-  return true;
-}
-
-/** Changing the passcode requires the current one (a wrong one counts as a failed attempt). Keeps the recovery code. */
-export async function changePasscode(
-  store: KeyValueStore,
-  current: string,
-  next: string,
-  o: LockOptions = {},
-): Promise<AttemptResult> {
-  const result = await attempt(
-    store,
-    (lock) => verifyPasscode(current, lock.passcode),
-    { ok: null, failed: 'entry-failed' },
-    { ok: '', failed: 'קוד נוכחי שגוי בניסיון לשנות את הקוד' },
-    o,
-  );
-  if (result.kind !== 'ok') return result;
-  const lock = (await getLock(store))!;
-  const at = new Date(clock(o)()).toISOString();
-  await store.set<ParentLock>(LOCK_KEY, { ...lock, passcode: await hashPasscode(next, o.iterations), changedAt: at });
-  await appendLog(store, 'passcode', 'קוד ההורים שונה', new Date(clock(o)()));
-  return result;
 }

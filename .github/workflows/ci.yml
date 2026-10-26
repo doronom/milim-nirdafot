@@ -59,9 +59,57 @@ jobs:
             test-results
           retention-days: 7
 
+  rules:
+    name: Firestore rules (emulator)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci
+      # The emulator runs a demo project: no credentials, nothing reaches the real Firebase project.
+      - run: npm run test:rules
+
+  sync-e2e:
+    name: Cloud sync e2e (emulators)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci
+      - run: npm run test:e2e:sync
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-sync
+          path: |
+            playwright-report-sync
+            test-results
+          retention-days: 7
+
   build:
     name: Build
-    needs: [checks, e2e]
+    needs: [checks, e2e, rules, sync-e2e]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

@@ -64,5 +64,5 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer"
-    # The microphone is for the parent's recordings on this site only.
-    Permissions-Policy = "microphone=(self), camera=(), geolocation=()"
+    # The microphone is for the parent's recordings, the camera for scanning a pairing QR code; this site only.
+    Permissions-Policy = "microphone=(self), camera=(self), geolocation=()"

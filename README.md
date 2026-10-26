@@ -57,14 +57,13 @@ speed challenge, and a certificate per world.
 The **parent area** (lock icon on the map) has a dashboard, settings, "my new words" with voice recording, content
 review and editing, backup, and an activity log.
 
-**Parent lock.** Entry takes a 3-second hold, then a parent passcode of at least 8 characters (any letters, digits or
-symbols; no single repeated character or simple sequence), set on the first visit to the parent area. Only a salted
-PBKDF2-SHA256 hash (600,000 iterations, WebCrypto) is stored, never the passcode. Three wrong attempts lock entry for
-1 minute, then 5, 15 and 60; the lockout survives restarts. At setup a one-time recovery code is shown: it resets a
-forgotten passcode. Without the passcode or the recovery code, the only way back in is clearing the site data in the
-browser, which also deletes the child's progress (keep a backup). Every entry, failed attempt and change in the parent
-area is recorded in the activity log on the device. Backups never contain the passcode, and importing one keeps this
-device's passcode.
+**Parent lock.** Entry takes a 3-second hold, then the parent passcode (at least 8 characters, any letters, digits or
+symbols; no single repeated character or simple sequence). The passcode is set in parent mode on a parent's phone and
+reaches the child's device by pairing (QR code or 8-character code); it is then checked on the device, offline too.
+Only a salted PBKDF2-SHA256 hash (600,000 iterations, WebCrypto) is stored, never the passcode. Three wrong attempts
+lock entry for 1 minute, then 5, 15 and 60; the lockout survives restarts. A forgotten passcode is reset in parent
+mode. A device that was never paired offers only pairing. Every entry, failed attempt and change in the parent area is
+recorded in the activity log. Backups never contain the passcode, and importing one keeps this device's passcode.
 
 ## Development
 
@@ -77,6 +76,8 @@ Requires Node 22.22 or newer (`.nvmrc` pins 22.23.4): `nvm use`, `npm ci`, `npm 
 | `npm run dev` / `build` / `preview`     | Vite dev server, production build into `dist/`, serve the build                    |
 | `npm test`                              | Unit and component tests (Vitest)                                                  |
 | `npm run test:e2e`                      | Playwright end-to-end tests on Pixel 7 and iPhone 14, against the production build |
+| `npm run test:rules` / `test:e2e:sync`  | Firestore rules and the cross-device sync e2e, in the Firebase emulators (Java 21) |
+| `npm run seed:parents`                  | Writes the parent allowlist from `.env` to Firestore (never prints it)             |
 | `npm run lint` / `typecheck` / `format` | ESLint, TypeScript, Prettier                                                       |
 | `npm run validate:data`                 | Checks every data rule and prints a report; fails on errors                        |
 | `npm run apply:content-changes <file>`  | Merges a "content changes" export from the parent area into `src/data`             |
@@ -85,6 +86,19 @@ Requires Node 22.22 or newer (`.nvmrc` pins 22.23.4): `nvm use`, `npm ci`, `npm 
 | `npm run gen:audio`                     | Generates the MP3s for all words and sentences (needs the TTS key)                 |
 | `npm run build:layout`                  | Regenerates the world and level layout (runs before `dev` and `build`)             |
 | `npm run build:icons`                   | Renders the app icons from the mascot                                              |
+
+## Cloud sync (parents' phones)
+
+Parents can see a child's progress on their own phones and set the parent passcode there (Firebase: Anonymous auth on
+the child's device, Google sign-in for an allowlist of parents, Firestore). The child's device stays offline-first; if
+Firebase is unreachable the game works exactly as without it. Only the child's first name and progress data are
+stored; recordings, the lockout and the passcode itself never leave the device (only a salted hash of the passcode,
+set in parent mode).
+
+Security comes from the Firestore Security Rules (`firestore.rules`, tested in the emulator in CI) and App Check; the
+Firebase web config in `src/sync/config.ts` is public by design. The allowlist lives only in Firestore and is written
+with `npm run seed:parents` from `PARENT_EMAILS` in `.env`. Design, data model and one-time setup:
+[docs/cloud-sync.md](docs/cloud-sync.md).
 
 ## Content
 
