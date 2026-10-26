@@ -1,4 +1,5 @@
-import type { ContentSources } from './model';
+import { buildSynonymGraph } from '../engine/graph';
+import { buildContent, type ContentSources } from './model';
 import type { ContentOverrides, OverrideKind, PairDecisionsAdded, ReviewDecision } from './overrides';
 import { normalizeWord } from './text';
 import type { AlsoSynonymPair, Entry, NotSynonymPair } from './types';
@@ -136,6 +137,9 @@ export function applyContentChanges(src: ContentSources, ch: ContentChangesFile)
     else custom.push(word);
   }
 
+  // Exports written before stable node ids name nodes by label ("מתוח#tense"); map them to today's ids.
+  const graph = buildSynonymGraph(buildContent(src));
+  const incoming = ch.alsoSynonyms.map((p) => ({ ...p, a: graph.migrate(p.a), b: graph.migrate(p.b) }));
   const knownPairs = new Set(s.alsoSynonyms.pairs.map(pairId));
   const knownTraps = new Set(s.notSynonyms.pairs.map(trapId));
   return {
@@ -154,7 +158,7 @@ export function applyContentChanges(src: ContentSources, ch: ContentChangesFile)
     custom,
     alsoSynonyms: {
       ...s.alsoSynonyms,
-      pairs: [...s.alsoSynonyms.pairs, ...ch.alsoSynonyms.filter((p) => !knownPairs.has(pairId(p)))],
+      pairs: [...s.alsoSynonyms.pairs, ...incoming.filter((p) => !knownPairs.has(pairId(p)))],
     },
     notSynonyms: {
       ...s.notSynonyms,

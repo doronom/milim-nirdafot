@@ -96,6 +96,8 @@ export interface Content {
   senseSplits: SenseSplit[];
   /** Spellings deliberately left as one node even though they serve two parts of speech (same meaning). */
   sameMeaning: string[];
+  /** Entries whose headword is a meaning of its own, kept apart from the same spelling elsewhere in the graph. */
+  separateHeadwords: string[];
   /** Reviewed decisions about pairs the source lists miss or that look like synonyms. */
   alsoSynonyms: AlsoSynonymPair[];
   notSynonyms: NotSynonymPair[];
@@ -149,6 +151,8 @@ export interface SensesFile {
   hints: Record<string, string>;
   senses: SenseSplit[];
   sameMeaning: string[];
+  /** Entry ids; homograph headwords are separated anyway. */
+  separateHeadwords?: string[];
 }
 
 export interface AlsoSynonymsFile {

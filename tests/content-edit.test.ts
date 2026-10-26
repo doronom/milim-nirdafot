@@ -172,3 +172,36 @@ describe('content review lists', () => {
     expect(drafts.some((d) => d.id === 'scale01')).toBe(true);
   });
 });
+
+describe('approved pairs survive hint edits', () => {
+  it('approve a pair, edit the hint, and the pair still holds', async () => {
+    const { memoryStore } = await import('../src/storage/kv');
+    const { decideReport, exportDecisions, listReports, reportAlsoCorrect } =
+      await import('../src/engine/review-queue');
+    const { buildSynonymGraph } = await import('../src/engine/graph');
+    const { buildSynonymLinks } = await import('../src/engine/links');
+    const target = entry('e063'); // העריך (נתן כבוד), kept apart from העריך = estimated
+    const graph = buildSynonymGraph(base);
+    const store = memoryStore();
+    await reportAlsoCorrect(store, {
+      target,
+      word: 'כיבד',
+      nodeId: graph.resolve('b001', 'כיבד'),
+      gameId: 'pickSynonym',
+    });
+    await decideReport(store, `${target.id}|כיבד`, 'accepted');
+    const added = exportDecisions(await listReports(store), graph, base.entries);
+    expect(added.alsoSynonyms[0]!.a).toBe('e063.0');
+
+    for (const hint of ['הוקיר מאוד', null]) {
+      const before = emptyOverrides();
+      const after = withEdit(before, base, 'entries', 'e063', { hint });
+      expect(checkEdit(base, before, after, added)).toEqual({ ok: true, problems: [] });
+      const edited = applyOverrides(base, after, added);
+      const g = buildSynonymGraph(edited);
+      const h = g.headwordNode(edited.entries.find((e) => e.id === 'e063')!);
+      expect(g.nodes.get(h)!.group).toBe(g.nodes.get(g.canonical('כיבד')!)!.group);
+      expect(buildSynonymLinks(edited).areLinked('העריך', 'כיבד')).toBe(true);
+    }
+  });
+});

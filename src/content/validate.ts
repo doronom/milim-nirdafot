@@ -1,6 +1,6 @@
 import type { Content, Entry } from './types';
 import { POS_VALUES } from './types';
-import { buildSynonymGraph, type SynonymGraph } from '../engine/graph';
+import { buildSynonymGraph, senseNodeId, type SynonymGraph } from '../engine/graph';
 import { containsWord, HAS_NIQQUD, normalizeWord } from './text';
 
 export { containsWord, normalizeWord, stripNiqqud } from './text';
@@ -145,10 +145,26 @@ export function validateContent(content: Content): ValidationReport {
 
   // Synonym graph. A group above the threshold is a signal (often a homograph merging two meanings), not an error:
   // warn unless large-groups.json approves it at its current size.
+  const senseIds = new Map<string, string>();
+  for (const split of content.senseSplits)
+    split.senses.forEach((sense) => {
+      if (sense.items.length === 0) return;
+      if (!/^[a-z][\w-]*$/i.test(sense.key))
+        err('sense-bad-key', split.word, `sense key "${sense.key}" must be a latin word`);
+      const id = senseNodeId(sense);
+      const other = senseIds.get(id);
+      if (other) err('sense-id-collision', id, `senses of "${other}" and "${split.word}" share node id "${id}"`);
+      senseIds.set(id, split.word);
+    });
+  for (const id of content.separateHeadwords)
+    if (!entriesById.has(id))
+      err('separate-unknown-entry', id, `senses.json separateHeadwords names unknown entry "${id}"`);
+
   const graph = buildSynonymGraph(content);
+  const label = (id: string) => graph.nodes.get(id)?.label ?? id;
   for (const { a, b } of content.alsoSynonyms) {
     for (const id of [a, b])
-      if (!graph.nodes.has(id)) err('also-synonym-unknown-node', id, `also-synonyms.json names unknown node "${id}"`);
+      if (!graph.canonical(id)) err('also-synonym-unknown-node', id, `also-synonyms.json names unknown node "${id}"`);
   }
   const allSpellings = new Set([...graph.nodes.values()].map((n) => n.key));
   const traps = new Set<string>();
@@ -160,30 +176,31 @@ export function validateContent(content: Content): ValidationReport {
     traps.add(`${t.targetId}|${normalizeWord(t.distractor)}`);
   }
   for (const { a, b } of content.alsoSynonyms) {
-    const node = graph.nodes.get(a);
+    const node = graph.nodes.get(graph.canonical(a) ?? a);
+    const other = graph.nodes.get(graph.canonical(b) ?? b)?.key ?? normalizeWord(b);
     for (const id of node?.entryIds ?? []) {
-      if (traps.has(`${id}|${normalizeWord(b.split('#')[0]!)}`))
+      if (traps.has(`${id}|${other}`))
         err('pair-in-both-files', `${a}~${b}`, 'pair is both a synonym and a confirmed trap');
     }
   }
   for (const approval of content.approvedLargeGroups) {
-    if (!graph.nodes.has(approval.anchor))
+    if (!graph.canonical(approval.anchor))
       err('large-group-unknown-anchor', approval.anchor, `large-groups.json names unknown node "${approval.anchor}"`);
   }
   for (const group of graph.groups) {
     if (group.length <= MAX_GROUP_WORDS) continue;
-    const approval = content.approvedLargeGroups.find((a) => group.includes(a.anchor));
+    const approval = content.approvedLargeGroups.find((a) => group.includes(graph.canonical(a.anchor) ?? a.anchor));
     if (!approval) {
       warn(
         'group-large',
         group[0]!,
-        `synonym group has ${group.length} words (threshold ${MAX_GROUP_WORDS}): ${group.join(', ')}`,
+        `synonym group has ${group.length} words (threshold ${MAX_GROUP_WORDS}): ${group.map(label).join(', ')}`,
       );
     } else if (group.length > approval.maxSize) {
       warn(
         'group-grew',
         approval.anchor,
-        `approved group grew to ${group.length} words (approved ${approval.maxSize}): ${group.join(', ')}`,
+        `approved group grew to ${group.length} words (approved ${approval.maxSize}): ${group.map(label).join(', ')}`,
       );
     }
   }
@@ -307,6 +324,8 @@ function computeStats(content: Content, graph: SynonymGraph): ContentStats {
     },
     sentencesWithFits: content.sentences.filter((s) => s.fits.length > 0).length,
     groups: graph.groups.length,
-    largestGroups: graph.groups.slice(0, 10).map((g) => ({ size: g.length, words: g })),
+    largestGroups: graph.groups
+      .slice(0, 10)
+      .map((g) => ({ size: g.length, words: g.map((id) => graph.nodes.get(id)?.label ?? id) })),
   };
 }

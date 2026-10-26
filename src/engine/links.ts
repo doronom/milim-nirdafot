@@ -1,5 +1,6 @@
 import { normalizeWord } from '../content/text';
 import type { Content } from '../content/types';
+import { nodeSpelling } from './graph';
 
 /**
  * Direct synonym links for answer checking: words listed in the same entry (headword-synonym and synonym-synonym)
@@ -10,9 +11,6 @@ export interface SynonymLinks {
   areLinked(a: string, b: string): boolean;
   linksOf(word: string): ReadonlySet<string>;
 }
-
-/** also-synonyms.json names graph nodes ("מתוח#tense"); answer checking works on spellings. */
-const nodeKey = (nodeId: string) => normalizeWord(nodeId.split('#')[0]!);
 
 export function buildSynonymLinks(content: Content): SynonymLinks {
   const links = new Map<string, Set<string>>();
@@ -31,7 +29,8 @@ export function buildSynonymLinks(content: Content): SynonymLinks {
     const words = [e.headword, ...e.synonyms].map(normalizeWord);
     for (let i = 0; i < words.length; i++) for (let j = i + 1; j < words.length; j++) link(words[i]!, words[j]!);
   }
-  for (const { a, b } of content.alsoSynonyms) link(nodeKey(a), nodeKey(b));
+  // also-synonyms.json names graph nodes ("b158.1"); answer checking works on spellings.
+  for (const { a, b } of content.alsoSynonyms) link(nodeSpelling(content, a), nodeSpelling(content, b));
 
   const empty: ReadonlySet<string> = new Set();
   return {

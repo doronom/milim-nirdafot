@@ -48,6 +48,7 @@ export function buildContent(sources: ContentSources): Content {
     sentences: sentences.sentences,
     senseSplits: senses.senses,
     sameMeaning: senses.sameMeaning,
+    separateHeadwords: senses.separateHeadwords ?? [],
     alsoSynonyms: sources.alsoSynonyms.pairs,
     notSynonyms: sources.notSynonyms.pairs,
     approvedLargeGroups: sources.largeGroups.approved,

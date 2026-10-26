@@ -7,6 +7,8 @@ const graph = buildSynonymGraph(content);
 const entry = (id: string) => content.entries.find((e) => e.id === id)!;
 const groupOf = (nodeId: string) => graph.nodes.get(nodeId)!.group;
 const sameGroup = (a: string, b: string) => groupOf(a) === groupOf(b);
+/** Node id from its readable label ("ערב#evening", "ישן#b039"). */
+const node = (label: string) => graph.migrate(label);
 
 describe('synonym graph', () => {
   it('links every headword with all of its synonyms', () => {
@@ -22,10 +24,11 @@ describe('synonym graph', () => {
     expect(sameGroup('קל רגליים', 'נמהר')).toBe(true);
   });
 
-  it('keeps hinted homographs apart: ישן, קרא, הודה, העריך', () => {
-    expect(graph.headwordNode(entry('b039'))).toBe('ישן#b039');
-    expect(graph.headwordNode(entry('b163'))).toBe('ישן#b163');
-    expect(sameGroup('ישן#b039', 'ישן#b163')).toBe(false);
+  it('keeps separated headwords apart: ישן, קרא, הודה, העריך', () => {
+    expect(graph.headwordNode(entry('b039'))).toBe('b039.0');
+    expect(graph.headwordNode(entry('b163'))).toBe('b163.0');
+    expect(graph.nodes.get('b039.0')!.label).toBe('ישן#b039');
+    expect(sameGroup('b039.0', 'b163.0')).toBe(false);
     // קרא "בספר" vs קרא as a synonym of פנה (called).
     expect(sameGroup(graph.headwordNode(entry('b212')), graph.resolve('b209', 'קרא'))).toBe(false);
     // הודה "אמר תודה" vs הודה as a synonym of התוודה (confessed).
@@ -39,12 +42,13 @@ describe('synonym graph', () => {
   });
 
   it('splits sense-override words into separate nodes', () => {
-    expect(graph.resolve('b406', 'ערב')).toBe('ערב#evening');
-    expect(graph.resolve('b118', 'ערב')).toBe('ערב#pleasant');
+    expect(graph.resolve('b406', 'ערב')).toBe('b406.evening');
+    expect(graph.resolve('b118', 'ערב')).toBe('b118.pleasant');
+    expect(graph.resolve('b133', 'ערב')).toBe('b118.pleasant');
     expect(sameGroup(graph.resolve('b406', 'ערב'), 'טעים')).toBe(false);
     expect(sameGroup(graph.resolve('b021', 'נוגה'), 'אור')).toBe(false);
     expect(sameGroup(graph.resolve('b304', 'רֵעַ'), 'גרוע')).toBe(false);
-    expect(graph.resolve('reg02', 'רֵעַ')).toBe('רע#friend');
+    expect(graph.nodes.get(graph.resolve('reg02', 'רֵעַ'))!.label).toBe('רע#friend');
     expect(sameGroup(graph.resolve('b294', 'צר'), 'דחוק')).toBe(false);
   });
 
@@ -58,8 +62,8 @@ describe('synonym graph', () => {
   });
 
   it('links reviewed pairs from also-synonyms.json', () => {
-    expect(sameGroup('מתוח#tense', 'חרד')).toBe(true);
-    expect(sameGroup('מתוח#tense', 'מוטרד')).toBe(true);
+    expect(sameGroup(node('מתוח#tense'), 'חרד')).toBe(true);
+    expect(sameGroup(node('מתוח#tense'), 'מוטרד')).toBe(true);
   });
 
   it('returns the spellings of a whole group', () => {
@@ -72,8 +76,23 @@ describe('synonym graph', () => {
     // עף -> טס (flew) shares the spelling טס with רץ -> טס (ran fast).
     expect(graph.twoHopGroups('עף').has(groupOf('דהר'))).toBe(true);
     // חלק (משטח) shares its spelling with שטוח's synonym חלק.
-    expect(graph.twoHopGroups('חלק#e015').has(groupOf('שטוח'))).toBe(true);
+    expect(graph.twoHopGroups(node('חלק#e015')).has(groupOf('שטוח'))).toBe(true);
     expect(graph.twoHopGroups('עף').has(groupOf('עף'))).toBe(false);
+  });
+
+  it('names nodes by stable item ids, never by hint text', () => {
+    // "<entryId>.0" is an alias of any entry's headword node, separated or not.
+    expect(graph.canonical('b031.0')).toBe('גדול');
+    expect(graph.canonical('b039.0')).toBe('b039.0');
+    // Hints are labels only: removing or changing one leaves the node where it was.
+    const relabel = (id: string, hint: string | null) =>
+      buildSynonymGraph({ ...content, entries: content.entries.map((e) => (e.id === id ? { ...e, hint } : e)) });
+    expect(relabel('e063', null).headwordNode(entry('e063'))).toBe('e063.0');
+    expect(relabel('e063', 'הוקיר').headwordNode(entry('e063'))).toBe('e063.0');
+    // Labels written before stable ids map to today's ids.
+    expect(graph.migrate('מתוח#tense')).toBe('e004.tense');
+    expect(graph.migrate('ישן#b163')).toBe('b163.0');
+    expect(graph.migrate('חרד')).toBe('חרד');
   });
 
   it('has groups above the warning threshold only as warnings', () => {
