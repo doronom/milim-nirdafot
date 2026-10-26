@@ -1,5 +1,39 @@
 # מסע המילים (Word Quest)
 
+**A Hebrew synonym game for kids around 10.** A compass guide leads the child through four worlds of מילים נרדפות:
+short levels of learn cards and mini-games (pick, drag, memory, word search, crosswords, idioms and more), with every
+word read aloud, spaced repetition so words come back until they stick, and stickers, ranks and streaks along the way.
+It runs in the browser, installs on a phone like an app, and works fully offline. No accounts, ads or tracking.
+
+**Play it:** LIVE_URL (Hebrew, best on a phone; see [Install it on a phone](#install-it-on-a-phone))
+
+![Four screens of the game: the world map, a station path, a learn card and a pick-the-synonym question](docs/screenshot.png)
+
+**Run it locally** (Node 22.22+):
+
+```sh
+git clone https://github.com/doronom/milim-nirdafot.git
+cd milim-nirdafot
+npm ci
+npm run dev   # http://localhost:5173
+```
+
+The game audio is already in the repository, so you need no keys to play or build. Only regenerating the audio
+(`npm run gen:audio`) needs your own Google Cloud Text-to-Speech API key in a `.env` file (see [Audio](#audio)).
+
+## Install it on a phone
+
+Install the game instead of playing in a browser tab. A browser tab can lose its saved progress: iOS clears the data of
+sites you have not opened for 7 days, while an installed app keeps it (and starts offline, full screen).
+
+- **iPhone / iPad:** open the link in **Safari**, tap **Share**, then **Add to Home Screen**.
+- **Android:** open the link in **Chrome**, tap the menu, then **Install app** (or **Add to Home screen**).
+
+Open the game once with a network connection; after that it works offline, audio included. Progress lives on the device
+only: use the parent area's Backup tab to move it to a new phone.
+
+## About the project
+
 An offline Hebrew synonym game for a 10-year-old, built as an installable web app (PWA). The child travels through
 four worlds of synonyms; a parent area behind a gate shows progress and lets a parent add words and correct content.
 
@@ -23,15 +57,9 @@ speed challenge, and a certificate per world.
 The **parent area** (lock icon on the map: hold 3 seconds, then answer a multiplication) has a dashboard, settings,
 "my new words" with voice recording, content review and editing, and backup.
 
-## Getting started
+## Development
 
-Requires Node 22.22 or newer (`.nvmrc` pins 22.23.4).
-
-```sh
-nvm use
-npm ci
-npm run dev        # http://localhost:5173
-```
+Requires Node 22.22 or newer (`.nvmrc` pins 22.23.4): `nvm use`, `npm ci`, `npm run dev`.
 
 ## Scripts
 
@@ -77,35 +105,32 @@ To regenerate after the content changes:
 
 1. Copy `.env.example` to `.env` and set `GOOGLE_TTS_API_KEY` (a key restricted to the Text-to-Speech API).
    `.env` is git-ignored; never commit it or add it to CI.
-2. The voice (he-IL-Chirp3-HD-Aoede) is set in `scripts/tts/config.json` (`npm run tts:compare` builds `reports/voice-compare/index.html` to
-   choose one).
+2. The voice (he-IL-Chirp3-HD-Aoede) is set in `scripts/tts/config.json`; `npm run tts:compare` builds
+   `reports/voice-compare/index.html` to compare voices.
 3. `npm run gen:audio`. Only new or changed texts are synthesized; clips nothing uses any more are deleted.
 4. Commit `public/audio/` and `src/generated/audio-manifest.json`.
 
 ## Offline and installing
 
-The service worker precaches the whole app on the first visit, audio included. A new version installs in the
-background and takes over the next time the app is opened, so a level is never interrupted by a reload. On a phone,
-use "Add to Home Screen" (iOS Safari: Share, then Add to Home Screen; Android Chrome: Install app).
+The service worker precaches the whole app on the first visit, audio included (about 15 MB), so reading aloud works
+offline too. A new version installs in the background and takes over the next time the app is opened, so a level is
+never interrupted by a reload. The app also asks the browser to keep its storage persistent. See
+[Install it on a phone](#install-it-on-a-phone).
 
 ## Deploying
 
 The build is a static site in `dist/` with relative paths and hash routing, so it works from any static host and any
 sub-path, with no rewrite rules.
 
-### GitHub Pages (the included workflow)
+### Netlify (the live site)
 
-`.github/workflows/ci-deploy.yml` runs on every pull request and push to `main`: lint, format check, typecheck, unit
-tests, `validate:data` and the Playwright suite. On `main` it then builds and deploys to GitHub Pages.
+Netlify builds from `main` using `netlify.toml`: `npm run build`, publish `dist`, the Node version from `.nvmrc`.
+Hashed assets and audio are cached for a year as immutable; `index.html`, the service worker and the web manifest are
+never cached, so a new version is found on the next visit. No redirects are needed (hash routing).
 
-One-time setup: in the repository, Settings, Pages, set Source to "GitHub Actions". GitHub Pages on a **private**
-repository needs a paid GitHub plan (Pro, Team or Enterprise); on a free plan, make the repository public or use
-Netlify.
-
-### Netlify
-
-New site from Git: build command `npm run build`, publish directory `dist`, Node version from `.nvmrc`. No redirects
-are needed (hash routing). Netlify builds do not run the test suite; keep the GitHub workflow for checks.
+Netlify deploys every push to `main`, so `main` is protected: changes land only through pull requests, and the
+GitHub Actions checks (`.github/workflows/ci.yml`: lint, format, typecheck, unit tests, `validate:data`, Playwright on
+Pixel 7 and iPhone 14, build) must pass before merging.
 
 ### Any static host
 

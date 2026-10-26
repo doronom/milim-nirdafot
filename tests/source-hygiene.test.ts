@@ -45,3 +45,11 @@ describe('source hygiene', () => {
     expect(ICON_NAMES.filter((n) => !existsSync(`src/design/icons/${n}.svg`))).toEqual([]);
   });
 });
+
+describe('deploy config', () => {
+  it('builds on Netlify with the Node version from .nvmrc', () => {
+    const toml = readFileSync('netlify.toml', 'utf8');
+    expect(toml).toContain(`NODE_VERSION = "${readFileSync('.nvmrc', 'utf8').trim()}"`);
+    expect(toml).toMatch(/publish = "dist"/);
+  });
+});
