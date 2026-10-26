@@ -2,7 +2,7 @@
   "_note": "App-supplied tokens the designer's tokens.json does not define yet. tokens.json always wins on the same path, so when the designer adds a value it replaces the one here with no code change.",
   "colors": {
     "base": {
-      "text_on_accent": "#ffffff"
+      "text_on_accent": "#0a0f1d"
     },
     "feedback": {
       "star_dim": "#334155",

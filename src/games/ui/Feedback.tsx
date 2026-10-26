@@ -1,5 +1,6 @@
 import { motion as m } from 'framer-motion';
 import type { ReactNode } from 'react';
+import { useSfx } from '../../audio/sfx';
 import { motion } from '../../design/tokens';
 import { Icon } from '../../ui/Icon';
 import { TactileButton } from '../../ui/TactileButton';
@@ -21,6 +22,7 @@ export function Feedback({
   continueLabel: string;
   onContinue: () => void;
 }) {
+  useSfx(correct ? 'correct' : 'wrong');
   return (
     <m.div
       className={`${styles.drawer} ${correct ? styles.correct : styles.wrong}`}

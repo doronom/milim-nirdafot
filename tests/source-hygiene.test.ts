@@ -45,3 +45,18 @@ describe('source hygiene', () => {
     expect(ICON_NAMES.filter((n) => !existsSync(`src/design/icons/${n}.svg`))).toEqual([]);
   });
 });
+
+describe('deploy config', () => {
+  it('builds on Netlify with the Node version from .nvmrc', () => {
+    const toml = readFileSync('netlify.toml', 'utf8');
+    expect(toml).toContain(`NODE_VERSION = "${readFileSync('.nvmrc', 'utf8').trim()}"`);
+    expect(toml).toMatch(/publish = "dist"/);
+  });
+
+  it('runs e2e in CI on the Playwright image matching the installed version', () => {
+    const version = JSON.parse(readFileSync('node_modules/@playwright/test/package.json', 'utf8')).version;
+    expect(readFileSync('.github/workflows/ci.yml', 'utf8')).toContain(
+      `mcr.microsoft.com/playwright:v${version}-noble`,
+    );
+  });
+});

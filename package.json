@@ -8,11 +8,14 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "build:layout": "tsx scripts/build-layout.ts",
+    "build:icons": "tsx scripts/build-icons.ts",
     "predev": "tsx scripts/build-layout.ts",
     "prebuild": "tsx scripts/build-layout.ts",
     "validate:data": "tsx scripts/validate-data.ts",
     "apply:content-changes": "tsx scripts/apply-content-changes.ts",
     "report:near-misses": "tsx scripts/report-near-misses.ts",
+    "tts:compare": "tsx scripts/tts-compare.ts",
+    "gen:audio": "tsx scripts/gen-audio.ts",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
@@ -25,6 +28,7 @@
     "@playwright/test": "^1.64.1",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",
+    "@types/howler": "^2.2.13",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -39,7 +43,9 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.0",
     "vite": "^8.3.5",
-    "vitest": "^4.1.12"
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^4.1.12",
+    "workbox-window": "^7.4.1"
   },
   "engines": {
     "node": ">=22.22"
@@ -48,6 +54,7 @@
     "@dnd-kit/core": "^6.3.1",
     "@fontsource/rubik": "^5.3.0",
     "framer-motion": "^14.6.0",
+    "howler": "^2.2.4",
     "html-to-image": "^1.11.13",
     "idb-keyval": "^6.3.0",
     "react": "^19.3.1",

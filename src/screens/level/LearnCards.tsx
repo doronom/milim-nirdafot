@@ -1,6 +1,6 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
-import { playWord } from '../../audio/recordings';
+import { say, type Spoken } from '../../audio/player';
 import { speak } from '../../audio/speak';
 import type { Entry, Sentence } from '../../content/types';
 import { motion } from '../../design/tokens';
@@ -26,26 +26,26 @@ interface Props {
 function describe(
   item: LevelItem,
   displayWord: (w: string) => string,
-): { title: string; speech: string; noun: string } {
+): { title: string; speech: string[]; noun: string } {
   switch (item.kind) {
     case 'pair':
       return {
         title: displayWord(item.entry.headword),
-        speech: [item.entry.headword, ...item.entry.synonyms].join(', '),
+        speech: [item.entry.headword, ...item.entry.synonyms],
         noun: 'מילה',
       };
     case 'scale':
-      return { title: item.scale.theme, speech: item.scale.weakToStrong.join(', '), noun: 'סולם' };
+      return { title: item.scale.theme, speech: item.scale.weakToStrong, noun: 'סולם' };
     case 'register':
-      return { title: item.register.meaning, speech: BINS.flatMap((b) => item.register[b]).join(', '), noun: 'קבוצה' };
+      return { title: item.register.meaning, speech: BINS.flatMap((b) => item.register[b]), noun: 'קבוצה' };
     case 'context':
       return {
         title: item.context.options.map(displayWord).join(' / '),
-        speech: item.context.options.join(', '),
+        speech: item.context.options,
         noun: 'הבחנה',
       };
     case 'idiom':
-      return { title: item.idiom.idiom, speech: item.idiom.idiom, noun: 'ביטוי' };
+      return { title: item.idiom.idiom, speech: [item.idiom.idiom, item.idiom.example], noun: 'ביטוי' };
   }
 }
 
@@ -96,7 +96,12 @@ export function LearnCards({ items, sentenceFor, displayWord, recordingFor, onDo
               type="button"
               className={styles.speaker}
               aria-label={`השמע: ${title}`}
-              onClick={() => playWord(speech, item.kind === 'pair' ? recordingFor?.(item.entry) : undefined)}
+              onClick={() => {
+                // The parent's recording of a custom word replaces the headword; the synonyms follow as usual.
+                const recording = item.kind === 'pair' ? recordingFor?.(item.entry) : undefined;
+                const [first, ...rest] = speech;
+                void say([recording ? { recording } : first!, ...rest] as Spoken[]);
+              }}
             >
               <Icon name="speaker" size="lg" />
             </button>
@@ -165,7 +170,7 @@ function PairBody({
       {sentence && (
         <blockquote className={styles.sentence}>
           <p className={styles.sectionTitle}>שימוש ביומן המסע:</p>
-          <p>{sentence.text}</p>
+          <ListenLine text={sentence.text} />
         </blockquote>
       )}
     </>
@@ -243,8 +248,25 @@ function IdiomBody({ item }: { item: IdiomItem }) {
       </div>
       <blockquote className={styles.sentence}>
         <p className={styles.sectionTitle}>שימוש ביומן המסע:</p>
-        <p>{item.idiom.example}</p>
+        <ListenLine text={item.idiom.example} />
       </blockquote>
     </>
+  );
+}
+
+/** A sentence with a small speaker to hear it. */
+function ListenLine({ text }: { text: string }) {
+  return (
+    <p className={styles.listenLine}>
+      <span>{text}</span>
+      <button
+        type="button"
+        className={styles.listenButton}
+        aria-label={`השמע את המשפט: ${text}`}
+        onClick={() => speak(text)}
+      >
+        <Icon name="speaker" size="sm" />
+      </button>
+    </p>
   );
 }

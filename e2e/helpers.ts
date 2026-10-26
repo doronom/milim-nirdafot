@@ -21,8 +21,12 @@ export async function seed(page: Page, values: Record<string, unknown>): Promise
     await new Promise((r) => (tx.oncomplete = r));
     db.close();
   }, values);
-  // Hash navigation alone keeps the app (and the progress it loaded) in memory.
+  // Hash navigation alone keeps the app (and the progress it loaded) in memory, so reload, from the map: a reload on
+  // #/welcome would redirect later and race the test's next navigation.
+  await page.goto('./#/');
   await page.reload();
+  const onboarded = (values.progress as { onboarded?: boolean } | undefined)?.onboarded;
+  if (onboarded) await page.getByRole('article').first().waitFor();
 }
 
 export async function readKey<T>(page: Page, key: string): Promise<T | undefined> {

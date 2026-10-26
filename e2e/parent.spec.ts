@@ -105,7 +105,9 @@ test('backup exports plain JSON and restores it after a reset', async ({ page })
 
   await page.getByRole('link', { name: 'גיבוי' }).click();
   await page.getByLabel('קובץ גיבוי', { exact: true }).setInputFiles(path);
+  // Restoring reloads the app; wait for that reload before reading the store.
+  const reloaded = page.waitForEvent('load');
   await page.getByRole('button', { name: /שחזור והפעלה מחדש/ }).click();
-  await page.waitForLoadState('load');
+  await reloaded;
   await expect.poll(async () => (await readKey<{ xp: number }>(page, 'progress'))?.xp).toBe(777);
 });

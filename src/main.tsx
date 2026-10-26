@@ -19,6 +19,9 @@ import { idbStore } from './storage/kv';
 
 applyTokens();
 
+// Ask the browser not to clear progress under storage pressure (granted to installed apps; a no-op elsewhere).
+void navigator.storage?.persist?.().catch(() => false);
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App store={idbStore()} />
