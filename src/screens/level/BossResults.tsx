@@ -41,6 +41,7 @@ export function BossResults({ passed, correct, total, needed, unlocked, practise
           : `צריך ${needed} תשובות נכונות כדי לעבור. כל מה שלמדתם נשמר, ואפשר לנסות שוב מתי שרוצים.`}
       </p>
       <div className={styles.score}>
+        <span className={styles.label}>תשובות נכונות</span>
         <span className={styles.big}>
           {correct} / {total}
         </span>

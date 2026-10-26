@@ -18,13 +18,16 @@ export type LeitnerState = Record<string, LeitnerCard>;
 /** Days until an item in each box is due again. Box 1 comes back the next day. */
 export const INTERVAL_DAYS: Record<Box, number> = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
 
-/** Applies one session's outcome. Correct moves up a box, wrong drops to box 1 (due today), "also correct" holds. */
+/**
+ * Applies one session's outcome. Correct moves up a box, wrong drops to box 1 (due today); "also correct" and a
+ * near miss (a tolerated typo) hold the box.
+ */
 export function review(card: LeitnerCard | undefined, outcome: Outcome, today: string): LeitnerCard {
   const box = card?.box ?? 1;
   const seen = (card?.seen ?? 0) + 1;
   const lapses = card?.lapses ?? 0;
   if (outcome === 'wrong') return { box: 1, due: today, seen, lapses: lapses + 1, lastSeen: today };
-  if (outcome === 'also-correct') {
+  if (outcome === 'also-correct' || outcome === 'near-miss') {
     return { box, due: card?.due ?? addDays(today, INTERVAL_DAYS[box]), seen, lapses, lastSeen: today };
   }
   const next = (card ? Math.min(5, box + 1) : 2) as Box;
@@ -45,11 +48,13 @@ export function markKnown(card: LeitnerCard | undefined, today: string): Leitner
 
 /**
  * Folds every answer an item got in one session into one outcome, so a session moves an item at most one box:
- * any wrong answer is a lapse; otherwise any correct answer is a pass; only "also correct" answers hold.
+ * any wrong answer is a lapse; otherwise any correct answer is a pass; near misses hold; only "also correct" left
+ * means the parent will judge, and the box holds too.
  */
 export function sessionOutcome(outcomes: readonly Outcome[]): Outcome {
   if (outcomes.includes('wrong')) return 'wrong';
   if (outcomes.includes('correct')) return 'correct';
+  if (outcomes.includes('near-miss')) return 'near-miss';
   return 'also-correct';
 }
 

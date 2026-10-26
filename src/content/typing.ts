@@ -30,15 +30,33 @@ export function editDistance(a: string, b: string): number {
 
 export type TypedVerdict = { kind: 'exact'; word: string } | { kind: 'typo'; word: string } | { kind: 'wrong' };
 
+/** Typos are tolerated only on answers this long (letters, after normalization); spelling matters on short words. */
+export const TYPO_MIN_LETTERS = 4;
+
+const letterCount = (s: string) => s.replace(/\s/g, '').length;
+
 /**
- * Judges a typed answer against the accepted words: an exact match (after normalization), a near miss of one edit
- * (accepted, with a "בדוק איות" nudge), or wrong. Near misses only count for words of three letters or more.
+ * Judges a typed answer against the accepted words: an exact match (after normalization), a slip of one edit from an
+ * answer of 4+ letters (a "בדוק את האיות" nudge, no mistake but no promotion either), or wrong. A typed string that is
+ * itself another word in the data (`knownWords`, normalized with normalizeTyped) is never a slip: it is that word.
  */
-export function judgeTyped(typed: string, accepted: readonly string[]): TypedVerdict {
+export function judgeTyped(
+  typed: string,
+  accepted: readonly string[],
+  knownWords: ReadonlySet<string> = new Set(),
+): TypedVerdict {
   const t = normalizeTyped(typed);
   if (t.length === 0) return { kind: 'wrong' };
   const exact = accepted.find((w) => normalizeTyped(w) === t);
   if (exact) return { kind: 'exact', word: exact };
-  const near = accepted.find((w) => normalizeTyped(w).length >= 3 && editDistance(normalizeTyped(w), t) === 1);
+  if (knownWords.has(t)) return { kind: 'wrong' };
+  const near = accepted.find(
+    (w) => letterCount(normalizeTyped(w)) >= TYPO_MIN_LETTERS && editDistance(normalizeTyped(w), t) === 1,
+  );
   return near ? { kind: 'typo', word: near } : { kind: 'wrong' };
+}
+
+/** Every word in the content (headwords, synonyms, register words), normalized for typed comparison. */
+export function typedVocabulary(words: Iterable<string>): Set<string> {
+  return new Set([...words].map(normalizeTyped));
 }

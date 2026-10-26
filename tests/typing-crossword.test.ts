@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { editDistance, judgeTyped, normalizeTyped } from '../src/content/typing';
+import { editDistance, judgeTyped, normalizeTyped, typedVocabulary } from '../src/content/typing';
+import { content } from '../src/content';
 import { createRng } from '../src/engine/rng';
 import { generateCrossword, wordCells } from '../src/games/crossword/generate';
 
@@ -32,6 +33,25 @@ describe('typed answers', () => {
     expect(judgeTyped('', accepted)).toEqual({ kind: 'wrong' });
     // No typo tolerance on very short words, where one letter changes the word.
     expect(judgeTyped('אח', ['אב'])).toEqual({ kind: 'wrong' });
+  });
+
+  it('tolerates slips only on answers of 4 letters or more', () => {
+    expect(judgeTyped('תשש', ['תשוש']).kind).toBe('typo');
+    expect(judgeTyped('גם', ['גמע']).kind).toBe('wrong');
+    expect(judgeTyped('נע', ['נעם']).kind).toBe('wrong');
+    expect(judgeTyped('לגם', ['לגמע']).kind).toBe('typo');
+  });
+
+  it('never treats a real word from the data as a slip of the answer', () => {
+    const vocabulary = typedVocabulary(content.entries.flatMap((e) => [e.headword, ...e.synonyms]));
+    // רחוק (far) and רחוב (street) are one letter apart and both in the data.
+    expect(vocabulary.has(normalizeTyped('רחוב'))).toBe(true);
+    expect(judgeTyped('רחוב', ['רחוק'], vocabulary)).toEqual({ kind: 'wrong' });
+    expect(judgeTyped('רחוב', ['רחוק']).kind).toBe('typo');
+    // Dropping a letter can also land on a word: מוארך -> מואר.
+    expect(judgeTyped('מואר', ['מוארך'], vocabulary)).toEqual({ kind: 'wrong' });
+    expect(judgeTyped('מוארק', ['מוארך'], vocabulary).kind).toBe('typo');
+    expect(judgeTyped('מוארכ', ['מוארך'], vocabulary).kind).toBe('exact');
   });
 
   it('treats a final letter typed mid-word or a regular letter typed at the end as the same', () => {
