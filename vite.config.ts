@@ -49,6 +49,8 @@ export default defineConfig({
   ],
   test: {
     include: ['tests/**/*.test.{ts,tsx}'],
+    // A few tests sweep every entry, tier and seed; CI machines are slower than a laptop.
+    testTimeout: 30_000,
     css: { modules: { classNameStrategy: 'non-scoped' } },
   },
 });
