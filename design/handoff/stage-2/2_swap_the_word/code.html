@@ -1,0 +1,289 @@
+<!DOCTYPE html><html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>מסע המילים - יער ההרחבה</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@100..900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#bec8d2",
+            "on-error": "#690005",
+            "primary": "#89ceff",
+            "on-tertiary-container": "#003c16",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "secondary-container": "#ee9800",
+            "primary-container": "#0ea5e9",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-secondary-fixed": "#2a1700",
+            "inverse-on-surface": "#283044",
+            "on-primary-container": "#003751",
+            "primary-fixed-dim": "#89ceff",
+            "secondary": "#ffb95f",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "error": "#ffb4ab",
+            "on-primary": "#00344d",
+            "tertiary-container": "#00b351",
+            "error-container": "#93000a",
+            "outline": "#88929b",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-tertiary": "#003915",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-primary": "#006591",
+            "surface-tint": "#89ceff",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-surface": "#dae2fd",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "surface": "#0b1326",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-container": "#171f33",
+            "on-primary-fixed": "#001e2f",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-fixed": "#c9e6ff",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container-low": "#131b2e",
+            "tertiary": "#4ae176",
+            "inverse-surface": "#dae2fd",
+            "surface-container-highest": "#2d3449",
+            "surface-bright": "#31394d",
+            "on-background": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem",
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero-mobile": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    .tactile-btn {
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md select-none antialiased min-h-screen flex justify-center items-start overflow-x-hidden">
+<!-- Mobile Container (390x844 base) -->
+<div class="w-full max-w-md min-h-screen flex flex-col justify-between relative bg-[#0a0f1d] pb-6 shadow-2xl border-x border-outline-variant/30">
+<!-- Top Navigation HUD (Height: 56px) -->
+<header class="fixed top-0 left-0 right-0 max-w-md mx-auto z-50 h-14 bg-surface-container flex items-center justify-between px-margin border-b border-outline-variant">
+<!-- Back Arrow (RTL Leading) -->
+<button aria-label="חזור" class="w-10 h-10 rounded-xl bg-surface-container-high border-b-2 border-outline-variant flex items-center justify-center text-primary active:translate-y-0.5 transition-transform" onclick="history.back()">
+<svg class="w-5 h-5 fill-current rotate-180" viewBox="0 0 24 24">
+<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+</svg>
+</button>
+<!-- Center Title & Segmented Progress Bar -->
+<div class="flex flex-col items-center flex-1 px-3">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">יער ההרחבה · תחנה 2</span>
+</div>
+<!-- Progress bar (2/4) -->
+<div class="w-full max-w-[170px] h-2.5 bg-surface-container-lowest rounded-full p-0.5 border border-outline-variant/40 flex gap-1">
+<div class="h-full w-1/4 bg-[#22c55e] rounded-full"></div>
+<div class="h-full w-1/4 bg-[#22c55e] rounded-full"></div>
+<div class="h-full w-1/4 bg-surface-variant/50 rounded-full"></div>
+<div class="h-full w-1/4 bg-surface-variant/50 rounded-full"></div>
+</div>
+</div>
+<!-- XP Badge (RTL Trailing) -->
+<div class="flex items-center gap-1 bg-[#1e293b] px-2.5 py-1 rounded-lg border-b-2 border-secondary-container">
+<svg class="w-4 h-4 text-secondary fill-current" viewBox="0 0 24 24">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+</svg>
+<span class="font-label-md text-label-md font-bold text-secondary">210 XP</span>
+</div>
+</header>
+<!-- Main Content Arena -->
+<main class="flex-1 flex flex-col pt-16 px-margin">
+<!-- Instructions Banner & Mascot Header -->
+<div class="mt-2 mb-3 flex items-center justify-between bg-surface-container-high/90 border border-[#15803d]/40 rounded-xl p-3 shadow-md">
+<div class="flex items-center gap-2.5 pr-1">
+<div class="w-8 h-8 rounded-lg bg-[#0b2b18] border border-[#22c55e]/50 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5 text-[#22c55e]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight font-medium">
+            גרור את המילה הנרדפת אל המשפט כדי להחליף את המילה המודגשת
+          </p>
+</div>
+<!-- Mascot "מצפוני" Compact Badge -->
+<div class="flex flex-col items-center pl-1 border-r border-outline-variant pr-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center border border-primary/40 relative">
+<svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+<circle cx="12" cy="12" fill="none" r="10" stroke="currentColor" stroke-width="2"></circle>
+<polygon fill="#89ceff" points="12,4 15,12 12,10 9,12"></polygon>
+<polygon fill="#0284c7" points="12,20 15,12 12,14 9,12"></polygon>
+</svg>
+<span class="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-[#22c55e] rounded-full border-2 border-surface-container"></span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">מצפוני</span>
+</div>
+</div>
+<!-- Central Interactive Sentence Card -->
+<div class="bg-surface-container rounded-2xl p-4 border border-outline-variant/60 shadow-lg relative overflow-hidden mb-4">
+<!-- Forest realm watermark aesthetic -->
+<div class="absolute -left-6 -bottom-6 w-24 h-24 rounded-full bg-[#15803d]/10 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-outline-variant/30 text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-semibold flex items-center gap-1 text-[#22c55e]">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+</svg>
+            החלף מילה במשפט
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">שורש ועוגן מילים</span>
+</div>
+<!-- The Target Sentence Canvas with Highlighted Prefix Slot -->
+<div class="bg-surface-container-lowest/80 rounded-xl p-3.5 border border-outline-variant/40 leading-relaxed text-right"><div class="mb-3 pb-3 border-b border-outline-variant/30"><div class="flex items-center gap-1.5 mb-1.5"><span class="w-2 h-2 rounded-full bg-[#22c55e]"></span><span class="font-label-sm text-[11px] font-semibold text-primary">החלפה עם אות יחס (קידומת מופרדת):</span></div><div class="leading-loose"><p class="font-headline-sm text-headline-sm text-on-surface inline">החוקר רעד </p><span class="inline-flex items-center mx-1.5 align-middle bg-[#0b2b18] border-2 border-[#22c55e] rounded-xl px-2 py-0.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]"><span class="text-[#94a3b8] font-headline-md text-headline-md font-bold ml-1 pl-1 border-l border-outline-variant/50">מ</span><span class="bg-[#15803d] text-white px-2 py-0.5 rounded-lg font-headline-sm text-headline-sm font-bold flex items-center gap-1.5 shadow-sm"><span class="">חשש</span><svg class="w-4 h-4 text-white fill-current" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span></span><p class="font-headline-sm text-headline-sm text-on-surface inline">, אך המשיך בשביל.</p></div></div><div class="pt-1"><div class="flex items-center gap-1.5 mb-1.5"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-[11px] font-semibold text-on-surface-variant">ללא קידומת (החלפת מילה שלמה):</span></div><div class="leading-loose text-on-surface"><p class="font-headline-sm text-headline-sm inline text-on-surface-variant">הילד היה </p><span class="inline-flex items-center mx-1.5 align-middle bg-surface-container-high border border-outline-variant rounded-xl px-2.5 py-0.5"><span class="text-[#22c55e] font-headline-sm text-headline-sm font-bold">מבוהל</span></span><p class="font-headline-sm text-headline-sm inline text-on-surface-variant">מהחושך.</p></div></div></div>
+<!-- Booklet Semantic Comparison Tag -->
+<div class="mt-3 bg-surface-container-high/60 rounded-xl p-2.5 border border-[#22c55e]/20 flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-label-sm text-label-sm font-bold text-on-surface-variant">השוואת מילים:</span><div class="flex items-center gap-1.5 bg-surface-container-lowest px-2 py-0.5 rounded-md border border-outline-variant"><span class="font-label-md text-label-md text-error">פחד</span><span class="text-on-surface-variant font-bold">=</span><span class="font-label-md text-label-md text-[#22c55e] font-bold">חשש</span></div></div><span class="text-[11px] text-on-surface-variant bg-surface-variant/40 px-2 py-0.5 rounded">ערך b023</span></div>
+</div>
+<!-- Word Bank Section -->
+<div class="flex-1 flex flex-col justify-end">
+<div class="flex items-center justify-between mb-2 px-1">
+<span class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-1.5">
+<svg class="w-4 h-4 text-[#22c55e] fill-current" viewBox="0 0 24 24">
+<path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"></path>
+</svg>
+            בנק המילים (בחר את המילה המתאימה)
+          </span>
+<span class="text-xs text-on-surface-variant">גרור או לחץ</span>
+</div>
+<!-- Tactile Draggable Chips Grid -->
+<div class="grid grid-cols-2 gap-2.5 mb-3"><div class="relative bg-surface-container border-2 border-[#22c55e] rounded-xl p-3 flex items-center justify-between shadow-[0_0_8px_rgba(34,197,94,0.25)] border-b-4 border-b-[#15803d] cursor-pointer"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-[#22c55e] fill-current opacity-80" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg><span class="font-headline-sm text-headline-sm font-bold text-white">חשש</span></div><span class="w-5 h-5 rounded-full bg-[#22c55e]/20 text-[#22c55e] flex items-center justify-center"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span></div><div class="tactile-btn bg-surface-container-high border-2 border-outline-variant/70 rounded-xl p-3 flex items-center justify-between border-b-4 border-b-outline-variant active:border-b active:translate-y-0.5 cursor-pointer hover:bg-surface-bright"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-on-surface-variant fill-current opacity-60" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg><span class="font-headline-sm text-headline-sm font-bold text-on-surface">מבוהל</span></div></div><div class="tactile-btn bg-surface-container-high border-2 border-outline-variant/70 rounded-xl p-3 flex items-center justify-between border-b-4 border-b-outline-variant active:border-b active:translate-y-0.5 cursor-pointer hover:bg-surface-bright"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-on-surface-variant fill-current opacity-60" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg><span class="font-headline-sm text-headline-sm font-bold text-on-surface">אימה</span></div></div><div class="tactile-btn bg-surface-container-high border-2 border-outline-variant/70 rounded-xl p-3 flex items-center justify-between border-b-4 border-b-outline-variant active:border-b active:translate-y-0.5 cursor-pointer hover:bg-surface-bright"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-on-surface-variant fill-current opacity-60" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg><span class="font-headline-sm text-headline-sm font-bold text-on-surface">זריז</span></div></div></div>
+</div>
+</main>
+<!-- Bottom Action Drawer & Secondary Controls -->
+<footer class="px-margin pt-1 flex flex-col gap-2">
+<!-- Primary Quest Button: בדוק החלפה (3D Tactile Green #22c55e with #15803d base) -->
+<button class="tactile-btn w-full h-[52px] bg-[#22c55e] text-white font-headline-sm text-headline-sm font-bold rounded-xl border-b-4 border-[#15803d] flex items-center justify-center gap-2 shadow-lg active:translate-y-1" onclick="triggerSuccess()">
+<span class="">בדוק החלפה</span>
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+</svg>
+</button>
+<!-- Secondary Report Button -->
+<div class="flex items-center justify-center">
+<button class="flex items-center gap-1.5 py-1.5 px-3 rounded-lg text-on-surface-variant hover:text-on-surface text-label-sm font-medium transition-colors" onclick="showReportToast()">
+<svg class="w-4 h-4 fill-current opacity-70" viewBox="0 0 24 24">
+<path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"></path>
+</svg>
+<span class="">גם זו תשובה נכונה?</span>
+</button>
+</div>
+</footer>
+<!-- Toast Notification for "גם זו תשובה נכונה?" -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 w-[85%] max-w-xs bg-surface-container-highest/95 border border-outline-variant text-on-surface py-2.5 px-4 rounded-xl shadow-2xl flex items-center justify-center gap-2 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300 z-50" id="reportToast">
+<svg class="w-4 h-4 text-[#22c55e] fill-current" viewBox="0 0 24 24">
+<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+</svg>
+<span class="font-label-md text-label-md">תודה, הורה יבדוק את זה</span>
+</div>
+</div>
+<!-- Interactive Scripts -->
+<script>
+    function showReportToast() {
+      const toast = document.getElementById('reportToast');
+      toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    function triggerSuccess() {
+      const toast = document.getElementById('reportToast');
+      toast.innerHTML = `
+        <svg class="w-4 h-4 text-[#22c55e] fill-current" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span class="font-label-md text-label-md font-bold text-tertiary">מצוין! הרווחת 15 נקודות XP</span>
+      `;
+      toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+  </script>
+
+
+</body></html>

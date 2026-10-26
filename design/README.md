@@ -1,9 +1,9 @@
 # Design handoff
 
-- `handoff/` — latest handoff (v3.0): World 3 games (intensity ladder, register sort, context choice) and summary.
+- `handoff/stage-1` … `stage-5` — all screens: World 1 (map, path, learn card, pick, drag, end of level) and the
+  motion spec; World 2 games; World 3 games; World 4 games and boss; motivation (rank up, album, streak freeze,
+  certificate). Each stage has its handoff summary; stage 5 also has DESIGN.md v1.2.
 - `handoff-v1.1/` — v1.1 tokens, component sheet, summary and SVG assets (mascot, collectible).
-- `handoff-v1.0/` — v1.0 screens still in use for World 1 (world map, station path, learn card, pick the synonym,
-  drag pairs, end of level) and the motion spec. Kept until a later handoff replaces those screens.
 
 Game text in mockups is illustrative; the app always renders text from the data. Follow v1.1 (dark cards) where
 DESIGN.md disagrees.

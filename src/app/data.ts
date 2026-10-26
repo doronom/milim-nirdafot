@@ -27,6 +27,10 @@ export function entryPool(reviewedOnly: boolean, worldId: number): readonly Entr
   return reviewedOnly ? base.filter((e) => reviewedIds.has(e.id)) : base;
 }
 
+/** Entries guests may come from: any earlier word, narrowed by the reviewed-only setting. */
+export const guestPool = (reviewedOnly: boolean): readonly Entry[] =>
+  reviewedOnly ? content.entries.filter((e) => reviewedIds.has(e.id)) : content.entries;
+
 /** The example sentence for a learn card, respecting the reviewed-only setting. */
 export function sentenceFor(entry: Entry, reviewedOnly: boolean): Sentence | undefined {
   return content.sentences.find((s) => s.entryId === entry.id && (!reviewedOnly || s.reviewed));

@@ -13,6 +13,8 @@ const renderAt = (hash: string, progress: Progress = initialProgress()) => {
 };
 
 afterEach(() => {
+  // A CSS-module lookup for a state without a rule renders the literal class "undefined".
+  expect(document.querySelector('[class~="undefined"]')).toBeNull();
   cleanup();
   window.location.hash = '';
 });

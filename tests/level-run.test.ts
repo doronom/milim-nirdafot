@@ -24,7 +24,7 @@ const all = (outcome: Answer['outcome'], list: PracticeItem[] = items): Answer[]
 
 describe('level plan', () => {
   it('orders World 1 rounds recognition -> discrimination -> production', () => {
-    expect(planStages(1, GAME_CATALOG, 7, createRng(1))).toEqual(['pickSynonym', 'dragPairs', 'memory']);
+    expect(planStages(1, GAME_CATALOG, items, createRng(1), content)).toEqual(['pickSynonym', 'dragPairs', 'memory']);
     expect(session.run.rounds.map((r) => r.gameId)).toEqual(['pickSynonym', 'dragPairs', 'memory']);
   });
 

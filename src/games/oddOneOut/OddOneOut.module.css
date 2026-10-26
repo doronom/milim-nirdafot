@@ -1,0 +1,66 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+.sub {
+  text-align: center;
+  color: var(--text-secondary);
+}
+.guest {
+  align-self: center;
+}
+.field {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+  justify-items: center;
+}
+.bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  inline-size: calc(var(--node-size-current) * 1.6);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--border-medium) solid var(--world-primary);
+  background: radial-gradient(circle at 30% 30%, var(--surface-bright), var(--world-surface));
+  box-shadow: 0 0 var(--space-5) var(--success-glow);
+  color: var(--text);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  cursor: pointer;
+}
+.bubble:disabled {
+  cursor: default;
+}
+.safe {
+  opacity: var(--opacity-locked);
+}
+.hit {
+  border-color: var(--success);
+  color: var(--success);
+}
+.missedIntruder {
+  border-color: var(--error);
+  border-style: dashed;
+}
+.wrongPop {
+  border-color: var(--error);
+  box-shadow: 0 0 var(--space-5) var(--error-glow);
+}
+.struck {
+  text-decoration: line-through;
+}
+.tag {
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-badge);
+  background: var(--error);
+  color: var(--text-on-accent);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}

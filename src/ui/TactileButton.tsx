@@ -19,7 +19,7 @@ interface Props {
 
 /** The pushable game button: a solid lip under the face that compresses on press. */
 export function TactileButton({ children, icon, tone = 'world', size = 'md', block, to, onClick, disabled }: Props) {
-  const className = [styles.button, styles[tone], styles[size], block ? styles.block : ''].join(' ');
+  const className = [styles.button, styles[tone], styles[size] ?? '', block ? styles.block : ''].join(' ');
   const body = (
     <>
       {icon && <Icon name={icon} size={size === 'lg' ? 'lg' : 'md'} />}

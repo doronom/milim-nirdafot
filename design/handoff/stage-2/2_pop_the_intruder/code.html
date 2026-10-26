@@ -1,0 +1,381 @@
+<!DOCTYPE html><html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>מסע המילים - יער ההרחבה</title>
+<!-- Google Fonts: Rubik -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#bec8d2",
+            "on-error": "#690005",
+            "primary": "#89ceff",
+            "on-tertiary-container": "#003c16",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "secondary-container": "#ee9800",
+            "primary-container": "#0ea5e9",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-secondary-fixed": "#2a1700",
+            "inverse-on-surface": "#283044",
+            "on-primary-container": "#003751",
+            "primary-fixed-dim": "#89ceff",
+            "secondary": "#ffb95f",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "error": "#ffb4ab",
+            "on-primary": "#00344d",
+            "tertiary-container": "#00b351",
+            "error-container": "#93000a",
+            "outline": "#88929b",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-tertiary": "#003915",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-primary": "#006591",
+            "surface-tint": "#89ceff",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-surface": "#dae2fd",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "surface": "#0b1326",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-container": "#171f33",
+            "on-primary-fixed": "#001e2f",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-fixed": "#c9e6ff",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container-low": "#131b2e",
+            "tertiary": "#4ae176",
+            "inverse-surface": "#dae2fd",
+            "surface-container-highest": "#2d3449",
+            "surface-bright": "#31394d",
+            "on-background": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem",
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero-mobile": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "headline-lg": ["24px", {"lineHeight": "34px", "fontWeight": "700"}],
+            "display-hero": ["36px", {"lineHeight": "48px", "fontWeight": "800"}],
+            "headline-md": ["20px", {"lineHeight": "30px", "fontWeight": "700"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+            "label-lg": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "18px", "fontWeight": "600"}],
+            "display-hero-mobile": ["28px", {"lineHeight": "38px", "fontWeight": "800"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ambient float animations for magical bubbles */
+    @keyframes gentleFloat1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+    @keyframes gentleFloat2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-2deg); }
+    }
+    @keyframes gentleFloat3 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.92); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 0.4; }
+      100% { transform: scale(0.92); opacity: 0.9; }
+    }
+    @keyframes sparkFloat {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.2); opacity: 0; }
+    }
+
+    .float-orb-1 { animation: gentleFloat1 3.8s ease-in-out infinite; }
+    .float-orb-2 { animation: gentleFloat2 4.2s ease-in-out infinite 0.5s; }
+    .float-orb-3 { animation: gentleFloat3 3.6s ease-in-out infinite 1s; }
+    .pulse-ring { animation: pulseRing 2s ease-in-out infinite; }
+
+    /* Tactile button compress */
+    .tactile-press {
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-press:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+  </style>
+</head>
+<body class="bg-[#06140d] text-on-surface antialiased flex justify-center min-h-screen overflow-x-hidden selection:bg-tertiary-container selection:text-on-tertiary">
+<!-- Mobile Screen Container (390 x 844 target frame) -->
+<main class="w-full max-w-[390px] min-h-screen relative flex flex-col justify-between overflow-hidden shadow-2xl bg-[#081a10]">
+<!-- Forest Mystery Ambient Background & Fireflies/Canopy Glow -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+<!-- Dark emerald to midnight gradient -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#06150c] via-[#092214] to-[#040e08]"></div>
+<!-- Bio-luminescent canopy light clusters -->
+<div class="absolute -top-16 -right-12 w-64 h-64 rounded-full bg-emerald-500/15 blur-3xl"></div>
+<div class="absolute top-1/3 -left-16 w-56 h-56 rounded-full bg-teal-400/10 blur-2xl"></div>
+<div class="absolute bottom-40 right-4 w-60 h-60 rounded-full bg-lime-400/10 blur-3xl"></div>
+<!-- Subtle organic vine/branch silhouette lines -->
+<svg class="absolute top-12 left-0 w-full h-80 opacity-15 stroke-emerald-300" fill="none" viewBox="0 0 390 320">
+<path d="M-20 40 Q 90 120 180 60 T 400 90" stroke-width="2"></path>
+<path d="M-10 160 Q 140 90 260 210 T 420 140" stroke-width="1.5"></path>
+<circle class="animate-pulse" cx="85" cy="115" fill="#4ae176" r="3"></circle>
+<circle class="animate-pulse" cx="270" cy="195" fill="#89ceff" r="2.5"></circle>
+<circle class="animate-pulse" cx="190" cy="65" fill="#ffb95f" r="2"></circle>
+</svg>
+</div>
+<!-- Top Navigation & Expedition HUD -->
+<header class="relative z-20 w-full h-14 bg-surface-container/85 backdrop-blur-md px-margin flex items-center justify-between border-b border-outline-variant/40">
+<!-- Right: Back button (Arrow Forward for RTL Return) -->
+<button aria-label="חזרה" class="w-9 h-9 rounded-full bg-surface-variant/80 text-on-surface flex items-center justify-center tactile-press border-b-2 border-outline-variant active:translate-y-0.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M5 12h14"></path>
+<path d="M12 5l7 7-7 7"></path>
+</svg>
+</button>
+<!-- Center: Stage & Realm Title -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/80 border border-outline-variant/60">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span class="font-label-md text-label-md text-primary font-bold tracking-wide">יער ההרחבה · שלב 2.3</span>
+</div>
+<!-- Left: Streak Counter & XP Badge -->
+<div class="flex items-center gap-2">
+<!-- Streak fire pill -->
+<div class="flex items-center gap-1 bg-secondary-container/20 border border-secondary-container/50 px-2 py-0.5 rounded-full">
+<svg class="w-4 h-4 text-secondary fill-secondary" viewBox="0 0 24 24">
+<path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.61 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.41 4.62-2.78.39 1.25.59 2.59.59 3.97 0 2.8-2.14 5.07-4.8 5.07z"></path>
+</svg>
+<span class="font-label-sm text-label-sm font-bold text-secondary">5 ימים</span>
+</div>
+<!-- XP Badge -->
+<div class="bg-surface-bright/70 border border-outline-variant/50 px-2.5 py-0.5 rounded-full font-label-md text-label-md font-bold text-primary">
+          XP 265
+        </div>
+</div>
+</header>
+<!-- Main Content Area: Mission Quest Canvas -->
+<div class="relative z-10 flex-1 flex flex-col justify-between px-margin pt-3 pb-2">
+<!-- Question Prompt Header -->
+<section class="text-center pt-1 pb-1">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-tertiary font-label-sm text-label-sm mb-2 shadow-inner">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+</svg>
+<span class="">מיני-משחק: פוצץ את הפולש</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          איזו מילה אינה שייכת לקבוצה?
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 text-emerald-200/80">
+          פוצצו את הבועה של המילה שאינה נרדפת לשאר
+        </p>
+</section>
+<!-- 4 Floating Bio-luminescent Bubbles Arena -->
+<section class="relative w-full h-[290px] my-auto flex items-center justify-center">
+<!-- Center Group Aura Guide (Glowing Topic Marker) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-44 h-44 rounded-full border border-dashed border-emerald-500/20 bg-emerald-950/20 flex flex-col items-center justify-center p-2 text-center backdrop-blur-[2px]">
+<span class="text-[11px] font-medium text-emerald-300/60 uppercase tracking-widest">נושא מאחד</span>
+<span class="font-headline-sm text-headline-sm text-emerald-200 font-bold">שמחה ואושר</span>
+</div>
+</div>
+<!-- Bubble 1: "עליז" (Top-Right) -->
+<div class="absolute top-2 right-4 float-orb-1">
+<button class="relative w-28 h-28 rounded-full flex flex-col items-center justify-center backdrop-blur-md bg-gradient-to-br from-emerald-400/25 via-emerald-800/40 to-teal-950/70 border-2 border-emerald-300/50 shadow-[0_8px_24px_rgba(16,185,129,0.25)] tactile-press">
+<!-- Glass Specular Highlight arc -->
+<div class="absolute top-2 left-4 w-12 h-6 rounded-full bg-white/40 blur-[1px] transform -rotate-45 pointer-events-none"></div>
+<div class="absolute bottom-2 right-4 w-4 h-2 rounded-full bg-emerald-200/30 blur-[1px] pointer-events-none"></div>
+<!-- Word -->
+<span class="font-headline-md text-headline-md font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">עליז</span>
+<!-- Tag -->
+<span class="font-label-sm text-[10px] text-emerald-200/90 font-medium mt-0.5">נרדפת</span>
+</button>
+</div>
+<!-- Bubble 2: "מאושר" (Top-Left) -->
+<div class="absolute top-3 left-4 float-orb-2">
+<button class="relative w-28 h-28 rounded-full flex flex-col items-center justify-center backdrop-blur-md bg-gradient-to-br from-emerald-400/25 via-emerald-800/40 to-teal-950/70 border-2 border-emerald-300/50 shadow-[0_8px_24px_rgba(16,185,129,0.25)] tactile-press">
+<!-- Glass Specular Highlight arc -->
+<div class="absolute top-2 left-4 w-12 h-6 rounded-full bg-white/40 blur-[1px] transform -rotate-45 pointer-events-none"></div>
+<div class="absolute bottom-2 right-4 w-4 h-2 rounded-full bg-emerald-200/30 blur-[1px] pointer-events-none"></div>
+<!-- Word -->
+<span class="font-headline-md text-headline-md font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">מאושר</span>
+<!-- Tag -->
+<span class="font-label-sm text-[10px] text-emerald-200/90 font-medium mt-0.5">נרדפת</span>
+</button>
+</div>
+<!-- Bubble 3: "צוהל" (Bottom-Right) -->
+<div class="absolute bottom-3 right-5 float-orb-3">
+<button class="relative w-28 h-28 rounded-full flex flex-col items-center justify-center backdrop-blur-md bg-gradient-to-br from-emerald-400/25 via-emerald-800/40 to-teal-950/70 border-2 border-emerald-300/50 shadow-[0_8px_24px_rgba(16,185,129,0.25)] tactile-press">
+<!-- Glass Specular Highlight arc -->
+<div class="absolute top-2 left-4 w-12 h-6 rounded-full bg-white/40 blur-[1px] transform -rotate-45 pointer-events-none"></div>
+<div class="absolute bottom-2 right-4 w-4 h-2 rounded-full bg-emerald-200/30 blur-[1px] pointer-events-none"></div>
+<!-- Word -->
+<span class="font-headline-md text-headline-md font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">צוהל</span>
+<!-- Tag -->
+<span class="font-label-sm text-[10px] text-emerald-200/90 font-medium mt-0.5">נרדפת</span>
+</button>
+</div>
+<!-- Bubble 4 (INTRUDER - POPPED STATE): "עצוב" (Bottom-Left) -->
+<div class="absolute bottom-1 left-3">
+<div class="relative w-32 h-32 flex flex-col items-center justify-center">
+<!-- Warning/Alert soft feedback ring -->
+<div class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-red-950/30 pulse-ring"></div>
+<div class="absolute -inset-2 rounded-full border border-dashed border-red-400/40 animate-spin" style="animation-duration: 18s;"></div>
+<!-- Burst particles & sparks (SVG vectors) -->
+<svg class="absolute -inset-4 w-40 h-40 pointer-events-none" fill="none" viewBox="0 0 160 160">
+<!-- Popped bubble shards/splatters -->
+<circle class="opacity-90" cx="28" cy="32" fill="#ffb4ab" r="3"></circle>
+<circle class="opacity-80" cx="132" cy="30" fill="#f87171" r="2.5"></circle>
+<circle class="opacity-75" cx="20" cy="115" fill="#fca5a5" r="3.5"></circle>
+<circle class="opacity-90" cx="140" cy="110" fill="#ef4444" r="2"></circle>
+<circle class="opacity-80" cx="80" cy="12" fill="#fecaca" r="2.5"></circle>
+<circle class="opacity-85" cx="80" cy="150" fill="#f87171" r="3"></circle>
+<!-- Burst rays -->
+<path d="M42 45 L30 35 M118 45 L130 35 M42 115 L28 126 M118 115 L132 126" stroke="#ffb4ab" stroke-linecap="round" stroke-width="2"></path>
+<!-- Popped arc remnants -->
+<path d="M50 25 A 45 45 0 0 1 110 25" opacity="0.6" stroke="#ef4444" stroke-dasharray="4 6" stroke-width="2"></path>
+<path d="M30 65 A 45 45 0 0 0 45 125" opacity="0.6" stroke="#ef4444" stroke-dasharray="3 5" stroke-width="2"></path>
+</svg>
+<!-- Intruder Core Node -->
+<div class="relative z-10 flex flex-col items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-red-950/90 via-red-900/70 to-surface-container border-2 border-red-400 shadow-[0_0_20px_rgba(239,68,68,0.45)]">
+<!-- Popped badge marker -->
+<span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white mb-0.5 shadow">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+<path d="M18 6L6 18M6 6l12 12"></path>
+</svg>
+</span>
+<span class="font-headline-md text-headline-md font-extrabold text-red-200 line-through decoration-red-400 decoration-2">רגוע</span>
+<span class="font-label-sm text-[10px] text-red-300 font-semibold tracking-wide">
+                הפולש!
+              </span>
+</div>
+<!-- "הפולש נחשף!" Floating indicator banner -->
+<div class="absolute -bottom-3 bg-red-600 text-white font-label-sm text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-lg border border-red-300/50 flex items-center gap-1 z-20">
+<svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+<path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10h2v4h-2zm0 6h2v2h-2z"></path>
+</svg>
+<span class="">הפולש נחשף!</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Card: Explanation & Relation Proof -->
+<section class="relative z-20 mt-2 mb-2 bg-surface-container-high/90 backdrop-blur-md rounded-2xl p-3.5 border-2 border-outline-variant/50 shadow-xl">
+<!-- Status indicator bar -->
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant/40">
+<div class="flex items-center gap-1.5 text-tertiary">
+<svg class="w-5 h-5 fill-tertiary" viewBox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+</svg>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">פיצוח מדויק! (+20 XP)</span>
+</div>
+<span class="font-label-sm text-[11px] text-tertiary-fixed-dim bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 font-medium">קשר סמנטי</span>
+</div>
+<!-- Clean Relationship Line directly from data -->
+<div class="bg-surface-container-lowest/80 rounded-xl p-2.5 border border-outline-variant/40 flex flex-col gap-1">
+<div class="font-body-sm text-body-sm text-on-surface flex items-center gap-1 flex-wrap font-medium"><span class="text-emerald-300 font-bold">עליז, מאושר, צוהל</span><span class="text-outline">=</span><span class="text-tertiary font-bold">שמח</span><span class="text-outline-variant mx-1">|</span><span class="text-red-300 font-bold">הפולש: רגוע</span></div>
+<p class="font-body-sm text-[12px] text-on-surface-variant">המילים מתארות שמחה והתלהבות, בעוד "רגוע" שייך לקבוצת רוגע ושלווה.</p>
+</div>
+<!-- Secondary Parent Feedback Button -->
+<div class="mt-2.5 flex items-center justify-between">
+<button class="inline-flex items-center gap-1 text-[12px] text-on-surface-variant hover:text-on-surface transition-colors py-1 px-2 rounded-lg bg-surface-container/60 hover:bg-surface-bright border border-outline-variant/30" id="flag-btn" onclick="toggleParentAlert()">
+<!-- Small Flag SVG Icon -->
+<svg class="w-3.5 h-3.5 text-secondary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+<line x1="4" x2="4" y1="22" y2="15"></line>
+</svg>
+<span class="">גם זו תשובה נכונה?</span>
+</button>
+<span class="text-[11px] text-outline font-medium">רמזים: 3/3 נותרו</span>
+</div>
+<!-- Subtle Alert Banner on Tap (Hidden by default, toggled via JS) -->
+<div class="hidden mt-2 p-2 bg-emerald-950/90 border border-emerald-500/50 rounded-xl flex items-center gap-2 text-emerald-200 animate-fadeIn" id="parent-alert">
+<svg class="w-4 h-4 text-tertiary flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span class="font-label-sm text-[12px] font-medium">תודה, הורה יבדוק את זה</span>
+</div>
+</section>
+<!-- Primary Action Drawer Button -->
+<footer class="w-full pb-1">
+<button class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-headline-sm text-headline-sm font-extrabold shadow-lg border-b-4 border-green-800 flex items-center justify-center gap-2 tactile-press">
+<span class="">לשאלה הבאה</span>
+<svg class="w-5 h-5 transform -rotate-180" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24">
+<path d="M5 12h14"></path>
+<path d="M12 5l7 7-7 7"></path>
+</svg>
+</button>
+</footer>
+</div>
+</main>
+<!-- Interactive script for parent review feedback -->
+<script>
+    function toggleParentAlert() {
+      const alertBox = document.getElementById('parent-alert');
+      const flagBtn = document.getElementById('flag-btn');
+      
+      if (alertBox.classList.contains('hidden')) {
+        alertBox.classList.remove('hidden');
+        flagBtn.classList.add('bg-surface-bright', 'border-secondary/40');
+      } else {
+        alertBox.classList.add('hidden');
+        flagBtn.classList.remove('bg-surface-bright', 'border-secondary/40');
+      }
+    }
+  </script>
+
+
+</body></html>

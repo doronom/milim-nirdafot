@@ -9,7 +9,7 @@ import { finishRound, isRunDone, levelOutcome, type LevelOutcome, type LevelRun 
 import { currentLevel, isLevelUnlocked, recordLevel } from '../engine/progress';
 import { reportAlsoCorrect, listReports, pendingKeys } from '../engine/review-queue';
 import { createRng } from '../engine/rng';
-import { content, displayWord, entryPool, graph, itemLabel, layout, links, sentenceFor } from '../app/data';
+import { content, displayWord, entryPool, graph, guestPool, itemLabel, layout, links, sentenceFor } from '../app/data';
 import { GameEnvContext } from '../games/env-context';
 import { pairKey } from '../games/practice';
 import { createGames, REVIEW_GAME } from '../games/registry';
@@ -110,7 +110,9 @@ function LevelPlayer({
   const store = useStore();
   const { progress, update } = useProgress();
   // Snapshot the Leitner state at the start, so the session does not shift while it is played.
-  const [session] = useState(() => buildLevelSession(level, content, progress.leitner, seed));
+  const [session] = useState(() =>
+    buildLevelSession(level, content, progress.leitner, seed, { guestPool: guestPool(progress.settings.reviewedOnly) }),
+  );
   const [phase, setPhase] = useState<Phase>('learn');
   const [known, setKnown] = useState<string[]>([]);
   const [run, setRun] = useState(session.run);
@@ -185,6 +187,7 @@ function LevelPlayer({
         : station?.title;
   const game = plan ? games.get(plan.gameId) : undefined;
   const nextLevel = finished?.nextId ? findLevel(layout, finished.nextId) : null;
+  const newItems = session.items.filter((i) => !i.isGuest);
   const practise = (finished?.outcome.missed ?? [])
     .map((key) => session.items.find((i) => i.key === key))
     .filter((i): i is PracticeItem => Boolean(i))
@@ -230,8 +233,8 @@ function LevelPlayer({
               stars={finished.outcome.stars}
               accuracy={finished.outcome.accuracy}
               xp={finished.xp}
-              wordsLearned={session.items.length - finished.outcome.missed.length}
-              wordsTotal={session.items.length}
+              wordsLearned={newItems.filter((i) => !finished.outcome.missed.includes(i.key)).length}
+              wordsTotal={newItems.length}
               practise={practise}
               nextTo={nextLevel ? `/level/${nextLevel.level.id}` : undefined}
               nextLabel={nextLevel ? `לשלב הבא (${levelName(nextLevel.level, nextLevel.station)})` : undefined}

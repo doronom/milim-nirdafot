@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - יער ההרחבה</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface-variant": "#bec8d2",
+            "on-error": "#690005",
+            "primary": "#89ceff",
+            "on-tertiary-container": "#003c16",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "secondary-container": "#ee9800",
+            "primary-container": "#0ea5e9",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-secondary-fixed": "#2a1700",
+            "inverse-on-surface": "#283044",
+            "on-primary-container": "#003751",
+            "primary-fixed-dim": "#89ceff",
+            "secondary": "#ffb95f",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#ffddb8",
+            "surface-dim": "#0b1326",
+            "outline-variant": "#3e4850",
+            "on-secondary-container": "#5b3800",
+            "error": "#ffb4ab",
+            "on-primary": "#00344d",
+            "tertiary-container": "#00b351",
+            "error-container": "#93000a",
+            "outline": "#88929b",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-tertiary": "#003915",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-primary": "#006591",
+            "surface-tint": "#89ceff",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-surface": "#dae2fd",
+            "on-secondary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "surface": "#0b1326",
+            "background": "#0b1326",
+            "surface-container-lowest": "#060e20",
+            "surface-container": "#171f33",
+            "on-primary-fixed": "#001e2f",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-fixed": "#c9e6ff",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container-low": "#131b2e",
+            "tertiary": "#4ae176",
+            "inverse-surface": "#dae2fd",
+            "surface-container-highest": "#2d3449",
+            "surface-bright": "#31394d",
+            "on-background": "#dae2fd"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "0.75rem",
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter-tablet": "1rem",
+            "margin-tablet": "1.5rem",
+            "space-lg": "1rem"
+          },
+          fontFamily: {
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "label-md": ["Rubik"],
+            "display-hero-mobile": ["Rubik"]
+          },
+          fontSize: {
+            "headline-sm": ["18px", { lineHeight: "26px", fontWeight: "600" }],
+            "headline-lg": ["24px", { lineHeight: "34px", fontWeight: "700" }],
+            "display-hero": ["36px", { lineHeight: "48px", fontWeight: "800" }],
+            "headline-md": ["20px", { lineHeight: "30px", fontWeight: "700" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "body-sm": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+            "body-md": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+            "label-lg": ["16px", { lineHeight: "22px", fontWeight: "600" }],
+            "label-md": ["14px", { lineHeight: "18px", fontWeight: "600" }],
+            "display-hero-mobile": ["28px", { lineHeight: "38px", fontWeight: "800" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tactile-btn {
+      transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+    .forest-runes {
+      background-image: radial-gradient(circle at 50% 50%, #173824 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex justify-center antialiased">
+<!-- Mobile Portrait Shell (390px locked container) -->
+<div class="w-full max-w-md min-h-screen bg-[#07130c] flex flex-col relative overflow-hidden pb-20 shadow-2xl border-x border-outline-variant/30">
+<!-- Subtle Ambient Forest Foliage Gradient Overlay -->
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0b2b18]/40 via-transparent to-[#07130c] z-0"></div>
+<!-- Top Expedition HUD Bar -->
+<header class="sticky top-0 z-40 bg-surface-container/90 backdrop-blur-md border-b border-outline-variant/50 px-margin h-14 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<button aria-label="חזרה" class="w-9 h-9 rounded-xl bg-surface-container-high border-b-2 border-outline-variant flex items-center justify-center text-primary tactile-btn">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+</button>
+<div class="flex flex-col text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">יער ההרחבה · שלב 2.1</span>
+<span class="font-label-sm text-label-sm text-[#4ae176]">איך זה נראה? גודל וצורה</span>
+</div>
+</div>
+<!-- XP Badge -->
+<div class="flex items-center gap-1.5 bg-surface-container-high px-space-md py-1 rounded-full border border-secondary/30 shadow-inner">
+<svg class="w-4 h-4 text-secondary fill-secondary" viewbox="0 0 24 24">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+</svg>
+<span class="font-label-md text-label-md font-bold text-secondary tracking-wide">180 XP</span>
+</div>
+</header>
+<!-- Main Mission Canvas -->
+<main class="flex-1 px-margin py-space-md flex flex-col z-10 gap-space-md">
+<!-- Grid Dimension Mode Toggle -->
+<div class="bg-surface-container-lowest p-1 rounded-xl flex items-center border border-outline-variant/60 shadow-inner">
+<button class="flex-1 py-1.5 px-space-sm rounded-lg bg-[#14532d] text-tertiary-fixed font-label-md text-label-md font-bold text-center border-b-2 border-[#166534] shadow-sm">
+          רשת 6 זוגות (12 קלפים)
+        </button>
+<button class="flex-1 py-1.5 px-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md font-medium text-center hover:text-on-surface transition-colors">
+          רשת 8 זוגות (16 קלפים)
+        </button>
+</div>
+<!-- Station Quest Banner -->
+<div class="flex items-center justify-between bg-surface-container/70 border border-[#166534]/50 rounded-xl px-space-md py-2 backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-md bg-[#14532d] flex items-center justify-center text-tertiary">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" width="18" x="3" y="3"></rect>
+<path d="m9 12 2 2 4-4"></path>
+</svg>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">התאם מילים נרדפות בצמד</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-2 py-0.5 rounded-md border border-secondary/30">
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24">
+<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+</svg>
+<span>+15 XP לכל התאמה</span>
+</div>
+</div>
+<!-- 12-Card Memory Grid (3x4 Layout) -->
+<div class="grid grid-cols-3 gap-space-sm flex-1 my-auto">
+<!-- Card 1: MATCHED PAIR - ענק (Face-up resolved) -->
+<div class="aspect-[3/4] bg-[#0c2a18] rounded-xl border-2 border-[#22c55e] border-b-4 border-b-[#15803d] p-2 flex flex-col justify-between items-center relative shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+<div class="w-full flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-[#86efac] font-bold">b031</span>
+<span class="w-5 h-5 rounded-full bg-[#15803d] flex items-center justify-center text-white">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-white tracking-wide">ענק</span>
+<span class="font-label-sm text-label-sm text-[#4ae176]/80">גודל</span>
+</div>
+<!-- Card 2: IN PROGRESS PAIR - אפל (Face-up cyan-gold glow) -->
+<div class="aspect-[3/4] bg-[#002838] rounded-xl border-2 border-primary border-b-4 border-b-[#0284c7] p-2 flex flex-col justify-between items-center relative shadow-[0_0_14px_rgba(14,165,233,0.45)] transform -translate-y-0.5">
+<div class="w-full flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary font-bold">b036</span>
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-white tracking-wide">אפל</span>
+<span class="font-label-sm text-label-sm text-primary-fixed">תאורה</span>
+</div>
+<!-- Card 3: MATCHED PAIR - עצום (Face-up resolved) -->
+<div class="aspect-[3/4] bg-[#0c2a18] rounded-xl border-2 border-[#22c55e] border-b-4 border-b-[#15803d] p-2 flex flex-col justify-between items-center relative shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+<div class="w-full flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-[#86efac] font-bold">b031</span>
+<span class="w-5 h-5 rounded-full bg-[#15803d] flex items-center justify-center text-white">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-white tracking-wide">עצום</span>
+<span class="font-label-sm text-label-sm text-[#4ae176]/80">גודל</span>
+</div>
+<!-- Card 4: IN PROGRESS PAIR - חשוך (Face-up cyan-gold glow) -->
+<div class="aspect-[3/4] bg-[#002838] rounded-xl border-2 border-primary border-b-4 border-b-[#0284c7] p-2 flex flex-col justify-between items-center relative shadow-[0_0_14px_rgba(14,165,233,0.45)] transform -translate-y-0.5">
+<div class="w-full flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary font-bold">b036</span>
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-white tracking-wide">חשוך</span>
+<span class="font-label-sm text-label-sm text-primary-fixed">תאורה</span>
+</div>
+<!-- Card 5: FACE-DOWN (Leaf & Compass Pattern) -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<!-- Embossed Explorer Rune Leaf/Compass SVG -->
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+<path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"></path>
+</svg>
+</div>
+</button>
+<!-- Card 6: FACE-DOWN (Card concealing "זעיר") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.5 10-10 10Z"></path>
+<path d="M2 21c0-3 1.85-5.36 5.08-6"></path>
+</svg>
+</div>
+</button>
+<!-- Card 7: FACE-DOWN (Card concealing "קטן") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+<path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"></path>
+</svg>
+</div>
+</button>
+<!-- Card 8: FACE-DOWN (Card concealing "רחב") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.5 10-10 10Z"></path>
+<path d="M2 21c0-3 1.85-5.36 5.08-6"></path>
+</svg>
+</div>
+</button>
+<!-- Card 9: FACE-DOWN (Card concealing "מרווח") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+<path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"></path>
+</svg>
+</div>
+</button>
+<!-- Card 10: FACE-DOWN (Card concealing "קריר") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.5 10-10 10Z"></path>
+<path d="M2 21c0-3 1.85-5.36 5.08-6"></path>
+</svg>
+</div>
+</button>
+<!-- Card 11: FACE-DOWN (Card concealing "צונן") -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+<path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"></path>
+</svg>
+</div>
+</button>
+<!-- Card 12: FACE-DOWN (Mystery Card) -->
+<button aria-label="הפוך קלף" class="tactile-btn aspect-[3/4] bg-[#132e1f] rounded-xl border-2 border-[#1e462f] border-b-4 border-b-[#0a1e13] p-2 flex flex-col items-center justify-center relative forest-runes group shadow-md">
+<div class="w-10 h-10 rounded-full border border-[#2d5f41] flex items-center justify-center bg-[#0d2116] group-hover:border-[#4ae176] transition-colors">
+<svg class="w-6 h-6 text-[#2d5f41] group-hover:text-[#4ae176] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.5 10-10 10Z"></path>
+<path d="M2 21c0-3 1.85-5.36 5.08-6"></path>
+</svg>
+</div>
+</button>
+</div>
+<!-- Expedition Progress Tracker -->
+<div class="bg-surface-container rounded-xl p-space-sm border border-outline-variant/60 flex flex-col gap-1.5 shadow-md">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface-variant font-medium">התקדמות במסע</span>
+<span class="text-tertiary font-bold tracking-wide">זוגות שנמצאו: 2 מתוך 6</span>
+</div>
+<!-- Segmented Tracker -->
+<div class="w-full h-3 bg-surface-container-lowest rounded-full overflow-hidden p-0.5 flex gap-1">
+<div class="h-full w-1/3 bg-[#22c55e] rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+<div class="h-full w-2/3 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+<!-- Mascot Tip Card: מצפוני (Compass Guide) -->
+<div class="bg-gradient-to-l from-surface-container-high to-[#0b2b18] border border-[#22c55e]/40 rounded-2xl p-space-md flex items-center gap-space-md shadow-lg relative overflow-hidden">
+<div class="absolute -left-6 -bottom-6 w-20 h-20 bg-[#22c55e]/10 rounded-full blur-xl pointer-events-none"></div>
+<!-- Mascot Compass Badge -->
+<div class="w-12 h-12 rounded-2xl bg-[#14532d] border-2 border-[#4ae176] flex-shrink-0 flex items-center justify-center text-[#89ceff] shadow-md">
+<svg class="w-7 h-7 text-secondary fill-secondary/20" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="none" r="10" stroke="currentColor" stroke-width="2"></circle>
+<polygon fill="#ffb95f" points="12,4 15,12 12,20 9,12"></polygon>
+<circle cx="12" cy="12" fill="#ffffff" r="2"></circle>
+</svg>
+</div>
+<!-- Tip Text -->
+<div class="flex flex-col text-right">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-secondary">מצפוני מגלה:</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-[#003c16] px-1.5 py-0.2 rounded font-semibold">מדריך שדה</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug mt-0.5">
+            קשר מעולה! אפל וחשוך מתארים מקום ללא אור
+          </p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component Anchor) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-space-xs max-w-md mx-auto bg-surface-container-high border-t border-outline-variant">
+<!-- Nav Item 1: מפה -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">מפה</span>
+</a>
+<!-- Nav Item 2: הרפתקה (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-space-md py-space-xs border-b-4 border-on-primary-container active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span class="font-label-sm text-label-sm font-bold mt-0.5">הרפתקה</span>
+</a>
+<!-- Nav Item 3: אוצרות -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+<span class="font-label-sm text-label-sm mt-0.5">אוצרות</span>
+</a>
+<!-- Nav Item 4: פרופיל -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-md py-space-xs hover:bg-surface-bright active:translate-y-0.5 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[24px]">military_tech</span>
+<span class="font-label-sm text-label-sm mt-0.5">פרופיל</span>
+</a>
+</nav>
+</div>
+</body></html>

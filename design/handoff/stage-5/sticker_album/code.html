@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>אלבום מדבקות המסע - מסע המילים</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#ee9800",
+            "inverse-primary": "#006591",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary-container": "#0ea5e9",
+            "on-surface-variant": "#bec8d2",
+            "on-background": "#dae2fd",
+            "on-tertiary-container": "#003c16",
+            "on-primary-fixed-variant": "#004c6e",
+            "tertiary-container": "#00b351",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary": "#003915",
+            "on-secondary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#002109",
+            "inverse-on-surface": "#283044",
+            "surface-container": "#171f33",
+            "on-primary-container": "#003751",
+            "outline-variant": "#3e4850",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-dim": "#0b1326",
+            "tertiary-fixed": "#6bff8f",
+            "surface-container-low": "#131b2e",
+            "error": "#ffb4ab",
+            "on-error": "#690005",
+            "surface-container-highest": "#2d3449",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#2d3449",
+            "background": "#0b1326",
+            "surface": "#0b1326",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-container-high": "#222a3d",
+            "error-container": "#93000a",
+            "primary-fixed": "#c9e6ff",
+            "surface-bright": "#31394d",
+            "tertiary": "#4ae176",
+            "secondary-fixed": "#ffddb8",
+            "inverse-surface": "#dae2fd",
+            "on-primary": "#00344d",
+            "surface-container-lowest": "#060e20",
+            "secondary-fixed-dim": "#ffb95f",
+            "outline": "#88929b",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "secondary": "#ffb95f",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-tint": "#89ceff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-md": "0.75rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Tactile button & card press animations */
+    .tactile-card {
+      transition: transform 0.08s ease, border-bottom-width 0.08s ease;
+    }
+    .tactile-card:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+
+    /* Ambient pulse for unplaced sticker */
+    @keyframes sticker-glow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(74, 225, 118, 0.45)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 18px rgba(74, 225, 118, 0.85)); transform: scale(1.02); }
+    }
+    .pulse-glow {
+      animation: sticker-glow 2.5s infinite ease-in-out;
+    }
+
+    /* Hide scrollbars for slick mobile tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md select-none overflow-x-hidden antialiased">
+<!-- Outer Mobile Container Frame (Base 390x844 mechanics) -->
+<div class="relative w-full max-w-[420px] min-h-screen mx-auto bg-surface-container-lowest flex flex-col justify-between pb-28 shadow-2xl">
+<!-- TOP APP BAR (Shared Component Anchor) -->
+<header class="sticky top-0 left-0 w-full z-40 bg-surface-container shadow-sm border-b border-outline-variant px-margin py-2.5 flex items-center justify-between">
+<!-- Trailing Action: Back button -->
+<button aria-label="חזרה" class="w-10 h-10 rounded-xl bg-surface-container-high border-b-2 border-outline-variant flex items-center justify-center text-primary active:translate-y-0.5 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+<!-- Center Headline and Journey Tracker -->
+<div class="flex flex-col items-center">
+<h1 class="text-headline-sm font-headline-sm text-on-surface font-bold tracking-tight">
+          אלבום מדבקות המסע
+        </h1>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span class="text-label-sm font-label-sm text-primary font-semibold">8 מתוך 16 מדבקות נאספו</span>
+</div>
+</div>
+<!-- Leading Relic Counter / Star Level -->
+<div class="flex items-center gap-1 bg-surface-container-high px-2.5 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined filled text-secondary text-[18px]">hotel_class</span>
+<span class="text-label-sm font-label-sm font-bold text-secondary">520</span>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 px-margin pt-space-md flex flex-col gap-space-lg">
+<!-- Overall Progress Track Bar -->
+<section class="bg-surface-container-low p-space-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-center text-label-md font-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-tertiary">auto_stories</span>
+            התקדמות אוסף השפה
+          </span>
+<span class="text-primary font-bold">50% הושלם</span>
+</div>
+<!-- Progress track -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden p-0.5 border border-outline-variant/60">
+<div class="h-full bg-gradient-to-l from-primary via-tertiary to-secondary rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</section>
+<!-- HORIZONTAL WORLDS CAROUSEL / SELECTOR -->
+<nav aria-label="בחירת עולם" class="flex gap-2.5 overflow-x-auto no-scrollbar py-1 -mx-margin px-margin">
+<!-- World 1: Harbour -->
+<button class="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant hover:border-primary transition-all text-right">
+<div class="w-7 h-7 rounded-lg bg-primary-container/20 border border-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">anchor</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-on-surface font-semibold">נמל היסודות</div>
+<div class="text-[11px] leading-tight text-tertiary font-bold">4/4 הושלם</div>
+</div>
+</button>
+<!-- World 2: Forest (Active) -->
+<button class="flex-shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-high border-2 border-tertiary shadow-md text-right relative overflow-hidden">
+<div class="absolute -right-1 -top-1 w-3 h-3 bg-tertiary rounded-full"></div>
+<div class="w-7 h-7 rounded-lg bg-tertiary-container/30 border border-tertiary flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">park</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-on-surface font-bold">יער ההרחבה</div>
+<div class="text-[11px] leading-tight text-secondary font-bold">3/4 כמעט מלא</div>
+</div>
+</button>
+<!-- World 3: Mountains -->
+<button class="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant opacity-80 hover:opacity-100 transition-all text-right">
+<div class="w-7 h-7 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">terrain</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-on-surface font-semibold">הרי הדיוק</div>
+<div class="text-[11px] leading-tight text-on-surface-variant">1/4 מדבקות</div>
+</div>
+</button>
+<!-- World 4: Summit Tower (Locked) -->
+<button class="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 opacity-55 text-right">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-medium">מגדל המומחים</div>
+<div class="text-[11px] leading-tight text-outline">0/4 נעול</div>
+</div>
+</button>
+</nav>
+<!-- ACTIVE WORLD STAMP GRID (יער ההרחבה) -->
+<section class="bg-surface-container-low rounded-2xl border-2 border-outline-variant/80 p-space-md shadow-lg relative overflow-hidden">
+<!-- Header of Grid Canvas -->
+<div class="flex justify-between items-center mb-space-md border-b border-outline-variant/50 pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">forest</span>
+<span class="text-headline-sm font-headline-sm text-on-surface font-bold">עמוד האלבום: יער ההרחבה</span>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-tertiary-fixed font-bold">3/4 מוצמדים</span>
+</div>
+<!-- 2x2 Bento Sticker Matrix -->
+<div class="grid grid-cols-2 gap-space-md">
+<!-- Sticker 1 (Placed): עץ השורשים העתיק -->
+<div class="tactile-card group cursor-pointer bg-surface-container p-3 rounded-xl border border-tertiary-container border-b-4 border-b-tertiary-container hover:bg-surface-container-high flex flex-col items-center justify-between text-center relative shadow-sm" onclick="showStickerModal('עץ השורשים העתיק', 'שורש המילה הוא היסוד הקבוע שבו טמונה המשמעות המקורית. בדיוק כמו שורשי עץ אלון רחב!')">
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+</div>
+<!-- Sticker Graphic Token -->
+<div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-surface-container-high to-tertiary-container/40 p-2 flex items-center justify-center border-2 border-tertiary/60 shadow-inner">
+<svg class="w-14 h-14 text-tertiary" fill="currentColor" viewbox="0 0 64 64">
+<path d="M32 6c-8.8 0-16 7.2-16 16 0 4.1 1.6 7.9 4.2 10.8C18.6 34.6 16 38.9 16 44c0 1.1.2 2.2.6 3.2L12 56h8l4-6 4 6h8l4-6 4 6h8l-4.6-8.8c.4-1 .6-2.1.6-3.2 0-5.1-2.6-9.4-6.2-11.2 2.6-2.9 4.2-6.7 4.2-10.8 0-8.8-7.2-16-16-16zm-3 30.8V42h6v-5.2c5.4-1.2 9-5.9 9-11.8 0-6.6-5.4-12-12-12s-12 5.4-12 12c0 5.9 3.6 10.6 9 11.8z"></path>
+</svg>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md font-bold text-on-surface block">עץ השורשים העתיק</span>
+<span class="text-[11px] text-tertiary font-semibold block mt-0.5">לחץ לצפייה במשמעות</span>
+</div>
+</div>
+<!-- Sticker 2 (Placed): מצפן היער -->
+<div class="tactile-card group cursor-pointer bg-surface-container p-3 rounded-xl border border-primary-container border-b-4 border-b-primary-container hover:bg-surface-container-high flex flex-col items-center justify-between text-center relative shadow-sm" onclick="showStickerModal('מצפן היער', 'ניווט מדויק בין מילים נרדפות: גילוי שבילי ביטוי עשירים המכוונים אותנו אל המילה המתאימה ביותר.')">
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-surface-container-high to-primary-container/30 p-2 flex items-center justify-center border-2 border-primary/60 shadow-inner">
+<svg class="w-14 h-14 text-primary" fill="currentColor" viewbox="0 0 64 64">
+<circle cx="32" cy="32" fill="none" r="26" stroke="currentColor" stroke-width="4"></circle>
+<polygon fill="#89ceff" points="32,12 38,32 32,28"></polygon>
+<polygon fill="#0ea5e9" points="32,12 26,32 32,28"></polygon>
+<polygon fill="#bec8d2" points="32,52 38,32 32,36"></polygon>
+<polygon fill="#3e4850" points="32,52 26,32 32,36"></polygon>
+<circle cx="32" cy="32" fill="#dae2fd" r="3"></circle>
+</svg>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md font-bold text-on-surface block">מצפן היער</span>
+<span class="text-[11px] text-primary font-semibold block mt-0.5">לחץ לצפייה במשמעות</span>
+</div>
+</div>
+<!-- Sticker 3 (Placed): פרפר המילים הבהיר -->
+<div class="tactile-card group cursor-pointer bg-surface-container p-3 rounded-xl border border-secondary-container border-b-4 border-b-secondary-container hover:bg-surface-container-high flex flex-col items-center justify-between text-center relative shadow-sm" onclick="showStickerModal('פרפר המילים הבהיר', 'מטמורפוזה לשונית: כיצד מילים מתפתחות ומשנות צורה לאורך הדורות תוך שמירה על יופיין.')">
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+</div>
+<div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-surface-container-high to-secondary-container/30 p-2 flex items-center justify-center border-2 border-secondary/60 shadow-inner">
+<svg class="w-14 h-14 text-secondary" fill="currentColor" viewbox="0 0 64 64">
+<path d="M30 16c-3-6-10-8-16-6s-9 8-6 15c2 5 7 8 12 9-5 2-10 6-10 12 0 7 7 12 14 10 6-2 9-8 8-14l-2-26zm4 0c3-6 10-8 16-6s9 8 6 15c-2 5-7 8-12 9 5 2 10 6 10 12 0 7-7 12-14 10-6-2-9-8-8-14l2-26z"></path>
+<circle cx="32" cy="32" fill="#dae2fd" r="2"></circle>
+</svg>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md font-bold text-on-surface block">פרפר המילים הבהיר</span>
+<span class="text-[11px] text-secondary font-semibold block mt-0.5">לחץ לצפייה במשמעות</span>
+</div>
+</div>
+<!-- Sticker 4: Silhouette Drop Slot (טביעת אייל היער) -->
+<div class="group relative cursor-pointer bg-surface-container-lowest/90 border-2 border-dashed border-outline-variant hover:border-tertiary rounded-xl p-3 flex flex-col items-center justify-between text-center min-h-[170px] transition-all duration-300" id="drop-target-slot" onclick="placeStickerDirectly()">
+<div class="w-full flex justify-start">
+<span class="text-[10px] font-bold text-outline-variant bg-surface-container px-1.5 py-0.5 rounded">חסר</span>
+</div>
+<!-- Dark Silhouette Placeholder of Deer Footprint -->
+<div class="w-20 h-20 rounded-2xl bg-surface-container-high/40 flex items-center justify-center p-2 border border-outline-variant/40" id="silhouette-icon-wrapper">
+<svg class="w-12 h-12 text-outline-variant opacity-40 transition-transform group-hover:scale-105" fill="currentColor" viewbox="0 0 64 64">
+<!-- Deer Track Silhouette -->
+<path d="M28 14c-4.5 5.5-9 16-7 27 1.5 8 6 13 8 13s2-5 2-12c0-8-1-20-3-28zm8 0c4.5 5.5 9 16 7 27-1.5 8-6 13-8 13s-2-5-2-12c0-8 1-20 3-28z"></path>
+</svg>
+</div>
+<div class="mt-1">
+<span class="text-label-sm font-label-sm font-bold text-outline block" id="slot-label">טביעת אייל היער</span>
+<span class="text-[11px] text-primary block mt-0.5 animate-pulse" id="slot-instruction">שחרר מדבקה כאן</span>
+</div>
+</div>
+</div>
+</section>
+<!-- UNPLACED STICKERS TRAY (מגש מדבקות להדבקה) -->
+<section class="bg-surface-container p-space-md rounded-2xl border-2 border-tertiary-container shadow-xl" id="unplaced-tray">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">mark_email_unread</span>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">מדבקה חדשה ממתינה להדבקה!</span>
+</div>
+<span class="text-[11px] text-tertiary bg-tertiary/10 border border-tertiary/30 px-2 py-0.5 rounded-full font-bold">חדש</span>
+</div>
+<!-- The Waiting Sticker Card -->
+<div class="bg-surface-container-high rounded-xl p-3 border border-outline-variant flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<!-- Glowing Sticker -->
+<div class="pulse-glow cursor-grab active:cursor-grabbing w-16 h-16 rounded-xl bg-gradient-to-tr from-tertiary-container to-surface-container p-1 border-2 border-tertiary flex items-center justify-center shadow-lg" id="draggable-sticker">
+<svg class="w-10 h-10 text-tertiary-fixed" fill="currentColor" viewbox="0 0 64 64">
+<path d="M28 14c-4.5 5.5-9 16-7 27 1.5 8 6 13 8 13s2-5 2-12c0-8-1-20-3-28zm8 0c4.5 5.5 9 16 7 27-1.5 8-6 13-8 13s-2-5-2-12c0-8 1-20 3-28z"></path>
+</svg>
+</div>
+<div class="text-right">
+<div class="text-label-md font-label-md font-bold text-on-surface">טביעת אייל היער</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-[12px]">נרכשה במסע המילים הקודם</div>
+</div>
+</div>
+<!-- Action Button: Place Sticker -->
+<button class="tactile-card bg-tertiary-container hover:bg-tertiary text-on-tertiary-container font-bold px-3 py-2.5 rounded-lg border-b-4 border-b-on-tertiary-container flex items-center gap-1 text-label-sm font-label-sm flex-shrink-0" onclick="placeStickerDirectly()">
+<span>הדבק כאן</span>
+<span class="material-symbols-outlined text-[16px]">touch_app</span>
+</button>
+</div>
+</section>
+</main>
+<!-- STICKER DETAIL DRAWER / MODAL DIALOG -->
+<div class="fixed inset-0 z-50 bg-surface-dim/80 backdrop-blur-sm hidden items-end justify-center transition-all" id="sticker-modal">
+<div class="w-full max-w-[420px] bg-surface-container-high rounded-t-3xl border-t-4 border-tertiary p-space-lg flex flex-col gap-3 shadow-2xl animate-in slide-in-from-bottom duration-200">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mx-auto mb-1"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[24px]">verified</span>
+<h3 class="text-headline-md font-headline-md text-on-surface font-bold" id="modal-title">כותרת מדבקה</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="closeStickerModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Word Context Learning Card -->
+<div class="bg-surface-container p-space-md rounded-xl border border-outline-variant">
+<span class="text-label-sm font-label-sm text-secondary font-bold block mb-1">ערך לקסיקלי ומילה שנלמדה:</span>
+<div class="text-headline-sm font-headline-sm text-primary font-bold">יער עבות = חורש סבוך</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 leading-relaxed" id="modal-desc">
+            תיאור המדבקה וההקשר הלשוני שנלמד במהלך ההרפתקה במסע.
+          </p>
+</div>
+<button class="tactile-card w-full py-3 bg-primary text-on-primary font-bold rounded-xl border-b-4 border-b-inverse-primary mt-1" onclick="closeStickerModal()">
+          המשך באלבום
+        </button>
+</div>
+</div>
+<!-- BOTTOM NAVIGATION (Shared Component Anchor) -->
+<!-- Destination Rule applies: Sticker Album is a core destination in the lexical quest ecosystem -->
+<nav class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-low shadow-lg border-t border-outline-variant flex justify-around items-center h-16 px-space-sm pb-safe max-w-[420px] left-1/2 -translate-x-1/2">
+<!-- Tab 1: מסע (Explore) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 active:translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">explore</span>
+<span class="text-label-sm font-label-sm mt-0.5">מסע</span>
+</a>
+<!-- Tab 2: מפה (Map) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 active:translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">map</span>
+<span class="text-label-sm font-label-sm mt-0.5">מפה</span>
+</a>
+<!-- Tab 3: אוצר (Active Destination - Sticker Album / Relics) -->
+<a class="flex flex-col items-center justify-center text-primary-fixed-dim font-bold border-b-2 border-primary-container pb-1 active:translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined filled text-[22px]">military_tech</span>
+<span class="text-label-sm font-label-sm mt-0.5">אוצר</span>
+</a>
+<!-- Tab 4: פרופיל (Profile) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant pb-1 active:translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">פרופיל</span>
+</a>
+</nav>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    function placeStickerDirectly() {
+      const dropSlot = document.getElementById('drop-target-slot');
+      const tray = document.getElementById('unplaced-tray');
+      const iconWrapper = document.getElementById('silhouette-icon-wrapper');
+      const slotLabel = document.getElementById('slot-label');
+      const slotInst = document.getElementById('slot-instruction');
+
+      // Transform drop slot into full sticker
+      dropSlot.classList.remove('border-dashed', 'border-outline-variant', 'bg-surface-container-lowest/90');
+      dropSlot.classList.add('bg-surface-container', 'border-tertiary-container', 'border-b-4', 'border-b-tertiary-container', 'shadow-md', 'tactile-card');
+      
+      iconWrapper.className = 'w-20 h-20 rounded-2xl bg-gradient-to-tr from-surface-container-high to-tertiary-container/30 p-2 flex items-center justify-center border-2 border-tertiary shadow-inner';
+      iconWrapper.innerHTML = `
+        <svg viewBox="0 0 64 64" class="w-14 h-14 text-tertiary" fill="currentColor">
+          <path d="M28 14c-4.5 5.5-9 16-7 27 1.5 8 6 13 8 13s2-5 2-12c0-8-1-20-3-28zm8 0c4.5 5.5 9 16 7 27-1.5 8-6 13-8 13s-2-5-2-12c0-8 1-20 3-28z"/>
+        </svg>
+      `;
+
+      slotLabel.className = 'text-label-md font-label-md font-bold text-on-surface block';
+      slotInst.className = 'text-[11px] text-tertiary font-semibold block mt-0.5';
+      slotInst.innerText = 'לחץ לצפייה במשמעות';
+
+      // Update onClick to open details
+      dropSlot.onclick = function() {
+        showStickerModal('טביעת אייל היער', 'עקבות בלשניים: מעקב אחר שינוי משמעות במילים לאורך טקסטים קדומים.');
+      };
+
+      // Hide the waiting tray smoothly
+      tray.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      tray.style.opacity = '0';
+      tray.style.transform = 'translateY(15px)';
+      setTimeout(() => {
+        tray.style.display = 'none';
+      }, 400);
+
+      // Trigger Celebration Dialog
+      setTimeout(() => {
+        showStickerModal('טביעת אייל היער הודבקה בהצלחה!', 'כל הכבוד סייר מילים! השלמת 4 מתוך 4 מדבקות בעולם יער ההרחבה. המילה שנלמדה: יער עבות = חורש סבוך.');
+      }, 450);
+    }
+
+    function showStickerModal(title, description) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-desc').innerText = description;
+      const modal = document.getElementById('sticker-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeStickerModal() {
+      const modal = document.getElementById('sticker-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+  </script>
+</body></html>

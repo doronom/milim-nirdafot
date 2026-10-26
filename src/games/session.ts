@@ -1,17 +1,21 @@
 import type { WorldId } from '../config/game';
 import type { Content, Entry } from '../content/types';
 import { type Difficulty } from '../engine/adaptive';
+import { dayKey } from '../engine/dates';
 import { chooseTier } from '../engine/distractors';
+import { selectGuests } from '../engine/guests';
 import type { LevelDef } from '../engine/layout';
 import type { LeitnerState } from '../engine/leitner';
 import { planStages, startRun, type LevelRun } from '../engine/level-run';
 import { createRng } from '../engine/rng';
 import { practiceItemFor } from './practice';
-import { GAME_CATALOG } from './registry';
+import { GAME_CATALOG } from './catalog';
 import type { PracticeItem } from './types';
 
 export interface LevelSession {
+  /** The level's new entries (learn cards). */
   entries: Entry[];
+  /** New items and guests, in play order. */
   items: PracticeItem[];
   run: LevelRun;
 }
@@ -29,16 +33,29 @@ export function startDifficulty(world: WorldId, items: PracticeItem[], leitner: 
   return { tier: chooseTier({ world, box }), options: 3 };
 }
 
-/** Learn cards for the level's entries, then 3 rounds (recognition, discrimination, production), deterministic by seed. */
+export interface SessionOptions {
+  /** Entries guests may come from (the reviewed-only subset when that setting is on). */
+  guestPool?: readonly Entry[];
+  today?: string;
+}
+
+/**
+ * Learn cards for the level's new entries, then 3 rounds (recognition, discrimination, production) over the new items
+ * plus ~30% guests (due items from earlier levels), deterministic by seed. Guests skip the learn cards.
+ */
 export function buildLevelSession(
   level: LevelDef,
   content: Content,
   leitner: LeitnerState,
   seed: string,
+  { guestPool = content.entries, today = dayKey() }: SessionOptions = {},
 ): LevelSession {
   const byId = new Map(content.entries.map((e) => [e.id, e]));
   const entries = level.itemIds.map((id) => byId.get(id)!).filter(Boolean);
-  const items = entries.map((e) => practiceItemFor(e, leitner));
-  const stages = planStages(level.worldId, GAME_CATALOG, items.length, createRng(`${seed}:plan`));
+  const fresh = entries.map((e) => practiceItemFor(e, leitner));
+  const guests = selectGuests(leitner, level.itemIds, fresh.length, today, guestPool);
+  const rng = createRng(`${seed}:plan`);
+  const items = guests.length > 0 ? rng.shuffle([...fresh, ...guests]) : fresh;
+  const stages = planStages(level.worldId, GAME_CATALOG, items, rng, content);
   return { entries, items, run: startRun(stages, items, startDifficulty(level.worldId, items, leitner)) };
 }

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>מסע המילים - מגן הקפאה ורצף מסע</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-container": "#ee9800",
+            "inverse-primary": "#006591",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary-container": "#0ea5e9",
+            "on-surface-variant": "#bec8d2",
+            "on-background": "#dae2fd",
+            "on-tertiary-container": "#003c16",
+            "on-primary-fixed-variant": "#004c6e",
+            "tertiary-container": "#00b351",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary": "#003915",
+            "on-secondary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#002109",
+            "inverse-on-surface": "#283044",
+            "surface-container": "#171f33",
+            "on-primary-container": "#003751",
+            "outline-variant": "#3e4850",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-dim": "#0b1326",
+            "tertiary-fixed": "#6bff8f",
+            "surface-container-low": "#131b2e",
+            "error": "#ffb4ab",
+            "on-error": "#690005",
+            "surface-container-highest": "#2d3449",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#2d3449",
+            "background": "#0b1326",
+            "surface": "#0b1326",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-container-high": "#222a3d",
+            "error-container": "#93000a",
+            "primary-fixed": "#c9e6ff",
+            "surface-bright": "#31394d",
+            "tertiary": "#4ae176",
+            "secondary-fixed": "#ffddb8",
+            "inverse-surface": "#dae2fd",
+            "on-primary": "#00344d",
+            "surface-container-lowest": "#060e20",
+            "secondary-fixed-dim": "#ffb95f",
+            "outline": "#88929b",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "secondary": "#ffb95f",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-tint": "#89ceff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-md": "0.75rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem"
+          },
+          fontFamily: {
+            "display-hero-mobile": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          fontSize: {
+            "display-hero-mobile": ["28px", { lineHeight: "38px", fontWeight: "800" }],
+            "headline-sm": ["18px", { lineHeight: "26px", fontWeight: "600" }],
+            "body-sm": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+            "label-lg": ["16px", { lineHeight: "22px", fontWeight: "600" }],
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "display-hero": ["36px", { lineHeight: "48px", fontWeight: "800" }],
+            "body-md": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+            "headline-md": ["20px", { lineHeight: "30px", fontWeight: "700" }],
+            "headline-lg": ["24px", { lineHeight: "34px", fontWeight: "700" }],
+            "label-md": ["14px", { lineHeight: "18px", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased font-body-md select-none overflow-x-hidden min-h-screen flex justify-center selection:bg-primary-container selection:text-on-primary">
+<!-- Mobile Screen Container 390x844 RTL Base -->
+<div class="w-full max-w-[430px] min-h-screen bg-surface-container-low flex flex-col relative shadow-2xl pb-10">
+<!-- Top Expedition HUD Bar -->
+<header class="sticky top-0 z-40 bg-surface-container px-margin h-14 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<button aria-label="חזרה" class="w-10 h-10 rounded-xl bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-primary border-b-2 border-outline-variant active:translate-y-0.5 active:border-b-0 transition-all duration-75">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 12h14"></path>
+<path d="M12 5l7 7-7 7"></path>
+</svg>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">הרי הדיוק</span>
+</div>
+<!-- XP & Compass Indicator -->
+<div class="flex items-center gap-space-sm">
+<div class="bg-surface-container-high px-space-sm py-1 rounded-full flex items-center gap-1.5 border border-outline-variant">
+<svg class="w-4 h-4 text-secondary fill-secondary" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span class="font-label-md text-label-md text-secondary font-bold">420 XP</span>
+</div>
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-primary-fixed border border-outline-variant">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon fill="currentColor" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Quest Canvas -->
+<main class="flex-1 px-margin pt-space-lg flex flex-col gap-space-lg pb-6">
+<!-- Expedition Badge / Realm Pill -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-2 bg-surface-container-highest/80 px-3 py-1.5 rounded-full border border-outline-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_#0ea5e9]"></span>
+<span class="font-label-sm text-label-sm text-primary font-bold">נמל החוקרים • עולם 2</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">שבוע 3 מתוך 12</span>
+</div>
+<!-- Hero Streak Card (Glowing Flame Accent) -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-container border-2 border-outline-variant/60 shadow-lg p-space-lg flex flex-col items-center text-center">
+<!-- Ambient Glow -->
+<div class="absolute -top-12 -left-12 w-36 h-36 bg-primary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -right-10 w-32 h-32 bg-secondary/15 rounded-full blur-xl pointer-events-none"></div>
+<!-- 3D Flame Expedition Emblem -->
+<div class="relative mb-3">
+<div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-surface-container-high to-surface-container-lowest flex items-center justify-center border-b-4 border-outline-variant shadow-inner">
+<!-- Blue & Gold Flame SVG -->
+<svg class="w-12 h-12" fill="none" viewbox="0 0 48 48">
+<path d="M24 4C24 4 15 15.5 15 26C15 32.5 19.5 38 24 38C28.5 38 33 32.5 33 26C33 15.5 24 4 24 4Z" fill="url(#flame_outer)"></path>
+<path d="M24 16C24 16 19 23 19 29C19 32.8 21.2 36 24 36C26.8 36 29 32.8 29 29C29 23 24 16 24 16Z" fill="url(#flame_core)"></path>
+<path d="M24 27C24 27 21.5 30.5 21.5 33C21.5 34.6 22.6 35.8 24 35.8C25.4 35.8 26.5 34.6 26.5 33C26.5 30.5 24 27 24 27Z" fill="#ffddb8"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="flame_outer" x1="24" x2="24" y1="4" y2="38">
+<stop stop-color="#0ea5e9"></stop>
+<stop offset="0.75" stop-color="#0284c7"></stop>
+<stop offset="1" stop-color="#ffb95f"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="flame_core" x1="24" x2="24" y1="16" y2="36">
+<stop stop-color="#ffddb8"></stop>
+<stop offset="0.7" stop-color="#ffb95f"></stop>
+<stop offset="1" stop-color="#ee9800"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<!-- Tactile Mini Badge -->
+<div class="absolute -bottom-2 -left-2 bg-secondary text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-extrabold border-2 border-surface-container">
+            דרגה 3
+          </div>
+</div>
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-on-surface tracking-tight mb-1">
+          רצף של 7 ימי מסע!
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[280px]">
+          כל יום שאתה חוקר מילה חדשה, המוח מתחזק והמסע נמשך!
+        </p>
+<!-- Dynamic Cartography Ribbon -->
+<div class="w-full mt-4 pt-3 border-t border-outline-variant/50 flex items-center justify-between font-label-sm text-label-sm text-primary-fixed-dim">
+<span class="flex items-center gap-1.5">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+            שיא מסע אישי: 12 ימים
+          </span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">ללא עצירה</span>
+</div>
+</section>
+<!-- Weekly Calendar Matrix -->
+<section class="bg-surface-container rounded-2xl p-space-md border border-outline-variant/60 shadow-md">
+<div class="flex items-center justify-between mb-3 px-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">היומן השבועי</h2>
+<span class="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-1">
+<svg class="w-3.5 h-3.5" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+</svg>
+            שבוע מוגן ומלא
+          </span>
+</div>
+<!-- 7 Days Grid -->
+<div class="grid grid-cols-7 gap-1.5 text-center">
+<!-- Day 1 (Sun): Completed -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">א'</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border-b-2 border-tertiary-container flex items-center justify-center text-tertiary shadow-sm">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+</div>
+<!-- Day 2 (Mon): Completed -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">ב'</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border-b-2 border-tertiary-container flex items-center justify-center text-tertiary shadow-sm">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+</div>
+<!-- Day 3 (Tue): Completed -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">ג'</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border-b-2 border-tertiary-container flex items-center justify-center text-tertiary shadow-sm">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+</div>
+<!-- Day 4 (Wed): Freeze Shield Activated -->
+<div class="flex flex-col items-center gap-1.5 relative">
+<span class="font-label-sm text-label-sm text-primary-fixed font-bold">ד'</span>
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 border-2 border-primary border-b-4 border-b-inverse-primary flex items-center justify-center text-primary shadow-[0_0_12px_rgba(14,165,233,0.35)]">
+<!-- Snowflake SVG -->
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24">
+<line x1="12" x2="12" y1="2" y2="22"></line>
+<line x1="2" x2="22" y1="12" y2="12"></line>
+<line x1="4.93" x2="19.07" y1="4.93" y2="19.07"></line>
+<line x1="19.07" x2="4.93" y1="4.93" y2="19.07"></line>
+<circle cx="12" cy="12" fill="currentColor" r="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Day 5 (Thu): Current Day Active -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-secondary font-bold">ה' (היום)</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest border-2 border-secondary ring-2 ring-secondary/30 flex items-center justify-center text-secondary border-b-4 border-b-on-secondary-container shadow-md animate-pulse">
+<svg class="w-5 h-5 fill-secondary" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+</div>
+</div>
+<!-- Day 6 (Fri): Upcoming -->
+<div class="flex flex-col items-center gap-1.5 opacity-60">
+<span class="font-label-sm text-label-sm text-on-surface-variant">ו'</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-outline-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/40"></div>
+</div>
+</div>
+<!-- Day 7 (Sat): Upcoming -->
+<div class="flex flex-col items-center gap-1.5 opacity-60">
+<span class="font-label-sm text-label-sm text-on-surface-variant">ש'</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-outline-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/40"></div>
+</div>
+</div>
+</div>
+<!-- Shield Callout Pill -->
+<div class="mt-3 bg-surface-container-high/80 rounded-xl p-2 flex items-center gap-2 border border-outline-variant">
+<div class="w-6 h-6 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+</div>
+<p class="font-label-sm text-label-sm text-primary-fixed">
+<strong>יום ד׳ הוגן בהצלחה!</strong> מגן ההקפאה שמח לשמור על הרצף במקומך.
+          </p>
+</div>
+</section>
+<!-- Weekly Freeze Shield Card -->
+<section class="bg-surface-container rounded-2xl p-space-md border-2 border-primary/40 relative overflow-hidden shadow-lg">
+<div class="absolute -top-10 -left-10 w-28 h-28 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start gap-space-md">
+<!-- Ice Shield Crafted Icon -->
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-container/30 to-inverse-primary/40 border-2 border-primary border-b-4 border-b-inverse-primary flex-shrink-0 flex items-center justify-center text-primary shadow-[0_4px_10px_rgba(14,165,233,0.3)]">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+<line x1="12" x2="12" y1="8" y2="16"></line>
+<line x1="8" x2="16" y1="12" y2="12"></line>
+</svg>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">מגן הקפאה שבועי</h3>
+<span class="bg-primary/20 text-primary border border-primary/40 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-bold">
+                פעיל (1/1)
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+              היה לך מבחן, טיול או יום עמוס ולא הספקת לשחק? אין בעיה! המגן מופעל אוטומטית ושומר על כל ההישגים שלך ללא דאגה.
+            </p>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<svg class="w-4 h-4 text-tertiary" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+            מתחדש חינם בכל יום ראשון
+          </span>
+<button class="text-primary hover:text-primary-fixed underline font-label-sm transition-colors">
+            איך מרוויחים עוד?
+          </button>
+</div>
+</section>
+<!-- Soft Recovery / Guilt-Free Assurance Card -->
+<section class="bg-surface-container-high/60 rounded-2xl p-space-md border border-outline-variant flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex-shrink-0 flex items-center justify-center text-secondary border-b-2 border-outline-variant">
+<!-- Compass Journal Icon -->
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+</svg>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">פספסת יום בעבר? הכל בסדר!</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            הידע, המילים והניסיון שצברת שייכים לך לתמיד. כאן אין עונשים או לחץ — בכל פעם שאתה חוזר, זו פשוט הרפתקה חדשה שמתחילה.
+          </p>
+</div>
+</section>
+</main>
+<!-- Bottom Sticky Action Zone (Single Primary CTA) -->
+<div class="sticky bottom-0 z-40 bg-surface-container-low/95 backdrop-blur-md px-margin py-3 border-t border-outline-variant/60 flex flex-col gap-2">
+<!-- 3D Tactile Quest Button -->
+<button class="w-full h-14 rounded-xl bg-primary-container hover:bg-primary-container/95 text-on-primary-container font-headline-md text-headline-md font-extrabold flex items-center justify-center gap-2 border-b-4 border-inverse-primary active:translate-y-1 active:border-b-1 transition-all duration-75 shadow-lg group">
+<span>המשך מסע היום</span>
+<span class="bg-on-primary-container/20 text-on-primary-container px-2.5 py-0.5 rounded-lg font-label-md text-label-md">
+          +15 XP
+        </span>
+<svg class="w-5 h-5 transform -rotate-90 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24">
+<polyline points="6 9 12 15 18 9"></polyline>
+</svg>
+</button>
+<div class="flex items-center justify-center gap-4 text-center font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span class="flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-tertiary" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+</svg>
+          הרצף ישמר מיד בסיום השלב
+        </span>
+</div>
+</div>
+</div>
+</body></html>

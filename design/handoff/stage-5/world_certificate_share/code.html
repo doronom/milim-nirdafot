@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>תעודת סיום עולם — מסע המילים</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#ee9800",
+            "inverse-primary": "#006591",
+            "on-tertiary-fixed-variant": "#005321",
+            "primary-container": "#0ea5e9",
+            "on-surface-variant": "#bec8d2",
+            "on-background": "#dae2fd",
+            "on-tertiary-container": "#003c16",
+            "on-primary-fixed-variant": "#004c6e",
+            "tertiary-container": "#00b351",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary": "#003915",
+            "on-secondary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#002109",
+            "inverse-on-surface": "#283044",
+            "surface-container": "#171f33",
+            "on-primary-container": "#003751",
+            "outline-variant": "#3e4850",
+            "primary-fixed-dim": "#89ceff",
+            "on-surface": "#dae2fd",
+            "surface-dim": "#0b1326",
+            "tertiary-fixed": "#6bff8f",
+            "surface-container-low": "#131b2e",
+            "error": "#ffb4ab",
+            "on-error": "#690005",
+            "surface-container-highest": "#2d3449",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#2d3449",
+            "background": "#0b1326",
+            "surface": "#0b1326",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed-variant": "#653e00",
+            "surface-container-high": "#222a3d",
+            "error-container": "#93000a",
+            "primary-fixed": "#c9e6ff",
+            "surface-bright": "#31394d",
+            "tertiary": "#4ae176",
+            "secondary-fixed": "#ffddb8",
+            "inverse-surface": "#dae2fd",
+            "on-primary": "#00344d",
+            "surface-container-lowest": "#060e20",
+            "secondary-fixed-dim": "#ffb95f",
+            "outline": "#88929b",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "secondary": "#ffb95f",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-tint": "#89ceff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-md": "0.75rem",
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-sm": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "body-md": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Rubik"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex justify-center selection:bg-primary selection:text-on-primary">
+<!-- Mobile Container (390px Max Width Optimized) -->
+<div class="w-full max-w-[420px] bg-surface-container-lowest min-h-screen flex flex-col relative overflow-x-hidden shadow-2xl">
+<!-- Top Action Bar (Dedicated Linear Journey: Back + Title) -->
+<header class="sticky top-0 z-40 bg-surface-container-low/95 backdrop-blur-md px-margin h-14 flex items-center justify-between shadow-sm">
+<button aria-label="חזרה למפה" class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary border-b-2 border-outline-variant active:translate-y-0.5 active:border-b-0 transition-all" onclick="window.history.back()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">תעודת הרפתקן רשמית</h1>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container/60 border border-outline-variant flex items-center justify-center text-secondary">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+</svg>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin pt-space-md pb-space-xl flex flex-col gap-space-lg">
+<!-- Certificate Framing Section -->
+<section class="relative rounded-2xl p-1 bg-gradient-to-b from-secondary via-secondary-container to-secondary-fixed-dim shadow-xl" id="certificate-node">
+<!-- Certificate Main Parchment Surface -->
+<div class="relative bg-surface-container-low rounded-[14px] p-5 text-center overflow-hidden border border-outline-variant/60 flex flex-col items-center">
+<!-- Background Subtle Nautical Vector Accents -->
+<div class="absolute -top-12 -right-12 w-32 h-32 opacity-5 pointer-events-none text-secondary">
+<svg fill="currentColor" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="3"></circle>
+<path d="M50 5 L50 95 M5 50 L95 50 M20 20 L80 80 M20 80 L80 20"></path>
+</svg>
+</div>
+<div class="absolute -bottom-10 -left-10 w-28 h-28 opacity-5 pointer-events-none text-secondary">
+<svg fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 10 C35 10 25 25 25 45 C25 65 50 85 50 90 C50 85 75 65 75 45 C75 25 65 10 50 10 Z"></path>
+</svg>
+</div>
+<!-- Compass Header Badge -->
+<div class="relative mb-space-sm flex items-center justify-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-high border-2 border-secondary flex items-center justify-center shadow-md">
+<!-- Compass Rose SVG -->
+<svg class="w-8 h-8 text-secondary" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"></path>
+<circle class="text-surface-container-lowest" cx="12" cy="12" fill="currentColor" r="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Realm Indicator Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-primary text-label-sm font-label-sm mb-space-xs">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 13.5l9-7.5 9 7.5M4.5 12V20a1.5 1.5 0 001.5 1.5h12a1.5 1.5 0 001.5-1.5V12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>נמל היסודות · עולם 1</span>
+</div>
+<!-- Certificate Title -->
+<h2 class="text-headline-lg font-headline-lg text-secondary-fixed mb-space-xs">
+            תעודת גילוי והצטיינות
+          </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md">
+            מוענקת בגאווה ובכבוד רב לחוקר המילים
+          </p>
+<!-- Explorer Name Highlight Box -->
+<div class="w-full py-2.5 px-4 rounded-xl bg-surface-container-high/90 border border-secondary/40 shadow-inner mb-space-md">
+<div class="text-[26px] leading-8 font-extrabold text-primary tracking-wide">
+              איתי לוי
+            </div>
+<div class="text-label-sm font-label-sm text-secondary flex items-center justify-center gap-1 mt-0.5">
+<span>דרגת כבוד:</span>
+<span class="font-bold">חוקר מילים מוסמך</span>
+</div>
+</div>
+<!-- Achievement Narrative -->
+<div class="bg-surface-container-lowest/70 border border-outline-variant/50 rounded-xl p-3 mb-space-md text-right w-full">
+<div class="flex items-start gap-2.5">
+<div class="mt-1 text-tertiary">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface leading-snug">
+                השלים בהצלחה את כל תחנות נמל היסודות, פענח 24 מילים נרדפות והביס את שומר הנמל!
+              </p>
+</div>
+</div>
+<!-- Bottom Meta: Seal & Hebrew Date -->
+<div class="w-full pt-space-xs border-t border-outline-variant/40 flex items-center justify-between">
+<!-- Official Vector Gold Seal -->
+<div class="flex items-center gap-2">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<!-- Starburst Seal SVG -->
+<svg class="w-12 h-12 text-secondary drop-shadow" fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 0 L58 17 L76 11 L76 29 L94 32 L86 49 L98 62 L83 72 L86 90 L69 88 L61 104 L48 93 L36 104 L29 88 L12 90 L15 72 L0 62 L12 49 L4 32 L22 29 L22 11 L40 17 Z"></path>
+</svg>
+<svg class="w-6 h-6 text-on-secondary-container absolute" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+</svg>
+</div>
+<div class="text-right">
+<div class="text-[11px] leading-3 font-bold text-secondary-fixed">אושר רשמית</div>
+<div class="text-[10px] text-on-surface-variant font-medium">מצפוני המלווה</div>
+</div>
+</div>
+<!-- Hebrew & Gregorian Date -->
+<div class="text-left">
+<div class="text-label-sm font-label-sm text-on-surface">כ״ב בחשוון תשפ״ו</div>
+<div class="text-[11px] text-outline">15.11.2025</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Encouragement Message from Compass Buddy -->
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-high border border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary-container flex items-center justify-center flex-shrink-0 text-primary">
+<!-- Guide / Compass Face Vector -->
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M14.5 9.5L9.5 14.5M9.5 9.5l5 5"></path>
+<circle cx="12" cy="12" fill="currentColor" r="1.5"></circle>
+</svg>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+<span class="font-bold text-on-surface">טיפ ממצפוני:</span> ההורים והסבים ישמחו מאוד לראות את התעודה הזו!
+        </p>
+</div>
+<!-- Modular Sharing & Action Stack -->
+<section class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Primary WhatsApp Share Trigger -->
+<button class="w-full min-h-[52px] px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-label-lg text-label-lg flex items-center justify-center gap-3 border-b-4 border-[#128C7E] active:translate-y-[3px] active:border-b-0 transition-transform" id="whatsapp-btn">
+<!-- WhatsApp Clean SVG -->
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 18.15c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.84-3.05-.2-.31c-.83-1.32-1.27-2.86-1.27-4.46 0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4 1.55 1.55 2.4 3.61 2.4 5.8 0 4.52-3.68 8.18-8.2 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.13-.22-.21-.47-.33z"></path>
+</svg>
+<span>שתף בוואטסאפ עם המשפחה</span>
+</button>
+<!-- Secondary Save to Device Image -->
+<button class="w-full min-h-[48px] px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2.5 border-b-4 border-outline-variant active:translate-y-[3px] active:border-b-0 transition-transform" id="download-btn">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>שמור כתמונה במכשיר</span>
+</button>
+<!-- Tertiary Subtle Print Action -->
+<button class="w-full py-2.5 rounded-lg text-outline hover:text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-2 transition-colors" id="print-btn">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>הדפס תעודה לתלייה בחדר</span>
+</button>
+</section>
+</main>
+<!-- Notification Toast (Hidden by default) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-surface-container-high border border-primary text-on-surface text-body-sm shadow-2xl flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300" id="toast">
+<svg class="w-4 h-4 text-tertiary" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span id="toast-text">התעודה מוכנה לשיתוף!</span>
+</div>
+</div>
+<!-- Micro-Interactions Script -->
+<script>
+    function showNotification(message) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3200);
+    }
+
+    // WhatsApp Action
+    document.getElementById('whatsapp-btn').addEventListener('click', () => {
+      const text = encodeURIComponent("תראו! השלמתי את נמל היסודות ב'מסע המילים'!");
+      const url = `https://api.whatsapp.com/send?text=${text}`;
+      window.open(url, '_blank');
+      showNotification('פותח את וואטסאפ עם ההודעה המוכנה...');
+    });
+
+    // Image Save Fallback Action
+    document.getElementById('download-btn').addEventListener('click', () => {
+      showNotification('התעודה נשמרה בגלריית המכשיר');
+    });
+
+    // Print Action
+    document.getElementById('print-btn').addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body></html>
