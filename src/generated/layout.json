@@ -1,0 +1,1704 @@
+{
+  "worlds": [
+    {
+      "id": 1,
+      "stations": [
+        {
+          "id": "w1-emotions",
+          "worldId": 1,
+          "index": 1,
+          "kind": "category",
+          "title": "רגשות ותחושות",
+          "categoryId": "emotions",
+          "levels": [
+            {
+              "id": "w1-emotions-1",
+              "worldId": 1,
+              "stationId": "w1-emotions",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b001",
+                "b002",
+                "b004",
+                "b009",
+                "b011",
+                "b012",
+                "b013"
+              ]
+            },
+            {
+              "id": "w1-emotions-2",
+              "worldId": 1,
+              "stationId": "w1-emotions",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b014",
+                "b017",
+                "b018",
+                "b019",
+                "b024",
+                "b026"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-size-shape",
+          "worldId": 1,
+          "index": 2,
+          "kind": "category",
+          "title": "גודל וצורה",
+          "categoryId": "size-shape",
+          "levels": [
+            {
+              "id": "w1-size-shape-1",
+              "worldId": 1,
+              "stationId": "w1-size-shape",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b029",
+                "b031",
+                "b032",
+                "b034",
+                "b035",
+                "b038",
+                "b039"
+              ]
+            },
+            {
+              "id": "w1-size-shape-2",
+              "worldId": 1,
+              "stationId": "w1-size-shape",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b041",
+                "b042",
+                "b044",
+                "b045",
+                "b046",
+                "b047",
+                "b049"
+              ]
+            },
+            {
+              "id": "w1-size-shape-3",
+              "worldId": 1,
+              "stationId": "w1-size-shape",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b050",
+                "b052",
+                "b055",
+                "b057",
+                "b058",
+                "b060",
+                "b061"
+              ]
+            },
+            {
+              "id": "w1-size-shape-4",
+              "worldId": 1,
+              "stationId": "w1-size-shape",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "b062",
+                "b064",
+                "b065",
+                "b066",
+                "b067",
+                "b068"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-character",
+          "worldId": 1,
+          "index": 3,
+          "kind": "category",
+          "title": "אופי ותכונות",
+          "categoryId": "character",
+          "levels": [
+            {
+              "id": "w1-character-1",
+              "worldId": 1,
+              "stationId": "w1-character",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b071",
+                "b072",
+                "b075",
+                "b077",
+                "b078",
+                "b079",
+                "b087",
+                "b088"
+              ]
+            },
+            {
+              "id": "w1-character-2",
+              "worldId": 1,
+              "stationId": "w1-character",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b089",
+                "b090",
+                "b093",
+                "b095",
+                "b097",
+                "b098",
+                "b103",
+                "b105"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-description",
+          "worldId": 1,
+          "index": 4,
+          "kind": "category",
+          "title": "מילים לתיאור",
+          "categoryId": "description",
+          "levels": [
+            {
+              "id": "w1-description-1",
+              "worldId": 1,
+              "stationId": "w1-description",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b109",
+                "b110",
+                "b111",
+                "b112",
+                "b113",
+                "b114",
+                "b115",
+                "b116"
+              ]
+            },
+            {
+              "id": "w1-description-2",
+              "worldId": 1,
+              "stationId": "w1-description",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b117",
+                "b119",
+                "b120",
+                "b121",
+                "b122",
+                "b123",
+                "b124",
+                "b125"
+              ]
+            },
+            {
+              "id": "w1-description-3",
+              "worldId": 1,
+              "stationId": "w1-description",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b126",
+                "b127",
+                "b129",
+                "b130",
+                "b131",
+                "b132",
+                "b133",
+                "b134"
+              ]
+            },
+            {
+              "id": "w1-description-4",
+              "worldId": 1,
+              "stationId": "w1-description",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "b136",
+                "b137",
+                "b138",
+                "b139",
+                "b141",
+                "b142",
+                "b143"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-verbs-motion",
+          "worldId": 1,
+          "index": 5,
+          "kind": "category",
+          "title": "תנועה וגוף",
+          "categoryId": "verbs-motion",
+          "levels": [
+            {
+              "id": "w1-verbs-motion-1",
+              "worldId": 1,
+              "stationId": "w1-verbs-motion",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b146",
+                "b147",
+                "b150",
+                "b151",
+                "b152",
+                "b153",
+                "b155"
+              ]
+            },
+            {
+              "id": "w1-verbs-motion-2",
+              "worldId": 1,
+              "stationId": "w1-verbs-motion",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b159",
+                "b160",
+                "b161",
+                "b162",
+                "b166",
+                "b167",
+                "b169"
+              ]
+            },
+            {
+              "id": "w1-verbs-motion-3",
+              "worldId": 1,
+              "stationId": "w1-verbs-motion",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b170",
+                "b171",
+                "b172",
+                "b173",
+                "b174",
+                "b175",
+                "b176"
+              ]
+            },
+            {
+              "id": "w1-verbs-motion-4",
+              "worldId": 1,
+              "stationId": "w1-verbs-motion",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "b178",
+                "b179",
+                "b180",
+                "b181",
+                "b183",
+                "b185",
+                "b186"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-verbs-speech",
+          "worldId": 1,
+          "index": 6,
+          "kind": "category",
+          "title": "דיבור והבעה",
+          "categoryId": "verbs-speech",
+          "levels": [
+            {
+              "id": "w1-verbs-speech-1",
+              "worldId": 1,
+              "stationId": "w1-verbs-speech",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b187",
+                "b191",
+                "b192",
+                "b193",
+                "b196",
+                "b202",
+                "b205"
+              ]
+            },
+            {
+              "id": "w1-verbs-speech-2",
+              "worldId": 1,
+              "stationId": "w1-verbs-speech",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b207",
+                "b208",
+                "b210",
+                "b211",
+                "b212",
+                "b213",
+                "b214"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-verbs-mind",
+          "worldId": 1,
+          "index": 7,
+          "kind": "category",
+          "title": "חשיבה וחושים",
+          "categoryId": "verbs-mind",
+          "levels": [
+            {
+              "id": "w1-verbs-mind-1",
+              "worldId": 1,
+              "stationId": "w1-verbs-mind",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b218",
+                "b219",
+                "b220",
+                "b221",
+                "b222",
+                "b224",
+                "b226"
+              ]
+            },
+            {
+              "id": "w1-verbs-mind-2",
+              "worldId": 1,
+              "stationId": "w1-verbs-mind",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b228",
+                "b229",
+                "b230",
+                "b232",
+                "b234",
+                "b235",
+                "b236"
+              ]
+            },
+            {
+              "id": "w1-verbs-mind-3",
+              "worldId": 1,
+              "stationId": "w1-verbs-mind",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b238",
+                "b239",
+                "b240",
+                "b241",
+                "b249",
+                "b250",
+                "b251"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-verbs-action",
+          "worldId": 1,
+          "index": 8,
+          "kind": "category",
+          "title": "עשייה ופעולה",
+          "categoryId": "verbs-action",
+          "levels": [
+            {
+              "id": "w1-verbs-action-1",
+              "worldId": 1,
+              "stationId": "w1-verbs-action",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b252",
+                "b253",
+                "b256",
+                "b257",
+                "b259",
+                "b262",
+                "b265",
+                "b266"
+              ]
+            },
+            {
+              "id": "w1-verbs-action-2",
+              "worldId": 1,
+              "stationId": "w1-verbs-action",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b268",
+                "b269",
+                "b270",
+                "b271",
+                "b272",
+                "b274",
+                "b275",
+                "b276"
+              ]
+            },
+            {
+              "id": "w1-verbs-action-3",
+              "worldId": 1,
+              "stationId": "w1-verbs-action",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b277",
+                "b278",
+                "b280",
+                "b281",
+                "b284",
+                "b286",
+                "b288",
+                "b289"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-people-places",
+          "worldId": 1,
+          "index": 9,
+          "kind": "category",
+          "title": "אנשים ומקומות",
+          "categoryId": "people-places",
+          "levels": [
+            {
+              "id": "w1-people-places-1",
+              "worldId": 1,
+              "stationId": "w1-people-places",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b293",
+                "b294",
+                "b295",
+                "b296",
+                "b297",
+                "b298",
+                "b299"
+              ]
+            },
+            {
+              "id": "w1-people-places-2",
+              "worldId": 1,
+              "stationId": "w1-people-places",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b302",
+                "b303",
+                "b304",
+                "b305",
+                "b306",
+                "b307"
+              ]
+            },
+            {
+              "id": "w1-people-places-3",
+              "worldId": 1,
+              "stationId": "w1-people-places",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b308",
+                "b310",
+                "b311",
+                "b312",
+                "b313",
+                "b314"
+              ]
+            },
+            {
+              "id": "w1-people-places-4",
+              "worldId": 1,
+              "stationId": "w1-people-places",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "b315",
+                "b318",
+                "b319",
+                "b320",
+                "b321",
+                "b324"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-things-nature-ideas",
+          "worldId": 1,
+          "index": 10,
+          "kind": "category",
+          "title": "חפצים, טבע ורעיונות",
+          "categoryId": "things-nature-ideas",
+          "levels": [
+            {
+              "id": "w1-things-nature-ideas-1",
+              "worldId": 1,
+              "stationId": "w1-things-nature-ideas",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b325",
+                "b326",
+                "b327",
+                "b328",
+                "b331",
+                "b332",
+                "b336"
+              ]
+            },
+            {
+              "id": "w1-things-nature-ideas-2",
+              "worldId": 1,
+              "stationId": "w1-things-nature-ideas",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b339",
+                "b340",
+                "b343",
+                "b344",
+                "b347",
+                "b348",
+                "b349"
+              ]
+            },
+            {
+              "id": "w1-things-nature-ideas-3",
+              "worldId": 1,
+              "stationId": "w1-things-nature-ideas",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b350",
+                "b351",
+                "b353",
+                "b355",
+                "b356",
+                "b357",
+                "b358"
+              ]
+            },
+            {
+              "id": "w1-things-nature-ideas-4",
+              "worldId": 1,
+              "stationId": "w1-things-nature-ideas",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "b360",
+                "b363",
+                "b364",
+                "b365",
+                "b371",
+                "b372",
+                "b373"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w1-time-quantity",
+          "worldId": 1,
+          "index": 11,
+          "kind": "category",
+          "title": "זמן וכמות",
+          "categoryId": "time-quantity",
+          "levels": [
+            {
+              "id": "w1-time-quantity-1",
+              "worldId": 1,
+              "stationId": "w1-time-quantity",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b375",
+                "b376",
+                "b378",
+                "b380",
+                "b381",
+                "b383",
+                "b385"
+              ]
+            },
+            {
+              "id": "w1-time-quantity-2",
+              "worldId": 1,
+              "stationId": "w1-time-quantity",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b388",
+                "b389",
+                "b390",
+                "b391",
+                "b392",
+                "b395",
+                "b397"
+              ]
+            },
+            {
+              "id": "w1-time-quantity-3",
+              "worldId": 1,
+              "stationId": "w1-time-quantity",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b398",
+                "b399",
+                "b403",
+                "b407",
+                "b409",
+                "b410"
+              ]
+            }
+          ]
+        }
+      ],
+      "boss": {
+        "id": "w1-boss",
+        "worldId": 1,
+        "stationId": "w1-boss",
+        "index": 1,
+        "kind": "boss",
+        "itemIds": [],
+        "drawCount": 15
+      }
+    },
+    {
+      "id": 2,
+      "stations": [
+        {
+          "id": "w2-emotions",
+          "worldId": 2,
+          "index": 1,
+          "kind": "category",
+          "title": "רגשות ותחושות",
+          "categoryId": "emotions",
+          "levels": [
+            {
+              "id": "w2-emotions-1",
+              "worldId": 2,
+              "stationId": "w2-emotions",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b003",
+                "b005",
+                "b006",
+                "b007",
+                "b008",
+                "b010",
+                "b015"
+              ]
+            },
+            {
+              "id": "w2-emotions-2",
+              "worldId": 2,
+              "stationId": "w2-emotions",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b016",
+                "b020",
+                "b021",
+                "b022",
+                "b023",
+                "b025"
+              ]
+            },
+            {
+              "id": "w2-emotions-3",
+              "worldId": 2,
+              "stationId": "w2-emotions",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b027",
+                "b028",
+                "e001",
+                "e002",
+                "e003",
+                "e004"
+              ]
+            },
+            {
+              "id": "w2-emotions-4",
+              "worldId": 2,
+              "stationId": "w2-emotions",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e005",
+                "e006",
+                "e007",
+                "e008",
+                "e009",
+                "e010"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-size-shape",
+          "worldId": 2,
+          "index": 2,
+          "kind": "category",
+          "title": "גודל וצורה",
+          "categoryId": "size-shape",
+          "levels": [
+            {
+              "id": "w2-size-shape-1",
+              "worldId": 2,
+              "stationId": "w2-size-shape",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b030",
+                "b033",
+                "b036",
+                "b037",
+                "b040",
+                "b043",
+                "b048",
+                "b051"
+              ]
+            },
+            {
+              "id": "w2-size-shape-2",
+              "worldId": 2,
+              "stationId": "w2-size-shape",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b053",
+                "b054",
+                "b056",
+                "b059",
+                "b063",
+                "b069",
+                "e011"
+              ]
+            },
+            {
+              "id": "w2-size-shape-3",
+              "worldId": 2,
+              "stationId": "w2-size-shape",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "e012",
+                "e013",
+                "e014",
+                "e015",
+                "e016",
+                "e017",
+                "e018"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-character",
+          "worldId": 2,
+          "index": 3,
+          "kind": "category",
+          "title": "אופי ותכונות",
+          "categoryId": "character",
+          "levels": [
+            {
+              "id": "w2-character-1",
+              "worldId": 2,
+              "stationId": "w2-character",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b070",
+                "b073",
+                "b074",
+                "b076",
+                "b080",
+                "b081",
+                "b082",
+                "b083"
+              ]
+            },
+            {
+              "id": "w2-character-2",
+              "worldId": 2,
+              "stationId": "w2-character",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b084",
+                "b085",
+                "b086",
+                "b091",
+                "b092",
+                "b094",
+                "b096",
+                "b099"
+              ]
+            },
+            {
+              "id": "w2-character-3",
+              "worldId": 2,
+              "stationId": "w2-character",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b100",
+                "b101",
+                "b102",
+                "b104",
+                "b106",
+                "b107",
+                "b108",
+                "e019"
+              ]
+            },
+            {
+              "id": "w2-character-4",
+              "worldId": 2,
+              "stationId": "w2-character",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e020",
+                "e021",
+                "e022",
+                "e023",
+                "e024",
+                "e025",
+                "e026",
+                "e027"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-description",
+          "worldId": 2,
+          "index": 4,
+          "kind": "category",
+          "title": "מילים לתיאור",
+          "categoryId": "description",
+          "levels": [
+            {
+              "id": "w2-description-1",
+              "worldId": 2,
+              "stationId": "w2-description",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b118",
+                "b128",
+                "b135",
+                "b140",
+                "b144",
+                "e028",
+                "e029",
+                "e030"
+              ]
+            },
+            {
+              "id": "w2-description-2",
+              "worldId": 2,
+              "stationId": "w2-description",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "e031",
+                "e032",
+                "e033",
+                "e034",
+                "e035",
+                "e036",
+                "e037"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-verbs-motion",
+          "worldId": 2,
+          "index": 5,
+          "kind": "category",
+          "title": "תנועה וגוף",
+          "categoryId": "verbs-motion",
+          "levels": [
+            {
+              "id": "w2-verbs-motion-1",
+              "worldId": 2,
+              "stationId": "w2-verbs-motion",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b145",
+                "b148",
+                "b149",
+                "b154",
+                "b156",
+                "b157",
+                "b158",
+                "b163"
+              ]
+            },
+            {
+              "id": "w2-verbs-motion-2",
+              "worldId": 2,
+              "stationId": "w2-verbs-motion",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b164",
+                "b165",
+                "b168",
+                "b177",
+                "b182",
+                "b184",
+                "e038"
+              ]
+            },
+            {
+              "id": "w2-verbs-motion-3",
+              "worldId": 2,
+              "stationId": "w2-verbs-motion",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "e039",
+                "e040",
+                "e041",
+                "e042",
+                "e043",
+                "e044",
+                "e045"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-verbs-speech",
+          "worldId": 2,
+          "index": 6,
+          "kind": "category",
+          "title": "דיבור והבעה",
+          "categoryId": "verbs-speech",
+          "levels": [
+            {
+              "id": "w2-verbs-speech-1",
+              "worldId": 2,
+              "stationId": "w2-verbs-speech",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b188",
+                "b189",
+                "b190",
+                "b194",
+                "b195",
+                "b197",
+                "b198"
+              ]
+            },
+            {
+              "id": "w2-verbs-speech-2",
+              "worldId": 2,
+              "stationId": "w2-verbs-speech",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b199",
+                "b200",
+                "b201",
+                "b203",
+                "b204",
+                "b206",
+                "b209"
+              ]
+            },
+            {
+              "id": "w2-verbs-speech-3",
+              "worldId": 2,
+              "stationId": "w2-verbs-speech",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b215",
+                "b216",
+                "b217",
+                "e046",
+                "e047",
+                "e048"
+              ]
+            },
+            {
+              "id": "w2-verbs-speech-4",
+              "worldId": 2,
+              "stationId": "w2-verbs-speech",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e049",
+                "e050",
+                "e051",
+                "e052",
+                "e053",
+                "e054"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-verbs-mind",
+          "worldId": 2,
+          "index": 7,
+          "kind": "category",
+          "title": "חשיבה וחושים",
+          "categoryId": "verbs-mind",
+          "levels": [
+            {
+              "id": "w2-verbs-mind-1",
+              "worldId": 2,
+              "stationId": "w2-verbs-mind",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b223",
+                "b225",
+                "b227",
+                "b231",
+                "b233",
+                "b237",
+                "b242",
+                "b243"
+              ]
+            },
+            {
+              "id": "w2-verbs-mind-2",
+              "worldId": 2,
+              "stationId": "w2-verbs-mind",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b244",
+                "b245",
+                "b246",
+                "b247",
+                "b248",
+                "e055",
+                "e056"
+              ]
+            },
+            {
+              "id": "w2-verbs-mind-3",
+              "worldId": 2,
+              "stationId": "w2-verbs-mind",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "e057",
+                "e058",
+                "e059",
+                "e060",
+                "e061",
+                "e062",
+                "e063"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-verbs-action",
+          "worldId": 2,
+          "index": 8,
+          "kind": "category",
+          "title": "עשייה ופעולה",
+          "categoryId": "verbs-action",
+          "levels": [
+            {
+              "id": "w2-verbs-action-1",
+              "worldId": 2,
+              "stationId": "w2-verbs-action",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b254",
+                "b255",
+                "b258",
+                "b260",
+                "b261",
+                "b263",
+                "b264"
+              ]
+            },
+            {
+              "id": "w2-verbs-action-2",
+              "worldId": 2,
+              "stationId": "w2-verbs-action",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b267",
+                "b273",
+                "b279",
+                "b282",
+                "b283",
+                "b285",
+                "b287"
+              ]
+            },
+            {
+              "id": "w2-verbs-action-3",
+              "worldId": 2,
+              "stationId": "w2-verbs-action",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b290",
+                "b291",
+                "b292",
+                "e064",
+                "e065",
+                "e066",
+                "e067"
+              ]
+            },
+            {
+              "id": "w2-verbs-action-4",
+              "worldId": 2,
+              "stationId": "w2-verbs-action",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e068",
+                "e069",
+                "e070",
+                "e071",
+                "e072",
+                "e073",
+                "e074"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-people-places",
+          "worldId": 2,
+          "index": 9,
+          "kind": "category",
+          "title": "אנשים ומקומות",
+          "categoryId": "people-places",
+          "levels": [
+            {
+              "id": "w2-people-places-1",
+              "worldId": 2,
+              "stationId": "w2-people-places",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b300",
+                "b301",
+                "b309",
+                "b316",
+                "b317",
+                "b322",
+                "b323",
+                "e075"
+              ]
+            },
+            {
+              "id": "w2-people-places-2",
+              "worldId": 2,
+              "stationId": "w2-people-places",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "e076",
+                "e077",
+                "e078",
+                "e079",
+                "e080",
+                "e081",
+                "e082"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-things-nature-ideas",
+          "worldId": 2,
+          "index": 10,
+          "kind": "category",
+          "title": "חפצים, טבע ורעיונות",
+          "categoryId": "things-nature-ideas",
+          "levels": [
+            {
+              "id": "w2-things-nature-ideas-1",
+              "worldId": 2,
+              "stationId": "w2-things-nature-ideas",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b329",
+                "b330",
+                "b333",
+                "b334",
+                "b335",
+                "b337",
+                "b338",
+                "b341"
+              ]
+            },
+            {
+              "id": "w2-things-nature-ideas-2",
+              "worldId": 2,
+              "stationId": "w2-things-nature-ideas",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b342",
+                "b345",
+                "b346",
+                "b352",
+                "b354",
+                "b359",
+                "b361",
+                "b362"
+              ]
+            },
+            {
+              "id": "w2-things-nature-ideas-3",
+              "worldId": 2,
+              "stationId": "w2-things-nature-ideas",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b366",
+                "b367",
+                "b368",
+                "b369",
+                "b370",
+                "e083",
+                "e084",
+                "e085"
+              ]
+            },
+            {
+              "id": "w2-things-nature-ideas-4",
+              "worldId": 2,
+              "stationId": "w2-things-nature-ideas",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e086",
+                "e087",
+                "e088",
+                "e089",
+                "e090",
+                "e091",
+                "e092",
+                "e093"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w2-time-quantity",
+          "worldId": 2,
+          "index": 11,
+          "kind": "category",
+          "title": "זמן וכמות",
+          "categoryId": "time-quantity",
+          "levels": [
+            {
+              "id": "w2-time-quantity-1",
+              "worldId": 2,
+              "stationId": "w2-time-quantity",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "b374",
+                "b377",
+                "b379",
+                "b382",
+                "b384",
+                "b386",
+                "b387"
+              ]
+            },
+            {
+              "id": "w2-time-quantity-2",
+              "worldId": 2,
+              "stationId": "w2-time-quantity",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "b393",
+                "b394",
+                "b396",
+                "b400",
+                "b401",
+                "b402",
+                "b404"
+              ]
+            },
+            {
+              "id": "w2-time-quantity-3",
+              "worldId": 2,
+              "stationId": "w2-time-quantity",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "b405",
+                "b406",
+                "b408",
+                "b411",
+                "e094",
+                "e095",
+                "e096"
+              ]
+            },
+            {
+              "id": "w2-time-quantity-4",
+              "worldId": 2,
+              "stationId": "w2-time-quantity",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "e097",
+                "e098",
+                "e099",
+                "e100",
+                "e101",
+                "e102",
+                "e103"
+              ]
+            }
+          ]
+        }
+      ],
+      "boss": {
+        "id": "w2-boss",
+        "worldId": 2,
+        "stationId": "w2-boss",
+        "index": 1,
+        "kind": "boss",
+        "itemIds": [],
+        "drawCount": 15
+      }
+    },
+    {
+      "id": 3,
+      "stations": [
+        {
+          "id": "w3-scales",
+          "worldId": 3,
+          "index": 1,
+          "kind": "scales",
+          "title": "סולמות עוצמה",
+          "levels": [
+            {
+              "id": "w3-scales-1",
+              "worldId": 3,
+              "stationId": "w3-scales",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "scale01",
+                "scale02",
+                "scale03",
+                "scale04",
+                "scale05",
+                "scale06",
+                "scale07",
+                "scale08"
+              ]
+            },
+            {
+              "id": "w3-scales-2",
+              "worldId": 3,
+              "stationId": "w3-scales",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "scale09",
+                "scale10",
+                "scale11",
+                "scale12",
+                "scale13",
+                "scale14",
+                "scale15"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w3-registers",
+          "worldId": 3,
+          "index": 2,
+          "kind": "registers",
+          "title": "משלבי לשון",
+          "levels": [
+            {
+              "id": "w3-registers-1",
+              "worldId": 3,
+              "stationId": "w3-registers",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "reg01",
+                "reg02",
+                "reg03",
+                "reg04",
+                "reg05",
+                "reg06",
+                "reg07",
+                "reg08"
+              ]
+            },
+            {
+              "id": "w3-registers-2",
+              "worldId": 3,
+              "stationId": "w3-registers",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "reg09",
+                "reg10",
+                "reg11",
+                "reg12",
+                "reg13",
+                "reg14",
+                "reg15",
+                "reg16"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w3-contexts",
+          "worldId": 3,
+          "index": 3,
+          "kind": "contexts",
+          "title": "המילה המתאימה",
+          "levels": [
+            {
+              "id": "w3-contexts-1",
+              "worldId": 3,
+              "stationId": "w3-contexts",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "ctx01",
+                "ctx02",
+                "ctx03",
+                "ctx04",
+                "ctx05",
+                "ctx06",
+                "ctx07",
+                "ctx08"
+              ]
+            },
+            {
+              "id": "w3-contexts-2",
+              "worldId": 3,
+              "stationId": "w3-contexts",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "ctx09",
+                "ctx10",
+                "ctx11",
+                "ctx12",
+                "ctx13",
+                "ctx14",
+                "ctx15",
+                "ctx16"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w3-review",
+          "worldId": 3,
+          "index": 4,
+          "kind": "review",
+          "title": "חזרה כללית",
+          "levels": [
+            {
+              "id": "w3-review-1",
+              "worldId": 3,
+              "stationId": "w3-review",
+              "index": 1,
+              "kind": "review",
+              "itemIds": [],
+              "drawCount": 8
+            },
+            {
+              "id": "w3-review-2",
+              "worldId": 3,
+              "stationId": "w3-review",
+              "index": 2,
+              "kind": "review",
+              "itemIds": [],
+              "drawCount": 8
+            }
+          ]
+        }
+      ],
+      "boss": {
+        "id": "w3-boss",
+        "worldId": 3,
+        "stationId": "w3-boss",
+        "index": 1,
+        "kind": "boss",
+        "itemIds": [],
+        "drawCount": 15
+      }
+    },
+    {
+      "id": 4,
+      "stations": [
+        {
+          "id": "w4-idioms",
+          "worldId": 4,
+          "index": 1,
+          "kind": "idioms",
+          "title": "ניבים וצירופים",
+          "levels": [
+            {
+              "id": "w4-idioms-1",
+              "worldId": 4,
+              "stationId": "w4-idioms",
+              "index": 1,
+              "kind": "learn",
+              "itemIds": [
+                "idiom01",
+                "idiom02",
+                "idiom03",
+                "idiom04",
+                "idiom05",
+                "idiom06",
+                "idiom07"
+              ]
+            },
+            {
+              "id": "w4-idioms-2",
+              "worldId": 4,
+              "stationId": "w4-idioms",
+              "index": 2,
+              "kind": "learn",
+              "itemIds": [
+                "idiom08",
+                "idiom09",
+                "idiom10",
+                "idiom11",
+                "idiom12",
+                "idiom13",
+                "idiom14"
+              ]
+            },
+            {
+              "id": "w4-idioms-3",
+              "worldId": 4,
+              "stationId": "w4-idioms",
+              "index": 3,
+              "kind": "learn",
+              "itemIds": [
+                "idiom15",
+                "idiom16",
+                "idiom17",
+                "idiom18",
+                "idiom19",
+                "idiom20"
+              ]
+            },
+            {
+              "id": "w4-idioms-4",
+              "worldId": 4,
+              "stationId": "w4-idioms",
+              "index": 4,
+              "kind": "learn",
+              "itemIds": [
+                "idiom21",
+                "idiom22",
+                "idiom23",
+                "idiom24",
+                "idiom25",
+                "idiom26"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "w4-review",
+          "worldId": 4,
+          "index": 2,
+          "kind": "review",
+          "title": "חזרה מעורבת",
+          "levels": [
+            {
+              "id": "w4-review-1",
+              "worldId": 4,
+              "stationId": "w4-review",
+              "index": 1,
+              "kind": "review",
+              "itemIds": [],
+              "drawCount": 8
+            },
+            {
+              "id": "w4-review-2",
+              "worldId": 4,
+              "stationId": "w4-review",
+              "index": 2,
+              "kind": "review",
+              "itemIds": [],
+              "drawCount": 8
+            },
+            {
+              "id": "w4-review-3",
+              "worldId": 4,
+              "stationId": "w4-review",
+              "index": 3,
+              "kind": "review",
+              "itemIds": [],
+              "drawCount": 8
+            }
+          ]
+        }
+      ],
+      "boss": {
+        "id": "w4-boss",
+        "worldId": 4,
+        "stationId": "w4-boss",
+        "index": 1,
+        "kind": "boss",
+        "itemIds": [],
+        "drawCount": 15
+      }
+    }
+  ]
+}

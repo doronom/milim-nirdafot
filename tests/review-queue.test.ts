@@ -40,7 +40,9 @@ describe('review queue', () => {
     await decideReport(store, 'e004|חושש', 'accepted', now);
     await decideReport(store, 'e004|רדום', 'rejected', now);
     // A decided pair keeps its decision when reported again.
-    expect((await reportAlsoCorrect(store, { target, word: 'רדום', nodeId: 'רדום', gameId: 'x' }, now)).status).toBe('rejected');
+    expect((await reportAlsoCorrect(store, { target, word: 'רדום', nodeId: 'רדום', gameId: 'x' }, now)).status).toBe(
+      'rejected',
+    );
     const reports = await listReports(store);
     expect(pendingKeys(reports).size).toBe(0);
     const out = exportDecisions(reports, graph, content.entries);

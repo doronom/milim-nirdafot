@@ -45,7 +45,9 @@ describe('pickDistractors', () => {
     const picked = pickDistractors(graph, { target, tier: 2, count: 5, rng: createRng(7), pool });
     for (const d of picked) {
       expect(d.tier).toBe(2);
-      expect(byKey.get(normalizeWord(d.word))!.some((e) => e.categoryId === target.categoryId && e.pos === 'verb')).toBe(true);
+      expect(
+        byKey.get(normalizeWord(d.word))!.some((e) => e.categoryId === target.categoryId && e.pos === 'verb'),
+      ).toBe(true);
     }
   });
 
@@ -66,14 +68,25 @@ describe('pickDistractors', () => {
     const offered = (decisions = {}) => {
       const seen = new Set<string>();
       for (let seed = 0; seed < 40; seed++) {
-        for (const d of pickDistractors(graph, { target, answer: 'מלוטש', tier: 3, count: 4, rng: createRng(seed), pool, decisions })) seen.add(d.word);
+        for (const d of pickDistractors(graph, {
+          target,
+          answer: 'מלוטש',
+          tier: 3,
+          count: 4,
+          rng: createRng(seed),
+          pool,
+          decisions,
+        }))
+          seen.add(d.word);
       }
       return seen;
     };
     expect(offered().has('שטוח')).toBe(false);
     expect(rankNearMisses(graph, target, pool).find((n) => n.word === 'שטוח')?.status).toBe('two-hop');
     const confirmedTraps = trapKeys([{ targetId: 'e015', distractor: 'שטוח' }]);
-    expect(rankNearMisses(graph, target, pool, { confirmedTraps }).find((n) => n.word === 'שטוח')?.status).toBe('confirmed-trap');
+    expect(rankNearMisses(graph, target, pool, { confirmedTraps }).find((n) => n.word === 'שטוח')?.status).toBe(
+      'confirmed-trap',
+    );
     expect(offered({ confirmedTraps }).has('שטוח')).toBe(true);
   });
 
@@ -81,7 +94,14 @@ describe('pickDistractors', () => {
     const target = entry('e004'); // מתוח
     const pending = new Set([pairKey('e004', 'חושש')]);
     for (let seed = 0; seed < 40; seed++) {
-      const picked = pickDistractors(graph, { target, tier: 3, count: 4, rng: createRng(seed), pool, decisions: { pending } });
+      const picked = pickDistractors(graph, {
+        target,
+        tier: 3,
+        count: 4,
+        rng: createRng(seed),
+        pool,
+        decisions: { pending },
+      });
       expect(picked.some((d) => d.word === 'חושש')).toBe(false);
     }
   });
@@ -100,13 +120,22 @@ describe('pickDistractors', () => {
   it('is deterministic for a seed and independent of pool order', () => {
     const target = entry('b080');
     const a = pickDistractors(graph, { target, tier: 2, count: 4, rng: createRng('level-1:round-2'), pool });
-    const b = pickDistractors(graph, { target, tier: 2, count: 4, rng: createRng('level-1:round-2'), pool: [...pool].reverse() });
+    const b = pickDistractors(graph, {
+      target,
+      tier: 2,
+      count: 4,
+      rng: createRng('level-1:round-2'),
+      pool: [...pool].reverse(),
+    });
     expect(a).toEqual(b);
   });
 
   it('falls back to easier tiers when the requested one runs short', () => {
     const target = entry('b001');
-    const tiny = content.entries.filter((e) => e.categoryId === 'emotions').slice(0, 3).concat(entry('b300'));
+    const tiny = content.entries
+      .filter((e) => e.categoryId === 'emotions')
+      .slice(0, 3)
+      .concat(entry('b300'));
     const picked = pickDistractors(graph, { target, tier: 3, count: 4, rng: createRng(3), pool: tiny });
     expect(picked).toHaveLength(4);
     expect(picked.some((d) => d.tier < 3)).toBe(true);

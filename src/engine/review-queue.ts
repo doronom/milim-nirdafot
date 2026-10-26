@@ -36,7 +36,11 @@ export async function listReports(store: KeyValueStore): Promise<AlsoCorrectRepo
 }
 
 /** Queues a pair for review, or bumps its count when already known. A decided pair keeps its decision. */
-export async function reportAlsoCorrect(store: KeyValueStore, input: ReportInput, now = new Date()): Promise<AlsoCorrectReport> {
+export async function reportAlsoCorrect(
+  store: KeyValueStore,
+  input: ReportInput,
+  now = new Date(),
+): Promise<AlsoCorrectReport> {
   const reports = await listReports(store);
   const id = pairKey(input.target.id, input.word);
   const existing = reports.find((r) => r.id === id);
@@ -60,7 +64,12 @@ export async function reportAlsoCorrect(store: KeyValueStore, input: ReportInput
   return report;
 }
 
-export async function decideReport(store: KeyValueStore, id: string, status: Exclude<ReportStatus, 'pending'>, now = new Date()): Promise<void> {
+export async function decideReport(
+  store: KeyValueStore,
+  id: string,
+  status: Exclude<ReportStatus, 'pending'>,
+  now = new Date(),
+): Promise<void> {
   const reports = await listReports(store);
   if (!reports.some((r) => r.id === id)) throw new Error(`unknown report ${id}`);
   await store.set(
@@ -88,8 +97,10 @@ export function exportDecisions(
   for (const r of reports) {
     const target = byId.get(r.targetId);
     if (!target) continue;
-    if (r.status === 'accepted') alsoSynonyms.push({ a: graph.headwordNode(target), b: r.nodeId, note: `reported in ${r.gameId}` });
-    if (r.status === 'rejected') notSynonyms.push({ targetId: r.targetId, distractor: r.word, note: `reported in ${r.gameId}` });
+    if (r.status === 'accepted')
+      alsoSynonyms.push({ a: graph.headwordNode(target), b: r.nodeId, note: `reported in ${r.gameId}` });
+    if (r.status === 'rejected')
+      notSynonyms.push({ targetId: r.targetId, distractor: r.word, note: `reported in ${r.gameId}` });
   }
   return { alsoSynonyms, notSynonyms };
 }

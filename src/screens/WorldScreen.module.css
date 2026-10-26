@@ -1,0 +1,190 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.segments {
+  display: flex;
+  gap: var(--space-1);
+  padding-block: var(--space-2);
+  padding-inline: var(--gutter);
+  background: var(--surface-elevated);
+}
+.segment {
+  flex: 1;
+  block-size: var(--space-1);
+  border-radius: var(--radius-badge);
+  background: var(--border);
+}
+.segDone {
+  background: var(--success);
+}
+.segCurrent {
+  background: var(--world-primary);
+}
+/* First level at the bottom, boss at the top; DOM order stays first-to-last for screen readers. */
+.path,
+.stationLevels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--space-6);
+}
+.path {
+  position: relative;
+  padding-block: var(--space-8);
+  padding-inline: var(--gutter);
+}
+.path::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  border-inline-start: var(--border-lip) dashed var(--border);
+}
+.stationGroup {
+  inline-size: 100%;
+}
+.start,
+.stationMarker,
+.node {
+  position: relative;
+}
+.stationMarker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  inline-size: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-container);
+}
+.stationIcon {
+  display: inline-flex;
+  padding: var(--space-2);
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  color: var(--world-primary);
+}
+.stationName {
+  display: block;
+  font-weight: var(--type-label-weight);
+}
+.stationMeta {
+  display: block;
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+}
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+/* Gentle zigzag along the trail. */
+.stationLevels > .node:nth-child(4n + 2) {
+  transform: translateX(calc(var(--space-12) * -1));
+}
+.stationLevels > .node:nth-child(4n) {
+  transform: translateX(var(--space-12));
+}
+.nodeLink {
+  display: inline-flex;
+  text-decoration: none;
+  color: inherit;
+}
+.tile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--node-size);
+  block-size: var(--node-size);
+  border-radius: var(--radius-card);
+  background: var(--surface-elevated);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text-secondary);
+}
+.done {
+  color: var(--success);
+  box-shadow: 0 var(--border-lip) 0 var(--success-deep);
+}
+.open {
+  color: var(--world-primary);
+  box-shadow: 0 var(--border-lip) 0 var(--world-deep);
+}
+.locked {
+  opacity: var(--opacity-locked);
+}
+.badge {
+  position: absolute;
+  inset-block-start: calc(var(--space-2) * -1);
+  inset-inline-end: calc(var(--space-2) * -1);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-badge);
+  background: var(--surface-bright);
+  color: var(--text);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  font-variant-numeric: tabular-nums;
+}
+.nodeTitle {
+  font-weight: var(--type-label-weight);
+}
+.nodeWords {
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+}
+.currentWrap {
+  inline-size: 100%;
+}
+.currentCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline: auto;
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--world-primary);
+  background: var(--surface-container);
+  box-shadow: var(--shadow-card-glow);
+}
+.playTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--node-size-current);
+  block-size: var(--node-size-current);
+  border-radius: var(--radius-card);
+  background: var(--world-primary);
+  box-shadow: 0 var(--border-lip) 0 var(--world-deep);
+  color: var(--text-on-accent);
+}
+.currentTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}
+.currentWords {
+  color: var(--world-primary);
+  font-weight: var(--type-label-weight);
+}
+.boss {
+  gap: var(--space-2);
+}
+.dock {
+  position: sticky;
+  inset-block-end: var(--nav-height);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--gutter);
+  background: var(--surface-elevated);
+  border-block-start: var(--border-thin) solid var(--border);
+}

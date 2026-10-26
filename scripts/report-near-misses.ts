@@ -17,7 +17,9 @@ const csvCell = (v: string | number) => {
   const s = String(v);
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
-const rows: (string | number)[][] = [['target', 'targetId', 'targetNode', 'distractor', 'distractorNode', 'category', 'score', 'status']];
+const rows: (string | number)[][] = [
+  ['target', 'targetId', 'targetNode', 'distractor', 'distractorNode', 'category', 'score', 'status'],
+];
 const counts: Record<string, number> = {};
 for (const target of content.entries) {
   for (const nm of rankNearMisses(graph, target, content.entries, decisions).slice(0, TOP)) {

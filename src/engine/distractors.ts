@@ -120,7 +120,13 @@ interface Prepared {
   twoHop: Set<number>;
 }
 
-function prepare(graph: SynonymGraph, target: Entry, answerIn: string | undefined, pool: readonly Entry[], pending?: ReadonlySet<string>): Prepared {
+function prepare(
+  graph: SynonymGraph,
+  target: Entry,
+  answerIn: string | undefined,
+  pool: readonly Entry[],
+  pending?: ReadonlySet<string>,
+): Prepared {
   const answer = answerIn ?? target.synonyms[0] ?? target.headword;
   const targetNode = graph.headwordNode(target);
   const blocked = new Set(graph.groupKeys(targetNode));
@@ -139,7 +145,12 @@ function prepare(graph: SynonymGraph, target: Entry, answerIn: string | undefine
 }
 
 /** Tier 3 shape filter and score, with the review status of each candidate. Sorted best first. */
-function scoreNearMisses(graph: SynonymGraph, target: Entry, p: Prepared, traps?: ReadonlySet<string>): (NearMiss & { c: Candidate })[] {
+function scoreNearMisses(
+  graph: SynonymGraph,
+  target: Entry,
+  p: Prepared,
+  traps?: ReadonlySet<string>,
+): (NearMiss & { c: Candidate })[] {
   const answerLength = letters(p.answer).length;
   return p.tier2
     .filter((c) => wordCount(c.word) === wordCount(p.answer) && Math.abs(letters(c.word).length - answerLength) <= 1)
@@ -156,7 +167,12 @@ function scoreNearMisses(graph: SynonymGraph, target: Entry, p: Prepared, traps?
  * Ranked tier 3 candidates for review (report:near-misses). Includes skipped two-hop words so a parent can confirm them.
  * Scores against every synonym of the target and keeps each word's best.
  */
-export function rankNearMisses(graph: SynonymGraph, target: Entry, pool: readonly Entry[], decisions: PairDecisions = {}): NearMiss[] {
+export function rankNearMisses(
+  graph: SynonymGraph,
+  target: Entry,
+  pool: readonly Entry[],
+  decisions: PairDecisions = {},
+): NearMiss[] {
   const best = new Map<string, NearMiss>();
   for (const answer of target.synonyms) {
     const p = prepare(graph, target, answer, pool, decisions.pending);

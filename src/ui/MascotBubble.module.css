@@ -1,0 +1,28 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.mascot {
+  inline-size: var(--mascot-size);
+  block-size: var(--mascot-size);
+  flex: none;
+}
+.bubble {
+  flex: 1;
+  padding-block: var(--space-2);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-card);
+  border: var(--border-thin) solid var(--border);
+  background: var(--surface-elevated);
+}
+.title {
+  color: var(--world-accent);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+}
+.text {
+  color: var(--text);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-lh);
+}

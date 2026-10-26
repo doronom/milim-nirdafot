@@ -1,0 +1,24 @@
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+.icon svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+.sm {
+  inline-size: var(--icon-sm);
+  block-size: var(--icon-sm);
+}
+.md {
+  inline-size: var(--icon-md);
+  block-size: var(--icon-md);
+}
+.lg {
+  inline-size: var(--icon-lg);
+  block-size: var(--icon-lg);
+}
+.xl {
+  inline-size: var(--icon-xl);
+  block-size: var(--icon-xl);
+}
