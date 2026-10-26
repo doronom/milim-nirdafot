@@ -91,8 +91,11 @@ describe('validator', () => {
   });
 
   it('warns (does not fail) on groups above 8 words, unless approved at their size', () => {
-    const report = validateContent(content);
+    // The five current large groups are approved, so start from an empty allowlist.
+    expect(validateContent(content).warnings.filter((w) => w.code === 'group-large')).toEqual([]);
+    const report = validateContent({ ...content, approvedLargeGroups: [] });
     const large = report.warnings.filter((w) => w.code === 'group-large');
+    expect(large).toHaveLength(5);
     expect(large.length).toBeGreaterThan(0);
     const anchor = large[0]!.ref;
     const size = Number(/has (\d+) words/.exec(large[0]!.message)![1]);

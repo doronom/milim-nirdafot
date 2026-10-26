@@ -91,3 +91,6 @@ export const STATION_TITLES: Record<string, string> = {
   'things-nature-ideas': 'חפצים, טבע ורעיונות',
   'time-quantity': 'זמן וכמות',
 };
+
+/** XP for a finished level, until the motivation milestone tunes it. */
+export const XP = { perCorrectAnswer: 5, perStar: 10 } as const;

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>הרי הדיוק - משחק בחירה בהקשר</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#bec8d2",
+            "surface-container-lowest": "#060e20",
+            "on-primary-fixed-variant": "#004c6e",
+            "primary-container": "#0ea5e9",
+            "surface-bright": "#31394d",
+            "surface-dim": "#0b1326",
+            "surface-variant": "#2d3449",
+            "surface-container-high": "#222a3d",
+            "on-tertiary-fixed": "#002109",
+            "outline": "#88929b",
+            "on-tertiary": "#003915",
+            "surface-container-highest": "#2d3449",
+            "on-primary": "#00344d",
+            "tertiary-fixed-dim": "#4ae176",
+            "surface-container": "#171f33",
+            "surface-container-low": "#131b2e",
+            "primary-fixed-dim": "#89ceff",
+            "on-error": "#690005",
+            "secondary": "#ffb95f",
+            "on-secondary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#283044",
+            "on-background": "#dae2fd",
+            "secondary-container": "#ee9800",
+            "secondary-fixed": "#ffddb8",
+            "surface-tint": "#89ceff",
+            "surface": "#0b1326",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-surface": "#dae2fd",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "#001e2f",
+            "on-tertiary-container": "#003c16",
+            "tertiary-container": "#00b351",
+            "inverse-surface": "#dae2fd",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-container": "#003751",
+            "on-secondary-container": "#5b3800",
+            "on-secondary-fixed": "#2a1700",
+            "background": "#0b1326",
+            "tertiary": "#4ae176",
+            "outline-variant": "#3e4850",
+            "error": "#ffb4ab",
+            "primary-fixed": "#c9e6ff",
+            "error-container": "#93000a",
+            "primary": "#89ceff",
+            "on-secondary": "#472a00",
+            "inverse-primary": "#006591",
+            "precision-bg": "#120d24",
+            "precision-card": "#1c1438",
+            "precision-purple": "#8b5cf6",
+            "precision-pink": "#ec4899"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "0.75rem",
+            "space-lg": "1rem",
+            "space-md": "0.75rem",
+            "margin-tablet": "1.5rem",
+            "gutter-tablet": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Rubik"],
+            "display-hero": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-md": ["Rubik"],
+            "label-sm": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "display-hero-mobile": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-lg": ["Rubik"],
+            "label-lg": ["Rubik"],
+            "body-sm": ["Rubik"]
+          },
+          "fontSize": {
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "display-hero": ["36px", { "lineHeight": "48px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-md": ["20px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-lg": ["24px", { "lineHeight": "34px", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tactile-btn {
+      transition: transform 0.08s ease, border-bottom-width 0.08s ease;
+    }
+    .tactile-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px !important;
+    }
+  </style>
+</head>
+<body class="bg-[#120d24] text-on-surface min-h-screen flex justify-center selection:bg-precision-purple/30">
+<!-- Mobile Viewport Constraint Wrapper (390px base) -->
+<div class="w-full max-w-[420px] bg-[#17102e] min-h-screen flex flex-col relative pb-24 shadow-2xl border-x border-[#2d2152]">
+<!-- TopAppBar Component (from JSON + Style Anchor) -->
+<header class="sticky top-0 z-50 w-full h-14 px-margin flex items-center justify-between bg-surface-container/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<!-- Trailing RTL Action (Leading Back Icon in Hebrew) -->
+<button aria-label="חזרה" class="w-9 h-9 rounded-lg bg-surface-variant flex items-center justify-center text-primary hover:bg-surface-bright active:translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+<!-- Center Title -->
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-precision-purple animate-pulse"></span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">הרי הדיוק · שלב 3.3</span>
+</div>
+<!-- Left Status Cluster: Streak & XP -->
+<div class="flex items-center gap-2">
+<!-- Streak with SVG Shield -->
+<div class="flex items-center gap-1 bg-[#251b47] px-2 py-1 rounded-full border border-precision-purple/40">
+<svg class="w-4 h-4 text-secondary drop-shadow" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"></path>
+</svg>
+<span class="font-label-sm text-label-sm font-bold text-secondary">6</span>
+</div>
+<!-- XP Pill -->
+<div class="flex items-center gap-1 bg-surface-variant px-2.5 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">hotel_class</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">XP 390</span>
+</div>
+</div>
+</header>
+<!-- Main Quest Arena -->
+<main class="flex-1 flex flex-col px-margin pt-4 gap-4 overflow-y-auto">
+<!-- Instruction Banner -->
+<div class="flex items-center gap-2.5 bg-gradient-to-l from-precision-card to-[#231845] p-3 rounded-xl border border-precision-purple/30 shadow-sm">
+<div class="w-8 h-8 rounded-lg bg-precision-purple/20 flex items-center justify-center text-precision-purple flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface font-medium leading-snug">
+          איזו מילה משלימה את המשפט בצורה המדויקת ביותר?
+        </p>
+</div>
+<!-- Context Sentence Card (Active Arena) -->
+<section class="bg-gradient-to-b from-[#1e153b] to-[#160f2d] rounded-2xl p-4 border border-precision-purple/40 shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-precision-purple via-precision-pink to-tertiary"></div>
+<div class="flex items-center justify-between mb-3 text-on-surface-variant">
+<span class="font-label-sm text-label-sm flex items-center gap-1 text-precision-pink font-semibold">
+<span class="material-symbols-outlined text-[15px]">terrain</span>
+            הרי הדיוק · משפט מפתח
+          </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high px-2 py-0.5 rounded text-outline">הקשר שתייה</span>
+</div>
+<!-- Sentence with embedded Drop Slot -->
+<div class="text-[19px] leading-[36px] font-bold text-on-surface tracking-wide">
+<span>האורח הצמא</span>
+<!-- Drop Slot (Filled & Verified) -->
+<span class="inline-flex items-center justify-center align-middle mx-1 px-3 py-1 bg-tertiary-container/30 border-2 border-tertiary text-tertiary-fixed rounded-xl font-extrabold text-[20px] shadow-[0_0_15px_rgba(74,225,118,0.35)] animate-pulse">
+<svg class="w-4 h-4 ml-1.5 text-tertiary" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+            גמע
+          </span>
+<span>את כל כוס המים בלגימה אחת ארוכה מבלי לעצור.</span>
+</div>
+</section>
+<!-- Two Near-Synonym Option Cards Grid -->
+<section aria-label="אפשרויות בחירה" class="grid grid-cols-2 gap-3">
+<!-- Option 1: לגם (Default/Distractor) -->
+<div class="tactile-btn relative bg-[#1c1438] rounded-xl p-3.5 border-2 border-outline-variant border-b-4 border-b-[#0b0718] flex flex-col items-center justify-center gap-1 opacity-75">
+<span class="font-headline-md text-headline-md font-bold text-on-surface-variant">לגם</span>
+<span class="font-label-sm text-label-sm text-outline">פעולה מתונה</span>
+</div>
+<!-- Option 2: גמע (Selected / Correct State) -->
+<div class="tactile-btn relative bg-gradient-to-b from-[#291e52] to-[#1e143f] rounded-xl p-3.5 border-2 border-tertiary border-b-4 border-b-[#005321] flex flex-col items-center justify-center gap-1 shadow-[0_4px_12px_rgba(74,225,118,0.25)]">
+<div class="absolute -top-2.5 -right-2 bg-tertiary text-on-tertiary font-bold text-[11px] px-2 py-0.5 rounded-full flex items-center gap-0.5 shadow">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span>
+            נבחר בדיוק
+          </div>
+<span class="font-headline-md text-headline-md font-extrabold text-tertiary-fixed">גמע</span>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">עוצמה וכמות</span>
+</div>
+</section>
+<!-- Word Relation Nuance Bar -->
+<div class="bg-[#1f173d] py-2 px-3 rounded-lg border border-precision-purple/30 flex items-center justify-center gap-2 text-center">
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">לגם (מעט)</span>
+<span class="text-secondary font-black text-lg">≠</span>
+<span class="font-label-md text-label-md font-bold text-tertiary-fixed">גמע (בבת אחת)</span>
+</div>
+<!-- THE "למה?" EXPLANATION CARD (כרטיס הסבר מלא) -->
+<section class="bg-gradient-to-br from-[#201844] to-[#181135] rounded-2xl p-4 border border-precision-purple/50 shadow-md">
+<!-- Explanation Header with Compass/Book Icon -->
+<div class="flex items-center gap-2.5 mb-2.5 pb-2 border-b border-white/10">
+<div class="w-7 h-7 rounded-lg bg-precision-purple/30 flex items-center justify-center text-precision-purple">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">הסבר ההקשר: למה גמע ולא לגם?</h2>
+</div>
+<!-- Exact Explanation Body Text -->
+<p class="font-body-md text-body-md text-on-surface leading-relaxed mb-3">
+          לגם = שתה מעט או בלגימות קטנות ואיטיות; גמע = שתה כמות גדולה בבת אחת ובמהירות.
+        </p>
+<!-- Nuance Example Badge Box -->
+<div class="bg-precision-bg/70 p-3 rounded-xl border-r-4 border-precision-purple text-primary-fixed">
+<p class="font-body-sm text-body-sm font-medium">
+            לכן, כשיש צמא כבד ושותים את כל הכוס בבת אחת — המילה המדויקת היא "גמע"!
+          </p>
+</div>
+</section>
+<!-- Mascot Tip: מצפוני (Compass Guide) -->
+<div class="flex items-start gap-3 bg-surface-container/60 p-3 rounded-xl border border-outline-variant/60">
+<!-- Explorer Mascot Badge -->
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-precision-purple to-precision-pink flex items-center justify-center flex-shrink-0 shadow">
+<svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="none" r="10" stroke="currentColor" stroke-width="2"></circle>
+<polygon fill="#ffddb8" points="12,4 15,12 12,20 9,12"></polygon>
+<circle cx="12" cy="12" fill="#00344d" r="2"></circle>
+</svg>
+</div>
+<div class="flex-1">
+<div class="font-label-sm text-label-sm font-bold text-secondary mb-0.5">מצפוני מדריך המסע:</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+            הבחנה מעולה! שתי המילים נרדפות לשתייה, אך ההבדל הוא בעוצמה ובכמות.
+          </p>
+</div>
+</div>
+<!-- Action & Reporting Cluster -->
+<div class="flex flex-col gap-2 mt-auto pt-2">
+<!-- Primary Quest CTA (Tactile 3D Model: border-b-4) -->
+<button class="tactile-btn w-full bg-tertiary-container hover:bg-tertiary text-on-tertiary-container font-headline-md text-headline-md font-bold py-3.5 px-4 rounded-xl border-b-4 border-[#003915] shadow-lg flex items-center justify-center gap-2">
+<span>לשאלה הבאה (+25 XP)</span>
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<!-- Secondary Parent/Feedback Report Trigger -->
+<div class="relative flex justify-center">
+<button class="text-outline hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 py-1 transition-colors" id="reportBtn" onclick="toggleReportPopover()">
+<span class="material-symbols-outlined text-[16px]">flag</span>
+<span>גם זו תשובה נכונה?</span>
+</button>
+<!-- Popover Confirmation Toast (Hidden by default, triggered on click) -->
+<div class="hidden absolute -top-12 bg-surface-bright text-on-surface text-label-sm font-medium px-3 py-1.5 rounded-lg shadow-xl border border-outline-variant flex items-center gap-1.5 animate-bounce" id="reportPopover">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span>תודה, הורה יבדוק את זה</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Component (JSON Anchor Execution) -->
+<!-- Active Tab: "מסע" (Adventure / Exploration) -->
+<nav aria-label="ניווט ראשי" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-space-sm pb-safe bg-surface-container-low dark:bg-surface-container-low shadow-lg">
+<!-- Tab 1: מסע (Active Destination) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary-fixed-dim dark:text-primary-fixed-dim font-bold border-b-2 border-primary-container pb-1" href="#journey">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="font-label-sm text-label-sm">מסע</span>
+</a>
+<!-- Tab 2: מפה -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors" href="#map">
+<span class="material-symbols-outlined text-[24px]">map</span>
+<span class="font-label-sm text-label-sm">מפה</span>
+</a>
+<!-- Tab 3: אוצר -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors" href="#treasure">
+<span class="material-symbols-outlined text-[24px]">military_tech</span>
+<span class="font-label-sm text-label-sm">אוצר</span>
+</a>
+<!-- Tab 4: פרופיל -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pb-1 hover:bg-surface-container-high transition-colors" href="#profile">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-label-sm text-label-sm">פרופיל</span>
+</a>
+</nav>
+</div>
+<script>
+    function toggleReportPopover() {
+      const popover = document.getElementById('reportPopover');
+      popover.classList.remove('hidden');
+      setTimeout(() => {
+        popover.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
+</body></html>

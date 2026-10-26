@@ -1,0 +1,61 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: calc(var(--touch-min) * 2);
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+.option:disabled {
+  cursor: default;
+}
+.idle:active {
+  transform: translateY(var(--press-offset));
+  box-shadow: 0 var(--border-thin) 0 var(--border);
+}
+.correct {
+  border-color: var(--success);
+  box-shadow: 0 0 var(--space-5) var(--success-glow);
+}
+.wrong {
+  border-color: var(--error);
+  box-shadow: 0 0 var(--space-5) var(--error-glow);
+}
+.faded {
+  opacity: var(--opacity-disabled);
+}
+.number {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--type-caption-size);
+}
+.mark {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-start: var(--space-3);
+  color: var(--success);
+}
+.word {
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  line-height: var(--type-option-lh);
+}

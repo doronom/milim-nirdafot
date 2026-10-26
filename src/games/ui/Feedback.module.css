@@ -1,0 +1,38 @@
+.drawer {
+  position: sticky;
+  inset-block-end: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--gutter);
+  border-start-start-radius: var(--radius-modal);
+  border-start-end-radius: var(--radius-modal);
+  background: var(--surface-elevated);
+  border-block-start: var(--border-medium) solid var(--border);
+}
+.correct {
+  border-block-start-color: var(--success);
+}
+.wrong {
+  border-block-start-color: var(--error);
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+}
+.correct .title {
+  color: var(--success);
+}
+.wrong .title {
+  color: var(--error);
+}
+.formula {
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+}

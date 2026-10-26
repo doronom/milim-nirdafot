@@ -52,7 +52,7 @@ describe('progress rules', () => {
     const p = { ...initialProgress(), unlockedWorlds: [1, 2] as Progress['unlockedWorlds'] };
     expect(isWorldUnlocked(p, 2)).toBe(true);
     expect(activeWorld(p, layout).id).toBe(2);
-    const all = { ...initialProgress(), settings: { unlockAll: true } };
+    const all = { ...initialProgress(), settings: { unlockAll: true, reviewedOnly: false } };
     expect(isLevelUnlocked(all, layout.worlds[3]!, layout.worlds[3]!.boss.id)).toBe(true);
   });
 

@@ -1,0 +1,85 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.chip,
+.target {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: calc(var(--touch-min) + var(--space-2));
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-chip);
+  border: var(--border-medium) solid var(--border);
+  background: var(--surface-container);
+  color: var(--text);
+  font-size: var(--type-option-size);
+  font-weight: var(--type-option-weight);
+  touch-action: none;
+  cursor: grab;
+}
+.chip {
+  box-shadow: 0 var(--border-lip) 0 var(--border);
+}
+.dragging {
+  z-index: var(--z-overlay);
+  border-style: dashed;
+  border-color: var(--world-primary);
+  scale: 1.05;
+  cursor: grabbing;
+}
+.selected {
+  border-color: var(--world-primary);
+  background: var(--world-surface);
+}
+.target {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-style: dashed;
+  cursor: pointer;
+}
+.targetWord {
+  line-height: var(--type-option-lh);
+}
+.over {
+  border-color: var(--world-primary);
+  background: var(--world-surface);
+}
+.matched {
+  border-style: solid;
+  border-color: var(--success);
+  background: var(--surface-elevated);
+  cursor: default;
+}
+.mismatch {
+  border-style: solid;
+  border-color: var(--error);
+}
+.matchedWith {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--success);
+  font-size: var(--type-label-size);
+}
+.hint {
+  color: var(--text-secondary);
+  font-size: var(--type-caption-size);
+}
+.mismatch .hint {
+  color: var(--error);
+}

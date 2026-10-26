@@ -1,7 +1,12 @@
 # Design handoff
 
-- `handoff/` — v1.0 screens (mockups and HTML) and the motion spec.
+- `handoff/` — latest handoff (v3.0): World 3 games (intensity ladder, register sort, context choice) and summary.
 - `handoff-v1.1/` — v1.1 tokens, component sheet, summary and SVG assets (mascot, collectible).
+- `handoff-v1.0/` — v1.0 screens still in use for World 1 (world map, station path, learn card, pick the synonym,
+  drag pairs, end of level) and the motion spec. Kept until a later handoff replaces those screens.
+
+Game text in mockups is illustrative; the app always renders text from the data. Follow v1.1 (dark cards) where
+DESIGN.md disagrees.
 
 ## Dropping in a new handoff
 

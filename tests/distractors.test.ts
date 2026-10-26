@@ -166,3 +166,19 @@ describe('chooseTier', () => {
     expect(chooseTier({ world: 3, box: 4 })).toBe(3);
   });
 });
+
+describe('option shape', () => {
+  it('prefers distractors with the same word count as the answer in tiers 1-2', () => {
+    for (const target of content.entries.slice(0, 80)) {
+      const answer = target.synonyms.find((s) => !s.includes(' '));
+      if (!answer) continue;
+      for (const tier of [1, 2] as Tier[]) {
+        const picked = pickDistractors(graph, { target, answer, tier, count: 3, rng: createRng(target.id), pool });
+        expect(
+          picked.every((d) => !d.word.includes(' ')),
+          `${target.id} t${tier}`,
+        ).toBe(true);
+      }
+    }
+  });
+});
