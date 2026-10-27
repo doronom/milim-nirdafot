@@ -13,8 +13,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      // Offline-first: everything, audio included, is precached on the first visit. A new version installs in the
-      // background and waits until the app is next opened: no reload ever interrupts a child mid-level.
+      // Offline-first: the app itself is precached on the first visit. A new version installs in the background and
+      // waits until the app is next opened: no reload ever interrupts a child mid-level. The word audio is not in the
+      // precache (2,000+ clips made the install run past the browsers' time limit); the page saves it into its own
+      // cache on the first visit (src/audio/offline-audio.ts) and the worker serves it from there.
       registerType: 'prompt',
       injectRegister: 'script-defer',
       includeAssets: ['icons/apple-touch-icon.png'],
@@ -39,7 +41,15 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,mp3,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url, sameOrigin }) => sameOrigin && /\/audio\/[^/]+\.mp3$/.test(url.pathname),
+            handler: 'CacheFirst',
+            // Equal to AUDIO_CACHE in src/audio/offline-audio.ts (a test checks it).
+            options: { cacheName: 'wq-audio-v1', cacheableResponse: { statuses: [200] } },
+          },
+        ],
         // The main bundle carries all the word data.
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: 'index.html',

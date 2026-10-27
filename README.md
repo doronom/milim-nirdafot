@@ -29,7 +29,8 @@ sites you have not opened for 7 days, while an installed app keeps it (and start
 - **iPhone / iPad:** open the link in **Safari**, tap **Share**, then **Add to Home Screen**.
 - **Android:** open the link in **Chrome**, tap the menu, then **Install app** (or **Add to Home screen**).
 
-Open the game once with a network connection; after that it works offline, audio included. Progress lives on the device
+Open the game once with a network connection and keep it open until the map stops showing "שומרים את ההקראות"
+(saving the audio, about a minute); after that it works offline, audio included. Progress lives on the device
 only: use the parent area's Backup tab to move it to a new phone.
 
 ## About the project
@@ -144,9 +145,16 @@ To regenerate after the content changes:
 
 ## Offline and installing
 
-The service worker precaches the whole app on the first visit, audio included (about 15 MB), so reading aloud works
-offline too. A new version installs in the background and takes over the next time the app is opened, so a level is
-never interrupted by a reload. The app also asks the browser to keep its storage persistent. See
+The service worker precaches the app itself on the first visit (about 85 files, 2 MB), so it installs in seconds. The
+word audio (about 2,000 clips, 13 MB) is not part of that install: browsers cancel a service-worker install that runs
+for more than a few minutes, which left the game with no offline support at all. Instead the page saves the clips into
+its own cache while the game is already playable, 8 at a time, with a progress notice on the map
+(`src/audio/offline-audio.ts`). It resumes where it stopped after a restart or when the network returns, and the
+service worker serves the clips from that cache. CI fails the build if the precache grows past 150 files or 8 MB
+(`npm run check:precache`).
+
+A new version installs in the background and takes over the next time the app is opened, so a level is never
+interrupted by a reload. The app also asks the browser to keep its storage persistent. See
 [Install it on a phone](#install-it-on-a-phone).
 
 ## Deploying

@@ -14,6 +14,7 @@ import { ProgressBar } from '../ui/ProgressBar';
 import { StatusPills } from '../ui/StatusPills';
 import { TactileButton } from '../ui/TactileButton';
 import { IconButton, TopBar } from '../ui/TopBar';
+import { OfflineAudioNotice } from './OfflineAudioNotice';
 import styles from './WorldMapScreen.module.css';
 
 export function WorldMapScreen() {
@@ -41,6 +42,8 @@ export function WorldMapScreen() {
         }
         end={<StatusPills />}
       />
+
+      <OfflineAudioNotice />
 
       <section className={styles.rankRow} aria-label="הדרגה שלי">
         <span className={styles.rankIcon}>
