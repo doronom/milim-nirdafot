@@ -14,6 +14,7 @@ import './styles/global.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
+import { startOfflineAudio } from './audio/offline-audio';
 import { applyTokens } from './design/tokens';
 import { idbStore } from './storage/kv';
 
@@ -23,6 +24,9 @@ if (import.meta.env.VITE_FIREBASE_EMULATOR === 'true') void import('./app/test-h
 
 // Ask the browser not to clear progress under storage pressure (granted to installed apps; a no-op elsewhere).
 void navigator.storage?.persist?.().catch(() => false);
+
+// Save the word audio for offline use, in the background while the game is already playable.
+startOfflineAudio();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

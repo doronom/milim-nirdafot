@@ -122,3 +122,5 @@ jobs:
       # Netlify builds and deploys the site from main (netlify.toml); this checks that it builds. Audio is generated
       # locally and committed, so the build never calls the TTS API and needs no secrets.
       - run: npm run build
+      # A precache too big to install within the browsers' time limit would leave the game without offline support.
+      - run: npm run check:precache

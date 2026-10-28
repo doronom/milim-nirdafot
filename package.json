@@ -17,6 +17,7 @@
     "tts:compare": "tsx scripts/tts-compare.ts",
     "gen:audio": "tsx scripts/gen-audio.ts",
     "test": "vitest run",
+    "check:precache": "tsx scripts/check-precache.ts",
     "test:e2e": "playwright test",
     "seed:parents": "tsx scripts/seed-parents.ts",
     "build:emulator": "VITE_FIREBASE_EMULATOR=true vite build --outDir dist-emulator",
