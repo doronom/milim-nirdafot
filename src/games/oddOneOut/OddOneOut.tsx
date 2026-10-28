@@ -55,76 +55,82 @@ export function OddOneOut({ round, onDone, onAlsoCorrect }: GameProps<OddRound>)
   );
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
-      <p className={introStyles.prompt}>איזו מילה אינה שייכת לקבוצה?</p>
-      <p className={styles.sub}>פוצצו את הבועה של המילה שאינה נרדפת לשאר</p>
-      {question.item.isGuest && (
-        <span className={styles.guest}>
-          <GuestBadge />
-        </span>
-      )}
-      <div className={styles.field} role="group" aria-label="בועות">
-        <AnimatePresence>
-          {question.bubbles.map((b, i) => {
-            const isPopped = popped === b.word;
-            const reveal = answered && (b.intruder || isPopped);
-            const state = !answered
-              ? 'idle'
-              : b.intruder
-                ? isPopped
-                  ? 'hit'
-                  : 'missedIntruder'
-                : isPopped
-                  ? 'wrongPop'
-                  : 'safe';
-            return (
-              <m.button
-                key={`${index}-${b.word}`}
-                type="button"
-                className={`${styles.bubble} ${styles[state] ?? ''}`}
-                onClick={() => pop(b.word)}
-                disabled={answered}
-                aria-label={
-                  reveal ? `${env.displayWord(b.word)}${b.intruder ? ', הפולש' : ''}` : env.displayWord(b.word)
-                }
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={
-                  isPopped && b.intruder
-                    ? { scale: [1, 1.25, 0.9], opacity: [1, 1, 0.85] }
-                    : reduced || answered
-                      ? { scale: 1, opacity: 1, y: 0 }
-                      : { scale: 1, opacity: 1, y: [0, -6, 0] }
-                }
-                transition={
-                  isPopped
-                    ? motion('bubble_pop')
-                    : reduced || answered
-                      ? motion('bubble_pop')
-                      : {
-                          y: { ...float, duration: float.duration * (1 + i * 0.12), repeat: Infinity },
-                          ...motion('bubble_pop'),
-                        }
-                }
-              >
-                {state === 'hit' && <Icon name="check" size="sm" />}
-                <span className={state === 'hit' ? styles.struck : undefined}>{env.displayWord(b.word)}</span>
-                {answered && b.intruder && <span className={styles.tag}>הפולש</span>}
-              </m.button>
-            );
-          })}
-        </AnimatePresence>
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
       </div>
-      {answered && (
-        <Feedback
-          correct={correct}
-          title={correct ? 'פיצוץ מדויק!' : 'כמעט! זה היה הפולש'}
-          formula={`${synonyms.map((b) => env.displayWord(b.word)).join(', ')} | הפולש: ${env.displayWord(intruder.word)}`}
-          extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
-          onContinue={next}
-        />
-      )}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>איזו מילה אינה שייכת לקבוצה?</p>
+        <p className={styles.sub}>פוצצו את הבועה של המילה שאינה נרדפת לשאר</p>
+        {question.item.isGuest && (
+          <span className={styles.guest}>
+            <GuestBadge />
+          </span>
+        )}
+      </div>
+      <div className="pane-play">
+        <div className={styles.field} role="group" aria-label="בועות">
+          <AnimatePresence>
+            {question.bubbles.map((b, i) => {
+              const isPopped = popped === b.word;
+              const reveal = answered && (b.intruder || isPopped);
+              const state = !answered
+                ? 'idle'
+                : b.intruder
+                  ? isPopped
+                    ? 'hit'
+                    : 'missedIntruder'
+                  : isPopped
+                    ? 'wrongPop'
+                    : 'safe';
+              return (
+                <m.button
+                  key={`${index}-${b.word}`}
+                  type="button"
+                  className={`${styles.bubble} ${styles[state] ?? ''}`}
+                  onClick={() => pop(b.word)}
+                  disabled={answered}
+                  aria-label={
+                    reveal ? `${env.displayWord(b.word)}${b.intruder ? ', הפולש' : ''}` : env.displayWord(b.word)
+                  }
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={
+                    isPopped && b.intruder
+                      ? { scale: [1, 1.25, 0.9], opacity: [1, 1, 0.85] }
+                      : reduced || answered
+                        ? { scale: 1, opacity: 1, y: 0 }
+                        : { scale: 1, opacity: 1, y: [0, -6, 0] }
+                  }
+                  transition={
+                    isPopped
+                      ? motion('bubble_pop')
+                      : reduced || answered
+                        ? motion('bubble_pop')
+                        : {
+                            y: { ...float, duration: float.duration * (1 + i * 0.12), repeat: Infinity },
+                            ...motion('bubble_pop'),
+                          }
+                  }
+                >
+                  {state === 'hit' && <Icon name="check" size="sm" />}
+                  <span className={state === 'hit' ? styles.struck : undefined}>{env.displayWord(b.word)}</span>
+                  {answered && b.intruder && <span className={styles.tag}>הפולש</span>}
+                </m.button>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+        {answered && (
+          <Feedback
+            correct={correct}
+            title={correct ? 'פיצוץ מדויק!' : 'כמעט! זה היה הפולש'}
+            formula={`${synonyms.map((b) => env.displayWord(b.word)).join(', ')} | הפולש: ${env.displayWord(intruder.word)}`}
+            extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
+            onContinue={next}
+          />
+        )}
+      </div>
     </div>
   );
 }

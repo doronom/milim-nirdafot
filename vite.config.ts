@@ -28,7 +28,8 @@ export default defineConfig({
         start_url: './',
         scope: './',
         display: 'standalone',
-        orientation: 'portrait',
+        // Portrait and landscape both work (landscape gets its own pane layouts, src/design/layout.ts).
+        orientation: 'any',
         background_color: background,
         theme_color: background,
         categories: ['education', 'games', 'kids'],

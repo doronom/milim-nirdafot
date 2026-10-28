@@ -188,3 +188,13 @@
   background: var(--surface-elevated);
   border-block-start: var(--border-thin) solid var(--border);
 }
+
+/* Landscape: the tabs are a side rail, so the dock sits at the bottom edge, and only its button stays (the guide's
+ * line would cover half the short screen). */
+:global(:root[data-layout='landscape']) .dock {
+  inset-block-end: 0;
+  padding-block: var(--space-2);
+}
+:global(:root[data-layout='landscape']) .dock > :not(:last-child) {
+  display: none;
+}

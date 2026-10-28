@@ -1,5 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useLandscape } from '../../design/layout';
 import mascot from '../../design/assets/mascot.svg';
 import { motion } from '../../design/tokens';
 import { TactileButton } from '../../ui/TactileButton';
@@ -19,6 +20,7 @@ const MISMATCH_VIEW_MS = 900;
  */
 export function Memory({ round, onDone }: GameProps<MemoryRound>) {
   const env = useGameEnv();
+  const landscape = useLandscape();
   const [open, setOpen] = useState<string[]>([]);
   const [matched, setMatched] = useState<string[]>([]);
   const seen = useRef(new Set<string>());
@@ -56,11 +58,12 @@ export function Memory({ round, onDone }: GameProps<MemoryRound>) {
     onDone({ answers });
   };
 
-  const columns = round.cards.length > 12 ? 4 : 3;
+  // Landscape lays the cards out in two wide rows, so the whole board fits the short screen.
+  const columns = landscape ? Math.ceil(round.cards.length / 2) : round.cards.length > 12 ? 4 : 3;
   return (
     <div className={styles.game}>
       <p className={introStyles.prompt}>מצאו את הזוגות של מילים נרדפות</p>
-      <div className={styles.grid} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+      <div className={styles.grid} style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
         {round.cards.map((c, i) => {
           const faceUp = open.includes(c.id) || matched.includes(c.id);
           return (

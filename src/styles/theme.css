@@ -79,6 +79,11 @@
   --nav-height: var(--wq-layout-nav-height);
   --touch-min: var(--wq-layout-touch-min);
   --content-max: var(--wq-layout-content-max);
+  --content-max-landscape: var(--wq-layout-content-max-landscape);
+  --rail-width: var(--wq-layout-rail-width);
+  --overlay-clearance: var(--wq-layout-overlay-clearance);
+  /* The height under the slim landscape top bar, for boards that must fit the screen without scrolling. */
+  --landscape-board: calc(100dvh - var(--touch-min) - var(--space-2) - var(--gutter) * 2);
   --gutter: var(--wq-layout-gutter);
   --node-size: var(--wq-layout-node-size);
   --node-size-current: var(--wq-layout-node-size-current);

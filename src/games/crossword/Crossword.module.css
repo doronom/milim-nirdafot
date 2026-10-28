@@ -127,3 +127,12 @@
   gap: var(--space-2);
   justify-content: center;
 }
+
+/* Landscape: the board scaled to fit the screen height (its width follows from the rows and columns). */
+:global(:root[data-layout='landscape']) .grid {
+  inline-size: min(100%, calc(var(--landscape-board) * var(--local-cols) / var(--local-rows)));
+  margin-inline: auto;
+}
+:global(:root[data-layout='landscape']) .cell {
+  font-size: var(--type-label-size);
+}

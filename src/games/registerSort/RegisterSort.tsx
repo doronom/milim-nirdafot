@@ -31,8 +31,8 @@ export function RegisterSort({ round, onDone, onAlsoCorrect }: GameProps<Registe
     i < index ? 'done' : i === index ? 'current' : 'todo',
   );
   return (
-    <div className={styles.game}>
-      {steps > 1 && <Dots states={dots} label={`${index + 1} מתוך ${steps}`} />}
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">{steps > 1 && <Dots states={dots} label={`${index + 1} מתוך ${steps}`} />}</div>
       {round.mode === 'classify' ? (
         <Classify key={index} q={round.questions[index]!} last={last} onNext={next} onClaim={onAlsoCorrect} />
       ) : (
@@ -59,48 +59,54 @@ function Classify({
   const correct = chosen === q.bin;
   return (
     <>
-      <p className={introStyles.prompt}>לאיזה משלב שייכת המילה?</p>
-      <div className={styles.wordCard}>
-        {q.item.isGuest && <GuestBadge />}
-        <span className={styles.bigWord}>{displayWord(q.word)}</span>
-        <span className={styles.meaning}>משמעות: {q.item.register.meaning}</span>
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>לאיזה משלב שייכת המילה?</p>
+        <div className={styles.wordCard}>
+          {q.item.isGuest && <GuestBadge />}
+          <span className={styles.bigWord}>{displayWord(q.word)}</span>
+          <span className={styles.meaning}>משמעות: {q.item.register.meaning}</span>
+        </div>
       </div>
-      <div className={styles.binButtons} role="group" aria-label="משלבים">
-        {BINS.map((bin) => (
-          <m.button
-            key={bin}
-            type="button"
-            className={`${styles.binButton} ${chosen && bin === q.bin ? styles.right : chosen === bin ? styles.wrong : ''}`}
-            onClick={() => !chosen && setChosen(bin)}
-            disabled={chosen !== null}
-            animate={chosen === bin && !correct ? { x: [0, -6, 6, -4, 4, 0] } : {}}
-            transition={motion('feedback_shake')}
-          >
-            {BIN_LABEL[bin]}
-          </m.button>
-        ))}
+      <div className="pane-play">
+        <div className={styles.binButtons} role="group" aria-label="משלבים">
+          {BINS.map((bin) => (
+            <m.button
+              key={bin}
+              type="button"
+              className={`${styles.binButton} ${chosen && bin === q.bin ? styles.right : chosen === bin ? styles.wrong : ''}`}
+              onClick={() => !chosen && setChosen(bin)}
+              disabled={chosen !== null}
+              animate={chosen === bin && !correct ? { x: [0, -6, 6, -4, 4, 0] } : {}}
+              transition={motion('feedback_shake')}
+            >
+              {BIN_LABEL[bin]}
+            </m.button>
+          ))}
+        </div>
+        {chosen && (
+          <Feedback
+            correct={correct}
+            title={correct ? 'בדיוק!' : 'כמעט! המשלב הנכון'}
+            formula={`${displayWord(q.word)} = ${BIN_LABEL[q.bin]}`}
+            extra={
+              !correct ? (
+                <AlsoCorrectButton
+                  onClaim={() => {
+                    setClaimed(true);
+                    onClaim(q.item, `${q.word}: ${BIN_LABEL[chosen]}`);
+                  }}
+                />
+              ) : undefined
+            }
+            continueLabel={last ? 'סיום הסבב' : 'למילה הבאה'}
+            onContinue={() =>
+              onNext([
+                { itemKey: q.item.key, outcome: correct ? 'correct' : claimed ? 'also-correct' : 'wrong', chosen },
+              ])
+            }
+          />
+        )}
       </div>
-      {chosen && (
-        <Feedback
-          correct={correct}
-          title={correct ? 'בדיוק!' : 'כמעט! המשלב הנכון'}
-          formula={`${displayWord(q.word)} = ${BIN_LABEL[q.bin]}`}
-          extra={
-            !correct ? (
-              <AlsoCorrectButton
-                onClaim={() => {
-                  setClaimed(true);
-                  onClaim(q.item, `${q.word}: ${BIN_LABEL[chosen]}`);
-                }}
-              />
-            ) : undefined
-          }
-          continueLabel={last ? 'סיום הסבב' : 'למילה הבאה'}
-          onContinue={() =>
-            onNext([{ itemKey: q.item.key, outcome: correct ? 'correct' : claimed ? 'also-correct' : 'wrong', chosen }])
-          }
-        />
-      )}
     </>
   );
 }
@@ -128,71 +134,77 @@ function Sort({ board, last, onNext }: { board: SortBoard; last: boolean; onNext
 
   return (
     <>
-      <p className={introStyles.prompt}>בחרו מילה ואז את התא המתאים לה</p>
-      <p className={styles.meaning}>
-        {board.items.some((i) => i.isGuest) && <GuestBadge compact />}
-        קבוצה: {board.items.map((i) => i.register.meaning).join(' · ')}
-      </p>
-      <div className={styles.bins}>
-        {BINS.map((bin) => {
-          const empty = board.emptyBins.includes(bin);
-          return (
-            <m.button
-              key={bin}
-              type="button"
-              className={`${styles.bin} ${empty ? styles.emptyBin : ''} ${flash === bin ? styles.wrong : ''}`}
-              onClick={() => selected && !empty && drop(bin)}
-              disabled={empty}
-              aria-label={empty ? `${BIN_LABEL[bin]}: ריק בקבוצה זו` : `תא ${BIN_LABEL[bin]}`}
-              animate={flash === bin ? { x: [0, -6, 6, -4, 4, 0] } : {}}
-              transition={motion('feedback_shake')}
-            >
-              <span className={styles.binTitle}>{BIN_LABEL[bin]}</span>
-              {empty ? (
-                <span className={styles.emptyNote}>ריק בקבוצה זו</span>
-              ) : (
-                <span className={styles.binWords}>
-                  {board.words
-                    .filter((w) => placed[w.word] === bin)
-                    .map((w) => (
-                      <span key={w.word} className={styles.placed}>
-                        <Icon name="check" size="sm" />
-                        {displayWord(w.word)}
-                      </span>
-                    ))}
-                </span>
-              )}
-            </m.button>
-          );
-        })}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>בחרו מילה ואז את התא המתאים לה</p>
+        <p className={styles.meaning}>
+          {board.items.some((i) => i.isGuest) && <GuestBadge compact />}
+          קבוצה: {board.items.map((i) => i.register.meaning).join(' · ')}
+        </p>
       </div>
-      {!done && (
-        <div className={styles.bank} role="group" aria-label="בנק המילים">
-          {bank.map((w) => (
-            <button
-              key={w.word}
-              type="button"
-              className={`${styles.chip} ${selected === w.word ? styles.selected : ''}`}
-              onClick={() => setSelected(selected === w.word ? null : w.word)}
-              aria-pressed={selected === w.word}
-            >
-              {displayWord(w.word)}
-            </button>
-          ))}
+      <div className="pane-play">
+        <div className={styles.bins}>
+          {BINS.map((bin) => {
+            const empty = board.emptyBins.includes(bin);
+            return (
+              <m.button
+                key={bin}
+                type="button"
+                className={`${styles.bin} ${empty ? styles.emptyBin : ''} ${flash === bin ? styles.wrong : ''}`}
+                onClick={() => selected && !empty && drop(bin)}
+                disabled={empty}
+                aria-label={empty ? `${BIN_LABEL[bin]}: ריק בקבוצה זו` : `תא ${BIN_LABEL[bin]}`}
+                animate={flash === bin ? { x: [0, -6, 6, -4, 4, 0] } : {}}
+                transition={motion('feedback_shake')}
+              >
+                <span className={styles.binTitle}>{BIN_LABEL[bin]}</span>
+                {empty ? (
+                  <span className={styles.emptyNote}>ריק בקבוצה זו</span>
+                ) : (
+                  <span className={styles.binWords}>
+                    {board.words
+                      .filter((w) => placed[w.word] === bin)
+                      .map((w) => (
+                        <span key={w.word} className={styles.placed}>
+                          <Icon name="check" size="sm" />
+                          {displayWord(w.word)}
+                        </span>
+                      ))}
+                  </span>
+                )}
+              </m.button>
+            );
+          })}
         </div>
-      )}
-      {done && (
-        <TactileButton
-          tone="success"
-          size="lg"
-          block
-          onClick={() =>
-            onNext(board.items.map((i) => ({ itemKey: i.key, outcome: missed.includes(i.key) ? 'wrong' : 'correct' })))
-          }
-        >
-          {last ? 'סיום הסבב' : 'לקבוצה הבאה'}
-        </TactileButton>
-      )}
+        {!done && (
+          <div className={styles.bank} role="group" aria-label="בנק המילים">
+            {bank.map((w) => (
+              <button
+                key={w.word}
+                type="button"
+                className={`${styles.chip} ${selected === w.word ? styles.selected : ''}`}
+                onClick={() => setSelected(selected === w.word ? null : w.word)}
+                aria-pressed={selected === w.word}
+              >
+                {displayWord(w.word)}
+              </button>
+            ))}
+          </div>
+        )}
+        {done && (
+          <TactileButton
+            tone="success"
+            size="lg"
+            block
+            onClick={() =>
+              onNext(
+                board.items.map((i) => ({ itemKey: i.key, outcome: missed.includes(i.key) ? 'wrong' : 'correct' })),
+              )
+            }
+          >
+            {last ? 'סיום הסבב' : 'לקבוצה הבאה'}
+          </TactileButton>
+        )}
+      </div>
     </>
   );
 }

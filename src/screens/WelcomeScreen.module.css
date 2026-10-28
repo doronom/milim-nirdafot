@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  min-block-size: 100dvh;
+  min-block-size: calc(100dvh + var(--overlay-clearance));
   max-inline-size: var(--content-max);
   margin-inline: auto;
   padding: var(--space-8) var(--gutter);
+  /* One screen plus room to scroll anything clear of an overlay in the bottom corner (the host's badge). */
+  padding-block-end: calc(var(--space-8) + var(--overlay-clearance));
   background: var(--surface);
   text-align: center;
 }

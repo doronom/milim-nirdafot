@@ -12,6 +12,43 @@ body {
   min-block-size: 100dvh;
 }
 
+/* A phone on its side (src/design/layout.ts): a wider column, laid out in panes instead of one tall stack. */
+:root[data-layout='landscape'] {
+  --content-max: var(--content-max-landscape);
+}
+/* Sideways, the notch and rounded corners are on the sides (the page uses viewport-fit=cover). */
+:root[data-layout='landscape'] body {
+  padding-inline: env(safe-area-inset-right) env(safe-area-inset-left);
+}
+
+/*
+ * Two panes for a game or card in landscape: what to read (.pane-prompt, on the start side) beside what to touch
+ * (.pane-play, holding everything after the prompt, feedback included), with an optional .pane-full row on top. In
+ * portrait the pane wrappers vanish (display: contents), so the stack is exactly as before.
+ */
+.pane-full,
+.pane-prompt,
+.pane-play {
+  display: contents;
+}
+:root[data-layout='landscape'] .panes {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  align-items: start;
+  gap: var(--space-3) var(--space-6);
+}
+:root[data-layout='landscape'] .panes > .pane-prompt,
+:root[data-layout='landscape'] .panes > .pane-play {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-inline-size: 0;
+}
+:root[data-layout='landscape'] .panes > .pane-full {
+  display: block;
+  grid-column: 1 / -1;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -56,4 +93,8 @@ button {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+/* For a pane root whose prompt side is the main content (a learn card), the prompt gets the wider column. */
+:root[data-layout='landscape'] .panes-wide-prompt {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
 }

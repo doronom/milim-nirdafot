@@ -50,72 +50,78 @@ export function ContextChoice({ round, onDone, onAlsoCorrect }: GameProps<Contex
   const others = context.options.filter((o) => o !== context.answer);
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
-      <p className={introStyles.prompt}>
-        {sentenceMode ? 'באיזה משפט המילה מתאימה בדיוק?' : 'איזו מילה משלימה את המשפט בצורה המדויקת ביותר?'}
-      </p>
-      {q.item.isGuest && (
-        <span className={styles.guest}>
-          <GuestBadge />
-        </span>
-      )}
-      {!sentenceMode && (
-        <p className={styles.sentence}>
-          {q.before}
-          <span className={`${styles.blank} ${chosen ? (correct ? styles.right : styles.wrong) : ''}`}>
-            {chosen ? displayWord(chosen) : ' '.repeat(6)}
-            {correct && <Icon name="check" size="sm" />}
-          </span>
-          {q.after}
-        </p>
-      )}
-      <div className={sentenceMode ? styles.sentenceOptions : styles.options} role="group" aria-label="אפשרויות">
-        {q.options.map((o) => {
-          const state = !chosen
-            ? ''
-            : fitsContext(q.item, o)
-              ? styles.right
-              : o === chosen
-                ? styles.wrong
-                : styles.faded;
-          return (
-            <m.button
-              key={`${index}-${o}`}
-              type="button"
-              className={`${sentenceMode ? styles.sentenceOption : styles.option} ${state}`}
-              onClick={() => choose(o)}
-              disabled={chosen !== null}
-              animate={chosen === o && !fitsContext(q.item, o) ? { x: [0, -6, 6, -4, 4, 0] } : {}}
-              transition={motion('feedback_shake')}
-            >
-              {sentenceMode ? filled(q, displayWord(o)) : displayWord(o)}
-            </m.button>
-          );
-        })}
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
       </div>
-      {chosen && (
-        <>
-          <div className={styles.explain}>
-            <p className={styles.contrast}>
-              {displayWord(context.answer)} ≠ {others.map(displayWord).join(', ')}
-            </p>
-            <p className={styles.explainTitle}>
-              <Icon name="book" size="sm" />
-              למה {displayWord(context.answer)}?
-            </p>
-            <p>{context.explanation}</p>
-          </div>
-          <Feedback
-            correct={correct}
-            title={correct ? 'הבחנה מדויקת!' : 'כמעט! המילה המדויקת היא'}
-            formula={filled(q, displayWord(context.answer))}
-            extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
-            continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
-            onContinue={next}
-          />
-        </>
-      )}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>
+          {sentenceMode ? 'באיזה משפט המילה מתאימה בדיוק?' : 'איזו מילה משלימה את המשפט בצורה המדויקת ביותר?'}
+        </p>
+        {q.item.isGuest && (
+          <span className={styles.guest}>
+            <GuestBadge />
+          </span>
+        )}
+        {!sentenceMode && (
+          <p className={styles.sentence}>
+            {q.before}
+            <span className={`${styles.blank} ${chosen ? (correct ? styles.right : styles.wrong) : ''}`}>
+              {chosen ? displayWord(chosen) : ' '.repeat(6)}
+              {correct && <Icon name="check" size="sm" />}
+            </span>
+            {q.after}
+          </p>
+        )}
+      </div>
+      <div className="pane-play">
+        <div className={sentenceMode ? styles.sentenceOptions : styles.options} role="group" aria-label="אפשרויות">
+          {q.options.map((o) => {
+            const state = !chosen
+              ? ''
+              : fitsContext(q.item, o)
+                ? styles.right
+                : o === chosen
+                  ? styles.wrong
+                  : styles.faded;
+            return (
+              <m.button
+                key={`${index}-${o}`}
+                type="button"
+                className={`${sentenceMode ? styles.sentenceOption : styles.option} ${state}`}
+                onClick={() => choose(o)}
+                disabled={chosen !== null}
+                animate={chosen === o && !fitsContext(q.item, o) ? { x: [0, -6, 6, -4, 4, 0] } : {}}
+                transition={motion('feedback_shake')}
+              >
+                {sentenceMode ? filled(q, displayWord(o)) : displayWord(o)}
+              </m.button>
+            );
+          })}
+        </div>
+        {chosen && (
+          <>
+            <div className={styles.explain}>
+              <p className={styles.contrast}>
+                {displayWord(context.answer)} ≠ {others.map(displayWord).join(', ')}
+              </p>
+              <p className={styles.explainTitle}>
+                <Icon name="book" size="sm" />
+                למה {displayWord(context.answer)}?
+              </p>
+              <p>{context.explanation}</p>
+            </div>
+            <Feedback
+              correct={correct}
+              title={correct ? 'הבחנה מדויקת!' : 'כמעט! המילה המדויקת היא'}
+              formula={filled(q, displayWord(context.answer))}
+              extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
+              continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
+              onContinue={next}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }

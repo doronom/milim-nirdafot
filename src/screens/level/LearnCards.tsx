@@ -1,5 +1,6 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
+import { useLandscape } from '../../design/layout';
 import { say, type Spoken } from '../../audio/player';
 import { speak } from '../../audio/speak';
 import type { Entry, Sentence } from '../../content/types';
@@ -51,6 +52,7 @@ function describe(
 
 /** One card per new item: tap to hear, what it teaches, and an "I already know this" switch. */
 export function LearnCards({ items, sentenceFor, displayWord, recordingFor, onDone }: Props) {
+  const landscape = useLandscape();
   const [index, setIndex] = useState(0);
   const [known, setKnown] = useState<string[]>([]);
   const item = items[index]!;
@@ -58,63 +60,65 @@ export function LearnCards({ items, sentenceFor, displayWord, recordingFor, onDo
   const last = index === items.length - 1;
   const { title, speech, noun } = describe(item, displayWord);
 
-  return (
-    <div className={styles.wrap}>
-      <div className={styles.progress}>
-        <span className={styles.count}>
-          {noun} {index + 1} מתוך {items.length}
-        </span>
-        <ProgressBar value={index + 1} max={items.length} label="התקדמות בכרטיסי הלימוד" />
-      </div>
-      <AnimatePresence mode="wait">
-        <m.article
-          key={item.key}
-          className={styles.card}
-          initial={{ opacity: 0, x: -24 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 24 }}
-          transition={motion('card_snap')}
-          aria-label={`כרטיס לימוד: ${title}`}
-        >
-          <div className={styles.head}>
-            <div>
-              <p className={styles.label}>
-                {item.kind === 'pair'
-                  ? 'מילת המטרה:'
-                  : item.kind === 'scale'
-                    ? 'סולם עוצמה:'
-                    : item.kind === 'register'
-                      ? 'משמעות:'
-                      : item.kind === 'idiom'
-                        ? 'ביטוי:'
-                        : 'מילים קרובות:'}
-              </p>
-              <p className={item.kind === 'pair' ? styles.word : styles.title}>{title}</p>
-              {item.kind === 'pair' && item.entry.hint && <Pill tone="world">{item.entry.hint}</Pill>}
-            </div>
-            <button
-              type="button"
-              className={styles.speaker}
-              aria-label={`השמע: ${title}`}
-              onClick={() => {
-                // The parent's recording of a custom word replaces the headword; the synonyms follow as usual.
-                const recording = item.kind === 'pair' ? recordingFor?.(item.entry) : undefined;
-                const [first, ...rest] = speech;
-                void say([recording ? { recording } : first!, ...rest] as Spoken[]);
-              }}
-            >
-              <Icon name="speaker" size="lg" />
-            </button>
+  const progress = (
+    <div className={styles.progress}>
+      <span className={styles.count}>
+        {noun} {index + 1} מתוך {items.length}
+      </span>
+      <ProgressBar value={index + 1} max={items.length} label="התקדמות בכרטיסי הלימוד" />
+    </div>
+  );
+  const card = (
+    <AnimatePresence mode="wait">
+      <m.article
+        key={item.key}
+        className={styles.card}
+        initial={{ opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 24 }}
+        transition={motion('card_snap')}
+        aria-label={`כרטיס לימוד: ${title}`}
+      >
+        <div className={styles.head}>
+          <div>
+            <p className={styles.label}>
+              {item.kind === 'pair'
+                ? 'מילת המטרה:'
+                : item.kind === 'scale'
+                  ? 'סולם עוצמה:'
+                  : item.kind === 'register'
+                    ? 'משמעות:'
+                    : item.kind === 'idiom'
+                      ? 'ביטוי:'
+                      : 'מילים קרובות:'}
+            </p>
+            <p className={item.kind === 'pair' ? styles.word : styles.title}>{title}</p>
+            {item.kind === 'pair' && item.entry.hint && <Pill tone="world">{item.entry.hint}</Pill>}
           </div>
-          {item.kind === 'pair' && (
-            <PairBody item={item} sentence={sentenceFor(item.entry)} displayWord={displayWord} />
-          )}
-          {item.kind === 'scale' && <ScaleBody item={item} displayWord={displayWord} />}
-          {item.kind === 'register' && <RegisterBody item={item} displayWord={displayWord} />}
-          {item.kind === 'context' && <ContextBody item={item} />}
-          {item.kind === 'idiom' && <IdiomBody item={item} />}
-        </m.article>
-      </AnimatePresence>
+          <button
+            type="button"
+            className={styles.speaker}
+            aria-label={`השמע: ${title}`}
+            onClick={() => {
+              // The parent's recording of a custom word replaces the headword; the synonyms follow as usual.
+              const recording = item.kind === 'pair' ? recordingFor?.(item.entry) : undefined;
+              const [first, ...rest] = speech;
+              void say([recording ? { recording } : first!, ...rest] as Spoken[]);
+            }}
+          >
+            <Icon name="speaker" size="lg" />
+          </button>
+        </div>
+        {item.kind === 'pair' && <PairBody item={item} sentence={sentenceFor(item.entry)} displayWord={displayWord} />}
+        {item.kind === 'scale' && <ScaleBody item={item} displayWord={displayWord} />}
+        {item.kind === 'register' && <RegisterBody item={item} displayWord={displayWord} />}
+        {item.kind === 'context' && <ContextBody item={item} />}
+        {item.kind === 'idiom' && <IdiomBody item={item} />}
+      </m.article>
+    </AnimatePresence>
+  );
+  const controls = (
+    <>
       <button
         type="button"
         role="switch"
@@ -137,6 +141,22 @@ export function LearnCards({ items, sentenceFor, displayWord, recordingFor, onDo
           {last ? 'הבנתי, בואו נתרגל!' : 'הבנתי, הבא'}
         </TactileButton>
       </div>
+    </>
+  );
+  // Landscape: the card beside the progress and buttons, so "next" never needs a scroll; portrait: one stack.
+  return landscape ? (
+    <div className={`${styles.wrap} panes panes-wide-prompt`}>
+      <div className="pane-prompt">{card}</div>
+      <div className="pane-play">
+        {progress}
+        {controls}
+      </div>
+    </div>
+  ) : (
+    <div className={styles.wrap}>
+      {progress}
+      {card}
+      {controls}
     </div>
   );
 }

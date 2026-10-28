@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
-import { BOSS_PASS, rankForXp, WORLDS, XP } from '../config/game';
+import { BOSS_PASS, rankForXp, WORLDS, XP, type GameId } from '../config/game';
 import type { Sentence } from '../content/types';
 import { trapKeys } from '../engine/distractors';
 import { dayKey } from '../engine/dates';
@@ -13,6 +13,7 @@ import {
   levelOutcome,
   type LevelOutcome,
   type LevelRun,
+  startRun,
 } from '../engine/level-run';
 import { worldStickers } from '../engine/album';
 import {
@@ -63,6 +64,8 @@ export function LevelScreen() {
   const [attempt, setAttempt] = useState(0);
   // A fixed ?seed= makes every round reproducible (tests); otherwise each play differs.
   const [baseSeed] = useState(() => params.get('seed') ?? String(Date.now()));
+  // A ?game= plays one round of that game with the level's items (tests and layout checks reach every game this way).
+  const [onlyGame] = useState(() => (params.get('game') as GameId | null) ?? undefined);
   const [queues, setQueues] = useState<Queues | null>(null);
   const data = useGameData();
   const { content, layout, resolver } = data;
@@ -97,6 +100,7 @@ export function LevelScreen() {
       seed={seed}
       queues={queues}
       data={data}
+      onlyGame={onlyGame}
       onReplay={() => {
         setQueues(null);
         setAttempt((a) => a + 1);
@@ -193,6 +197,7 @@ function LevelPlayer({
   seed,
   queues,
   data,
+  onlyGame,
   onReplay,
 }: {
   world: WorldDef;
@@ -200,6 +205,7 @@ function LevelPlayer({
   level: LevelDef;
   seed: string;
   queues: Queues;
+  onlyGame?: GameId;
   /** Snapshot of the game data when the level started, so a content edit elsewhere does not reshape a running level. */
   data: GameData;
   onReplay: () => void;
@@ -225,9 +231,17 @@ function LevelPlayer({
     }),
   );
   const [planner] = useState(() => createPlanner(world.id, GAME_CATALOG, ctx));
-  const [phase, setPhase] = useState<Phase>(session.learn.length > 0 ? 'learn' : 'intro');
+  const [forced] = useState(() => {
+    const info = GAME_CATALOG.find((g) => g.id === onlyGame);
+    const all = [...new Map([...session.learn, ...session.items].map((i) => [i.key, i])).values()];
+    const items = info ? info.playable(all, ctx) : [];
+    return info && items.length >= info.minItems
+      ? startRun([{ gameId: info.id, stage: info.stages[0]!, items: [...items] }], session.run.difficulty, true)
+      : undefined;
+  });
+  const [phase, setPhase] = useState<Phase>(!forced && session.learn.length > 0 ? 'learn' : 'intro');
   const [known, setKnown] = useState<string[]>([]);
-  const [run, setRun] = useState(session.run);
+  const [run, setRun] = useState(forced ?? session.run);
   const [finished, setFinished] = useState<Finished | null>(null);
   const [round, setRound] = useState<unknown>(null);
   const [rankSeen, setRankSeen] = useState(false);
@@ -386,7 +400,7 @@ function LevelPlayer({
                     ? `סבב חזרה: ${session.items.length} פריטים מהמסע שלכם, החלשים ביותר קודם.`
                     : 'אין עדיין מה לחזור עליו. שחקו עוד שלבים וחזרו לכאן.'}
               </MascotBubble>
-              {session.items.length > 0 && plan && (
+              {(session.items.length > 0 || forced) && plan && (
                 <TactileButton block size="lg" icon={isBoss ? 'swords' : 'play'} onClick={() => startRound(run)}>
                   {isBoss ? 'לקרב!' : 'מתחילים'}
                 </TactileButton>

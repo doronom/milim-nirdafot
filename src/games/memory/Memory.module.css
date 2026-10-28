@@ -48,3 +48,8 @@
   inline-size: 60%;
   opacity: var(--opacity-locked);
 }
+
+/* Landscape: two rows of wider cards (Memory.tsx sets the columns), so the board fits without scrolling. */
+:global(:root[data-layout='landscape']) .card {
+  aspect-ratio: 5 / 4;
+}

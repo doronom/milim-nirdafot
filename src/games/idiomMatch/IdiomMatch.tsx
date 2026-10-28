@@ -56,8 +56,10 @@ export function IdiomMatch({ round, onDone, onAlsoCorrect }: GameProps<IdiomRoun
     i < answers.length ? (answers[i]!.outcome === 'wrong' ? 'missed' : 'done') : i === index ? 'current' : 'todo',
   );
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`ביטוי ${index + 1} מתוך ${round.questions.length}`} />
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        <Dots states={dots} label={`ביטוי ${index + 1} מתוך ${round.questions.length}`} />
+      </div>
       <Step
         key={index}
         q={round.questions[index]!}
@@ -107,76 +109,80 @@ function Step({
 
   return (
     <>
-      <p className={introStyles.prompt}>
-        {mode === 'meaning'
-          ? 'מה פירוש הביטוי?'
-          : mode === 'idiom'
-            ? 'איזה ביטוי מתאים לפירוש?'
-            : 'השלימו את הביטוי במשפט'}
-      </p>
-      {!fillOnly ? (
-        <div className={styles.card}>
-          {q.item.isGuest && <GuestBadge />}
-          <p className={mode === 'meaning' ? styles.idiom : styles.meaning}>{q.prompt}</p>
-          {mode === 'meaning' && (
-            <button type="button" className={styles.listen} onClick={() => speak(q.prompt)}>
-              <Icon name="speaker" size="sm" />
-              האזן
-            </button>
-          )}
-        </div>
-      ) : (
-        <p className={styles.sentence}>
-          {q.fill.before}
-          <span className={styles.blank}>{chosen ?? ' '.repeat(8)}</span>
-          {q.fill.after}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>
+          {mode === 'meaning'
+            ? 'מה פירוש הביטוי?'
+            : mode === 'idiom'
+              ? 'איזה ביטוי מתאים לפירוש?'
+              : 'השלימו את הביטוי במשפט'}
         </p>
-      )}
-      {bonus === 'off' && (
-        <Options options={q.options} answer={q.answer} chosen={chosen} onChoose={choose} label="אפשרויות" />
-      )}
-      {bonus !== 'off' && (
-        <>
-          <div className={styles.bonusTitle}>
-            <Icon name="sparkle" size="sm" />
-            שלב בונוס: השלימו את המשפט
+        {!fillOnly ? (
+          <div className={styles.card}>
+            {q.item.isGuest && <GuestBadge />}
+            <p className={mode === 'meaning' ? styles.idiom : styles.meaning}>{q.prompt}</p>
+            {mode === 'meaning' && (
+              <button type="button" className={styles.listen} onClick={() => speak(q.prompt)}>
+                <Icon name="speaker" size="sm" />
+                האזן
+              </button>
+            )}
           </div>
+        ) : (
           <p className={styles.sentence}>
             {q.fill.before}
-            <span className={styles.blank}>{bonusChosen ?? ' '.repeat(8)}</span>
+            <span className={styles.blank}>{chosen ?? ' '.repeat(8)}</span>
             {q.fill.after}
           </p>
-          <Options
-            options={q.fill.options}
-            answer={q.fill.answer}
-            chosen={bonusChosen}
-            onChoose={(o) => {
-              setBonusChosen(o);
-              setBonus('done');
-            }}
-            label="אפשרויות לבונוס"
+        )}
+      </div>
+      <div className="pane-play">
+        {bonus === 'off' && (
+          <Options options={q.options} answer={q.answer} chosen={chosen} onChoose={choose} label="אפשרויות" />
+        )}
+        {bonus !== 'off' && (
+          <>
+            <div className={styles.bonusTitle}>
+              <Icon name="sparkle" size="sm" />
+              שלב בונוס: השלימו את המשפט
+            </div>
+            <p className={styles.sentence}>
+              {q.fill.before}
+              <span className={styles.blank}>{bonusChosen ?? ' '.repeat(8)}</span>
+              {q.fill.after}
+            </p>
+            <Options
+              options={q.fill.options}
+              answer={q.fill.answer}
+              chosen={bonusChosen}
+              onChoose={(o) => {
+                setBonusChosen(o);
+                setBonus('done');
+              }}
+              label="אפשרויות לבונוס"
+            />
+          </>
+        )}
+        {chosen && bonus === 'off' && (
+          <Feedback
+            correct={correct}
+            title={correct ? 'מדויק!' : 'כמעט! זו התשובה'}
+            formula={`${q.item.idiom.idiom} = ${q.item.idiom.meaning}`}
+            extra={!correct ? <AlsoCorrectButton onClaim={() => onClaim(chosen)} /> : undefined}
+            continueLabel={fillOnly ? continueLabel : 'לשלב הבונוס'}
+            onContinue={() => (fillOnly ? onNext(answers) : setBonus('open'))}
           />
-        </>
-      )}
-      {chosen && bonus === 'off' && (
-        <Feedback
-          correct={correct}
-          title={correct ? 'מדויק!' : 'כמעט! זו התשובה'}
-          formula={`${q.item.idiom.idiom} = ${q.item.idiom.meaning}`}
-          extra={!correct ? <AlsoCorrectButton onClaim={() => onClaim(chosen)} /> : undefined}
-          continueLabel={fillOnly ? continueLabel : 'לשלב הבונוס'}
-          onContinue={() => (fillOnly ? onNext(answers) : setBonus('open'))}
-        />
-      )}
-      {bonus === 'done' && bonusChosen && (
-        <Feedback
-          correct={bonusChosen === q.fill.answer}
-          title={bonusChosen === q.fill.answer ? 'בונוס מדויק!' : 'כמעט! כך זה במשפט'}
-          formula={`${q.fill.before}${q.fill.answer}${q.fill.after}`}
-          continueLabel={continueLabel}
-          onContinue={() => onNext(answers)}
-        />
-      )}
+        )}
+        {bonus === 'done' && bonusChosen && (
+          <Feedback
+            correct={bonusChosen === q.fill.answer}
+            title={bonusChosen === q.fill.answer ? 'בונוס מדויק!' : 'כמעט! כך זה במשפט'}
+            formula={`${q.fill.before}${q.fill.answer}${q.fill.after}`}
+            continueLabel={continueLabel}
+            onContinue={() => onNext(answers)}
+          />
+        )}
+      </div>
     </>
   );
 }

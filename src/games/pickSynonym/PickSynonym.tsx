@@ -54,55 +54,59 @@ export function PickSynonym({ round, onDone, onAlsoCorrect }: GameProps<PickRoun
   );
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
-      <p className={introStyles.prompt}>איזו מילה היא מילה נרדפת ל:</p>
-      <WordCard
-        word={displayWord(question.prompt)}
-        hint={question.hint}
-        badge={question.item.isGuest ? <GuestBadge /> : undefined}
-      />
-      <div className={styles.options} role="group" aria-label="אפשרויות">
-        {question.options.map((o, i) => {
-          const state = !answered ? 'idle' : o.correct ? 'correct' : i === chosen ? 'wrong' : 'faded';
-          return (
-            <m.button
-              key={`${index}-${o.word}`}
-              type="button"
-              className={`${styles.option} ${styles[state] ?? ''}`}
-              onClick={() => choose(i)}
-              disabled={answered}
-              aria-pressed={i === chosen}
-              animate={
-                state === 'wrong'
-                  ? { x: [0, -6, 6, -4, 4, 0] }
-                  : state === 'correct' && i === chosen
-                    ? { scale: [1, 1.05, 1] }
-                    : {}
-              }
-              transition={motion(state === 'wrong' ? 'feedback_shake' : 'feedback_burst')}
-            >
-              <span className={styles.number}>{i + 1}</span>
-              {state === 'correct' && (
-                <span className={styles.mark}>
-                  <Icon name="check" size="sm" />
-                </span>
-              )}
-              <span className={styles.word}>{displayWord(o.word)}</span>
-            </m.button>
-          );
-        })}
-      </div>
-      {answered && option && (
-        <Feedback
-          correct={option.correct}
-          title={option.correct ? 'מדויק להפליא!' : 'כמעט! הנה התשובה'}
-          formula={`${displayWord(question.prompt)} = ${displayWord(correctOption.word)}`}
-          extra={!option.correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
-          onContinue={next}
+    <div className={`${styles.game} panes`}>
+      <div className="pane-prompt">
+        <Dots states={dots} label={`שאלה ${index + 1} מתוך ${round.questions.length}`} />
+        <p className={introStyles.prompt}>איזו מילה היא מילה נרדפת ל:</p>
+        <WordCard
+          word={displayWord(question.prompt)}
+          hint={question.hint}
+          badge={question.item.isGuest ? <GuestBadge /> : undefined}
         />
-      )}
+      </div>
+      <div className="pane-play">
+        <div className={styles.options} role="group" aria-label="אפשרויות">
+          {question.options.map((o, i) => {
+            const state = !answered ? 'idle' : o.correct ? 'correct' : i === chosen ? 'wrong' : 'faded';
+            return (
+              <m.button
+                key={`${index}-${o.word}`}
+                type="button"
+                className={`${styles.option} ${styles[state] ?? ''}`}
+                onClick={() => choose(i)}
+                disabled={answered}
+                aria-pressed={i === chosen}
+                animate={
+                  state === 'wrong'
+                    ? { x: [0, -6, 6, -4, 4, 0] }
+                    : state === 'correct' && i === chosen
+                      ? { scale: [1, 1.05, 1] }
+                      : {}
+                }
+                transition={motion(state === 'wrong' ? 'feedback_shake' : 'feedback_burst')}
+              >
+                <span className={styles.number}>{i + 1}</span>
+                {state === 'correct' && (
+                  <span className={styles.mark}>
+                    <Icon name="check" size="sm" />
+                  </span>
+                )}
+                <span className={styles.word}>{displayWord(o.word)}</span>
+              </m.button>
+            );
+          })}
+        </div>
+        {answered && option && (
+          <Feedback
+            correct={option.correct}
+            title={option.correct ? 'מדויק להפליא!' : 'כמעט! הנה התשובה'}
+            formula={`${displayWord(question.prompt)} = ${displayWord(correctOption.word)}`}
+            extra={!option.correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
+            onContinue={next}
+          />
+        )}
+      </div>
     </div>
   );
 }

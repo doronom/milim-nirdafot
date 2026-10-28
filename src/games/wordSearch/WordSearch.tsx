@@ -1,4 +1,5 @@
 import { useRef, useState, type PointerEvent } from 'react';
+import { useLandscape } from '../../design/layout';
 import { TactileButton } from '../../ui/TactileButton';
 import { Icon } from '../../ui/Icon';
 import { useGameEnv } from '../env-context';
@@ -22,6 +23,7 @@ function cellAt(x: number, y: number): Cell | null {
  */
 export function WordSearch({ round, onDone }: GameProps<WordSearchRound>) {
   const env = useGameEnv();
+  const landscape = useLandscape();
   const { grid } = round;
   const [found, setFound] = useState<Record<string, 'found' | 'revealed'>>({});
   const [anchor, setAnchor] = useState<Cell | null>(null);
@@ -94,43 +96,47 @@ export function WordSearch({ round, onDone }: GameProps<WordSearchRound>) {
       })),
     });
 
-  return (
-    <div className={styles.game}>
-      <p className={introStyles.prompt}>מצאו {grid.words.length} מילים נרדפות (מימין לשמאל ומלמעלה למטה בלבד)</p>
-      <div
-        className={`${styles.grid} ${miss ? styles.miss : ''}`}
-        style={{ gridTemplateColumns: `repeat(${grid.size}, 1fr)` }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        role="grid"
-        aria-label="לוח התפזורת"
-      >
-        {grid.rows.map((row, r) =>
-          row.map((letter, c) => {
-            const k = `${r}:${c}`;
-            const state = selected.has(k)
-              ? styles.selecting
-              : owner.get(k) === 'found'
-                ? styles.found
-                : owner.get(k) === 'revealed'
-                  ? styles.revealed
-                  : '';
-            return (
-              <span
-                key={k}
-                className={`${styles.cell} ${state}`}
-                data-row={r}
-                data-col={c}
-                role="gridcell"
-                aria-label={letter}
-              >
-                {letter}
-              </span>
-            );
-          }),
-        )}
-      </div>
+  const prompt = (
+    <p className={introStyles.prompt}>מצאו {grid.words.length} מילים נרדפות (מימין לשמאל ומלמעלה למטה בלבד)</p>
+  );
+  const board = (
+    <div
+      className={`${styles.grid} ${miss ? styles.miss : ''}`}
+      style={{ gridTemplateColumns: `repeat(${grid.size}, 1fr)` }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      role="grid"
+      aria-label="לוח התפזורת"
+    >
+      {grid.rows.map((row, r) =>
+        row.map((letter, c) => {
+          const k = `${r}:${c}`;
+          const state = selected.has(k)
+            ? styles.selecting
+            : owner.get(k) === 'found'
+              ? styles.found
+              : owner.get(k) === 'revealed'
+                ? styles.revealed
+                : '';
+          return (
+            <span
+              key={k}
+              className={`${styles.cell} ${state}`}
+              data-row={r}
+              data-col={c}
+              role="gridcell"
+              aria-label={letter}
+            >
+              {letter}
+            </span>
+          );
+        }),
+      )}
+    </div>
+  );
+  const list = (
+    <>
       <ul className={styles.words} aria-label="המילים לחיפוש">
         {grid.words.map((w) => (
           <li
@@ -152,6 +158,22 @@ export function WordSearch({ round, onDone }: GameProps<WordSearchRound>) {
           הראו לי מילה אחת
         </TactileButton>
       )}
+    </>
+  );
+  // Landscape: the board beside the instructions and word list; portrait: one stack.
+  return landscape ? (
+    <div className={`${styles.game} panes`}>
+      <div className="pane-prompt">
+        {prompt}
+        {list}
+      </div>
+      <div className="pane-play">{board}</div>
+    </div>
+  ) : (
+    <div className={styles.game}>
+      {prompt}
+      {board}
+      {list}
     </div>
   );
 }

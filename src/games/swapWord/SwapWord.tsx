@@ -77,66 +77,72 @@ export function SwapWord({ round, onDone, onAlsoCorrect, onReportSentence }: Gam
   const slotWord = checked && !correct ? answer.word : placed;
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`משפט ${index + 1} מתוך ${round.questions.length}`} />
-      <p className={introStyles.prompt}>בחרו מילה נרדפת שתחליף את המילה המודגשת</p>
-      {q.item.isGuest && (
-        <span className={styles.guest}>
-          <GuestBadge />
-        </span>
-      )}
-      <div className={styles.sentence} aria-live="polite">
-        <span>{q.before}</span>
-        <span className={styles.slotWrap}>
-          {q.prefix && <span className={styles.prefix}>{q.prefix}</span>}
-          <m.span
-            key={`${index}-${slotWord ?? 'empty'}`}
-            className={`${styles.slot} ${checked ? (correct ? styles.slotRight : styles.slotWrong) : slotWord ? styles.slotFilled : ''}`}
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={motion('card_snap')}
-          >
-            {slotWord ? env.displayWord(slotWord) : env.displayWord(q.headword)}
-            {checked && correct && <Icon name="check" size="sm" />}
-          </m.span>
-        </span>
-        <span>{q.after}</span>
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        <Dots states={dots} label={`משפט ${index + 1} מתוך ${round.questions.length}`} />
       </div>
-      <div className={styles.bank} role="group" aria-label="בנק המילים">
-        {q.options.map((o) => (
-          <button
-            key={`${index}-${o.word}`}
-            type="button"
-            className={`${styles.word} ${placed === o.word ? styles.chosen : ''}`}
-            onClick={() => !checked && setPlaced(o.word)}
-            disabled={checked}
-            aria-pressed={placed === o.word}
-          >
-            {env.displayWord(o.word)}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>בחרו מילה נרדפת שתחליף את המילה המודגשת</p>
+        {q.item.isGuest && (
+          <span className={styles.guest}>
+            <GuestBadge />
+          </span>
+        )}
+        <div className={styles.sentence} aria-live="polite">
+          <span>{q.before}</span>
+          <span className={styles.slotWrap}>
+            {q.prefix && <span className={styles.prefix}>{q.prefix}</span>}
+            <m.span
+              key={`${index}-${slotWord ?? 'empty'}`}
+              className={`${styles.slot} ${checked ? (correct ? styles.slotRight : styles.slotWrong) : slotWord ? styles.slotFilled : ''}`}
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={motion('card_snap')}
+            >
+              {slotWord ? env.displayWord(slotWord) : env.displayWord(q.headword)}
+              {checked && correct && <Icon name="check" size="sm" />}
+            </m.span>
+          </span>
+          <span>{q.after}</span>
+        </div>
+      </div>
+      <div className="pane-play">
+        <div className={styles.bank} role="group" aria-label="בנק המילים">
+          {q.options.map((o) => (
+            <button
+              key={`${index}-${o.word}`}
+              type="button"
+              className={`${styles.word} ${placed === o.word ? styles.chosen : ''}`}
+              onClick={() => !checked && setPlaced(o.word)}
+              disabled={checked}
+              aria-pressed={placed === o.word}
+            >
+              {env.displayWord(o.word)}
+            </button>
+          ))}
+        </div>
+        {!checked && (
+          <TactileButton tone="success" size="lg" block icon="check" onClick={check} disabled={!placed}>
+            בדוק החלפה
+          </TactileButton>
+        )}
+        {!q.sentence.reviewed && (
+          <button type="button" className={styles.reportSentence} onClick={report}>
+            <Icon name="flag" size="sm" />
+            דווח על משפט
           </button>
-        ))}
+        )}
+        {checked && (
+          <Feedback
+            correct={correct}
+            title={correct ? 'החלפה מדויקת!' : 'כמעט! זו המילה שמתאימה'}
+            formula={`${env.displayWord(q.headword)} = ${env.displayWord(correct ? placed! : answer.word)}`}
+            extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'למשפט הבא'}
+            onContinue={next}
+          />
+        )}
       </div>
-      {!checked && (
-        <TactileButton tone="success" size="lg" block icon="check" onClick={check} disabled={!placed}>
-          בדוק החלפה
-        </TactileButton>
-      )}
-      {!q.sentence.reviewed && (
-        <button type="button" className={styles.reportSentence} onClick={report}>
-          <Icon name="flag" size="sm" />
-          דווח על משפט
-        </button>
-      )}
-      {checked && (
-        <Feedback
-          correct={correct}
-          title={correct ? 'החלפה מדויקת!' : 'כמעט! זו המילה שמתאימה'}
-          formula={`${env.displayWord(q.headword)} = ${env.displayWord(correct ? placed! : answer.word)}`}
-          extra={!correct ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'למשפט הבא'}
-          onContinue={next}
-        />
-      )}
     </div>
   );
 }
