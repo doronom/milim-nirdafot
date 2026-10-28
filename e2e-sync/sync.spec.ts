@@ -96,6 +96,16 @@ async function playLevel(page: Page) {
   await expect(page.getByText(/מושלם!/)).toBeVisible();
 }
 
+/**
+ * The parent area's Settings tab. On the long dashboard, Playwright's scroll-into-view before a click can leave the
+ * sticky tab bar behind the page content and the click never lands (a finger tap on the tab works; checked with
+ * elementFromPoint), so the tab's own click is dispatched instead.
+ */
+async function openSettings(page: Page) {
+  await page.getByRole('link', { name: 'הגדרות' }).dispatchEvent('click');
+  await expect(page.getByRole('button', { name: 'סנכרון עכשיו' })).toBeVisible();
+}
+
 test('a Google account that is not on the allowlist is told it is not authorized', async ({ page }) => {
   await signInParent(page, STRANGER);
   await expect(page.getByRole('heading', { name: 'החשבון הזה לא מורשה' })).toBeVisible();
@@ -176,7 +186,7 @@ test('parent sets the passcode and pairs the child; the passcode works offline t
   await child.goto('./#/parent');
   await hold(child, 3300);
   await enterPasscode(child);
-  await child.getByRole('link', { name: 'הגדרות' }).click();
+  await openSettings(child);
   await child.getByRole('button', { name: 'סנכרון עכשיו' }).click();
   await expect(child.getByText('הסנכרון הושלם.')).toBeVisible();
   await child.goto('./#/');
@@ -191,7 +201,7 @@ test('parent sets the passcode and pairs the child; the passcode works offline t
   await parent.getByRole('button', { name: 'ניתוק ומחיקת נתוני הענן' }).click();
   await parent.getByRole('button', { name: 'כן, לנתק ולמחוק' }).click();
   await expect(parent.getByText(/עוד אין מכשיר מחובר/)).toBeVisible();
-  await child.getByRole('link', { name: 'הגדרות' }).click();
+  await openSettings(child);
   await child.getByRole('button', { name: 'סנכרון עכשיו' }).click();
   await expect(child.getByRole('button', { name: 'חיבור לטלפון של ההורה' })).toBeVisible();
   // The passcode on the device keeps working after unpairing.
