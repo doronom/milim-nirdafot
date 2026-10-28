@@ -50,58 +50,62 @@ export function TypeSynonym({ round, onDone, onAlsoCorrect }: GameProps<TypeRoun
   const edit = (f: (t: string) => string) => verdict === null && setTyped(f);
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`מילה ${index + 1} מתוך ${round.questions.length}`} />
-      <WordCard word={displayWord(q.prompt)} hint={q.hint} badge={q.item.isGuest ? <GuestBadge /> : undefined} />
-      <p className={introStyles.prompt}>הקלידו מילה נרדפת:</p>
-      <div
-        className={`${styles.field} ${verdict ? (right ? styles.ok : styles.bad) : ''}`}
-        aria-live="polite"
-        aria-label="התשובה שהוקלדה"
-      >
-        {typed ? (
-          <span className={styles.typed}>{typed}</span>
-        ) : (
-          <span className={styles.placeholder}>המילה שלכם תופיע כאן</span>
+    <div className={`${styles.game} panes`}>
+      <div className="pane-prompt">
+        <Dots states={dots} label={`מילה ${index + 1} מתוך ${round.questions.length}`} />
+        <WordCard word={displayWord(q.prompt)} hint={q.hint} badge={q.item.isGuest ? <GuestBadge /> : undefined} />
+        <p className={introStyles.prompt}>הקלידו מילה נרדפת:</p>
+        <div
+          className={`${styles.field} ${verdict ? (right ? styles.ok : styles.bad) : ''}`}
+          aria-live="polite"
+          aria-label="התשובה שהוקלדה"
+        >
+          {typed ? (
+            <span className={styles.typed}>{typed}</span>
+          ) : (
+            <span className={styles.placeholder}>המילה שלכם תופיע כאן</span>
+          )}
+          {!verdict && typed && (
+            <button type="button" className={styles.clear} onClick={() => setTyped('')} aria-label="נקה">
+              <Icon name="refresh" size="sm" />
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="pane-play">
+        {!verdict && (
+          <>
+            <HebrewKeyboard
+              onKey={(k) => edit((t) => t + k)}
+              onBackspace={() => edit((t) => t.slice(0, -1))}
+              onSpace={() => edit((t) => (t.endsWith(' ') || t === '' ? t : `${t} `))}
+            />
+            <TactileButton block size="lg" icon="check" onClick={check} disabled={typed.trim() === ''}>
+              בדיקת תשובה
+            </TactileButton>
+          </>
         )}
-        {!verdict && typed && (
-          <button type="button" className={styles.clear} onClick={() => setTyped('')} aria-label="נקה">
-            <Icon name="refresh" size="sm" />
-          </button>
+        {verdict && (
+          <Feedback
+            correct={right}
+            title={
+              verdict.kind === 'exact'
+                ? 'מדויק!'
+                : verdict.kind === 'typo'
+                  ? 'כמעט! בדוק את האיות'
+                  : 'עוד לא. הנה מילים נרדפות'
+            }
+            formula={
+              verdict.kind === 'wrong'
+                ? `${displayWord(q.prompt)} = ${q.item.entry.synonyms.map(displayWord).join(', ')}`
+                : `${displayWord(q.prompt)} = ${displayWord(verdict.word)}`
+            }
+            extra={verdict.kind === 'wrong' ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'למילה הבאה'}
+            onContinue={next}
+          />
         )}
       </div>
-      {!verdict && (
-        <>
-          <HebrewKeyboard
-            onKey={(k) => edit((t) => t + k)}
-            onBackspace={() => edit((t) => t.slice(0, -1))}
-            onSpace={() => edit((t) => (t.endsWith(' ') || t === '' ? t : `${t} `))}
-          />
-          <TactileButton block size="lg" icon="check" onClick={check} disabled={typed.trim() === ''}>
-            בדיקת תשובה
-          </TactileButton>
-        </>
-      )}
-      {verdict && (
-        <Feedback
-          correct={right}
-          title={
-            verdict.kind === 'exact'
-              ? 'מדויק!'
-              : verdict.kind === 'typo'
-                ? 'כמעט! בדוק את האיות'
-                : 'עוד לא. הנה מילים נרדפות'
-          }
-          formula={
-            verdict.kind === 'wrong'
-              ? `${displayWord(q.prompt)} = ${q.item.entry.synonyms.map(displayWord).join(', ')}`
-              : `${displayWord(q.prompt)} = ${displayWord(verdict.word)}`
-          }
-          extra={verdict.kind === 'wrong' ? <AlsoCorrectButton key={index} onClaim={claim} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'למילה הבאה'}
-          onContinue={next}
-        />
-      )}
     </div>
   );
 }

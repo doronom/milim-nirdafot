@@ -64,3 +64,12 @@
   font-size: var(--type-caption-size);
   font-weight: var(--type-caption-weight);
 }
+
+/* Landscape: smaller bubbles with less air around them, so all four fit the short screen. */
+:global(:root[data-layout='landscape']) .field {
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+:global(:root[data-layout='landscape']) .bubble {
+  inline-size: calc(var(--node-size-current) * 1.25);
+}

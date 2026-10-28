@@ -15,10 +15,12 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 import { startOfflineAudio } from './audio/offline-audio';
+import { watchLayout } from './design/layout';
 import { applyTokens } from './design/tokens';
 import { idbStore } from './storage/kv';
 
 applyTokens();
+watchLayout();
 
 if (import.meta.env.VITE_FIREBASE_EMULATOR === 'true') void import('./app/test-hooks');
 

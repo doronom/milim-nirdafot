@@ -1,7 +1,9 @@
 .area {
   display: flex;
   flex-direction: column;
-  min-block-size: 100dvh;
+  min-block-size: calc(100dvh + var(--overlay-clearance));
+  /* One screen plus room to scroll anything clear of an overlay in the bottom corner (the host's badge). */
+  padding-block-end: var(--overlay-clearance);
 }
 .body {
   display: flex;
@@ -409,4 +411,26 @@ textarea.input {
   aspect-ratio: 1;
   border-radius: var(--radius-button);
   image-rendering: pixelated;
+}
+
+/* Landscape: the parent tabs become a rail on the end side, beside the top bar and the page. */
+:global(:root[data-layout='landscape']) .area:has(> .nav) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--rail-width);
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+:global(:root[data-layout='landscape']) .area:has(> .nav) > :not(.nav) {
+  grid-column: 1;
+}
+:global(:root[data-layout='landscape']) .nav {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  inset-block-start: 0;
+  grid-template-columns: none;
+  grid-template-rows: repeat(5, 1fr);
+  block-size: 100dvh;
+  padding-block: var(--space-2);
+  border-block-start: none;
+  border-inline-start: var(--border-thin) solid var(--border);
 }

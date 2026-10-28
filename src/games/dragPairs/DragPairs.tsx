@@ -143,48 +143,54 @@ export function DragPairs({ round, onDone }: GameProps<DragRound>) {
   const chipWord = (key: string) => env.displayWord(board.chips.find((c) => c.key === key)!.entry.headword);
 
   return (
-    <div className={styles.game}>
-      {round.boards.length > 1 && (
-        <Dots
-          states={round.boards.map((_, i) => (i < boardIndex ? 'done' : i === boardIndex ? 'current' : 'todo'))}
-          label={`לוח ${boardIndex + 1} מתוך ${round.boards.length}`}
-        />
-      )}
-      <p className={introStyles.prompt}>גררו כל מילה אל המילה הנרדפת שלה</p>
-      <DndContext sensors={sensors} onDragEnd={onDragEnd}>
-        <div className={styles.columns}>
-          <div className={styles.column} role="group" aria-label="מילים לגרירה">
-            {board.chips
-              .filter((c) => !placed.has(c.key))
-              .map((c) => (
-                <Chip
-                  key={c.key}
-                  item={c}
-                  label={env.displayWord(c.entry.headword)}
-                  selected={selected === c.key}
-                  onTap={() => setSelected(selected === c.key ? null : c.key)}
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        {round.boards.length > 1 && (
+          <Dots
+            states={round.boards.map((_, i) => (i < boardIndex ? 'done' : i === boardIndex ? 'current' : 'todo'))}
+            label={`לוח ${boardIndex + 1} מתוך ${round.boards.length}`}
+          />
+        )}
+      </div>
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>גררו כל מילה אל המילה הנרדפת שלה</p>
+      </div>
+      <div className="pane-play">
+        <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+          <div className={styles.columns}>
+            <div className={styles.column} role="group" aria-label="מילים לגרירה">
+              {board.chips
+                .filter((c) => !placed.has(c.key))
+                .map((c) => (
+                  <Chip
+                    key={c.key}
+                    item={c}
+                    label={env.displayWord(c.entry.headword)}
+                    selected={selected === c.key}
+                    onTap={() => setSelected(selected === c.key ? null : c.key)}
+                  />
+                ))}
+            </div>
+            <div className={styles.column} role="group" aria-label="מילים נרדפות">
+              {board.targets.map((t) => (
+                <Target
+                  key={t.key}
+                  item={t}
+                  label={env.displayWord(t.synonym)}
+                  matchedWith={matched[t.key] ? chipWord(matched[t.key]!) : null}
+                  flash={flash === t.key}
+                  onTap={() => selected && attempt(selected, t.key)}
                 />
               ))}
+            </div>
           </div>
-          <div className={styles.column} role="group" aria-label="מילים נרדפות">
-            {board.targets.map((t) => (
-              <Target
-                key={t.key}
-                item={t}
-                label={env.displayWord(t.synonym)}
-                matchedWith={matched[t.key] ? chipWord(matched[t.key]!) : null}
-                flash={flash === t.key}
-                onTap={() => selected && attempt(selected, t.key)}
-              />
-            ))}
-          </div>
-        </div>
-      </DndContext>
-      {boardDone && (
-        <TactileButton tone="success" size="lg" block onClick={next}>
-          {lastBoard ? 'סיום הסבב' : 'ללוח הבא'}
-        </TactileButton>
-      )}
+        </DndContext>
+        {boardDone && (
+          <TactileButton tone="success" size="lg" block onClick={next}>
+            {lastBoard ? 'סיום הסבב' : 'ללוח הבא'}
+          </TactileButton>
+        )}
+      </div>
     </div>
   );
 }

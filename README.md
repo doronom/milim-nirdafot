@@ -41,6 +41,9 @@ four worlds of synonyms; a parent area behind a gate shows progress and lets a p
 - **No backend, accounts, ads, analytics or external links.** Everything stays on the device (IndexedDB).
 - **Offline-first.** After the first visit the whole game, audio included, works without a network.
 - **Right-to-left Hebrew** throughout, mobile-first, with design tokens from the designer's handoff.
+- **Portrait or landscape.** Turned on its side, a phone gets its own layout (`src/design/layout.ts`): the tabs move
+  to a side rail and each game shows its prompt beside the part you touch, so a round fits the screen without
+  scrolling.
 
 ## What is inside
 

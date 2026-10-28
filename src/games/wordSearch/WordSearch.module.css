@@ -70,3 +70,12 @@
 .struck {
   text-decoration: line-through;
 }
+
+/* Landscape: a square board as tall as the screen allows, beside the word list. */
+:global(:root[data-layout='landscape']) .grid {
+  inline-size: min(100%, var(--landscape-board));
+  margin-inline: auto;
+}
+:global(:root[data-layout='landscape']) .cell {
+  font-size: var(--type-label-size);
+}

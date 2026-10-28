@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLandscape } from '../../design/layout';
 import { Icon } from '../../ui/Icon';
 import { TactileButton } from '../../ui/TactileButton';
 import type { GameProps } from '../types';
@@ -15,6 +16,7 @@ const at = (r: number, c: number) => `${r}:${c}`;
  * check the word. Revealing a word solves it but counts it as not known.
  */
 export function Crossword({ round, onDone }: GameProps<CrosswordRound>) {
+  const landscape = useLandscape();
   const { puzzle } = round;
   const [selected, setSelected] = useState(puzzle.words[0]!.itemKey);
   const [letters, setLetters] = useState<Record<string, string>>({});
@@ -72,64 +74,74 @@ export function Crossword({ round, onDone }: GameProps<CrosswordRound>) {
 
   const clueLabel = (w: CrossWord) => `${w.number} ${w.direction === 'across' ? 'מאוזן' : 'מאונך'}`;
 
-  return (
-    <div className={styles.game}>
-      <div className={styles.current}>
-        <span className={styles.clueTag}>
-          {clueLabel(word)} · {word.answer.length} אותיות
-        </span>
-        <span className={styles.clueText}>
-          {round.items[word.itemKey]?.isGuest && <GuestBadge compact />}
-          {word.clue}
-        </span>
-      </div>
-      <div
-        className={`${styles.grid} ${flash ? styles.flash : ''}`}
-        style={{ gridTemplateColumns: `repeat(${puzzle.cols}, 1fr)` }}
-        role="grid"
-        aria-label="לוח התשבץ"
-      >
-        {puzzle.cells.map((row, r) =>
-          row.map((ch, c) => {
-            const k = at(r, c);
-            if (ch === null) return <span key={k} className={styles.block} aria-hidden />;
-            const state = locked.has(k) ? styles.locked : inSelected.has(k) ? styles.active : '';
-            return (
-              <button
-                key={k}
-                type="button"
-                className={`${styles.cell} ${state}`}
-                onClick={() => {
-                  const owner = puzzle.words.find(
-                    (w) => !solved[w.itemKey] && wordCells(w).some((x) => at(x.row, x.col) === k),
-                  );
-                  if (owner) setSelected(owner.itemKey);
-                }}
-                aria-label={letters[k] ?? 'משבצת ריקה'}
-              >
-                {numbers.has(k) && <span className={styles.number}>{numbers.get(k)}</span>}
-                {letters[k] ?? ''}
-              </button>
-            );
-          }),
-        )}
-      </div>
-      <ul className={styles.clues} aria-label="הגדרות">
-        {puzzle.words.map((w) => (
-          <li key={w.itemKey}>
+  const current = (
+    <div className={styles.current}>
+      <span className={styles.clueTag}>
+        {clueLabel(word)} · {word.answer.length} אותיות
+      </span>
+      <span className={styles.clueText}>
+        {round.items[word.itemKey]?.isGuest && <GuestBadge compact />}
+        {word.clue}
+      </span>
+    </div>
+  );
+  const board = (
+    <div
+      className={`${styles.grid} ${flash ? styles.flash : ''}`}
+      style={{
+        gridTemplateColumns: `repeat(${puzzle.cols}, minmax(0, 1fr))`,
+        ['--local-cols' as string]: puzzle.cols,
+        ['--local-rows' as string]: puzzle.rows,
+      }}
+      role="grid"
+      aria-label="לוח התשבץ"
+    >
+      {puzzle.cells.map((row, r) =>
+        row.map((ch, c) => {
+          const k = at(r, c);
+          if (ch === null) return <span key={k} className={styles.block} aria-hidden />;
+          const state = locked.has(k) ? styles.locked : inSelected.has(k) ? styles.active : '';
+          return (
             <button
+              key={k}
               type="button"
-              className={`${styles.clue} ${w.itemKey === selected ? styles.clueSelected : ''} ${solved[w.itemKey] ? styles.clueDone : ''}`}
-              onClick={() => !solved[w.itemKey] && setSelected(w.itemKey)}
-              disabled={Boolean(solved[w.itemKey])}
+              className={`${styles.cell} ${state}`}
+              onClick={() => {
+                const owner = puzzle.words.find(
+                  (w) => !solved[w.itemKey] && wordCells(w).some((x) => at(x.row, x.col) === k),
+                );
+                if (owner) setSelected(owner.itemKey);
+              }}
+              aria-label={letters[k] ?? 'משבצת ריקה'}
             >
-              {solved[w.itemKey] === 'solved' && <Icon name="check" size="sm" />}
-              <span className={styles.clueNumber}>{clueLabel(w)}</span>
-              {w.clue}
+              {numbers.has(k) && <span className={styles.number}>{numbers.get(k)}</span>}
+              {letters[k] ?? ''}
             </button>
-          </li>
-        ))}
-      </ul>
+          );
+        }),
+      )}
+    </div>
+  );
+  const clueList = (
+    <ul className={styles.clues} aria-label="הגדרות">
+      {puzzle.words.map((w) => (
+        <li key={w.itemKey}>
+          <button
+            type="button"
+            className={`${styles.clue} ${w.itemKey === selected ? styles.clueSelected : ''} ${solved[w.itemKey] ? styles.clueDone : ''}`}
+            onClick={() => !solved[w.itemKey] && setSelected(w.itemKey)}
+            disabled={Boolean(solved[w.itemKey])}
+          >
+            {solved[w.itemKey] === 'solved' && <Icon name="check" size="sm" />}
+            <span className={styles.clueNumber}>{clueLabel(w)}</span>
+            {w.clue}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+  const input = (
+    <>
       {done ? (
         <TactileButton tone="success" size="lg" block onClick={finish}>
           סיום הסבב
@@ -160,6 +172,26 @@ export function Crossword({ round, onDone }: GameProps<CrosswordRound>) {
           </TactileButton>
         </>
       )}
+    </>
+  );
+  // Landscape: the clue and letter tiles beside the board and clue list; portrait: one stack.
+  return landscape ? (
+    <div className={`${styles.game} panes`}>
+      <div className="pane-prompt">
+        {current}
+        {input}
+      </div>
+      <div className="pane-play">
+        {board}
+        {clueList}
+      </div>
+    </div>
+  ) : (
+    <div className={styles.game}>
+      {current}
+      {board}
+      {clueList}
+      {input}
     </div>
   );
 }

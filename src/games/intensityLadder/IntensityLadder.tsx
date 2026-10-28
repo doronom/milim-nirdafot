@@ -32,8 +32,10 @@ export function IntensityLadder({ round, onDone, onAlsoCorrect }: GameProps<Ladd
   );
 
   return (
-    <div className={styles.game}>
-      <Dots states={dots} label={`שאלה ${index + 1} מתוך ${total}`} />
+    <div className={`${styles.game} panes`}>
+      <div className="pane-full">
+        <Dots states={dots} label={`שאלה ${index + 1} מתוך ${total}`} />
+      </div>
       {round.mode === 'stronger' ? (
         <Stronger key={index} q={round.questions[index]!} last={last} onAnswer={record} onClaim={claim} onNext={next} />
       ) : (
@@ -62,39 +64,43 @@ function Stronger({ q, last, onAnswer, onClaim, onNext }: StepProps<StrongerQues
   };
   return (
     <>
-      <p className={introStyles.prompt}>איזו מילה חזקה יותר?</p>
-      <p className={styles.theme}>
-        {q.item.isGuest && <GuestBadge compact />}
-        {q.item.scale.theme}
-      </p>
-      <div className={styles.pair} role="group" aria-label="שתי מילים">
-        {q.pair.map((w) => {
-          const state = !chosen ? '' : w === q.stronger ? styles.right : w === chosen ? styles.wrong : '';
-          return (
-            <m.button
-              key={w}
-              type="button"
-              className={`${styles.card} ${state}`}
-              onClick={() => choose(w)}
-              disabled={chosen !== null}
-              animate={chosen === w && w !== q.stronger ? { x: [0, -6, 6, -4, 4, 0] } : {}}
-              transition={motion('feedback_shake')}
-            >
-              {displayWord(w)}
-            </m.button>
-          );
-        })}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>איזו מילה חזקה יותר?</p>
+        <p className={styles.theme}>
+          {q.item.isGuest && <GuestBadge compact />}
+          {q.item.scale.theme}
+        </p>
       </div>
-      {chosen && (
-        <Feedback
-          correct={isStronger(q, chosen)}
-          title={isStronger(q, chosen) ? 'נכון! זו המילה החזקה' : 'כמעט! המילה החזקה היא'}
-          formula={`${displayWord(weaker)} < ${displayWord(q.stronger)}`}
-          extra={!isStronger(q, chosen) ? <AlsoCorrectButton onClaim={() => onClaim(chosen)} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
-          onContinue={onNext}
-        />
-      )}
+      <div className="pane-play">
+        <div className={styles.pair} role="group" aria-label="שתי מילים">
+          {q.pair.map((w) => {
+            const state = !chosen ? '' : w === q.stronger ? styles.right : w === chosen ? styles.wrong : '';
+            return (
+              <m.button
+                key={w}
+                type="button"
+                className={`${styles.card} ${state}`}
+                onClick={() => choose(w)}
+                disabled={chosen !== null}
+                animate={chosen === w && w !== q.stronger ? { x: [0, -6, 6, -4, 4, 0] } : {}}
+                transition={motion('feedback_shake')}
+              >
+                {displayWord(w)}
+              </m.button>
+            );
+          })}
+        </div>
+        {chosen && (
+          <Feedback
+            correct={isStronger(q, chosen)}
+            title={isStronger(q, chosen) ? 'נכון! זו המילה החזקה' : 'כמעט! המילה החזקה היא'}
+            formula={`${displayWord(weaker)} < ${displayWord(q.stronger)}`}
+            extra={!isStronger(q, chosen) ? <AlsoCorrectButton onClaim={() => onClaim(chosen)} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'לשאלה הבאה'}
+            onContinue={onNext}
+          />
+        )}
+      </div>
     </>
   );
 }
@@ -114,72 +120,76 @@ function Order({ q, last, onAnswer, onClaim, onNext }: StepProps<OrderQuestion>)
   const rungs = q.order.map((_, i) => i).reverse();
   return (
     <>
-      <p className={introStyles.prompt}>סדרו מהחלש אל החזק ביותר</p>
-      <p className={styles.theme}>
-        {q.item.isGuest && <GuestBadge compact />}
-        {q.item.scale.theme}
-      </p>
-      <ol className={styles.ladder} aria-label="הסולם, מהחזק (למעלה) אל החלש (למטה)">
-        {rungs.map((i) => {
-          const word = checked && !correct ? q.order[i] : placed[i];
-          const state = !checked ? '' : correct || placed[i] === q.order[i] ? styles.right : styles.wrong;
-          return (
-            <li
-              key={i}
-              className={`${styles.rung} ${state}`}
-              style={{ ['--local-rung' as string]: i / Math.max(1, q.order.length - 1) }}
-            >
-              <span className={styles.rungNumber}>{i + 1}</span>
-              {word ? (
-                <button
-                  type="button"
-                  className={styles.rungWord}
-                  disabled={checked}
-                  onClick={() => setPlaced(placed.slice(0, i))}
-                  aria-label={`${displayWord(word)}, שלב ${i + 1}`}
-                >
-                  {displayWord(word)}
-                  {checked && (correct || placed[i] === q.order[i]) && <Icon name="check" size="sm" />}
-                </button>
-              ) : (
-                <span className={styles.empty}>{i === placed.length ? 'הבא בתור' : ''}</span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-      {!checked && (
-        <div className={styles.bank} role="group" aria-label="בנק המילים">
-          {bank.map((w) => (
-            <button
-              key={w}
-              type="button"
-              className={styles.chip}
-              onClick={() => {
-                speak(w);
-                setPlaced([...placed, w]);
-              }}
-            >
-              {displayWord(w)}
-            </button>
-          ))}
-        </div>
-      )}
-      {!checked && (
-        <TactileButton block size="lg" icon="check" onClick={check} disabled={!full}>
-          בדוק דירוג
-        </TactileButton>
-      )}
-      {checked && (
-        <Feedback
-          correct={correct}
-          title={correct ? 'דירוג מדויק!' : 'כמעט! זה הסדר הנכון'}
-          formula={q.order.map(displayWord).join(' < ')}
-          extra={!correct ? <AlsoCorrectButton onClaim={() => onClaim(placed.join(' < '))} /> : undefined}
-          continueLabel={last ? 'סיום הסבב' : 'לסולם הבא'}
-          onContinue={onNext}
-        />
-      )}
+      <div className="pane-prompt">
+        <p className={introStyles.prompt}>סדרו מהחלש אל החזק ביותר</p>
+        <p className={styles.theme}>
+          {q.item.isGuest && <GuestBadge compact />}
+          {q.item.scale.theme}
+        </p>
+        <ol className={styles.ladder} aria-label="הסולם, מהחזק (למעלה) אל החלש (למטה)">
+          {rungs.map((i) => {
+            const word = checked && !correct ? q.order[i] : placed[i];
+            const state = !checked ? '' : correct || placed[i] === q.order[i] ? styles.right : styles.wrong;
+            return (
+              <li
+                key={i}
+                className={`${styles.rung} ${state}`}
+                style={{ ['--local-rung' as string]: i / Math.max(1, q.order.length - 1) }}
+              >
+                <span className={styles.rungNumber}>{i + 1}</span>
+                {word ? (
+                  <button
+                    type="button"
+                    className={styles.rungWord}
+                    disabled={checked}
+                    onClick={() => setPlaced(placed.slice(0, i))}
+                    aria-label={`${displayWord(word)}, שלב ${i + 1}`}
+                  >
+                    {displayWord(word)}
+                    {checked && (correct || placed[i] === q.order[i]) && <Icon name="check" size="sm" />}
+                  </button>
+                ) : (
+                  <span className={styles.empty}>{i === placed.length ? 'הבא בתור' : ''}</span>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+      <div className="pane-play">
+        {!checked && (
+          <div className={styles.bank} role="group" aria-label="בנק המילים">
+            {bank.map((w) => (
+              <button
+                key={w}
+                type="button"
+                className={styles.chip}
+                onClick={() => {
+                  speak(w);
+                  setPlaced([...placed, w]);
+                }}
+              >
+                {displayWord(w)}
+              </button>
+            ))}
+          </div>
+        )}
+        {!checked && (
+          <TactileButton block size="lg" icon="check" onClick={check} disabled={!full}>
+            בדוק דירוג
+          </TactileButton>
+        )}
+        {checked && (
+          <Feedback
+            correct={correct}
+            title={correct ? 'דירוג מדויק!' : 'כמעט! זה הסדר הנכון'}
+            formula={q.order.map(displayWord).join(' < ')}
+            extra={!correct ? <AlsoCorrectButton onClaim={() => onClaim(placed.join(' < '))} /> : undefined}
+            continueLabel={last ? 'סיום הסבב' : 'לסולם הבא'}
+            onContinue={onNext}
+          />
+        )}
+      </div>
     </>
   );
 }
